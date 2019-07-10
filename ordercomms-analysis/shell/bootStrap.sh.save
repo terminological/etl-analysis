@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# if [ -z ${2+x} ]; then 
+#	end=$2
+#else 
+#	end=10
+#fi
+
+rm medians.txt
+touch medians.txt
+
+typeset -i i end
+let end=1000 i=1
+while ((i<=end)); do 
+	echo $i;
+#	echo $lines;
+ 	shuf -n 10000 $1 | sort -n | sed -n "5000,5000p" >> medians.txt;
+	let i++;
+done
+
+echo $(sort -n medians.txt | sed -n "975,975p")
+echo $(sort -n medians.txt | sed -n "500,500p")
+echo $(sort -n medians.txt | sed -n "25,25p")
