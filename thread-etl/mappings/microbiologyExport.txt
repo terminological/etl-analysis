@@ -1,0 +1,953 @@
+sourceDomain	sourceId	sourceTerm	certainty	review	omopDomainId	omopConceptId	omopConceptName	usedCount
+urn:ordercomms:rtest:textual-result	S	S	1	1	Meas Value	4307105	Sensitive	1783856
+urn:ordercomms:rtest:textual-result	MRSA NOT isolated	MRSA NOT isolated	0.455668946	1	Meas Value	4142856	Not isolated	937885
+urn:ordercomms:rtest:textual-result	None seen	None seen	0.183503419	1	Meas Value	9190	Not detected	683113
+urn:ordercomms:rtest:textual-result	R	R	1	1	Meas Value	4148441	Resistant	661750
+urn:ordercomms:rtest:textual-result	MRSA NOT ISOLATED after 24 hrs.	MRSA NOT ISOLATED after 24 hrs.	0.267480126	1	Meas Value	4142856	Not isolated	346932
+urn:ordercomms:rtest:textual-result	No growth after 2 days incubation	No growth after 2 days incubation	0.225403331	1	Meas Value	4139623	No growth	327295
+urn:ordercomms:rtest:textual-result	Culture NOT indicated	Culture NOT indicated	1	1	Meas Value	4259516	Not indicated	267302
+urn:ordercomms:rtest:textual-result	Coliform	Coliform	0.314005659	1	Meas Value	4299510	Coliform bacteria	182172
+urn:ordercomms:rtest:textual-result	Heavy growth	Heavy growth	1	1	Meas Value	4125547	+++	143256
+urn:ordercomms:rtest:textual-result	Growth	Growth	0.32063378	1	Meas Value	4126681	Detected	132814
+urn:ordercomms:rtest:textual-result	Staphylococcus aureus	Staphylococcus aureus	1	1	Meas Value	4149419	Staphylococcus aureus	120783
+urn:ordercomms:rtest:textual-result	Cryptosporidium and Giardia NOT detected.	Cryptosporidium and Giardia NOT detected.		1	Meas Value	9190	Not detected	110784
+urn:ordercomms:rtest:textual-result	NOT TESTED	NOT TESTED	0.209430585	1	Meas Value	45884199	Test not performed	109942
+urn:ordercomms:rtest:textual-result	Escherichia coli	Escherichia coli	1	1	Meas Value	4011683	Escherichia coli	101379
+urn:ordercomms:rtest:textual-result	Moderate growth	Moderate growth	1	1	Meas Value	4126673	++	99159
+urn:ordercomms:rtest:textual-result	"Ova, cysts and parasites NOT seen"	"Ova, cysts and parasites NOT seen"	0.152681454	1	Meas Value	9190	Not detected	82758
+urn:ordercomms:rtest:textual-result	Light growth	Light growth	0.276253136	1	Meas Value	4123508	+	76769
+urn:ordercomms:rtest:textual-result	No Organisms Seen	No Organisms Seen	0.115348263	1	Meas Value	9190	Not detected	69260
+urn:ordercomms:rtest:textual-result	Candida sp.	Candida sp.	0.5	1	Meas Value	4139129	Candida	68868
+urn:ordercomms:rtest:textual-result	NOT detected	NOT detected	1	1	Meas Value	9190	Not detected	54827
+urn:ordercomms:rtest:textual-result	Fungal elements NOT seen	Fungal elements NOT seen	0.204177574	1	Meas Value	9190	Not detected	52331
+urn:ordercomms:rtest:textual-result	No evidence of Bacterial Vaginosis (BV).	No evidence of Bacterial Vaginosis (BV).	0.175836616	1	Meas Value	9190	Not detected	51318
+urn:ordercomms:rtest:textual-result	Small numbers (+)	Small numbers (+)	0.225403331	1	Meas Value	4123508	+	43620
+urn:ordercomms:rtest:textual-result	Screening test (GDH) NEGATIVE	Screening test (GDH) NEGATIVE	0.171921329	1	Meas Value	9189	Negative	39375
+urn:ordercomms:rtest:textual-result	Mixed Anaerobes	Mixed Anaerobes	1	1	Meas Value	4241214	Anaerobic bacteria	35069
+urn:ordercomms:rtest:textual-result	Scanty	Scanty	1	1	Meas Value	4123508	+	33978
+urn:ordercomms:rtest:textual-result	Pseudomonas sp.	Pseudomonas sp.	0.59175171	1	Meas Value	4211547	Pseudomonas	31548
+urn:ordercomms:rtest:textual-result	MSSA NOT Isolated.	MSSA NOT Isolated.	0.43305329	1	Meas Value	4142856	Not isolated	31135
+urn:ordercomms:rtest:textual-result	Gram negative diplococci NOT seen	Gram negative diplococci NOT seen	0.152681454	1	Meas Value	9190	Not detected	30275
+urn:ordercomms:rtest:textual-result	MRSA isolated	MRSA isolated	0.351114315	1	Meas Value	4019195	Methicillin resistant Staphylococcus aureus	27958
+urn:ordercomms:rtest:textual-result	Not applicable	Not applicable	0.163339973	1	Meas Value	45884199	Test not performed	26409
+urn:ordercomms:rtest:textual-result	MRSA (as previously reported)	MRSA (as previously reported)	1	1	Meas Value	4019195	Methicillin resistant Staphylococcus aureus	25956
+urn:ordercomms:rtest:textual-result	Scanty growth	Scanty growth	1	1	Meas Value	4123508	+	25368
+urn:ordercomms:rtest:textual-result	Fungal elements SEEN	Fungal elements SEEN	0.378418439	1	Meas Value	4019007	Fungal structural elements	24365
+urn:ordercomms:rtest:textual-result	Acid/Alcohol fast bacilli NOT seen	Acid/Alcohol fast bacilli NOT seen	0.148530682	1	Meas Value	9190	Not detected	23813
+urn:ordercomms:rtest:textual-result	Moderate numbers (++)	Moderate numbers (++)	0.579915975	1	Meas Value	4126673	++	22624
+urn:ordercomms:rtest:textual-result	Coag. negative Staphylococcus	Coag. negative Staphylococcus	0.372749952	1	Meas Value	4020318	"Staphylococcus, coagulase negative"	22166
+urn:ordercomms:rtest:textual-result	Anaerobic cocci	Anaerobic cocci	0.352423874	1	Meas Value	4241214	Anaerobic bacteria	21992
+urn:ordercomms:rtest:textual-result	Candida albicans	Candida albicans	1	1	Meas Value	4200556	Candida albicans	20778
+urn:ordercomms:rtest:textual-result	Growth detected	Growth detected	0.309934441	1	Meas Value	4126681	Detected	20679
+urn:ordercomms:rtest:textual-result	Enterococcus sp.	Enterococcus sp.	0.5	1	Meas Value	4214811	Enterococcaceae	19000
+urn:ordercomms:rtest:textual-result	Coliform (non-E. coli)	Coliform (non-E. coli)	0.302514168	1	Meas Value	4299510	Coliform bacteria	18613
+urn:ordercomms:rtest:textual-result	Proteus sp.	Proteus sp.	0.5	1	Meas Value	4196666	Proteus	18100
+urn:ordercomms:rtest:textual-result	Haemophilus influenzae	Haemophilus influenzae	1	1	Meas Value	4195939	Haemophilus influenzae	15561
+urn:ordercomms:rtest:textual-result	CAMPYLOBACTER SP.	CAMPYLOBACTER SP.	0.622035527	1	Meas Value	4261232	Campylobacter	14113
+urn:ordercomms:rtest:textual-result	Streptococcus Group B	Streptococcus Group B	0.506135202	1	Meas Value	4183468	Group B streptococcus	13187
+urn:ordercomms:rtest:textual-result	Streptococcus Group A	Streptococcus Group A	0.506135202	1	Meas Value	4187877	"Beta-hemolytic Streptococcus, group A"	13113
+urn:ordercomms:rtest:textual-result	Staphylococcus aureus (MRSA)	Staphylococcus aureus (MRSA)	0.614077508	1	Meas Value	4019195	Methicillin resistant Staphylococcus aureus	13061
+urn:ordercomms:rtest:textual-result	Large Numbers (+++)	Large Numbers (+++)	0.206507952	1	Meas Value	4125547	+++	11625
+urn:ordercomms:rtest:textual-result	Streptococcus Group G	Streptococcus Group G	0.558273896	1	Meas Value	4326764	"Streptococcus, group G"	11225
+urn:ordercomms:rtest:textual-result	Streptococcus sp.	Streptococcus sp.	0.622035527	1	Meas Value	4240344	Streptococcus	10939
+urn:ordercomms:rtest:textual-result	Gardnerella vaginalis	Gardnerella vaginalis	1	1	Meas Value	4274639	Gardnerella vaginalis	7675
+urn:ordercomms:rtest:textual-result	Trichophyton rubrum	Trichophyton rubrum	1	1	Meas Value	4290329	Trichophyton rubrum	7510
+urn:ordercomms:rtest:textual-result	Streptococcus pneumoniae	Streptococcus pneumoniae	1	1	Meas Value	4321152	Streptococcus pneumoniae	6959
+urn:ordercomms:rtest:textual-result	Yeast +	Yeast +	0.552786405	1	Meas Value	4265186	Yeast	6903
+urn:ordercomms:rtest:textual-result	No growth after 8 weeks incubation.	No growth after 8 weeks incubation.	0.213204208	1	Meas Value	4139623	No growth	6268
+urn:ordercomms:rtest:textual-result	Yeast scanty	Yeast scanty	0.316869949	1	Meas Value	4265186	Yeast	5596
+urn:ordercomms:rtest:textual-result	MSSA Isolated	MSSA Isolated	0.351114315	1	Meas Value	4168510	Methicillin susceptible Staphylococcus aureus	5583
+urn:ordercomms:rtest:textual-result	Streptococcus Group C	Streptococcus Group C	0.59175171	1	Meas Value	4304555	Streptococcus group C variant	4779
+urn:ordercomms:rtest:textual-result	No Growth after 32 hours incubation.	No Growth after 32 hours incubation.	0.207594184	1	Meas Value	4139623	No growth	4689
+urn:ordercomms:rtest:textual-result	Staphylococcus saprophyticus	Staphylococcus saprophyticus	1	1	Meas Value	4055349	Staphylococcus saprophyticus	4195
+urn:ordercomms:rtest:textual-result	DETECTED	DETECTED	1	1	Meas Value	4126681	Detected	4052
+urn:ordercomms:rtest:textual-result	Moraxella catarrhalis	Moraxella catarrhalis	1	1	Meas Value	4087087	Moraxella catarrhalis	3699
+urn:ordercomms:rtest:textual-result	Yeast ++	Yeast ++	0.477767032	1	Meas Value	4265186	Yeast	3186
+urn:ordercomms:rtest:textual-result	Bacteroides sp.	Bacteroides sp.	0.59175171	1	Meas Value	4212359	Bacteroides	3110
+urn:ordercomms:rtest:textual-result	Klebsiella pneumoniae	Klebsiella pneumoniae	1	1	Meas Value	4209452	Klebsiella pneumoniae	2822
+urn:ordercomms:rtest:textual-result	Trichophyton interdigitale	Trichophyton interdigitale	1	1	Meas Value	4294390	Trichophyton interdigitale	2587
+urn:ordercomms:rtest:textual-result	Streptococcus (Groups C/G)	Streptococcus (Groups C/G)	0.407251022	1	Meas Value	4240344	Streptococcus	2361
+urn:ordercomms:rtest:textual-result	C. difficile toxin NOT detected.	C. difficile toxin NOT detected.	0.25998713	1	Meas Value	9190	Not detected	2345
+urn:ordercomms:rtest:textual-result	Pseudomonas aeruginosa	Pseudomonas aeruginosa	1	1	Meas Value	4198675	Pseudomonas aeruginosa	2102
+urn:ordercomms:rtest:textual-result	Enterococcus faecalis	Enterococcus faecalis	1	1	Meas Value	4302157	Enterococcus faecalis	2057
+urn:ordercomms:rtest:textual-result	POSITIVE	POSITIVE	1	1	Meas Value	9191	Positive	1880
+urn:ordercomms:rtest:textual-result	Streptococcus milleri	Streptococcus milleri	0.5	1	Meas Value	4240344	Streptococcus	1850
+urn:ordercomms:rtest:textual-result	Gram positive cocci: scanty.	Gram positive cocci: scanty.	0.340619527	1	Meas Value	4241096	Gram-positive coccus	1777
+urn:ordercomms:rtest:textual-result	Gram positive cocci +	Gram positive cocci +	0.422649731	1	Meas Value	4241096	Gram-positive coccus	1605
+urn:ordercomms:rtest:textual-result	Cryptosporidium sp. NOT detected.	Cryptosporidium sp. NOT detected.	0.374456758	1	Meas Value	9190	Not detected	1588
+urn:ordercomms:rtest:textual-result	MSSA NOT isolated after 24 hours.	MSSA NOT isolated after 24 hours.	0.252912632	1	Meas Value	4142856	Not isolated	1578
+urn:ordercomms:rtest:textual-result	Enterobacter cloacae	Enterobacter cloacae	1	1	Meas Value	4030716	Enterobacter cloacae	1545
+urn:ordercomms:rtest:textual-result	Staphylococcus epidermidis	Staphylococcus epidermidis	1	1	Meas Value	4246180	Staphylococcus epidermidis	1533
+urn:ordercomms:rtest:textual-result	DETECTED by PCR	DETECTED by PCR	0.422649731	1	Meas Value	4126681	Detected	1495
+urn:ordercomms:rtest:textual-result	Enterococcus faecium	Enterococcus faecium	1	1	Meas Value	4234555	Enterococcus faecium	1437
+urn:ordercomms:rtest:textual-result	Salmonella sp.	Salmonella sp.	0.573598567	1	Meas Value	4099188	Salmonella	1267
+urn:ordercomms:rtest:textual-result	Clue cells NOT seen.	Clue cells NOT seen.	0.240445475	1	Meas Value	9190	Not detected	1254
+urn:ordercomms:rtest:textual-result	Clostridium sp.	Clostridium sp.	0.59175171	1	Meas Value	4218244	Clostridium	1175
+urn:ordercomms:rtest:textual-result	Giardia lamblia NOT detected.	Giardia lamblia NOT detected.	0.283885126	1	Meas Value	9190	Not detected	1158
+urn:ordercomms:rtest:textual-result	Gram positive cocci ++	Gram positive cocci ++	0.408392022	1	Meas Value	4241096	Gram-positive coccus	1149
+urn:ordercomms:rtest:textual-result	Diphtheroid	Diphtheroid	0.78178211	1	Meas Value	4184593	Diphtheroids	1146
+urn:ordercomms:rtest:textual-result	Proteus mirabilis	Proteus mirabilis	1	1	Meas Value	4248426	Proteus mirabilis	1062
+urn:ordercomms:rtest:textual-result	Stenotrophomonas maltophilia	Stenotrophomonas maltophilia	1	1	Meas Value	4034125	Stenotrophomonas maltophilia	1017
+urn:ordercomms:rtest:textual-result	Yeast +++	Yeast +++	0.422649731	1	Meas Value	4265186	Yeast	987
+urn:ordercomms:rtest:textual-result	NEUTROPHILS NOT SEEN	NEUTROPHILS NOT SEEN	0.240445475	1	Meas Value	9190	Not detected	871
+urn:ordercomms:rtest:textual-result	Giardia lamblia Detected.	Giardia lamblia Detected.	0.487010824	1	Meas Value	4301615	Giardia lamblia	863
+urn:ordercomms:rtest:textual-result	Acid/Alcohol fast bacilli SEEN	Acid/Alcohol fast bacilli SEEN	0.292893219	1	Meas Value	4348173	Acid and alcohol-fast bacillus	831
+urn:ordercomms:rtest:textual-result	Giardia lamblia DETECTED	Giardia lamblia DETECTED	0.506803038	1	Meas Value	4301615	Giardia lamblia	734
+urn:ordercomms:rtest:textual-result	Aspergillus fumigatus complex	Aspergillus fumigatus complex	0.585421901	1	Meas Value	36713976	Aspergillus fumigatus species complex	729
+urn:ordercomms:rtest:textual-result	Klebsiella oxytoca	Klebsiella oxytoca	1	1	Meas Value	4254213	Klebsiella oxytoca	723
+urn:ordercomms:rtest:textual-result	Neisseria gonorrhoea	Neisseria gonorrhoea	0.839871846	1	Meas Value	4285582	Neisseria gonorrhoeae	720
+urn:ordercomms:rtest:textual-result	Acid/Alcohol fast bacilli	Acid/Alcohol fast bacilli	0.327073415	1	Meas Value	4348173	Acid and alcohol-fast bacillus	682
+urn:ordercomms:rtest:textual-result	Serratia marcescens	Serratia marcescens	1	1	Meas Value	4140691	Serratia marcescens	678
+urn:ordercomms:rtest:textual-result	NEGATIVE	NEGATIVE	1	1	Meas Value	9189	Negative	671
+urn:ordercomms:rtest:textual-result	Small numbers	Small numbers	0.292893219	1	Meas Value	4123508	+	669
+urn:ordercomms:rtest:textual-result	Cryptosporidium sp. SEEN	Cryptosporidium sp. SEEN	0.506803038	1	Meas Value	4308728	Cryptosporidium	658
+urn:ordercomms:rtest:textual-result	Moderate numbers	Moderate numbers	0.814304662	1	Meas Value	4126673	++	644
+urn:ordercomms:rtest:textual-result	NOT Detected by PCR	NOT Detected by PCR	0.508696316	1	Meas Value	9190	Not detected	623
+urn:ordercomms:rtest:textual-result	Cryptosporidium sp. Detected.	Cryptosporidium sp. Detected.	0.422649731	1	Meas Value	4308728	Cryptosporidium	609
+urn:ordercomms:rtest:textual-result	Gram positive cocci +++	Gram positive cocci +++	0.395141621	1	Meas Value	4241096	Gram-positive coccus	596
+urn:ordercomms:rtest:textual-result	Propionibacterium acnes	Propionibacterium acnes	0.602640293	1	Meas Value	4144074	Propionibacterium	575
+urn:ordercomms:rtest:textual-result	Alpha haemolytic streptococci	Alpha haemolytic streptococci	0.48245083	1	Meas Value	4246064	Alpha-hemolytic streptococcus	560
+urn:ordercomms:rtest:textual-result	Giardia lamblia cysts	Giardia lamblia cysts	0.839871846	1	Meas Value	43531244	Giardia lamblia cyst	545
+urn:ordercomms:rtest:textual-result	Cryptosporidium sp. DETECTED	Cryptosporidium sp. DETECTED	0.436907494	1	Meas Value	4308728	Cryptosporidium	543
+urn:ordercomms:rtest:textual-result	Haemophilus parainfluenzae	Haemophilus parainfluenzae	1	1	Meas Value	4197565	Haemophilus parainfluenzae	526
+urn:ordercomms:rtest:textual-result	Morganella morganii	Morganella morganii	1	1	Meas Value	4348164	Morganella morganii	479
+urn:ordercomms:rtest:textual-result	Bacillus sp.	Bacillus sp.	0.528595479	1	Meas Value	4259140	Bacillus	474
+urn:ordercomms:rtest:textual-result	Staphylococcus sp.	Staphylococcus sp.	0.634851628	1	Meas Value	4278981	Staphylococcus	461
+urn:ordercomms:rtest:textual-result	Citrobacter freundii	Citrobacter freundii	1	1	Meas Value	4269070	Citrobacter freundii	445
+urn:ordercomms:rtest:textual-result	Negative for tuberculosis complex	Negative for tuberculosis complex	0.199359231	1	Meas Value	9189	Negative	435
+urn:ordercomms:rtest:textual-result	Gram negative bacilli: Scanty.	Gram negative bacilli: Scanty.	0.367544468	1	Meas Value	4336840	Gram-negative bacillus	417
+urn:ordercomms:rtest:textual-result	Gram negative bacilli +	Gram negative bacilli +	0.450158585	1	Meas Value	4336840	Gram-negative bacillus	408
+urn:ordercomms:rtest:textual-result	Gram negative bacilli ++	Gram negative bacilli ++	0.435923925	1	Meas Value	4336840	Gram-negative bacillus	386
+urn:ordercomms:rtest:textual-result	Micrococcus sp.	Micrococcus sp.	0.59175171	1	Meas Value	4199767	Micrococcus	378
+urn:ordercomms:rtest:textual-result	Gram negative bacilli +++	Gram negative bacilli +++	0.422649731	1	Meas Value	4336840	Gram-negative bacillus	367
+urn:ordercomms:rtest:textual-result	Candida glabrata	Candida glabrata	1	1	Meas Value	40481156	Candida glabrata	366
+urn:ordercomms:rtest:textual-result	Escherichia coli O157	Escherichia coli O157	0.622035527	1	Meas Value	4011683	Escherichia coli	366
+urn:ordercomms:rtest:textual-result	Streptococcus mitis/oralis	Streptococcus mitis/oralis	0.484921246	1	Meas Value	4133816	Streptococcus mitis group	330
+urn:ordercomms:rtest:textual-result	Propionibacterium sp.	Propionibacterium sp.	0.666666667	1	Meas Value	4144074	Propionibacterium	320
+urn:ordercomms:rtest:textual-result	Aspergillus niger	Aspergillus niger	1	1	Meas Value	4231112	Aspergillus niger	312
+urn:ordercomms:rtest:textual-result	Bacteroides fragilis	Bacteroides fragilis	1	1	Meas Value	4208525	Bacteroides fragilis	306
+urn:ordercomms:rtest:textual-result	Streptococcus anginosus	Streptococcus anginosus	1	1	Meas Value	4185892	Streptococcus anginosus	299
+urn:ordercomms:rtest:textual-result	Acinetobacter baumanii	Acinetobacter baumanii	0.65900283	1	Meas Value	4235587	Acinetobacter baumannii	290
+urn:ordercomms:rtest:textual-result	Streptococcus mitis	Streptococcus mitis	1	1	Meas Value	4237427	Streptococcus mitis	287
+urn:ordercomms:rtest:textual-result	Citrobacter koseri	Citrobacter koseri	1	1	Meas Value	4016448	Citrobacter koseri	275
+urn:ordercomms:rtest:textual-result	Staphylococcus haemolyticus	Staphylococcus haemolyticus	1	1	Meas Value	4308865	Staphylococcus haemolyticus	270
+urn:ordercomms:rtest:textual-result	Staphylococcus capitis	Staphylococcus capitis	1	1	Meas Value	4222739	Staphylococcus capitis	264
+urn:ordercomms:rtest:textual-result	Enterobacter aerogenes	Enterobacter aerogenes	0.440983006	1	Meas Value	4242438	Enterobacter	258
+urn:ordercomms:rtest:textual-result	Positive for tuberculosis complex	Positive for tuberculosis complex	0.32063378	1	Meas Value	4035081	Mycobacterium tuberculosis complex	237
+urn:ordercomms:rtest:textual-result	Unidentified Gram neg bacillus	Unidentified Gram neg bacillus	0.166666667	1	Meas Value	4336840	Gram-negative bacillus	234
+urn:ordercomms:rtest:textual-result	Gram positive cocci	Gram positive cocci	0.454750243	1	Meas Value	4241096	Gram-positive coccus	227
+urn:ordercomms:rtest:textual-result	Mycobacterium tuberculosis	Mycobacterium tuberculosis	1	1	Meas Value	4034215	Mycobacterium tuberculosis	224
+urn:ordercomms:rtest:textual-result	Streptococcus oralis	Streptococcus oralis	1	1	Meas Value	4057957	Streptococcus oralis	219
+urn:ordercomms:rtest:textual-result	Streptococcus sanguinis	Streptococcus sanguinis	1	1	Meas Value	4015549	Streptococcus sanguinis	217
+urn:ordercomms:rtest:textual-result	Scopulariopsis brevicaulis	Scopulariopsis brevicaulis	1	1	Meas Value	4138373	Scopulariopsis brevicaulis	214
+urn:ordercomms:rtest:textual-result	Prevotella sp.	Prevotella sp.	0.573598567	1	Meas Value	4015682	Prevotella	214
+urn:ordercomms:rtest:textual-result	Antigen NOT detected (by ELISA)	Antigen NOT detected (by ELISA)	0.267480126	1	Meas Value	9190	Not detected	207
+urn:ordercomms:rtest:textual-result	Trichomonas vaginalis SEEN	Trichomonas vaginalis SEEN	0.666666667	1	Meas Value	4330317	Trichomonas vaginalis	204
+urn:ordercomms:rtest:textual-result	Aspergillus sp.	Aspergillus sp.	0.59175171	1	Meas Value	4085138	Aspergillus	197
+urn:ordercomms:rtest:textual-result	Streptococcus (beta) sp.	Streptococcus (beta) sp.	0.439388089	1	Meas Value	4240344	Streptococcus	187
+urn:ordercomms:rtest:textual-result	Corynebacterium striatum	Corynebacterium striatum	1	1	Meas Value	4274350	Corynebacterium striatum	186
+urn:ordercomms:rtest:textual-result	Acinetobacter sp.	Acinetobacter sp.	0.622035527	1	Meas Value	4300777	Acinetobacter	185
+urn:ordercomms:rtest:textual-result	Pasteurella multocida	Pasteurella multocida	1	1	Meas Value	4032583	Pasteurella multocida	177
+urn:ordercomms:rtest:textual-result	Staphylococcus hominis	Staphylococcus hominis	1	1	Meas Value	4264368	Staphylococcus hominis	177
+urn:ordercomms:rtest:textual-result	Carbapenemase producing organism not detected.	Carbapenemase producing organism not detected.	0.187156666	1	Meas Value	9190	Not detected	173
+urn:ordercomms:rtest:textual-result	Streptococcus constellatus	Streptococcus constellatus	1	1	Meas Value	4294519	Streptococcus constellatus	170
+urn:ordercomms:rtest:textual-result	"Gram positive bacilli, scanty"	"Gram positive bacilli, scanty"	0.377300151	1	Meas Value	4306758	Gram-positive bacillus	170
+urn:ordercomms:rtest:textual-result	Streptococcus salivarius	Streptococcus salivarius	1	1	Meas Value	4220801	Streptococcus salivarius	167
+urn:ordercomms:rtest:textual-result	Neisseria meningitidis	Neisseria meningitidis	1	1	Meas Value	4076436	Neisseria meningitidis	162
+urn:ordercomms:rtest:textual-result	Salmonella typhimurium	Salmonella typhimurium	1	1	Meas Value	4177156	Salmonella Typhimurium	157
+urn:ordercomms:rtest:textual-result	Clostridium perfringens	Clostridium perfringens	1	1	Meas Value	4307974	Clostridium perfringens	156
+urn:ordercomms:rtest:textual-result	Large numbers	Large numbers	0.292893219	1	Meas Value	4125547	+++	150
+urn:ordercomms:rtest:textual-result	Staphylococcus warneri	Staphylococcus warneri	1	1	Meas Value	4270057	Staphylococcus warneri	147
+urn:ordercomms:rtest:textual-result	Staphylococcus lugdunensis	Staphylococcus lugdunensis	1	1	Meas Value	4014324	Staphylococcus lugdunensis	144
+urn:ordercomms:rtest:textual-result	Gram positive bacilli +	Gram positive bacilli +	0.450158585	1	Meas Value	4306758	Gram-positive bacillus	144
+urn:ordercomms:rtest:textual-result	Mycobacterium avium complex	Mycobacterium avium complex	0.601137982	1	Meas Value	4308737	Mycobacterium avium	143
+urn:ordercomms:rtest:textual-result	No neutrophils seen	No neutrophils seen	0.105572809	1	Meas Value	9190	Not detected	143
+urn:ordercomms:rtest:textual-result	Streptococcus gallolyticus	Streptococcus gallolyticus	1	1	Meas Value	4015114	Streptococcus gallolyticus	141
+urn:ordercomms:rtest:textual-result	Entamoeba coli cysts	Entamoeba coli cysts	0.835601013	1	Meas Value	44783336	Entamoeba coli cyst	140
+urn:ordercomms:rtest:textual-result	Salmonella enteritidis	Salmonella enteritidis	1	1	Meas Value	4249155	Salmonella Enteritidis	134
+urn:ordercomms:rtest:textual-result	Aspergillus flavus	Aspergillus flavus	1	1	Meas Value	4281672	Aspergillus flavus	129
+urn:ordercomms:rtest:textual-result	Pseudomonas putida	Pseudomonas putida	1	1	Meas Value	4285455	Pseudomonas putida	128
+urn:ordercomms:rtest:textual-result	Vincent's organisms NOT seen	Vincent's organisms NOT seen	0.177521679	1	Meas Value	9190	Not detected	128
+urn:ordercomms:rtest:textual-result	Fusarium sp.	Fusarium sp.	0.528595479	1	Meas Value	4148080	Fusarium	127
+urn:ordercomms:rtest:textual-result	Enterobacter cloacae Group	Enterobacter cloacae Group	0.630725527	1	Meas Value	4030716	Enterobacter cloacae	126
+urn:ordercomms:rtest:textual-result	Candida parapsilosis	Candida parapsilosis	1	1	Meas Value	4247544	Candida parapsilosis	122
+urn:ordercomms:rtest:textual-result	Streptococcus intermedius	Streptococcus intermedius	1	1	Meas Value	4268740	Streptococcus intermedius	121
+urn:ordercomms:rtest:textual-result	Shigella sonnei	Shigella sonnei	1	1	Meas Value	4249112	Shigella sonnei	120
+urn:ordercomms:rtest:textual-result	Serratia liquefaciens	Serratia liquefaciens	1	1	Meas Value	4028952	Serratia liquefaciens	119
+urn:ordercomms:rtest:textual-result	Streptococcus parasanguinis	Streptococcus parasanguinis	1	1	Meas Value	4015548	Streptococcus parasanguinis	110
+urn:ordercomms:rtest:textual-result	Candida dubliniensis	Candida dubliniensis	1	1	Meas Value	4018997	Candida dubliniensis	104
+urn:ordercomms:rtest:textual-result	Acinetobacter lwoffii	Acinetobacter lwoffii	0.839871846	1	Meas Value	4307075	Acinetobacter lwoffi	104
+urn:ordercomms:rtest:textual-result	Gram negative bacilli	Gram negative bacilli	0.48203023	1	Meas Value	4336840	Gram-negative bacillus	103
+urn:ordercomms:rtest:textual-result	Gram positive bacilli ++	Gram positive bacilli ++	0.435923925	1	Meas Value	4306758	Gram-positive bacillus	101
+urn:ordercomms:rtest:textual-result	Fungal elements resembling Malassezia furfur seen.	Fungal elements resembling Malassezia furfur seen.	0.255791592	1	Meas Value	4106082	Malassezia furfur	101
+urn:ordercomms:rtest:textual-result	Candida krusei	Candida krusei	1	1	Meas Value	4297441	Candida krusei	100
+urn:ordercomms:rtest:textual-result	Trichophyton mentagrophytes	Trichophyton mentagrophytes	1	1	Meas Value	4185703	Trichophyton mentagrophytes	100
+urn:ordercomms:rtest:textual-result	Sphingomonas paucimobilis	Sphingomonas paucimobilis	1	1	Meas Value	4352637	Sphingomonas paucimobilis	98
+urn:ordercomms:rtest:textual-result	No Growth after 48 hours	No Growth after 48 hours	0.304391656	1	Meas Value	4139623	No growth	97
+urn:ordercomms:rtest:textual-result	Aeromonas hydrophila	Aeromonas hydrophila	1	1	Meas Value	4312105	Aeromonas hydrophila	95
+urn:ordercomms:rtest:textual-result	Streptococcus agalactiae	Streptococcus agalactiae	0.560702315	1	Meas Value	44784149	Streptococcus agalactiae serotype V	95
+urn:ordercomms:rtest:textual-result	Anaerobic Gram -ve bacillus	Anaerobic Gram -ve bacillus	0.470187057	1	Meas Value	4352643	Anaerobic Gram-negative bacillus	94
+urn:ordercomms:rtest:textual-result	Neutrophils NOT seen.	Neutrophils NOT seen.	0.230199641	1	Meas Value	9190	Not detected	90
+urn:ordercomms:rtest:textual-result	Enterococcus avium	Enterococcus avium	1	1	Meas Value	4338685	Enterococcus avium	78
+urn:ordercomms:rtest:textual-result	Non-haemolytic Streptococcus	Non-haemolytic Streptococcus	0.491452372	1	Meas Value	4186422	Non-Beta-hemolytic Streptococcus	78
+urn:ordercomms:rtest:textual-result	Streptococcus Group F	Streptococcus Group F	0.558273896	1	Meas Value	4307519	"Streptococcus, group F"	76
+urn:ordercomms:rtest:textual-result	Citrobacter braakii	Citrobacter braakii	1	1	Meas Value	4016020	Citrobacter braakii	75
+urn:ordercomms:rtest:textual-result	Candida tropicalis	Candida tropicalis	1	1	Meas Value	4172927	Candida tropicalis	71
+urn:ordercomms:rtest:textual-result	Micrococcus luteus	Micrococcus luteus	1	1	Meas Value	4174810	Micrococcus luteus	71
+urn:ordercomms:rtest:textual-result	Straw coloured	Straw coloured	0.533747596	1	Meas Value	763957	Straw color	71
+urn:ordercomms:rtest:textual-result	Negative for M. tuberculosis complex.	Negative for M. tuberculosis complex.	0.178770066	1	Meas Value	9189	Negative	70
+urn:ordercomms:rtest:textual-result	Proteus vulgaris	Proteus vulgaris	1	1	Meas Value	4164566	Proteus vulgaris	69
+urn:ordercomms:rtest:textual-result	Lactobacillus sp.	Lactobacillus sp.	0.622035527	1	Meas Value	4185121	Lactobacillus	68
+urn:ordercomms:rtest:textual-result	Klebsiella sp.	Klebsiella sp.	0.573598567	1	Meas Value	4327473	Klebsiella	68
+urn:ordercomms:rtest:textual-result	Streptococcus gordonii	Streptococcus gordonii	1	1	Meas Value	4015115	Streptococcus gordonii	67
+urn:ordercomms:rtest:textual-result	Gram positive bacilli +++	Gram positive bacilli +++	0.422649731	1	Meas Value	4306758	Gram-positive bacillus	67
+urn:ordercomms:rtest:textual-result	Streptococcus mutans	Streptococcus mutans	1	1	Meas Value	4064691	Streptococcus mutans	66
+urn:ordercomms:rtest:textual-result	Burkholderia cepacia	Burkholderia cepacia	1	1	Meas Value	4034635	Burkholderia cepacia	64
+urn:ordercomms:rtest:textual-result	Streptococcus bovis	Streptococcus bovis	0.622035527	1	Meas Value	4214081	Streptococcus bovis group	63
+urn:ordercomms:rtest:textual-result	Aspergillus terreus	Aspergillus terreus	1	1	Meas Value	4097212	Aspergillus terreus	60
+urn:ordercomms:rtest:textual-result	Enterococcus gallinarum	Enterococcus gallinarum	1	1	Meas Value	4180694	Enterococcus gallinarum	60
+urn:ordercomms:rtest:textual-result	Achromobacter xylosoxidans	Achromobacter xylosoxidans	1	1	Meas Value	4189931	Achromobacter xylosoxidans	59
+urn:ordercomms:rtest:textual-result	Saccharomyces cerevisiae	Saccharomyces cerevisiae	1	1	Meas Value	4240960	Saccharomyces cerevisiae	59
+urn:ordercomms:rtest:textual-result	Aeromonas sobria	Aeromonas sobria	1	1	Meas Value	4183715	Aeromonas sobria	58
+urn:ordercomms:rtest:textual-result	Mycobacterium sp.	Mycobacterium sp.	0.622035527	1	Meas Value	4348029	Mycobacterium	58
+urn:ordercomms:rtest:textual-result	Pantoea SP.	Pantoea SP.	0.5	1	Meas Value	4018786	Pantoea	56
+urn:ordercomms:rtest:textual-result	Ent. histolytica/dispar cysts	Ent. histolytica/dispar cysts	0.260290725	1	Meas Value	4004496	Entamoeba histolytica cyst	56
+urn:ordercomms:rtest:textual-result	Corynebacterium amycolatum	Corynebacterium amycolatum	1	1	Meas Value	4015383	Corynebacterium amycolatum	55
+urn:ordercomms:rtest:textual-result	Staphylococcus simulans	Staphylococcus simulans	1	1	Meas Value	4180267	Staphylococcus simulans	54
+urn:ordercomms:rtest:textual-result	Enterobacter sp.	Enterobacter sp.	0.60776773	1	Meas Value	4242438	Enterobacter	52
+urn:ordercomms:rtest:textual-result	Staphylococcus caprae	Staphylococcus caprae	1	1	Meas Value	4297326	Staphylococcus caprae	51
+urn:ordercomms:rtest:textual-result	Gram positive bacilli	Gram positive bacilli	0.48203023	1	Meas Value	4306758	Gram-positive bacillus	51
+urn:ordercomms:rtest:textual-result	Pasteurella sp.	Pasteurella sp.	0.59175171	1	Meas Value	4227127	Pasteurella	49
+urn:ordercomms:rtest:textual-result	Klebsiella ozaenae	Klebsiella ozaenae	0.445299804	1	Meas Value	4327473	Klebsiella	49
+urn:ordercomms:rtest:textual-result	Aeromonas hydrophila/caviae	Aeromonas hydrophila/caviae	0.272393125	1	Meas Value	4229267	Aeromonas	49
+urn:ordercomms:rtest:textual-result	Aerococcus viridans	Aerococcus viridans	1	1	Meas Value	4303232	Aerococcus viridans	48
+urn:ordercomms:rtest:textual-result	Streptococcus pyogenes	Streptococcus pyogenes	1	1	Meas Value	4213455	Streptococcus pyogenes	48
+urn:ordercomms:rtest:textual-result	Hafnia alvei	Hafnia alvei	1	1	Meas Value	4295899	Hafnia alvei	47
+urn:ordercomms:rtest:textual-result	Mycobacterium gordonae	Mycobacterium gordonae	1	1	Meas Value	4088746	Mycobacterium gordonae	47
+urn:ordercomms:rtest:textual-result	Listeria moncytogenes	Listeria moncytogenes	0.558273896	1	Meas Value	4261846	Listeria monocytogenes	46
+urn:ordercomms:rtest:textual-result	Aerococcus urinae	Aerococcus urinae	1	1	Meas Value	4347674	Aerococcus urinae	45
+urn:ordercomms:rtest:textual-result	Corynebacterium sp.	Corynebacterium sp.	0.646446609	1	Meas Value	4299363	Corynebacterium	44
+urn:ordercomms:rtest:textual-result	Haemophilus sp.	Haemophilus sp.	0.59175171	1	Meas Value	4323572	Haemophilus	44
+urn:ordercomms:rtest:textual-result	Moraxella sp.	Moraxella sp.	0.552786405	1	Meas Value	4263926	Moraxella	44
+urn:ordercomms:rtest:textual-result	Pseudomonas fluorescens	Pseudomonas fluorescens	1	1	Meas Value	4191249	Pseudomonas fluorescens	43
+urn:ordercomms:rtest:textual-result	Microsporum canis	Microsporum canis	1	1	Meas Value	4078236	Microsporum canis	42
+urn:ordercomms:rtest:textual-result	Actinomyces sp.	Actinomyces sp.	0.59175171	1	Meas Value	4236735	Actinomyces	42
+urn:ordercomms:rtest:textual-result	Aeromonas sp.	Aeromonas sp.	0.552786405	1	Meas Value	4229267	Aeromonas	42
+urn:ordercomms:rtest:textual-result	Gram negative diplococci seen	Gram negative diplococci seen	0.445299804	1	Meas Value	4308411	Gram-negative diplococcus	42
+urn:ordercomms:rtest:textual-result	Enterobius vermicularis	Enterobius vermicularis	1	1	Meas Value	4208259	Enterobius vermicularis	41
+urn:ordercomms:rtest:textual-result	Streptococcus dysgalactiae	Streptococcus dysgalactiae	1	1	Meas Value	4246822	Streptococcus dysgalactiae	40
+urn:ordercomms:rtest:textual-result	Finegoldia magna	Finegoldia magna	1	1	Meas Value	4221055	Finegoldia magna	39
+urn:ordercomms:rtest:textual-result	WBC: NEUTROPHILS NOT SEEN	WBC: NEUTROPHILS NOT SEEN	0.196780671	1	Meas Value	9190	Not detected	39
+urn:ordercomms:rtest:textual-result	Ascaris lumbricoides	Ascaris lumbricoides	1	1	Meas Value	4077731	Ascaris lumbricoides	38
+urn:ordercomms:rtest:textual-result	Granulicatella adiacens	Granulicatella adiacens	1	1	Meas Value	4034131	Granulicatella adiacens	38
+urn:ordercomms:rtest:textual-result	Candida sp. NOT isolated	Candida sp. NOT isolated	0.335788836	1	Meas Value	4142856	Not isolated	38
+urn:ordercomms:rtest:textual-result	Normal GU flora isolated	Normal GU flora isolated	0.195600333	1	Meas Value	4124457	Normal range	38
+urn:ordercomms:rtest:textual-result	Bacteroides thetaiotaomicron	Bacteroides thetaiotaomicron	1	1	Meas Value	4142058	Bacteroides thetaiotaomicron	37
+urn:ordercomms:rtest:textual-result	Parvimonas micra	Parvimonas micra	1	1	Meas Value	4200633	Parvimonas micra	37
+urn:ordercomms:rtest:textual-result	Pasteurella canis	Pasteurella canis	1	1	Meas Value	4300981	Pasteurella canis	36
+urn:ordercomms:rtest:textual-result	Rothia mucilaginosa	Rothia mucilaginosa	1	1	Meas Value	4211809	Rothia mucilaginosa	36
+urn:ordercomms:rtest:textual-result	Neisseria sp.	Neisseria sp.	0.552786405	1	Meas Value	4244123	Neisseria	35
+urn:ordercomms:rtest:textual-result	Serratia sp.	Serratia sp.	0.528595479	1	Meas Value	4170580	Serratia	35
+urn:ordercomms:rtest:textual-result	Raoultella planticola	Raoultella planticola	1	1	Meas Value	4166421	Raoultella planticola	34
+urn:ordercomms:rtest:textual-result	Enterococcus raffinosus	Enterococcus raffinosus	1	1	Meas Value	4011481	Enterococcus raffinosus	33
+urn:ordercomms:rtest:textual-result	Gemella morbillorum	Gemella morbillorum	1	1	Meas Value	4034522	Gemella morbillorum	33
+urn:ordercomms:rtest:textual-result	Pantoea agglomerans	Pantoea agglomerans	1	1	Meas Value	4018788	Pantoea agglomerans	33
+urn:ordercomms:rtest:textual-result	Pseudomonas stutzeri	Pseudomonas stutzeri	1	1	Meas Value	4238322	Pseudomonas stutzeri	33
+urn:ordercomms:rtest:textual-result	Clostridium septicum	Clostridium septicum	1	1	Meas Value	4141421	Clostridium septicum	32
+urn:ordercomms:rtest:textual-result	Citrobacter sp.	Citrobacter sp.	0.59175171	1	Meas Value	4295448	Citrobacter	32
+urn:ordercomms:rtest:textual-result	Insufficient sample	Insufficient sample	0.508696316	1	Meas Value	4307430	Insufficient	32
+urn:ordercomms:rtest:textual-result	Bacillus cereus	Bacillus cereus	1	1	Meas Value	4309212	Bacillus cereus	31
+urn:ordercomms:rtest:textual-result	Pseud. aeruginosa (mucoid)	Pseud. aeruginosa (mucoid)	0.292893219	1	Meas Value	4198675	Pseudomonas aeruginosa	31
+urn:ordercomms:rtest:textual-result	Shigella flexneri	Shigella flexneri	1	1	Meas Value	4311807	Shigella flexneri	30
+urn:ordercomms:rtest:textual-result	Streptococcus vestibularis	Streptococcus vestibularis	1	1	Meas Value	4015550	Streptococcus vestibularis	30
+urn:ordercomms:rtest:textual-result	Eikenella corrodens	Eikenella corrodens	1	1	Meas Value	4200857	Eikenella corrodens	29
+urn:ordercomms:rtest:textual-result	Scedosporium apiospermum	Scedosporium apiospermum	1	1	Meas Value	37109244	Scedosporium apiospermum	29
+urn:ordercomms:rtest:textual-result	Aerococcus sp.	Aerococcus sp.	0.573598567	1	Meas Value	4231863	Aerococcus	29
+urn:ordercomms:rtest:textual-result	Scanty Mixed	Scanty Mixed	0.308435925	1	Meas Value	4123508	+	29
+urn:ordercomms:rtest:textual-result	Unidentified organism	Unidentified organism	0.230199641	1	Meas Value	4259632	Organism	29
+urn:ordercomms:rtest:textual-result	Mycobacterium chelonae	Mycobacterium chelonae	1	1	Meas Value	4348175	Mycobacterium chelonae	28
+urn:ordercomms:rtest:textual-result	Antigen DETECTED (by ELISA)	Antigen DETECTED (by ELISA)	0.183503419	1	Meas Value	4126681	Detected	28
+urn:ordercomms:rtest:textual-result	Acinetobacter ursingii	Acinetobacter ursingii	1	1	Meas Value	4175185	Acinetobacter ursingii	27
+urn:ordercomms:rtest:textual-result	Micrococcus luteus/lylae	Micrococcus luteus/lylae	0.372354086	1	Meas Value	4199767	Micrococcus	27
+urn:ordercomms:rtest:textual-result	Candida lusitaniae	Candida lusitaniae	1	1	Meas Value	4171042	Candida lusitaniae	26
+urn:ordercomms:rtest:textual-result	Burkholderia cepacia group	Burkholderia cepacia group	0.630725527	1	Meas Value	4034635	Burkholderia cepacia	26
+urn:ordercomms:rtest:textual-result	Acremonium sp.	Acremonium sp.	0.573598567	1	Meas Value	4274504	Acremonium	26
+urn:ordercomms:rtest:textual-result	WBC:Neutrophils not seen	WBC:Neutrophils not seen	0.204177574	1	Meas Value	9190	Not detected	26
+urn:ordercomms:rtest:textual-result	Aspergillus versicolor	Aspergillus versicolor	1	1	Meas Value	4167527	Aspergillus versicolor	25
+urn:ordercomms:rtest:textual-result	Delftia acidovorans	Delftia acidovorans	1	1	Meas Value	4069097	Delftia acidovorans	25
+urn:ordercomms:rtest:textual-result	Enterobacter asburiae	Enterobacter asburiae	1	1	Meas Value	4140527	Enterobacter asburiae	25
+urn:ordercomms:rtest:textual-result	Gemella haemolysans	Gemella haemolysans	1	1	Meas Value	4291154	Gemella haemolysans	25
+urn:ordercomms:rtest:textual-result	Plesiomonas shigelloides	Plesiomonas shigelloides	1	1	Meas Value	4296403	Plesiomonas shigelloides	25
+urn:ordercomms:rtest:textual-result	Proteus vulgaris group/penneri	Proteus vulgaris group/penneri	0.189356517	1	Meas Value	4196666	Proteus	25
+urn:ordercomms:rtest:textual-result	Enterococcus casseliflavus	Enterococcus casseliflavus	1	1	Meas Value	4149104	Enterococcus casseliflavus	24
+urn:ordercomms:rtest:textual-result	Fusobacterium nucleatum	Fusobacterium nucleatum	1	1	Meas Value	4139265	Fusobacterium nucleatum	24
+urn:ordercomms:rtest:textual-result	Veillonella sp.	Veillonella sp.	0.59175171	1	Meas Value	4107221	Veillonella	24
+urn:ordercomms:rtest:textual-result	Trichophyton tonsurans	Trichophyton tonsurans	1	1	Meas Value	4324138	Trichophyton tonsurans	23
+urn:ordercomms:rtest:textual-result	Achromobacter sp.	Achromobacter sp.	0.622035527	1	Meas Value	4239076	Achromobacter	23
+urn:ordercomms:rtest:textual-result	Raoutella planticola	Raoutella planticola	0.547089186	1	Meas Value	4166421	Raoultella planticola	23
+urn:ordercomms:rtest:textual-result	Streptococcus viridans	Streptococcus viridans	0.477767032	1	Meas Value	4240344	Streptococcus	23
+urn:ordercomms:rtest:textual-result	Candida africana	Candida africana	1	1	Meas Value	42536474	Candida africana	22
+urn:ordercomms:rtest:textual-result	Ochrobactrum anthropi	Ochrobactrum anthropi	1	1	Meas Value	4023746	Ochrobactrum anthropi	22
+urn:ordercomms:rtest:textual-result	Salmonella typhi	Salmonella typhi	1	1	Meas Value	4184768	Salmonella Typhi	22
+urn:ordercomms:rtest:textual-result	Finegoldia magnus	Finegoldia magnus	0.688914492	1	Meas Value	4221055	Finegoldia magna	22
+urn:ordercomms:rtest:textual-result	Raoultella ornitholytica	Raoultella ornitholytica	0.566987298	1	Meas Value	4212063	Raoultella ornithinolytica	22
+urn:ordercomms:rtest:textual-result	Enterococcus durans	Enterococcus durans	1	1	Meas Value	4263064	Enterococcus durans	21
+urn:ordercomms:rtest:textual-result	Mycobacterium fortuitum	Mycobacterium fortuitum	1	1	Meas Value	4352641	Mycobacterium fortuitum	21
+urn:ordercomms:rtest:textual-result	Endolimax nana cysts	Endolimax nana cysts	0.835601013	1	Meas Value	43530783	Endolimax nana cyst	21
+urn:ordercomms:rtest:textual-result	Pseudomonas sp. (mucoid)	Pseudomonas sp. (mucoid)	0.372354086	1	Meas Value	4211547	Pseudomonas	21
+urn:ordercomms:rtest:textual-result	Aerococcus sanguinicola	Aerococcus sanguinicola	1	1	Meas Value	4146127	Aerococcus sanguinicola	20
+urn:ordercomms:rtest:textual-result	Candida auris	Candida auris	1	1	Meas Value	37016320	Candida auris	20
+urn:ordercomms:rtest:textual-result	Plasmodium falciparum	Plasmodium falciparum	1	1	Meas Value	4107212	Plasmodium falciparum	20
+urn:ordercomms:rtest:textual-result	Rhizobium radiobacter	Rhizobium radiobacter	1	1	Meas Value	4206684	Rhizobium radiobacter	20
+urn:ordercomms:rtest:textual-result	Salmonella paratyphi A	Salmonella paratyphi A	1	1	Meas Value	4195412	Salmonella Paratyphi A	20
+urn:ordercomms:rtest:textual-result	Actinobaculum shaalii	Actinobaculum shaalii	0.5	1	Meas Value	4015403	Actinobaculum	20
+urn:ordercomms:rtest:textual-result	Fusarium solani complex	Fusarium solani complex	1	1	Meas Value	36674964	Fusarium solani complex	19
+urn:ordercomms:rtest:textual-result	Moraxella osloensis	Moraxella osloensis	1	1	Meas Value	4216542	Moraxella osloensis	19
+urn:ordercomms:rtest:textual-result	Trichuris trichiura	Trichuris trichiura	1	1	Meas Value	4206018	Trichuris trichiura	19
+urn:ordercomms:rtest:textual-result	Yersinia enterocolitica	Yersinia enterocolitica	1	1	Meas Value	4275872	Yersinia enterocolitica	19
+urn:ordercomms:rtest:textual-result	Anaerobic streptococcus sp.	Anaerobic streptococcus sp.	0.711324865	1	Meas Value	4121990	Anaerobic streptococcus	19
+urn:ordercomms:rtest:textual-result	Nocardia sp.	Nocardia sp.	0.528595479	1	Meas Value	4245771	Nocardia	19
+urn:ordercomms:rtest:textual-result	Actinomyces israelii	Actinomyces israelii	1	1	Meas Value	4262658	Actinomyces israelii	18
+urn:ordercomms:rtest:textual-result	Candida guilliermondii	Candida guilliermondii	1	1	Meas Value	4040988	Candida guilliermondii	18
+urn:ordercomms:rtest:textual-result	Citrobacter farmeri	Citrobacter farmeri	1	1	Meas Value	4014816	Citrobacter farmeri	18
+urn:ordercomms:rtest:textual-result	Fusarium oxysporum	Fusarium oxysporum	1	1	Meas Value	4310876	Fusarium oxysporum	18
+urn:ordercomms:rtest:textual-result	Fusobacterium necrophorum	Fusobacterium necrophorum	1	1	Meas Value	4099615	Fusobacterium necrophorum	18
+urn:ordercomms:rtest:textual-result	Kocuria kristinae	Kocuria kristinae	1	1	Meas Value	4034184	Kocuria kristinae	18
+urn:ordercomms:rtest:textual-result	Streptococcus equinus	Streptococcus equinus	1	1	Meas Value	4217676	Streptococcus equinus	18
+urn:ordercomms:rtest:textual-result	Streptococcus infantarius	Streptococcus infantarius	1	1	Meas Value	4217698	Streptococcus infantarius	18
+urn:ordercomms:rtest:textual-result	Actinobaculum schaalii	Actinobaculum schaalii	0.477767032	1	Meas Value	4015403	Actinobaculum	18
+urn:ordercomms:rtest:textual-result	Pseudomonas oryzihabitans	Pseudomonas oryzihabitans	0.416540034	1	Meas Value	4034617	Flavimonas oryzihabitans	18
+urn:ordercomms:rtest:textual-result	Cryptococcus cells NOT seen	Cryptococcus cells NOT seen	0.374456758	1	Meas Value	9190	Not detected	18
+urn:ordercomms:rtest:textual-result	Neisseria gonorrhoeae NOT isolated	Neisseria gonorrhoeae NOT isolated	0.246221639	1	Meas Value	4142856	Not isolated	18
+urn:ordercomms:rtest:textual-result	Actinomyces neuii	Actinomyces neuii	1	1	Meas Value	45769893	Actinomyces neuii	17
+urn:ordercomms:rtest:textual-result	Aeromonas caviae	Aeromonas caviae	1	1	Meas Value	4018795	Aeromonas caviae	17
+urn:ordercomms:rtest:textual-result	Aggregatibacter aphrophilus	Aggregatibacter aphrophilus	1	1	Meas Value	40484530	Aggregatibacter aphrophilus	17
+urn:ordercomms:rtest:textual-result	Arcanobacterium haemolyticum	Arcanobacterium haemolyticum	1	1	Meas Value	4264344	Arcanobacterium haemolyticum	17
+urn:ordercomms:rtest:textual-result	Bordetella pertussis	Bordetella pertussis	1	1	Meas Value	4198560	Bordetella pertussis	17
+urn:ordercomms:rtest:textual-result	Corynebacterium jeikeium	Corynebacterium jeikeium	1	1	Meas Value	4269491	Corynebacterium jeikeium	17
+urn:ordercomms:rtest:textual-result	Mycobacterium malmoense	Mycobacterium malmoense	1	1	Meas Value	4250651	Mycobacterium malmoense	17
+urn:ordercomms:rtest:textual-result	Vibrio parahaemolyticus	Vibrio parahaemolyticus	1	1	Meas Value	4035542	Vibrio parahaemolyticus	17
+urn:ordercomms:rtest:textual-result	Yeast	Yeast	1	1	Meas Value	4265186	Yeast	17
+urn:ordercomms:rtest:textual-result	Fusobacterium sp.	Fusobacterium sp.	0.622035527	1	Meas Value	4143777	Fusobacterium	17
+urn:ordercomms:rtest:textual-result	Taenia sp.	Taenia sp.	0.465477516	1	Meas Value	4102628	Taenia	17
+urn:ordercomms:rtest:textual-result	Aspergillus candidus	Aspergillus candidus	1	1	Meas Value	4068946	Aspergillus candidus	16
+urn:ordercomms:rtest:textual-result	Corynebacterium propinquum	Corynebacterium propinquum	1	1	Meas Value	4012162	Corynebacterium propinquum	16
+urn:ordercomms:rtest:textual-result	Streptococcus cristatus	Streptococcus cristatus	1	1	Meas Value	4015546	Streptococcus cristatus	16
+urn:ordercomms:rtest:textual-result	Brevundimonas sp.	Brevundimonas sp.	0.622035527	1	Meas Value	4016008	Brevundimonas	16
+urn:ordercomms:rtest:textual-result	SHIGELLA SP.	SHIGELLA SP.	0.528595479	1	Meas Value	4297755	Shigella	16
+urn:ordercomms:rtest:textual-result	Gram negative diplococci +	Gram negative diplococci +	0.484921246	1	Meas Value	4308411	Gram-negative diplococcus	16
+urn:ordercomms:rtest:textual-result	Eggerthella lenta	Eggerthella lenta	1	1	Meas Value	4189166	Eggerthella lenta	15
+urn:ordercomms:rtest:textual-result	Mycobacterium abscessus	Mycobacterium abscessus	1	1	Meas Value	4034776	Mycobacterium abscessus	15
+urn:ordercomms:rtest:textual-result	Peptoniphilus harei	Peptoniphilus harei	1	1	Meas Value	4334944	Peptoniphilus harei	15
+urn:ordercomms:rtest:textual-result	Vibrio cholera	Vibrio cholera	0.80754991	1	Meas Value	4294263	Vibrio cholerae	15
+urn:ordercomms:rtest:textual-result	Pseudomonas luteola	Pseudomonas luteola	0.65700283	1	Meas Value	4235061	Pseudomonas lutea	15
+urn:ordercomms:rtest:textual-result	Leuconostoc sp.	Leuconostoc sp.	0.59175171	1	Meas Value	4183602	Leuconostoc	15
+urn:ordercomms:rtest:textual-result	Anaerobic Gram +ve bacillus	Anaerobic Gram +ve bacillus	0.470187057	1	Meas Value	4348176	Anaerobic Gram-positive bacillus	15
+urn:ordercomms:rtest:textual-result	"Gram negative cocci, scanty"	"Gram negative cocci, scanty"	0.35021371	1	Meas Value	4081940	Gram-negative coccus	15
+urn:ordercomms:rtest:textual-result	Ps. aeruginosa (Non-mucoid)	Ps. aeruginosa (Non-mucoid)	0.280805048	1	Meas Value	37116715	Non-mucoid Pseudomonas aeruginosa	15
+urn:ordercomms:rtest:textual-result	Candida ciferrii	Candida ciferrii	1	1	Meas Value	4153976	Candida ciferrii	14
+urn:ordercomms:rtest:textual-result	Clostridium clostridioforme	Clostridium clostridioforme	1	1	Meas Value	4180851	Clostridium clostridioforme	14
+urn:ordercomms:rtest:textual-result	Mycobacterium kansasii	Mycobacterium kansasii	1	1	Meas Value	4035790	Mycobacterium kansasii	14
+urn:ordercomms:rtest:textual-result	Peptostreptococcus anaerobius	Peptostreptococcus anaerobius	1	1	Meas Value	4078522	Peptostreptococcus anaerobius	14
+urn:ordercomms:rtest:textual-result	Providencia rettgeri	Providencia rettgeri	1	1	Meas Value	4030558	Providencia rettgeri	14
+urn:ordercomms:rtest:textual-result	SCANTY GRAM POS COCCI	SCANTY GRAM POS COCCI	0.292893219	1	Meas Value	4241096	Gram-positive coccus	14
+urn:ordercomms:rtest:textual-result	Burkholderia multivorans	Burkholderia multivorans	1	1	Meas Value	4034114	Burkholderia multivorans	13
+urn:ordercomms:rtest:textual-result	Chryseobacterium indologenes	Chryseobacterium indologenes	1	1	Meas Value	4012024	Chryseobacterium indologenes	13
+urn:ordercomms:rtest:textual-result	Clostridium ramosum	Clostridium ramosum	1	1	Meas Value	4177528	Clostridium ramosum	13
+urn:ordercomms:rtest:textual-result	Lactococcus lactis	Lactococcus lactis	1	1	Meas Value	4265181	Lactococcus lactis	13
+urn:ordercomms:rtest:textual-result	Staphylococcus pettenkoferi	Staphylococcus pettenkoferi	1	1	Meas Value	4181305	Staphylococcus pettenkoferi	13
+urn:ordercomms:rtest:textual-result	Blastocystis hominis seen	Blastocystis hominis seen	0.65900283	1	Meas Value	4103712	Blastocystis hominis	13
+urn:ordercomms:rtest:textual-result	Acremonium strictum	Acremonium strictum	0.513335737	1	Meas Value	42536997	Acremonium restrictum	13
+urn:ordercomms:rtest:textual-result	Gram negative cocci +	Gram negative cocci +	0.422649731	1	Meas Value	4081940	Gram-negative coccus	13
+urn:ordercomms:rtest:textual-result	Strep. sanguinis	Strep. sanguinis	0.342404051	1	Meas Value	4015549	Streptococcus sanguinis	13
+urn:ordercomms:rtest:textual-result	Pseudomonas sp. (non-mucoid)	Pseudomonas sp. (non-mucoid)	0.322165611	1	Meas Value	4211547	Pseudomonas	13
+urn:ordercomms:rtest:textual-result	Actinomyces meyeri	Actinomyces meyeri	1	1	Meas Value	4136507	Actinomyces meyeri	12
+urn:ordercomms:rtest:textual-result	Aeromonas veronii	Aeromonas veronii	1	1	Meas Value	4244665	Aeromonas veronii	12
+urn:ordercomms:rtest:textual-result	Pasteurella pneumotropica	Pasteurella pneumotropica	1	1	Meas Value	4138829	Pasteurella pneumotropica	12
+urn:ordercomms:rtest:textual-result	Salmonella oranienburg	Salmonella oranienburg	1	1	Meas Value	4263217	Salmonella Oranienburg	12
+urn:ordercomms:rtest:textual-result	Staphylococcus auricularis	Staphylococcus auricularis	1	1	Meas Value	4165042	Staphylococcus auricularis	12
+urn:ordercomms:rtest:textual-result	Clostridium sordelli	Clostridium sordelli	0.839871846	1	Meas Value	4229771	Clostridium sordellii	12
+urn:ordercomms:rtest:textual-result	Gram negative diplococci ++_	Gram negative diplococci ++_	0.457673855	1	Meas Value	4308411	Gram-negative diplococcus	12
+urn:ordercomms:rtest:textual-result	Actinomyces odontolyticus	Actinomyces odontolyticus	1	1	Meas Value	4025113	Actinomyces odontolyticus	11
+urn:ordercomms:rtest:textual-result	Bacteroides vulgatus	Bacteroides vulgatus	1	1	Meas Value	4199446	Bacteroides vulgatus	11
+urn:ordercomms:rtest:textual-result	Clostridium sporogenes	Clostridium sporogenes	1	1	Meas Value	4212204	Clostridium sporogenes	11
+urn:ordercomms:rtest:textual-result	Cryptococcus neoformans	Cryptococcus neoformans	1	1	Meas Value	4284105	Cryptococcus neoformans	11
+urn:ordercomms:rtest:textual-result	Epidermophyton floccosum	Epidermophyton floccosum	1	1	Meas Value	4096942	Epidermophyton floccosum	11
+urn:ordercomms:rtest:textual-result	Legionella pneumophila	Legionella pneumophila	1	1	Meas Value	4216497	Legionella pneumophila	11
+urn:ordercomms:rtest:textual-result	Mycobacterium simiae	Mycobacterium simiae	1	1	Meas Value	4223532	Mycobacterium simiae	11
+urn:ordercomms:rtest:textual-result	Salmonella virchow	Salmonella virchow	1	1	Meas Value	4244281	Salmonella Virchow	11
+urn:ordercomms:rtest:textual-result	Shigella boydii	Shigella boydii	1	1	Meas Value	4206312	Shigella boydii	11
+urn:ordercomms:rtest:textual-result	Staphylococcus intermedius	Staphylococcus intermedius	1	1	Meas Value	4142617	Staphylococcus intermedius	11
+urn:ordercomms:rtest:textual-result	Streptococcus lutetiensis	Streptococcus lutetiensis	1	1	Meas Value	4214083	Streptococcus lutetiensis	11
+urn:ordercomms:rtest:textual-result	Comomonas testosteroni	Comomonas testosteroni	0.56356422	1	Meas Value	4184021	Comamonas testosteroni	11
+urn:ordercomms:rtest:textual-result	Propionibacterium granulosum	Propionibacterium granulosum	0.494219461	1	Meas Value	4144074	Propionibacterium	11
+urn:ordercomms:rtest:textual-result	Staph. saccharolyticus	Staph. saccharolyticus	0.416904811	1	Meas Value	4164941	Staphylococcus saccharolyticus	11
+urn:ordercomms:rtest:textual-result	Cryptococcus cells seen.	Cryptococcus cells seen.	0.405911474	1	Meas Value	4069831	Cryptococcus	11
+urn:ordercomms:rtest:textual-result	Alcaligenes faecalis	Alcaligenes faecalis	1	1	Meas Value	4098060	Alcaligenes faecalis	10
+urn:ordercomms:rtest:textual-result	Citrobacter youngae	Citrobacter youngae	1	1	Meas Value	4017113	Citrobacter youngae	10
+urn:ordercomms:rtest:textual-result	Echinococcus granulosus	Echinococcus granulosus	1	1	Meas Value	4085733	Echinococcus granulosus	10
+urn:ordercomms:rtest:textual-result	Fusobacterium gonidiaformans	Fusobacterium gonidiaformans	1	1	Meas Value	4222948	Fusobacterium gonidiaformans	10
+urn:ordercomms:rtest:textual-result	Salmonella kentucky	Salmonella kentucky	1	1	Meas Value	4223829	Salmonella Kentucky	10
+urn:ordercomms:rtest:textual-result	Salmonella stanley	Salmonella stanley	1	1	Meas Value	4338945	Salmonella Stanley	10
+urn:ordercomms:rtest:textual-result	Schistosoma haematobium	Schistosoma haematobium	1	1	Meas Value	4140213	Schistosoma haematobium	10
+urn:ordercomms:rtest:textual-result	Streptococcus alactolyticus	Streptococcus alactolyticus	1	1	Meas Value	4145289	Streptococcus alactolyticus	10
+urn:ordercomms:rtest:textual-result	Streptococcus massiliensis	Streptococcus massiliensis	1	1	Meas Value	40480270	Streptococcus massiliensis	10
+urn:ordercomms:rtest:textual-result	Scopulariopsis sp.	Scopulariopsis sp.	0.634851628	1	Meas Value	4221076	Scopulariopsis	10
+urn:ordercomms:rtest:textual-result	Acinetobacter pitii	Acinetobacter pitii	0.632392689	1	Meas Value	44784215	Acinetobacter pittii	10
+urn:ordercomms:rtest:textual-result	Peptococcus sp.	Peptococcus sp.	0.59175171	1	Meas Value	4071356	Peptococcus	10
+urn:ordercomms:rtest:textual-result	Shewanella putrifaciens	Shewanella putrifaciens	0.573598567	1	Meas Value	4034346	Shewanella putrefaciens	10
+urn:ordercomms:rtest:textual-result	Coryne. pseudodiphtheriticum	Coryne. pseudodiphtheriticum	0.476365062	1	Meas Value	4024967	Corynebacterium pseudodiphtheriticum	10
+urn:ordercomms:rtest:textual-result	Chryseomonas indologenes	Chryseomonas indologenes	0.35192593	1	Meas Value	4012024	Chryseobacterium indologenes	10
+urn:ordercomms:rtest:textual-result	Myocladus corymbiferus	Myocladus corymbiferus	0.215535459	1	Meas Value	4194793	Absidia corymbifera	10
+urn:ordercomms:rtest:textual-result	WBC:Neutrophils not seen.	WBC:Neutrophils not seen.	0.196780671	1	Meas Value	9190	Not detected	10
+urn:ordercomms:rtest:textual-result	Bacteroides ovatus	Bacteroides ovatus	1	1	Meas Value	4313158	Bacteroides ovatus	9
+urn:ordercomms:rtest:textual-result	Bacteroides stercoris	Bacteroides stercoris	1	1	Meas Value	4039123	Bacteroides stercoris	9
+urn:ordercomms:rtest:textual-result	Corynebacterium aurimucosum	Corynebacterium aurimucosum	1	1	Meas Value	4300249	Corynebacterium aurimucosum	9
+urn:ordercomms:rtest:textual-result	Haemophilus haemolyticus	Haemophilus haemolyticus	1	1	Meas Value	4204390	Haemophilus haemolyticus	9
+urn:ordercomms:rtest:textual-result	Moraxella lacunata	Moraxella lacunata	1	1	Meas Value	4222464	Moraxella lacunata	9
+urn:ordercomms:rtest:textual-result	Salmonella newport	Salmonella newport	1	1	Meas Value	4209154	Salmonella Newport	9
+urn:ordercomms:rtest:textual-result	Achromobacter dentrificans	Achromobacter dentrificans	0.603940983	1	Meas Value	4187642	Achromobacter denitrificans	9
+urn:ordercomms:rtest:textual-result	Penicillium sp.	Penicillium sp.	0.59175171	1	Meas Value	4180730	Penicillium	9
+urn:ordercomms:rtest:textual-result	Elizabeth. meningoseptica	Elizabeth. meningoseptica	0.486043831	1	Meas Value	4138034	Elizabethkingia meningoseptica	9
+urn:ordercomms:rtest:textual-result	Anaerococcus species	Anaerococcus species	0.483602221	1	Meas Value	4184972	Anaerococcus	9
+urn:ordercomms:rtest:textual-result	Peptostrep. asaccharolyticus	Peptostrep. asaccharolyticus	0.437268566	1	Meas Value	4118114	Peptostreptococcus saccharolyticus	9
+urn:ordercomms:rtest:textual-result	Bifidobecterium sp.	Bifidobecterium sp.	0.387627564	1	Meas Value	4241078	Bifidobacterium	9
+urn:ordercomms:rtest:textual-result	Acin. baumannii/calcoaceticus	Acin. baumannii/calcoaceticus	0.267171891	1	Meas Value	4220355	Acinetobacter calcoaceticus	9
+urn:ordercomms:rtest:textual-result	No bacterial growth after 48 hours.	No bacterial growth after 48 hours.	0.140875307	1	Meas Value	4139623	No growth	9
+urn:ordercomms:rtest:textual-result	Acinetobacter johnsonii	Acinetobacter johnsonii	1	1	Meas Value	4097310	Acinetobacter johnsonii	8
+urn:ordercomms:rtest:textual-result	Actinomyces naeslundii	Actinomyces naeslundii	1	1	Meas Value	4232160	Actinomyces naeslundii	8
+urn:ordercomms:rtest:textual-result	Bacteroides uniformis	Bacteroides uniformis	1	1	Meas Value	4245757	Bacteroides uniformis	8
+urn:ordercomms:rtest:textual-result	Corynebacterium diphtheriae	Corynebacterium diphtheriae	1	1	Meas Value	4241690	Corynebacterium diphtheriae	8
+urn:ordercomms:rtest:textual-result	Dermabacter hominis	Dermabacter hominis	1	1	Meas Value	4212869	Dermabacter hominis	8
+urn:ordercomms:rtest:textual-result	Prevotella buccae	Prevotella buccae	1	1	Meas Value	4015251	Prevotella buccae	8
+urn:ordercomms:rtest:textual-result	Providencia stuartii	Providencia stuartii	1	1	Meas Value	4031192	Providencia stuartii	8
+urn:ordercomms:rtest:textual-result	Rothia dentocariosa	Rothia dentocariosa	1	1	Meas Value	4261653	Rothia dentocariosa	8
+urn:ordercomms:rtest:textual-result	Salmonella bareilly	Salmonella bareilly	1	1	Meas Value	4215438	Salmonella Bareilly	8
+urn:ordercomms:rtest:textual-result	Burkholderia sp.	Burkholderia sp.	0.60776773	1	Meas Value	4213231	Burkholderia	8
+urn:ordercomms:rtest:textual-result	Cyclospora sp.	Cyclospora sp.	0.573598567	1	Meas Value	4014344	Cyclospora	8
+urn:ordercomms:rtest:textual-result	Diphyllobotrium latum	Diphyllobotrium latum	0.558273896	1	Meas Value	4223628	Diphyllobothrium latum	8
+urn:ordercomms:rtest:textual-result	Iodamoeba buetschlii cysts	Iodamoeba buetschlii cysts	0.526196459	1	Meas Value	44783353	Iodamoeba b++tschlii cyst	8
+urn:ordercomms:rtest:textual-result	Salmonella arizonae	Salmonella arizonae	0.422649731	1	Meas Value	4099188	Salmonella	8
+urn:ordercomms:rtest:textual-result	Positive for M. tuberculosis complex.	Positive for M. tuberculosis complex.	0.298035882	1	Meas Value	4035081	Mycobacterium tuberculosis complex	8
+urn:ordercomms:rtest:textual-result	Acinetobacter radioresistens	Acinetobacter radioresistens	1	1	Meas Value	4034065	Acinetobacter radioresistens	7
+urn:ordercomms:rtest:textual-result	Aspergillus nidulans	Aspergillus nidulans	1	1	Meas Value	4243975	Aspergillus nidulans	7
+urn:ordercomms:rtest:textual-result	Capnocytophaga sputigena	Capnocytophaga sputigena	1	1	Meas Value	4233943	Capnocytophaga sputigena	7
+urn:ordercomms:rtest:textual-result	Corynebacterium minutissimum	Corynebacterium minutissimum	1	1	Meas Value	4306777	Corynebacterium minutissimum	7
+urn:ordercomms:rtest:textual-result	Fusarium dimerum	Fusarium dimerum	1	1	Meas Value	4267444	Fusarium dimerum	7
+urn:ordercomms:rtest:textual-result	Moraxella nonliquefaciens	Moraxella nonliquefaciens	1	1	Meas Value	4262681	Moraxella nonliquefaciens	7
+urn:ordercomms:rtest:textual-result	Ralstonia pickettii	Ralstonia pickettii	1	1	Meas Value	4015665	Ralstonia pickettii	7
+urn:ordercomms:rtest:textual-result	Staphylococcus cohnii	Staphylococcus cohnii	1	1	Meas Value	4281089	Staphylococcus cohnii	7
+urn:ordercomms:rtest:textual-result	Staphylococcus pasteuri	Staphylococcus pasteuri	1	1	Meas Value	4013422	Staphylococcus pasteuri	7
+urn:ordercomms:rtest:textual-result	Staphylococcus xylosus	Staphylococcus xylosus	1	1	Meas Value	4139779	Staphylococcus xylosus	7
+urn:ordercomms:rtest:textual-result	Streptococcus pluranimalium	Streptococcus pluranimalium	1	1	Meas Value	4229355	Streptococcus pluranimalium	7
+urn:ordercomms:rtest:textual-result	Turicella otitidis	Turicella otitidis	1	1	Meas Value	4215222	Turicella otitidis	7
+urn:ordercomms:rtest:textual-result	Vibrio alginolyticus	Vibrio alginolyticus	1	1	Meas Value	4165064	Vibrio alginolyticus	7
+urn:ordercomms:rtest:textual-result	Paracoccus yeeii	Paracoccus yeeii	0.814304662	1	Meas Value	4187186	Paracoccus yeei	7
+urn:ordercomms:rtest:textual-result	Sphingobacterium spiritovorum	Sphingobacterium spiritovorum	0.622035527	1	Meas Value	4264894	Sphingobacterium spiritivorum	7
+urn:ordercomms:rtest:textual-result	Streptococcus Group D	Streptococcus Group D	0.558273896	1	Meas Value	4210032	"Streptococcus, group D"	7
+urn:ordercomms:rtest:textual-result	Rothia sp.	Rothia sp.	0.465477516	1	Meas Value	4234716	Rothia	7
+urn:ordercomms:rtest:textual-result	Staph. pseudointermedius	Staph. pseudointermedius	0.278312164	1	Meas Value	4142617	Staphylococcus intermedius	7
+urn:ordercomms:rtest:textual-result	Acinetobacter junii	Acinetobacter junii	1	1	Meas Value	4029141	Acinetobacter junii	6
+urn:ordercomms:rtest:textual-result	Bordetella bronchiseptica	Bordetella bronchiseptica	1	1	Meas Value	4024720	Bordetella bronchiseptica	6
+urn:ordercomms:rtest:textual-result	Brevundimonas vesicularis	Brevundimonas vesicularis	1	1	Meas Value	4034344	Brevundimonas vesicularis	6
+urn:ordercomms:rtest:textual-result	Capnocytophaga canimorsus	Capnocytophaga canimorsus	1	1	Meas Value	4014670	Capnocytophaga canimorsus	6
+urn:ordercomms:rtest:textual-result	Citrobacter sedlakii	Citrobacter sedlakii	1	1	Meas Value	4016449	Citrobacter sedlakii	6
+urn:ordercomms:rtest:textual-result	Clostridium tertium	Clostridium tertium	1	1	Meas Value	4219232	Clostridium tertium	6
+urn:ordercomms:rtest:textual-result	Helicobacter pylori	Helicobacter pylori	1	1	Meas Value	4216359	Helicobacter pylori	6
+urn:ordercomms:rtest:textual-result	Leuconostoc citreum	Leuconostoc citreum	1	1	Meas Value	4034770	Leuconostoc citreum	6
+urn:ordercomms:rtest:textual-result	Neisseria elongata	Neisseria elongata	1	1	Meas Value	4054732	Neisseria elongata	6
+urn:ordercomms:rtest:textual-result	Prevotella bivia	Prevotella bivia	1	1	Meas Value	4015683	Prevotella bivia	6
+urn:ordercomms:rtest:textual-result	Propionibacterium avidum	Propionibacterium avidum	1	1	Meas Value	4171013	Propionibacterium avidum	6
+urn:ordercomms:rtest:textual-result	Roseomonas gilardii	Roseomonas gilardii	1	1	Meas Value	4034349	Roseomonas gilardii	6
+urn:ordercomms:rtest:textual-result	Ruminococcus gnavus	Ruminococcus gnavus	1	1	Meas Value	4227569	Ruminococcus gnavus	6
+urn:ordercomms:rtest:textual-result	Salmonella infantis	Salmonella infantis	1	1	Meas Value	4220076	Salmonella Infantis	6
+urn:ordercomms:rtest:textual-result	Salmonella panama	Salmonella panama	1	1	Meas Value	4222735	Salmonella Panama	6
+urn:ordercomms:rtest:textual-result	Schistosoma mansoni	Schistosoma mansoni	1	1	Meas Value	4006474	Schistosoma mansoni	6
+urn:ordercomms:rtest:textual-result	Streptococcus hyointestinalis	Streptococcus hyointestinalis	1	1	Meas Value	4015392	Streptococcus hyointestinalis	6
+urn:ordercomms:rtest:textual-result	Yersinia pseudotuberculosis	Yersinia pseudotuberculosis	1	1	Meas Value	4235004	Yersinia pseudotuberculosis	6
+urn:ordercomms:rtest:textual-result	Salmonella java	Salmonella java	0.598390336	1	Meas Value	4338519	Salmonella Javiana	6
+urn:ordercomms:rtest:textual-result	Gemella sp.	Gemella sp.	0.5	1	Meas Value	4021869	Gemella	6
+urn:ordercomms:rtest:textual-result	Insufficient to spin	Insufficient to spin	0.483602221	1	Meas Value	4307430	Insufficient	6
+urn:ordercomms:rtest:textual-result	Lactococcus gasseri	Lactococcus gasseri	0.465477516	1	Meas Value	4321593	Lactococcus	6
+urn:ordercomms:rtest:textual-result	Enterobacter sakazakii	Enterobacter sakazakii	0.440983006	1	Meas Value	4242438	Enterobacter	6
+urn:ordercomms:rtest:textual-result	Stephanoascus (Cand.) ciferii	Stephanoascus (Cand.) ciferii	0.367544468	1	Meas Value	4189959	Stephanoascus	6
+urn:ordercomms:rtest:textual-result	Scanty White Cell	Scanty White Cell	0.276253136	1	Meas Value	4123508	+	6
+urn:ordercomms:rtest:textual-result	NEUTRPHILS NOT SEEN	NEUTRPHILS NOT SEEN	0.251668523	1	Meas Value	9190	Not detected	6
+urn:ordercomms:rtest:textual-result	Polymorphs NOT seen.	Polymorphs NOT seen.	0.240445475	1	Meas Value	9190	Not detected	6
+urn:ordercomms:rtest:textual-result	WBC = Neutrophils NOT seen	WBC = Neutrophils NOT seen	0.189907413	1	Meas Value	9190	Not detected	6
+urn:ordercomms:rtest:textual-result	WBC: Neutrophils not seen.	WBC: Neutrophils not seen.	0.189907413	1	Meas Value	9190	Not detected	6
+urn:ordercomms:rtest:textual-result	NO Neutrophils seen.	NO Neutrophils seen.	0.101282966	1	Meas Value	9190	Not detected	6
+urn:ordercomms:rtest:textual-result	+++	+++	1	1	Meas Value	4125547	+++	5
+urn:ordercomms:rtest:textual-result	Abiotrophia defectiva	Abiotrophia defectiva	1	1	Meas Value	4034351	Abiotrophia defectiva	5
+urn:ordercomms:rtest:textual-result	Brevundimonas diminuta	Brevundimonas diminuta	1	1	Meas Value	4034638	Brevundimonas diminuta	5
+urn:ordercomms:rtest:textual-result	Candida famata	Candida famata	1	1	Meas Value	4212757	Candida famata	5
+urn:ordercomms:rtest:textual-result	Candida inconspicua	Candida inconspicua	1	1	Meas Value	4152486	Candida inconspicua	5
+urn:ordercomms:rtest:textual-result	Citrobacter werkmanii	Citrobacter werkmanii	1	1	Meas Value	4016598	Citrobacter werkmanii	5
+urn:ordercomms:rtest:textual-result	Corynebacterium macginleyi	Corynebacterium macginleyi	1	1	Meas Value	4181656	Corynebacterium macginleyi	5
+urn:ordercomms:rtest:textual-result	Corynebacterium ulcerans	Corynebacterium ulcerans	1	1	Meas Value	4014182	Corynebacterium ulcerans	5
+urn:ordercomms:rtest:textual-result	Corynebacterium urealyticum	Corynebacterium urealyticum	1	1	Meas Value	4012163	Corynebacterium urealyticum	5
+urn:ordercomms:rtest:textual-result	Erysipelothrix rhusiopathiae	Erysipelothrix rhusiopathiae	1	1	Meas Value	4168936	Erysipelothrix rhusiopathiae	5
+urn:ordercomms:rtest:textual-result	Kluyvera ascorbata	Kluyvera ascorbata	1	1	Meas Value	4238672	Kluyvera ascorbata	5
+urn:ordercomms:rtest:textual-result	Mycobacterium bovis	Mycobacterium bovis	1	1	Meas Value	4098115	Mycobacterium bovis	5
+urn:ordercomms:rtest:textual-result	Mycobacterium intracellulare	Mycobacterium intracellulare	1	1	Meas Value	4222607	Mycobacterium intracellulare	5
+urn:ordercomms:rtest:textual-result	Mycobacterium xenopi	Mycobacterium xenopi	1	1	Meas Value	4239461	Mycobacterium xenopi	5
+urn:ordercomms:rtest:textual-result	Prevotella oralis	Prevotella oralis	1	1	Meas Value	4015530	Prevotella oralis	5
+urn:ordercomms:rtest:textual-result	Pseudomonas alcaligenes	Pseudomonas alcaligenes	1	1	Meas Value	4262393	Pseudomonas alcaligenes	5
+urn:ordercomms:rtest:textual-result	Roseomonas mucosa	Roseomonas mucosa	1	1	Meas Value	4190953	Roseomonas mucosa	5
+urn:ordercomms:rtest:textual-result	Saprochaete clavata	Saprochaete clavata	1	1	Meas Value	37018619	Saprochaete clavata	5
+urn:ordercomms:rtest:textual-result	Staphylococcus schleiferi	Staphylococcus schleiferi	1	1	Meas Value	4037526	Staphylococcus schleiferi	5
+urn:ordercomms:rtest:textual-result	Staphylococcus sciuri	Staphylococcus sciuri	1	1	Meas Value	4323431	Staphylococcus sciuri	5
+urn:ordercomms:rtest:textual-result	Trichophyton verrucosum	Trichophyton verrucosum	1	1	Meas Value	4131819	Trichophyton verrucosum	5
+urn:ordercomms:rtest:textual-result	Chilomastix mesnili cysts	Chilomastix mesnili cysts	0.854135009	1	Meas Value	43531239	Chilomastix mesnili cyst	5
+urn:ordercomms:rtest:textual-result	Entamoeba hartmanni cysts	Entamoeba hartmanni cysts	0.854135009	1	Meas Value	44783337	Entamoeba hartmanni cyst	5
+urn:ordercomms:rtest:textual-result	Salmonella typhimurium PT104	Salmonella typhimurium PT104	0.646446609	1	Meas Value	4177156	Salmonella Typhimurium	5
+urn:ordercomms:rtest:textual-result	Aggregatibacter aprophilus	Aggregatibacter aprophilus	0.603940983	1	Meas Value	40484530	Aggregatibacter aphrophilus	5
+urn:ordercomms:rtest:textual-result	Eggerthella sp.	Eggerthella sp.	0.59175171	1	Meas Value	4187181	Eggerthella	5
+urn:ordercomms:rtest:textual-result	Rhodotorula sp.	Rhodotorula sp.	0.59175171	1	Meas Value	4198407	Rhodotorula	5
+urn:ordercomms:rtest:textual-result	Salmonella montivideo	Salmonella montivideo	0.552786405	1	Meas Value	4214035	Salmonella Montevideo	5
+urn:ordercomms:rtest:textual-result	Aggrega. actinomycetemcomitans	Aggrega. actinomycetemcomitans	0.503861062	1	Meas Value	40484526	Aggregatibacter actinomycetemcomitans	5
+urn:ordercomms:rtest:textual-result	Paenibacillis sp.	Paenibacillis sp.	0.465477516	1	Meas Value	4015673	Paenibacillus	5
+urn:ordercomms:rtest:textual-result	Vibrio sp.	Vibrio sp.	0.465477516	1	Meas Value	4146528	Vibrio	5
+urn:ordercomms:rtest:textual-result	Gram negative diplococci +++	Gram negative diplococci +++	0.457673855	1	Meas Value	4308411	Gram-negative diplococcus	5
+urn:ordercomms:rtest:textual-result	Lactococcus cremoris	Lactococcus cremoris	0.442913985	1	Meas Value	4321593	Lactococcus	5
+urn:ordercomms:rtest:textual-result	Facklamia species	Facklamia species	0.422649731	1	Meas Value	4213000	Facklamia	5
+urn:ordercomms:rtest:textual-result	Insufficient to centrifuge	Insufficient to centrifuge	0.376390436	1	Meas Value	4307430	Insufficient	5
+urn:ordercomms:rtest:textual-result	Neisseria gonorrhoeae NOT isolated.	Neisseria gonorrhoeae NOT isolated.	0.23988305	1	Meas Value	4142856	Not isolated	5
+urn:ordercomms:rtest:textual-result	Acinetobacter haemolyticus	Acinetobacter haemolyticus	1	1	Meas Value	4296863	Acinetobacter haemolyticus	4
+urn:ordercomms:rtest:textual-result	Bacillus circulans	Bacillus circulans	1	1	Meas Value	4216703	Bacillus circulans	4
+urn:ordercomms:rtest:textual-result	Bordetella parapertussis	Bordetella parapertussis	1	1	Meas Value	4095695	Bordetella parapertussis	4
+urn:ordercomms:rtest:textual-result	Burkholderia gladioli	Burkholderia gladioli	1	1	Meas Value	4034928	Burkholderia gladioli	4
+urn:ordercomms:rtest:textual-result	Campylobacter jejuni	Campylobacter jejuni	1	1	Meas Value	4282778	Campylobacter jejuni	4
+urn:ordercomms:rtest:textual-result	Candida kefyr	Candida kefyr	1	1	Meas Value	40486950	Candida kefyr	4
+urn:ordercomms:rtest:textual-result	Corynebacterium afermentans	Corynebacterium afermentans	1	1	Meas Value	4012161	Corynebacterium afermentans	4
+urn:ordercomms:rtest:textual-result	Enterobacter amnigenus	Enterobacter amnigenus	1	1	Meas Value	4223548	Enterobacter amnigenus	4
+urn:ordercomms:rtest:textual-result	Enterococcus hirae	Enterococcus hirae	1	1	Meas Value	4251482	Enterococcus hirae	4
+urn:ordercomms:rtest:textual-result	Flavimonas oryzihabitans	Flavimonas oryzihabitans	1	1	Meas Value	4034617	Flavimonas oryzihabitans	4
+urn:ordercomms:rtest:textual-result	Lactococcus lactis lactis	Lactococcus lactis lactis	1	1	Meas Value	4265181	Lactococcus lactis	4
+urn:ordercomms:rtest:textual-result	Leuconostoc mesenteroides	Leuconostoc mesenteroides	1	1	Meas Value	4322980	Leuconostoc mesenteroides	4
+urn:ordercomms:rtest:textual-result	Paenibacillus pabuli	Paenibacillus pabuli	1	1	Meas Value	4015237	Paenibacillus pabuli	4
+urn:ordercomms:rtest:textual-result	Pantoea septica	Pantoea septica	1	1	Meas Value	37018965	Pantoea septica	4
+urn:ordercomms:rtest:textual-result	Salmonella anatum	Salmonella anatum	1	1	Meas Value	4290471	Salmonella Anatum	4
+urn:ordercomms:rtest:textual-result	Salmonella hadar	Salmonella hadar	1	1	Meas Value	4170861	Salmonella Hadar	4
+urn:ordercomms:rtest:textual-result	Salmonella mbandaka	Salmonella mbandaka	1	1	Meas Value	4317005	Salmonella Mbandaka	4
+urn:ordercomms:rtest:textual-result	Salmonella paratyphi B	Salmonella paratyphi B	1	1	Meas Value	4312600	Salmonella Paratyphi B	4
+urn:ordercomms:rtest:textual-result	Scedosporium prolificans	Scedosporium prolificans	1	1	Meas Value	4289606	Scedosporium prolificans	4
+urn:ordercomms:rtest:textual-result	Shigella dysenteriae	Shigella dysenteriae	1	1	Meas Value	4185110	Shigella dysenteriae	4
+urn:ordercomms:rtest:textual-result	Staphylococcus lentus	Staphylococcus lentus	1	1	Meas Value	4222111	Staphylococcus lentus	4
+urn:ordercomms:rtest:textual-result	Strongyloides stercoralis	Strongyloides stercoralis	1	1	Meas Value	4174850	Strongyloides stercoralis	4
+urn:ordercomms:rtest:textual-result	Trichophyton violaceum	Trichophyton violaceum	1	1	Meas Value	4285864	Trichophyton violaceum	4
+urn:ordercomms:rtest:textual-result	Isospora belli oocysts	Isospora belli oocysts	0.843826238	1	Meas Value	43531256	Isospora belli oocyst	4
+urn:ordercomms:rtest:textual-result	Paecilomyces lilacinus	Paecilomyces lilacinus	0.78178211	1	Meas Value	4280577	Paecilomyces lilacinum	4
+urn:ordercomms:rtest:textual-result	Peptostreptococcus sp.	Peptostreptococcus sp.	0.675557158	1	Meas Value	4348178	Peptostreptococcus	4
+urn:ordercomms:rtest:textual-result	Cladophialophora sp.	Cladophialophora sp.	0.65700283	1	Meas Value	4188808	Cladophialophora	4
+urn:ordercomms:rtest:textual-result	Brevibacterium sp.	Brevibacterium sp.	0.634851628	1	Meas Value	4263119	Brevibacterium	4
+urn:ordercomms:rtest:textual-result	Paecilomyces sp.	Paecilomyces sp.	0.60776773	1	Meas Value	4093927	Paecilomyces	4
+urn:ordercomms:rtest:textual-result	Trichosporon sp.	Trichosporon sp.	0.60776773	1	Meas Value	4266502	Trichosporon	4
+urn:ordercomms:rtest:textual-result	Alcaligenes sp.	Alcaligenes sp.	0.59175171	1	Meas Value	4288470	Alcaligenes	4
+urn:ordercomms:rtest:textual-result	Citrobacter amaloniticus	Citrobacter amaloniticus	0.582971172	1	Meas Value	4205585	Citrobacter amalonaticus	4
+urn:ordercomms:rtest:textual-result	Peptoniph. asaccharolyticus	Peptoniph. asaccharolyticus	0.532900634	1	Meas Value	4203519	Peptoniphilus asaccharolyticus	4
+urn:ordercomms:rtest:textual-result	Bacteroides capillosus	Bacteroides capillosus	0.438048513	1	Meas Value	4031998	Bacteroides caccae	4
+urn:ordercomms:rtest:textual-result	Sphingomonas multivorum	Sphingomonas multivorum	0.422649731	1	Meas Value	4018817	Sphingomonas	4
+urn:ordercomms:rtest:textual-result	Lactococcus acidophilus	Lactococcus acidophilus	0.392081241	1	Meas Value	4164115	Lactobacillus acidophilus	4
+urn:ordercomms:rtest:textual-result	POLYS NOT SEEN	POLYS NOT SEEN	0.329179607	1	Meas Value	9190	Not detected	4
+urn:ordercomms:rtest:textual-result	SCANTY GRAM POSITIVE COCCI	SCANTY GRAM POSITIVE COCCI	0.30915072	1	Meas Value	4241096	Gram-positive coccus	4
+urn:ordercomms:rtest:textual-result	Coryne. amycolatum/striatum	Coryne. amycolatum/striatum	0.299859958	1	Meas Value	4015383	Corynebacterium amycolatum	4
+urn:ordercomms:rtest:textual-result	Actinomyces oris	Actinomyces oris	1	1	Meas Value	40491380	Actinomyces oris	3
+urn:ordercomms:rtest:textual-result	Aggregatibacter segnis	Aggregatibacter segnis	1	1	Meas Value	40484495	Aggregatibacter segnis	3
+urn:ordercomms:rtest:textual-result	Alternaria alternata	Alternaria alternata	1	1	Meas Value	4280575	Alternaria alternata	3
+urn:ordercomms:rtest:textual-result	Bacillus simplex	Bacillus simplex	1	1	Meas Value	4012005	Bacillus simplex	3
+urn:ordercomms:rtest:textual-result	Brevibacterium casei	Brevibacterium casei	1	1	Meas Value	4273862	Brevibacterium casei	3
+urn:ordercomms:rtest:textual-result	CANDIDA	CANDIDA	1	1	Meas Value	4139129	Candida	3
+urn:ordercomms:rtest:textual-result	Cladosporium sphaerospermum	Cladosporium sphaerospermum	1	1	Meas Value	4023943	Cladosporium sphaerospermum	3
+urn:ordercomms:rtest:textual-result	Clostridium difficile	Clostridium difficile	1	1	Meas Value	4244400	Clostridium difficile	3
+urn:ordercomms:rtest:textual-result	Clostridium histolyticum	Clostridium histolyticum	1	1	Meas Value	4337525	Clostridium histolyticum	3
+urn:ordercomms:rtest:textual-result	Cronobacter sakazakii	Cronobacter sakazakii	1	1	Meas Value	40484223	Cronobacter sakazakii	3
+urn:ordercomms:rtest:textual-result	Fasciola hepatica	Fasciola hepatica	1	1	Meas Value	4010739	Fasciola hepatica	3
+urn:ordercomms:rtest:textual-result	Fusarium verticillioides	Fusarium verticillioides	1	1	Meas Value	4212627	Fusarium verticillioides	3
+urn:ordercomms:rtest:textual-result	Helcococcus kunzii	Helcococcus kunzii	1	1	Meas Value	4132269	Helcococcus kunzii	3
+urn:ordercomms:rtest:textual-result	Hymenolepis nana	Hymenolepis nana	1	1	Meas Value	4251061	Hymenolepis nana	3
+urn:ordercomms:rtest:textual-result	Leclercia adecarboxylata	Leclercia adecarboxylata	1	1	Meas Value	4238215	Leclercia adecarboxylata	3
+urn:ordercomms:rtest:textual-result	LOW	LOW	1	1	Meas Value	4267416	Low	3
+urn:ordercomms:rtest:textual-result	Microsporum gypseum	Microsporum gypseum	1	1	Meas Value	4011241	Microsporum gypseum	3
+urn:ordercomms:rtest:textual-result	Mycobacterium mucogenicum	Mycobacterium mucogenicum	1	1	Meas Value	4034212	Mycobacterium mucogenicum	3
+urn:ordercomms:rtest:textual-result	Myroides odoratimimus	Myroides odoratimimus	1	1	Meas Value	4012028	Myroides odoratimimus	3
+urn:ordercomms:rtest:textual-result	Neisseria cinerea	Neisseria cinerea	1	1	Meas Value	4239526	Neisseria cinerea	3
+urn:ordercomms:rtest:textual-result	Neisseria flavescens	Neisseria flavescens	1	1	Meas Value	4327954	Neisseria flavescens	3
+urn:ordercomms:rtest:textual-result	Neisseria mucosa	Neisseria mucosa	1	1	Meas Value	4305338	Neisseria mucosa	3
+urn:ordercomms:rtest:textual-result	Parabacteroides distasonis	Parabacteroides distasonis	1	1	Meas Value	40492891	Parabacteroides distasonis	3
+urn:ordercomms:rtest:textual-result	Pseudomonas mendocina	Pseudomonas mendocina	1	1	Meas Value	4241850	Pseudomonas mendocina	3
+urn:ordercomms:rtest:textual-result	Salmonella adelaide	Salmonella adelaide	1	1	Meas Value	4013410	Salmonella Adelaide	3
+urn:ordercomms:rtest:textual-result	Salmonella agona	Salmonella agona	1	1	Meas Value	4213209	Salmonella Agona	3
+urn:ordercomms:rtest:textual-result	Salmonella litchfield	Salmonella litchfield	1	1	Meas Value	4304398	Salmonella Litchfield	3
+urn:ordercomms:rtest:textual-result	Salmonella tennessee	Salmonella tennessee	1	1	Meas Value	4193754	Salmonella Tennessee	3
+urn:ordercomms:rtest:textual-result	Serratia fonticola	Serratia fonticola	1	1	Meas Value	4011216	Serratia fonticola	3
+urn:ordercomms:rtest:textual-result	Trichophyton terrestre	Trichophyton terrestre	1	1	Meas Value	4312877	Trichophyton terrestre	3
+urn:ordercomms:rtest:textual-result	Vibrio fluvialis	Vibrio fluvialis	1	1	Meas Value	4182720	Vibrio fluvialis	3
+urn:ordercomms:rtest:textual-result	Stenotrophomonas sp.	Stenotrophomonas sp.	0.65700283	1	Meas Value	4017688	Stenotrophomonas	3
+urn:ordercomms:rtest:textual-result	Salmonella bovis-morbificans	Salmonella bovis-morbificans	0.611485655	1	Meas Value	4219237	Salmonella Bovismorbificans	3
+urn:ordercomms:rtest:textual-result	Scedosporium sp.	Scedosporium sp.	0.60776773	1	Meas Value	4136685	Scedosporium	3
+urn:ordercomms:rtest:textual-result	Pandoraea sp.	Pandoraea sp.	0.552786405	1	Meas Value	4216109	Pandoraea	3
+urn:ordercomms:rtest:textual-result	Salmonella saint-paul	Salmonella saint-paul	0.547089186	1	Meas Value	4151363	Salmonella Saintpaul	3
+urn:ordercomms:rtest:textual-result	Acinetobacter calcoaceticus	Acinetobacter calcoaceticus	1	1	Meas Value	4220355	Acinetobacter calcoaceticus	2
+urn:ordercomms:rtest:textual-result	Actinomyces europaeus	Actinomyces europaeus	1	1	Meas Value	4014250	Actinomyces europaeus	2
+urn:ordercomms:rtest:textual-result	Aspergillus glaucus	Aspergillus glaucus	1	1	Meas Value	4023969	Aspergillus glaucus	2
+urn:ordercomms:rtest:textual-result	Bacillus licheniformis	Bacillus licheniformis	1	1	Meas Value	4254684	Bacillus licheniformis	2
+urn:ordercomms:rtest:textual-result	Candida zeylanoides	Candida zeylanoides	1	1	Meas Value	4352755	Candida zeylanoides	2
+urn:ordercomms:rtest:textual-result	Cedecea lapagei	Cedecea lapagei	1	1	Meas Value	4051640	Cedecea lapagei	2
+urn:ordercomms:rtest:textual-result	Clostridium baratii	Clostridium baratii	1	1	Meas Value	4150224	Clostridium baratii	2
+urn:ordercomms:rtest:textual-result	Clostridium cadaveris	Clostridium cadaveris	1	1	Meas Value	4041003	Clostridium cadaveris	2
+urn:ordercomms:rtest:textual-result	Clostridium paraputrificum	Clostridium paraputrificum	1	1	Meas Value	4221627	Clostridium paraputrificum	2
+urn:ordercomms:rtest:textual-result	Cupriavidus pauculus	Cupriavidus pauculus	1	1	Meas Value	4180286	Cupriavidus pauculus	2
+urn:ordercomms:rtest:textual-result	Dermatophyte	Dermatophyte	1	1	Meas Value	4019374	Dermatophyte	2
+urn:ordercomms:rtest:textual-result	Enterobacter hormaechei	Enterobacter hormaechei	1	1	Meas Value	4014972	Enterobacter hormaechei	2
+urn:ordercomms:rtest:textual-result	Fungus	Fungus	1	1	Meas Value	4052703	Fungus	2
+urn:ordercomms:rtest:textual-result	Gemella sanguinis	Gemella sanguinis	1	1	Meas Value	4051812	Gemella sanguinis	2
+urn:ordercomms:rtest:textual-result	Globicatella sanguinis	Globicatella sanguinis	1	1	Meas Value	4190376	Globicatella sanguinis	2
+urn:ordercomms:rtest:textual-result	HIGH	HIGH	1	1	Meas Value	4328749	High	2
+urn:ordercomms:rtest:textual-result	Microaerophilic Streptococcus	Microaerophilic Streptococcus	1	1	Meas Value	4352615	Microaerophilic streptococcus	2
+urn:ordercomms:rtest:textual-result	Micrococcus lylae	Micrococcus lylae	1	1	Meas Value	4263425	Micrococcus lylae	2
+urn:ordercomms:rtest:textual-result	Mycobacterium celatum	Mycobacterium celatum	1	1	Meas Value	4013416	Mycobacterium celatum	2
+urn:ordercomms:rtest:textual-result	Mycobacterium interjectum	Mycobacterium interjectum	1	1	Meas Value	4034210	Mycobacterium interjectum	2
+urn:ordercomms:rtest:textual-result	Neisseria macacae	Neisseria macacae	1	1	Meas Value	4011221	Neisseria macacae	2
+urn:ordercomms:rtest:textual-result	Neisseria sicca	Neisseria sicca	1	1	Meas Value	4173887	Neisseria sicca	2
+urn:ordercomms:rtest:textual-result	Pasteurella dagmatis	Pasteurella dagmatis	1	1	Meas Value	4216506	Pasteurella dagmatis	2
+urn:ordercomms:rtest:textual-result	Plasmodium malariae	Plasmodium malariae	1	1	Meas Value	4207072	Plasmodium malariae	2
+urn:ordercomms:rtest:textual-result	Prevotella intermedia	Prevotella intermedia	1	1	Meas Value	4015255	Prevotella intermedia	2
+urn:ordercomms:rtest:textual-result	Prevotella timonensis	Prevotella timonensis	1	1	Meas Value	42873121	Prevotella timonensis	2
+urn:ordercomms:rtest:textual-result	Rhizomucor pusillus	Rhizomucor pusillus	1	1	Meas Value	4323131	Rhizomucor pusillus	2
+urn:ordercomms:rtest:textual-result	Salmonella blockley	Salmonella blockley	1	1	Meas Value	4204850	Salmonella Blockley	2
+urn:ordercomms:rtest:textual-result	Salmonella brandenburg	Salmonella brandenburg	1	1	Meas Value	4058047	Salmonella Brandenburg	2
+urn:ordercomms:rtest:textual-result	Salmonella chester	Salmonella chester	1	1	Meas Value	4184582	Salmonella Chester	2
+urn:ordercomms:rtest:textual-result	Salmonella Concord	Salmonella Concord	1	1	Meas Value	4198046	Salmonella Concord	2
+urn:ordercomms:rtest:textual-result	Salmonella corvallis	Salmonella corvallis	1	1	Meas Value	4164891	Salmonella Corvallis	2
+urn:ordercomms:rtest:textual-result	Salmonella derby	Salmonella derby	1	1	Meas Value	4290347	Salmonella Derby	2
+urn:ordercomms:rtest:textual-result	Salmonella dublin	Salmonella dublin	1	1	Meas Value	4265199	Salmonella Dublin	2
+urn:ordercomms:rtest:textual-result	Salmonella durham	Salmonella durham	1	1	Meas Value	4211241	Salmonella Durham	2
+urn:ordercomms:rtest:textual-result	Salmonella heidelberg	Salmonella heidelberg	1	1	Meas Value	4215794	Salmonella Heidelberg	2
+urn:ordercomms:rtest:textual-result	Salmonella Mikawasima	Salmonella Mikawasima	1	1	Meas Value	4175319	Salmonella Mikawasima	2
+urn:ordercomms:rtest:textual-result	SALMONELLA SCHWARZENGRUND	SALMONELLA SCHWARZENGRUND	1	1	Meas Value	4164290	Salmonella Schwarzengrund	2
+urn:ordercomms:rtest:textual-result	Serratia grimesii	Serratia grimesii	1	1	Meas Value	4015918	Serratia grimesii	2
+urn:ordercomms:rtest:textual-result	Serratia plymuthica	Serratia plymuthica	1	1	Meas Value	4104185	Serratia plymuthica	2
+urn:ordercomms:rtest:textual-result	Serratia ureilytica	Serratia ureilytica	1	1	Meas Value	42872425	Serratia ureilytica	2
+urn:ordercomms:rtest:textual-result	Staphylococcus equorum	Staphylococcus equorum	1	1	Meas Value	4151370	Staphylococcus equorum	2
+urn:ordercomms:rtest:textual-result	Staphylococcus felis	Staphylococcus felis	1	1	Meas Value	4034918	Staphylococcus felis	2
+urn:ordercomms:rtest:textual-result	Staphylococcus vitulinus	Staphylococcus vitulinus	1	1	Meas Value	4206845	Staphylococcus vitulinus	2
+urn:ordercomms:rtest:textual-result	Streptococcus acidominimus	Streptococcus acidominimus	1	1	Meas Value	4196818	Streptococcus acidominimus	2
+urn:ordercomms:rtest:textual-result	Streptococcus canis	Streptococcus canis	1	1	Meas Value	4339411	Streptococcus canis	2
+urn:ordercomms:rtest:textual-result	Streptococcus equi	Streptococcus equi	1	1	Meas Value	4053072	Streptococcus equi	2
+urn:ordercomms:rtest:textual-result	Streptococcus ovis	Streptococcus ovis	1	1	Meas Value	4230883	Streptococcus ovis	2
+urn:ordercomms:rtest:textual-result	Streptococcus uberis	Streptococcus uberis	1	1	Meas Value	4028021	Streptococcus uberis	2
+urn:ordercomms:rtest:textual-result	Streptomyces albus	Streptomyces albus	1	1	Meas Value	4015552	Streptomyces albus	2
+urn:ordercomms:rtest:textual-result	Trichophyton soudanense	Trichophyton soudanense	1	1	Meas Value	4175971	Trichophyton soudanense	2
+urn:ordercomms:rtest:textual-result	Vagococcus fluvialis	Vagococcus fluvialis	1	1	Meas Value	4023725	Vagococcus fluvialis	2
+urn:ordercomms:rtest:textual-result	Parabacteroides goldsteini	Parabacteroides goldsteini	0.859971992	1	Meas Value	37018966	Parabacteroides goldsteinii	2
+urn:ordercomms:rtest:textual-result	Salmonella enteritidis PT4	Salmonella enteritidis PT4	0.705116088	1	Meas Value	4249155	Salmonella Enteritidis	2
+urn:ordercomms:rtest:textual-result	Chryseobacterium sp	Chryseobacterium sp	0.698488655	1	Meas Value	4017975	Chryseobacterium	2
+urn:ordercomms:rtest:textual-result	Aggregatibacter sp.	Aggregatibacter sp.	0.646446609	1	Meas Value	40480430	Aggregatibacter	2
+urn:ordercomms:rtest:textual-result	Brevibacillus sp.	Brevibacillus sp.	0.622035527	1	Meas Value	4015242	Brevibacillus	2
+urn:ordercomms:rtest:textual-result	Prevotella melanogenica	Prevotella melanogenica	0.609905251	1	Meas Value	4015686	Prevotella melaninogenica	2
+urn:ordercomms:rtest:textual-result	Sarcoptes scabei	Sarcoptes scabei	0.598390336	1	Meas Value	4284244	Sarcoptes scabiei	2
+urn:ordercomms:rtest:textual-result	Escherichia sp.	Escherichia sp.	0.59175171	1	Meas Value	4277441	Escherichia	2
+urn:ordercomms:rtest:textual-result	Staphylococcus novobiosepticus	Staphylococcus novobiosepticus	0.59175171	1	Meas Value	4204773	Staphylococcus hominis novobiosepticus	2
+urn:ordercomms:rtest:textual-result	Finegoldia sp.	Finegoldia sp.	0.573598567	1	Meas Value	4213521	Finegoldia	2
+urn:ordercomms:rtest:textual-result	Legionella sp.	Legionella sp.	0.573598567	1	Meas Value	4326728	Legionella	2
+urn:ordercomms:rtest:textual-result	Tsukamurella spp.	Tsukamurella spp.	0.569668517	1	Meas Value	4018411	Tsukamurella	2
+urn:ordercomms:rtest:textual-result	Agrobacter sp.	Agrobacter sp.	0.470849738	1	Meas Value	4140675	Agrobacterium	2
+urn:ordercomms:rtest:textual-result	Salmonella unnamed	Salmonella unnamed	0.445299804	1	Meas Value	4099188	Salmonella	2
+urn:ordercomms:rtest:textual-result	++	++	0.118082896	1	Meas Value	4126673	++	2
+urn:ordercomms:rtest:textual-result	Achromobacter dolens	Achromobacter dolens	1	1	Meas Value	37016679	Achromobacter dolens	1
+urn:ordercomms:rtest:textual-result	Actinomyces funkei	Actinomyces funkei	1	1	Meas Value	4167862	Actinomyces funkei	1
+urn:ordercomms:rtest:textual-result	Actinomyces timonensis	Actinomyces timonensis	1	1	Meas Value	37396647	Actinomyces timonensis	1
+urn:ordercomms:rtest:textual-result	Aeromonas salmonicida	Aeromonas salmonicida	1	1	Meas Value	4147386	Aeromonas salmonicida	1
+urn:ordercomms:rtest:textual-result	Alloiococcus otitis	Alloiococcus otitis	1	1	Meas Value	4288933	Alloiococcus otitis	1
+urn:ordercomms:rtest:textual-result	Anaerococcus octavius	Anaerococcus octavius	1	1	Meas Value	4211340	Anaerococcus octavius	1
+urn:ordercomms:rtest:textual-result	Aspergillus flavipes	Aspergillus flavipes	1	1	Meas Value	4205157	Aspergillus flavipes	1
+urn:ordercomms:rtest:textual-result	Atopobium rimae	Atopobium rimae	1	1	Meas Value	4015384	Atopobium rimae	1
+urn:ordercomms:rtest:textual-result	Bacillus altitudinis	Bacillus altitudinis	1	1	Meas Value	44782477	Bacillus altitudinis	1
+urn:ordercomms:rtest:textual-result	Bacillus pumilus	Bacillus pumilus	1	1	Meas Value	4040996	Bacillus pumilus	1
+urn:ordercomms:rtest:textual-result	Bilophila wadsworthia	Bilophila wadsworthia	1	1	Meas Value	4016443	Bilophila wadsworthia	1
+urn:ordercomms:rtest:textual-result	Campylobacter fetus	Campylobacter fetus	1	1	Meas Value	4223541	Campylobacter fetus	1
+urn:ordercomms:rtest:textual-result	Campylobacter ureolyticus	Campylobacter ureolyticus	1	1	Meas Value	42872611	Campylobacter ureolyticus	1
+urn:ordercomms:rtest:textual-result	Cedecea davisae	Cedecea davisae	1	1	Meas Value	4149253	Cedecea davisae	1
+urn:ordercomms:rtest:textual-result	centipede	centipede	1	1	Meas Value	4188342	Centipede	1
+urn:ordercomms:rtest:textual-result	Chrysosporium keratinophilum	Chrysosporium keratinophilum	1	1	Meas Value	4352764	Chrysosporium keratinophilum	1
+urn:ordercomms:rtest:textual-result	Clostridium bifermentans	Clostridium bifermentans	1	1	Meas Value	4218409	Clostridium bifermentans	1
+urn:ordercomms:rtest:textual-result	Clostridium fallax	Clostridium fallax	1	1	Meas Value	4030575	Clostridium fallax	1
+urn:ordercomms:rtest:textual-result	Collinsella aerofaciens	Collinsella aerofaciens	1	1	Meas Value	4221042	Collinsella aerofaciens	1
+urn:ordercomms:rtest:textual-result	Cryptococcus albidus	Cryptococcus albidus	1	1	Meas Value	4250183	Cryptococcus albidus	1
+urn:ordercomms:rtest:textual-result	Cryptococcus uniguttulatus	Cryptococcus uniguttulatus	1	1	Meas Value	4011239	Cryptococcus uniguttulatus	1
+urn:ordercomms:rtest:textual-result	Dermatobia hominis	Dermatobia hominis	1	1	Meas Value	4289530	Dermatobia hominis	1
+urn:ordercomms:rtest:textual-result	Dolosigranulum pigrum	Dolosigranulum pigrum	1	1	Meas Value	4181033	Dolosigranulum pigrum	1
+urn:ordercomms:rtest:textual-result	Enterobacter cancerogenus	Enterobacter cancerogenus	1	1	Meas Value	4016600	Enterobacter cancerogenus	1
+urn:ordercomms:rtest:textual-result	Escherichia vulneris	Escherichia vulneris	1	1	Meas Value	4204079	Escherichia vulneris	1
+urn:ordercomms:rtest:textual-result	Exserohilum rostratum	Exserohilum rostratum	1	1	Meas Value	4296748	Exserohilum rostratum	1
+urn:ordercomms:rtest:textual-result	Haemophilus parahaemolyticus	Haemophilus parahaemolyticus	1	1	Meas Value	4232469	Haemophilus parahaemolyticus	1
+urn:ordercomms:rtest:textual-result	Kingella kingae	Kingella kingae	1	1	Meas Value	4233515	Kingella kingae	1
+urn:ordercomms:rtest:textual-result	Kingella oralis	Kingella oralis	1	1	Meas Value	4043877	Kingella oralis	1
+urn:ordercomms:rtest:textual-result	Kluyvera intermedia	Kluyvera intermedia	1	1	Meas Value	4332097	Kluyvera intermedia	1
+urn:ordercomms:rtest:textual-result	Kroppenstedtia eburnea	Kroppenstedtia eburnea	1	1	Meas Value	44783303	Kroppenstedtia eburnea	1
+urn:ordercomms:rtest:textual-result	Lactococcus raffinolactis	Lactococcus raffinolactis	1	1	Meas Value	4034199	Lactococcus raffinolactis	1
+urn:ordercomms:rtest:textual-result	Microsporum persicolor	Microsporum persicolor	1	1	Meas Value	4269376	Microsporum persicolor	1
+urn:ordercomms:rtest:textual-result	Mycobacterium goodii	Mycobacterium goodii	1	1	Meas Value	4132267	Mycobacterium goodii	1
+urn:ordercomms:rtest:textual-result	Mycobacterium marinum	Mycobacterium marinum	1	1	Meas Value	4239633	Mycobacterium marinum	1
+urn:ordercomms:rtest:textual-result	Neisseria polysaccharea	Neisseria polysaccharea	1	1	Meas Value	4283685	Neisseria polysaccharea	1
+urn:ordercomms:rtest:textual-result	Not Isolated	Not Isolated	1	1	Meas Value	4142856	Not isolated	1
+urn:ordercomms:rtest:textual-result	Paenibacillus barengoltzii	Paenibacillus barengoltzii	1	1	Meas Value	40489385	Paenibacillus barengoltzii	1
+urn:ordercomms:rtest:textual-result	Paenibacillus glucanolyticus	Paenibacillus glucanolyticus	1	1	Meas Value	4334319	Paenibacillus glucanolyticus	1
+urn:ordercomms:rtest:textual-result	Paenibacillus thiaminolyticus	Paenibacillus thiaminolyticus	1	1	Meas Value	4015679	Paenibacillus thiaminolyticus	1
+urn:ordercomms:rtest:textual-result	Paracoccus yeei	Paracoccus yeei	1	1	Meas Value	4187186	Paracoccus yeei	1
+urn:ordercomms:rtest:textual-result	Pediococcus pentosaceus 	Pediococcus pentosaceus 	1	1	Meas Value	4348013	Pediococcus pentosaceus	1
+urn:ordercomms:rtest:textual-result	Penicillium marneffei	Penicillium marneffei	1	1	Meas Value	4215781	Penicillium marneffei	1
+urn:ordercomms:rtest:textual-result	Plasmodium ovale	Plasmodium ovale	1	1	Meas Value	4087279	Plasmodium ovale	1
+urn:ordercomms:rtest:textual-result	Prevotella disiens	Prevotella disiens	1	1	Meas Value	4015685	Prevotella disiens	1
+urn:ordercomms:rtest:textual-result	Prevotella heparinolytica	Prevotella heparinolytica	1	1	Meas Value	4015254	Prevotella heparinolytica	1
+urn:ordercomms:rtest:textual-result	Propionibacterium propionicus	Propionibacterium propionicus	1	1	Meas Value	4034612	Propionibacterium prionicus	1
+urn:ordercomms:rtest:textual-result	Proteus penneri	Proteus penneri	1	1	Meas Value	4163698	Proteus penneri	1
+urn:ordercomms:rtest:textual-result	Providencia alcalifaciens	Providencia alcalifaciens	1	1	Meas Value	4186601	Providencia alcalifaciens	1
+urn:ordercomms:rtest:textual-result	Pseudomonas pseudoalcaligenes	Pseudomonas pseudoalcaligenes	1	1	Meas Value	4149876	Pseudomonas pseudoalcaligenes	1
+urn:ordercomms:rtest:textual-result	Rahnella aquatilis	Rahnella aquatilis	1	1	Meas Value	4001253	Rahnella aquatilis	1
+urn:ordercomms:rtest:textual-result	Raoultella terrigena	Raoultella terrigena	1	1	Meas Value	4165920	Raoultella terrigena	1
+urn:ordercomms:rtest:textual-result	Rhizopus arrhizus	Rhizopus arrhizus	1	1	Meas Value	4337256	Rhizopus arrhizus	1
+urn:ordercomms:rtest:textual-result	Salmonella agama	Salmonella agama	1	1	Meas Value	4246487	Salmonella Agama	1
+urn:ordercomms:rtest:textual-result	Salmonella ago	Salmonella ago	1	1	Meas Value	4238832	Salmonella Ago	1
+urn:ordercomms:rtest:textual-result	Salmonella Braenderup	Salmonella Braenderup	1	1	Meas Value	4148709	Salmonella Braenderup	1
+urn:ordercomms:rtest:textual-result	Salmonella Cannstatt	Salmonella Cannstatt	1	1	Meas Value	4151367	Salmonella Cannstatt	1
+urn:ordercomms:rtest:textual-result	Salmonella Emek	Salmonella Emek	1	1	Meas Value	4202528	Salmonella Emek	1
+urn:ordercomms:rtest:textual-result	Salmonella Fluntern	Salmonella Fluntern	1	1	Meas Value	4241074	Salmonella Fluntern	1
+urn:ordercomms:rtest:textual-result	Salmonella Grancanaria	Salmonella Grancanaria	1	1	Meas Value	4017013	Salmonella Grancanaria	1
+urn:ordercomms:rtest:textual-result	Salmonella haifa	Salmonella haifa	1	1	Meas Value	4339217	Salmonella Haifa	1
+urn:ordercomms:rtest:textual-result	Salmonella Kande	Salmonella Kande	1	1	Meas Value	4227445	Salmonella Kande	1
+urn:ordercomms:rtest:textual-result	Salmonella mgulani	Salmonella mgulani	1	1	Meas Value	4300412	Salmonella Mgulani	1
+urn:ordercomms:rtest:textual-result	Salmonella Monschaui	Salmonella Monschaui	1	1	Meas Value	4275728	Salmonella Monschaui	1
+urn:ordercomms:rtest:textual-result	Salmonella Muenchen	Salmonella Muenchen	1	1	Meas Value	4298955	Salmonella Muenchen	1
+urn:ordercomms:rtest:textual-result	Salmonella muenster	Salmonella muenster	1	1	Meas Value	4286667	Salmonella Muenster	1
+urn:ordercomms:rtest:textual-result	Salmonella odozi	Salmonella odozi	1	1	Meas Value	4176281	Salmonella Odozi	1
+urn:ordercomms:rtest:textual-result	Salmonella oslo	Salmonella oslo	1	1	Meas Value	4261665	Salmonella Oslo	1
+urn:ordercomms:rtest:textual-result	Salmonella paratyphi C	Salmonella paratyphi C	1	1	Meas Value	4137587	Salmonella Paratyphi C	1
+urn:ordercomms:rtest:textual-result	Salmonella potsdam	Salmonella potsdam	1	1	Meas Value	4310555	Salmonella Potsdam	1
+urn:ordercomms:rtest:textual-result	Salmonella Senftenberg	Salmonella Senftenberg	1	1	Meas Value	4109937	Salmonella Senftenberg	1
+urn:ordercomms:rtest:textual-result	Salmonella Stourbridge	Salmonella Stourbridge	1	1	Meas Value	4175666	Salmonella Stourbridge	1
+urn:ordercomms:rtest:textual-result	Salmonella thompson	Salmonella thompson	1	1	Meas Value	4184342	Salmonella Thompson	1
+urn:ordercomms:rtest:textual-result	Salmonella Wien	Salmonella Wien	1	1	Meas Value	4071324	Salmonella Wien	1
+urn:ordercomms:rtest:textual-result	Serratia ficaria	Serratia ficaria	1	1	Meas Value	4198204	Serratia ficaria	1
+urn:ordercomms:rtest:textual-result	Serratia odorifera	Serratia odorifera	1	1	Meas Value	4016238	Serratia odorifera	1
+urn:ordercomms:rtest:textual-result	Serratia proteamaculans	Serratia proteamaculans	1	1	Meas Value	4019095	Serratia proteamaculans	1
+urn:ordercomms:rtest:textual-result	Serratia rubidaea	Serratia rubidaea	1	1	Meas Value	4183695	Serratia rubidaea	1
+urn:ordercomms:rtest:textual-result	Slackia exigua	Slackia exigua	1	1	Meas Value	4200621	Slackia exigua	1
+urn:ordercomms:rtest:textual-result	Sphingobacterium thalpophilum	Sphingobacterium thalpophilum	1	1	Meas Value	4034625	Sphingobacterium thalpophilum	1
+urn:ordercomms:rtest:textual-result	Staphylococcus gallinarum	Staphylococcus gallinarum	1	1	Meas Value	4215583	Staphylococcus gallinarum	1
+urn:ordercomms:rtest:textual-result	Staphylococcus kloosii	Staphylococcus kloosii	1	1	Meas Value	4183264	Staphylococcus kloosii	1
+urn:ordercomms:rtest:textual-result	Streptococcus infantis	Streptococcus infantis	1	1	Meas Value	4188449	Streptococcus infantis	1
+urn:ordercomms:rtest:textual-result	Streptococcus suis	Streptococcus suis	1	1	Meas Value	4195410	Streptococcus suis	1
+urn:ordercomms:rtest:textual-result	Streptococcus thoraltensis	Streptococcus thoraltensis	1	1	Meas Value	4015394	Streptococcus thoraltensis	1
+urn:ordercomms:rtest:textual-result	Trichophyton schoenleinii	Trichophyton schoenleinii	1	1	Meas Value	4206891	Trichophyton schoenleinii	1
+urn:ordercomms:rtest:textual-result	Weeksella virosa	Weeksella virosa	1	1	Meas Value	4306487	Weeksella virosa	1
+urn:ordercomms:rtest:textual-result	Bipolaris hawaiiensis	Bipolaris hawaiiensis	0.722649902	1	Meas Value	4151436	Bipolaris hawaiiense	1
+urn:ordercomms:rtest:textual-result	Anaerobic Staphylococcus sp.	Anaerobic Staphylococcus sp.	0.67836624	1	Meas Value	46272038	Anaerobic Staphylococcus species	1
+urn:ordercomms:rtest:textual-result	YEASTS	YEASTS	0.666666667	1	Meas Value	4265186	Yeast	1
+urn:ordercomms:rtest:textual-result	Cardiobacterium sp.	Cardiobacterium sp.	0.646446609	1	Meas Value	4329151	Cardiobacterium	1
+urn:ordercomms:rtest:textual-result	Capnocytophaga sp.	Capnocytophaga sp.	0.634851628	1	Meas Value	4329152	Capnocytophaga	1
+urn:ordercomms:rtest:textual-result	Cunninghamella sp.	Cunninghamella sp.	0.634851628	1	Meas Value	4094148	Cunninghamella	1
+urn:ordercomms:rtest:textual-result	Chryseomonas sp.	Chryseomonas sp.	0.60776773	1	Meas Value	4203772	Chryseomonas	1
+urn:ordercomms:rtest:textual-result	Ochrobactrum sp.	Ochrobactrum sp.	0.60776773	1	Meas Value	4023072	Ochrobactrum	1
+urn:ordercomms:rtest:textual-result	Ruminococcus sp.	Ruminococcus sp.	0.60776773	1	Meas Value	4103546	Ruminococcus	1
+urn:ordercomms:rtest:textual-result	Trichophyton sp.	Trichophyton sp.	0.60776773	1	Meas Value	4228685	Trichophyton	1
+urn:ordercomms:rtest:textual-result	Weisella viridescens	Weisella viridescens	0.60776773	1	Meas Value	4015389	Weissella viridescens	1
+urn:ordercomms:rtest:textual-result	Staphylococcus chomogenes	Staphylococcus chomogenes	0.595938982	1	Meas Value	4211240	Staphylococcus chromogenes	1
+urn:ordercomms:rtest:textual-result	Dermabacter sp.	Dermabacter sp.	0.59175171	1	Meas Value	4187058	Dermabacter	1
+urn:ordercomms:rtest:textual-result	Eubacterium sp.	Eubacterium sp.	0.59175171	1	Meas Value	4209276	Eubacterium	1
+urn:ordercomms:rtest:textual-result	Providencia sp.	Providencia sp.	0.59175171	1	Meas Value	4011684	Providencia	1
+urn:ordercomms:rtest:textual-result	Samson	Samson	0.59175171	1	Meas Value	4233727	Samsonia	1
+urn:ordercomms:rtest:textual-result	Alternaria sp.	Alternaria sp.	0.573598567	1	Meas Value	4326249	Alternaria	1
+urn:ordercomms:rtest:textual-result	Bordetella sp.	Bordetella sp.	0.573598567	1	Meas Value	4188054	Bordetella	1
+urn:ordercomms:rtest:textual-result	Geotrichum sp.	Geotrichum sp.	0.573598567	1	Meas Value	4145438	Geotrichum	1
+urn:ordercomms:rtest:textual-result	Raoultella sp.	Raoultella sp.	0.573598567	1	Meas Value	4219380	Raoultella	1
+urn:ordercomms:rtest:textual-result	Staphylococcus canis	Staphylococcus canis	0.566987298	1	Meas Value	4278981	Staphylococcus	1
+urn:ordercomms:rtest:textual-result	Sporothrix schenckii	Sporothrix schenckii	0.565041164	1	Meas Value	4139132	Sporothrix schenkii	1
+urn:ordercomms:rtest:textual-result	Globicatelle sanguinis	Globicatelle sanguinis	0.56356422	1	Meas Value	4190376	Globicatella sanguinis	1
+urn:ordercomms:rtest:textual-result	Atopobium sp.	Atopobium sp.	0.552786405	1	Meas Value	4018412	Atopobium	1
+urn:ordercomms:rtest:textual-result	Eikenella sp.	Eikenella sp.	0.552786405	1	Meas Value	4183325	Eikenella	1
+urn:ordercomms:rtest:textual-result	Scardovia sp.	Scardovia sp.	0.552786405	1	Meas Value	4229353	Scardovia	1
+urn:ordercomms:rtest:textual-result	Capillaria phillipinensis	Capillaria phillipinensis	0.543564535	1	Meas Value	4197553	Capillaria philippinensis	1
+urn:ordercomms:rtest:textual-result	Worm of Enterobius vermicularis	Worm of Enterobius vermicularis	0.540066894	1	Meas Value	4208259	Enterobius vermicularis	1
+urn:ordercomms:rtest:textual-result	Listeria sp.	Listeria sp.	0.528595479	1	Meas Value	4053183	Listeria	1
+urn:ordercomms:rtest:textual-result	Ascaris lumbricoides worm SEEN.	Ascaris lumbricoides worm SEEN.	0.526196459	1	Meas Value	4077731	Ascaris lumbricoides	1
+urn:ordercomms:rtest:textual-result	Peptoniphilus grabii	Peptoniphilus grabii	0.524809037	1	Meas Value	4327596	Peptoniphilus	1
+urn:ordercomms:rtest:textual-result	Arcanobacterium pyogenes	Arcanobacterium pyogenes	0.506803038	1	Meas Value	4197683	Arcanobacterium	1
+urn:ordercomms:rtest:textual-result	IRENE	IRENE	0.5	1	Meas Value	4311127	Irena	1
+urn:ordercomms:rtest:textual-result	Kocuria sp.	Kocuria sp.	0.5	1	Meas Value	4185765	Kocuria	1
+urn:ordercomms:rtest:textual-result	Presumptive Cordylobia anthropophaga	Presumptive Cordylobia anthropophaga	0.491452372	1	Meas Value	4149430	Cordylobia anthropophaga	1
+urn:ordercomms:rtest:textual-result	Salmonells haifa	Salmonells haifa	0.483602221	1	Meas Value	4339217	Salmonella Haifa	1
+urn:ordercomms:rtest:textual-result	Alcaligenes xylosoxidans	Alcaligenes xylosoxidans	0.480537518	1	Meas Value	4201872	Alcaligenes xylosoxidans ss. xylosoxidans	1
+urn:ordercomms:rtest:textual-result	Streptococcus pharyngis	Streptococcus pharyngis	0.457673855	1	Meas Value	4240344	Streptococcus	1
+urn:ordercomms:rtest:textual-result	Female worm of Ascaris lumbricoides	Female worm of Ascaris lumbricoides	0.452277442	1	Meas Value	36713997	Ascaris lumbricoides female	1
+urn:ordercomms:rtest:textual-result	Salmonella Wassenaar	Salmonella Wassenaar	0.402385695	1	Meas Value	4099188	Salmonella	1
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								

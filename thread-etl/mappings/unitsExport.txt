@@ -1,0 +1,112 @@
+sourceDomain	sourceId	sourceTerm	certainty	reviewStatus	omopDomainId	omopConceptId	omopConceptName	usedCount
+urn:unit	10*12/L	10*12/L	1	1	Unit	8734	trillion per liter	1560890
+urn:unit	x10*6/L	x10*6/L	1	1	Unit	9442	million per liter	707636
+urn:unit	10*9/L	10*9/L	1	1	Unit	9444	billion per liter	12307439
+urn:unit	g/dL	g/dL	1	1	Unit	8713	gram per deciliter	1704041
+urn:unit	g/L	g/L	1	1	Unit	8636	gram per liter	2616162
+urn:unit	fL	fL	1	1	Unit	8583	femtoliter	1560886
+urn:unit	pg	pg	1	1	Unit	8564	picogram	1560886
+urn:unit	umol/L	umol/L	1	1	Unit	8749	micromole per liter	2259394
+urn:unit	mmol/L	mmol/L	1	1	Unit	8753	millimole per liter	5931891
+urn:unit	u/L	u/L	1	1	Unit	8645	unit per liter	2156553
+urn:unit	ml/min	ml/min	1	1	Unit	8795	milliliter per minute	841031
+urn:unit	mu/l	mu/l	1	1	Unit	44777578	milliunit per liter	443612
+urn:unit	mg/L	mg/L	1	1	Unit	8751	milligram per liter	453117
+urn:unit	s	s	1	1	Unit	8555	second	370703
+urn:unit	pmol/L	pmol/L	1	1	Unit	8729	picomole per liter	333631
+urn:unit	mm/h	mm/h	1	1	Unit	8752	millimeter per hour	187231
+urn:unit	mmol/mol	mmol/mol	1	1	Unit	9579	millimole per mole	181203
+urn:unit	ug/L	ug/L	1	1	Unit	8748	microgram per liter	203420
+urn:unit	ng/ml	ng/ml	1	1	Unit	8842	nanogram per milliliter	113752
+urn:unit	%	%	1	1	Unit	8554	percent	116310
+urn:unit	mg/mmol	mg/mmol	1	1	Unit	44777612	milligram per millimole	89647
+urn:unit	ng/L	ng/L	1	1	Unit	8725	nanogram per liter	83272
+urn:unit	iu/ml	iu/ml	1	1	Unit	8923	international unit per liter	44683
+urn:unit	mPa.s	mPa.s	1	1	Unit	44777622	millipascal second	28474
+urn:unit	ugFEU/ml	ugFEU/ml	1	1	Unit	8859	microgram per milliliter	15708
+urn:unit	U/mL	U/mL	1	1	Unit	8763	unit per milliliter	31219
+urn:unit	miu/l	miu/l	1	1	Unit	9040	milli-international unit per liter	14581
+urn:unit	nmol/l	nmol/l	1	1	Unit	8736	nanomole per liter	41977
+urn:unit	KU/L	KU/L	1	1	Unit	8763	unit per milliliter	17033
+urn:unit	n	n	1	1	Unit	9599	newton	9627
+urn:unit	mls	mls	1	1	Unit	8587	milliliter	10148
+urn:unit	weeks.days	weeks.days	1	1	Unit	8511	week	4985
+urn:unit	years	years	1	1	Unit	8528	year	4985
+urn:unit	Kg	Kg	1	1	Unit	9529	kilogram	4975
+urn:unit	kPA	kPA	1	1	Unit	44777602	kilopascal	9546
+urn:unit	days	days	1	1	Unit	8512	day	6513
+urn:unit	hours	hours	1	1	Unit	8518	Henry	4495
+urn:unit	x10*9/L	x10*9/L	1	1	Unit	9444	billion per liter	5633
+urn:unit	GPL-U/ml	GPL-U/ml	1	1	Unit	8763	unit per milliliter	635
+urn:unit	MPL-U/ml	MPL-U/ml	1	1	Unit	8763	unit per milliliter	635
+urn:unit	nm/ml/mi	nm/ml/mi	1	1	Unit	44777635	nanomole per minute and milliliter	3137
+urn:unit	nmol/24h	nmol/24h	1	1	Unit	44777627	nanomole per 24 hours	6280
+urn:unit	iu/dl	iu/dl	1	1	Unit	9332	international unit per deciliter	5993
+urn:unit	minutes	minutes	1	1	Unit	8550	minute	2018
+urn:unit	% adherence	% adherence	1	1	Unit	8554	percent	2018
+urn:unit	x10^6/ml	x10^6/ml	1	1	Unit	8816	million per milliliter	3651
+urn:unit	g/24hr	g/24hr	1	1	Unit	8807	gram per 24 hours	1829
+urn:unit	% alive	% alive	1	1	Unit	8554	percent	1590
+urn:unit	MoM	MoM	1	1	Unit	8494	multiple of the median	2925
+urn:unit	ml	ml	1	1	Unit	8587	milliliter	2215
+urn:unit	mOs/Kg	mOs/Kg	1	1	Unit	9577	millimole per kilogram	2578
+urn:unit	iu/l	iu/l	1	1	Unit	8923	international unit per liter	1310
+urn:unit	ug/g	ug/g	1	1	Unit	8720	microgram per gram	1047
+urn:unit	/100 WBC's	/100 WBC's	1	1	Unit	9213	Percent Per 100 WBC [Number Fraction Units]	917
+urn:unit	UNITS	UNITS	1	1	Unit	9648	unified atomic mass unit	413
+urn:unit	mg/100ml	mg/100ml	1	1	Unit	8840	milligram per deciliter	841
+urn:unit	mcg/L	mcg/L	1	1	Unit	8748	microgram per liter	5
+urn:unit	million	million	1	1	Unit	8549	million	746
+urn:unit	umol/24h	umol/24h	1	1	Unit	8907	micromole per 24 hours	1406
+urn:unit	mmol/24h	mmol/24h	1	1	Unit	8910	millimole per 24 hours	2188
+urn:unit	nmol/hr/mL RBC	nmol/hr/mL RBC	1	1	Unit	44777631	nanomole per hour and milliliter	107
+urn:unit	AU	AU	1	1	Unit	8664	astronomic unit	842
+urn:unit	copies/ml	copies/ml	1	1	Unit	9257	per milliliter	702
+urn:unit	HRS	HRS	1	1	Unit	8518	Henry	351
+urn:unit	secs	secs	1	1	Unit	8555	second	518
+urn:unit	Seconds	Seconds	1	1	Unit	8555	second	481
+urn:unit	% Sat	% Sat	1	1	Unit	8728	percent saturation	209
+urn:unit	mIU/mL	mIU/mL	1	1	Unit	8923	international unit per liter	186
+urn:unit	g	g	1	1	Unit	9502	Gauss	371
+urn:unit	ug/l/hr	ug/l/hr	1	1	Unit	9020	nanogram per milliliter and hour	44
+urn:unit	pmol/mIU	pmol/mIU	0	0	Unit	0	Unknown	119
+urn:unit	Ratio	Ratio	1	1	Unit	8523	ratio	44
+urn:unit	mcg/dL	mcg/dL	1	1	Unit	8837	microgram per deciliter	1
+urn:unit	ug/ml	ug/ml	1	1	Unit	8859	microgram per milliliter	901
+urn:unit	pg/ml	pg/ml	1	1	Unit	8845	picogram per milliliter	188
+urn:unit	SD	SD	0	0	Unit	0	Unknown	125
+urn:unit	mmol/mmo	mmol/mmo	1	1	Unit	44777618	millimole per millimole	260
+urn:unit	nmol/24hr	nmol/24hr	1	1	Unit	44777627	nanomole per 24 hours	20
+urn:unit	nmol/24hrs	nmol/24hrs	1	1	Unit	44777627	nanomole per 24 hours	99
+urn:unit	mcg/24 h	mcg/24 h	1	1	Unit	8906	microgram per 24 hours	1
+urn:unit	.	.	1	1	Unit	8524	times	284
+urn:unit	U/gHb	U/gHb	1	1	Unit	8629	unit per gram	105
+urn:unit	mmol/24hrs	mmol/24hrs	1	1	Unit	8910	millimole per 24 hours	100
+urn:unit	pmol 6-TGN/8x10^8 cells	pmol 6-TGN/8x10^8 cells	0	0	Unit	0	Unknown	25
+urn:unit	leu/ul	leu/ul	0	0	Unit	0	Unknown	66
+urn:unit	ery/ul	ery/ul	0	0	Unit	0	Unknown	66
+urn:unit	/ul	/ul	1	1	Unit	8647	per microliter	79
+urn:unit	mgFEU/ml	mgFEU/ml	1	1	Unit	8861	milligram per milliliter	51
+urn:unit	mm/m/cr	mm/m/cr	0	0	Unit	0	Unknown	53
+urn:unit	Bethu/ml	Bethu/ml	0	0	Unit	0	Unknown	32
+urn:unit	pmol 6MMPN/8x10^8 cells	pmol 6MMPN/8x10^8 cells	0	0	Unit	0	Unknown	25
+urn:unit	nmol/mL/min	nmol/mL/min	0	0	Unit	0	Unknown	3
+urn:unit	% progressing	% progressing	1	1	Unit	8554	percent	25
+urn:unit	% normal	% normal	1	1	Unit	8554	percent	25
+urn:unit	ul	ul	1	1	Unit	9665	microliter	22
+urn:unit	units/ml	units/ml	1	1	Unit	8763	unit per milliliter	10
+urn:unit	BTU	BTU	0	0	Unit	0	Unknown	1
+urn:unit	g/l NaCL	g/l NaCL	1	1	Unit	8636	gram per liter	64
+urn:unit	JDF units	JDF units	0	0	Unit	0	Unknown	5
+urn:unit	BHCG	BHCG	0	0	Unit	0	Unknown	4
+urn:unit	u/mm/cre	u/mm/cre	0	0	Unit	0	Unknown	4
+urn:unit	/microlitre	/microlitre	1	1	Unit	8647	per microliter	3
+urn:unit	nmol/g	nmol/g	1	1	Unit	9609	nanomole per gram	3
+urn:unit	mg%	mg%	1	1	Unit	8554	percent	3
+urn:unit	ug/24h	ug/24h	1	1	Unit	8906	microgram per 24 hours	3
+urn:unit	ng/gm	ng/gm	1	1	Unit	8701	nanogram per gram	2
+urn:unit	L	L	1	1	Unit	8519	liter	1
+urn:unit	pM10*9/L	pM10*9/L	0	0	Unit	0	Unknown	2
+urn:unit	gc/mL	gc/mL	0	0	Unit	0	Unknown	1
+urn:unit	micron/second	micron/second	0	0	Unit	0	Unknown	1
+urn:unit	mmol/mmol	mmol/mmol	1	1	Unit	44777618	millimole per millimole	2

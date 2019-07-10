@@ -1,0 +1,1358 @@
+sourceDomain	sourceId	sourceTerm	certainty	reviewStatus	omopDomainId	omopConceptId	omopConceptName	usedCount
+urn:ordercomms:npi-synonym:from-code	XCHES	XR Chest	0.452277442	1	Measurement	3010713	XR Chest Views	310774
+urn:ordercomms:npi-synonym:from-code	UABDO	US Abdomen	1	1	Measurement	3014650	US Abdomen	47135
+urn:ordercomms:npi-synonym:from-code	CSKUH	CT Head	1	1	Measurement	3004287	CT Head	41405
+urn:ordercomms:npi-synonym:from-code	XPELV	XR Pelvis	0.477767032	1	Measurement	3011632	XR Pelvis Views	38067
+urn:ordercomms:npi-synonym:from-code	XKNER	XR Knee Rt	0.422649731	1	Measurement	3018468	XR Knee Views	29224
+urn:ordercomms:npi-synonym:from-code	XABDO	XR Abdomen	0.5	1	Measurement	3053099	XR Abdomen Views	29161
+urn:ordercomms:npi-synonym:from-code	XLSPN	XR Lumbar Spine	0.579915975	1	Measurement	3034396	XR Lumbar spine Views	28077
+urn:ordercomms:npi-synonym:from-code	XKNEL	XR Knee Lt	0.422649731	1	Measurement	3018468	XR Knee Views	26270
+urn:ordercomms:npi-synonym:from-code	UUTR	US Urinary tract	0.399074787	1	Measurement	3039521	US Genitourinary tract	23452
+urn:ordercomms:npi-synonym:from-code	XFOOR	XR Foot Rt	0.422649731	1	Measurement	3021549	XR Foot Views	22853
+urn:ordercomms:npi-synonym:from-code	XFOOL	XR Foot Lt	0.422649731	1	Measurement	3021549	XR Foot Views	21828
+urn:ordercomms:npi-synonym:from-code	XSHRR	XR Shoulder Rt	0.508696316	1	Measurement	3007342	XR Shoulder Views	19705
+urn:ordercomms:npi-synonym:from-code	XANKR	XR Ankle Rt	0.448322716	1	Measurement	3004662	XR Ankle Views	19222
+urn:ordercomms:npi-synonym:from-code	XHIPR	XR Hip Rt	0.393023021	1	Measurement	3016057	XR Hip Views	18942
+urn:ordercomms:npi-synonym:from-code	UPELA	US Pelvis (Transabdominal)	0.282259437	1	Measurement	3000777	US Pelvis	17976
+urn:ordercomms:npi-synonym:from-code	XANKL	XR Ankle Lt	0.448322716	1	Measurement	3004662	XR Ankle Views	17957
+urn:ordercomms:npi-synonym:from-code	XWRIL	XR Wrist Lt	0.448322716	1	Measurement	3025667	XR Wrist Views	17571
+urn:ordercomms:npi-synonym:from-code	UPELD	US Pelvis (Transanal \T\ Transvagin	0.412246186	1	Measurement	3018554	US Pelvis transvaginal	17494
+urn:ordercomms:npi-synonym:from-code	XSHRL	XR Shoulder Lt	0.508696316	1	Measurement	3007342	XR Shoulder Views	17208
+urn:ordercomms:npi-synonym:from-code	XHANR	XR Hand Rt	0.422649731	1	Measurement	3025885	XR Hand Views	17198
+urn:ordercomms:npi-synonym:from-code	XCSPN	XR Cervical Spine	0.602640293	1	Measurement	3023423	XR Cervical spine Views	16647
+urn:ordercomms:npi-synonym:from-code	XWRIR	XR Wrist Rt	0.448322716	1	Measurement	3025667	XR Wrist Views	16477
+urn:ordercomms:npi-synonym:from-code	XHIPL	XR Hip Lt	0.393023021	1	Measurement	3016057	XR Hip Views	16416
+urn:ordercomms:npi-synonym:from-code	UPETV	US Pelvis (Transvaginal)	0.547732983	1	Measurement	3018554	US Pelvis transvaginal	13741
+urn:ordercomms:npi-synonym:from-code	UURTR	US Urinary Tract	0.399074787	1	Measurement	3039521	US Genitourinary tract	13573
+urn:ordercomms:npi-synonym:from-code	CABPEC	CT Abdomen and pelvis with contrast	0.562762684	1	Measurement	3047782	CT Abdomen and Pelvis W contrast IV	13002
+urn:ordercomms:npi-synonym:from-code	UPELV	US Pelvis	1	1	Measurement	3000777	US Pelvis	11639
+urn:ordercomms:npi-synonym:from-code	XHANL	XR Hand Lt	0.422649731	1	Measurement	3025885	XR Hand Views	11273
+urn:ordercomms:npi-synonym:from-code	UMAML	US Breast Lt	0.445299804	1	Measurement	3006495	US Breast - left	10024
+urn:ordercomms:npi-synonym:from-code	XTSPN	XR Thoracic Spine	0.602640293	1	Measurement	3018634	XR Thoracic spine Views	9794
+urn:ordercomms:npi-synonym:from-code	UMAMR	US Breast Rt	0.422649731	1	Measurement	3022956	US Breast - right	9222
+urn:ordercomms:npi-synonym:from-code	XKNEB	XR Knees	0.393023021	1	Measurement	3018468	XR Knee Views	9055
+urn:ordercomms:npi-synonym:from-code	CAPUG	CT Angiogram Pulmonary	0.248932384	1	Measurement	3046398	CT Pulmonary system	8803
+urn:ordercomms:npi-synonym:from-code	XHANB	XR Hands	0.393023021	1	Measurement	3025885	XR Hand Views	8391
+urn:ordercomms:npi-synonym:from-code	XHIPB	XR Hips	0.358311052	1	Measurement	3016057	XR Hip Views	7813
+urn:ordercomms:npi-synonym:from-code	CABPC	CT Abdomen/Pelvis With Contrast	0.362622561	1	Measurement	3047782	CT Abdomen and Pelvis W contrast IV	7094
+urn:ordercomms:npi-synonym:from-code	XELBR	XR Elbow Rt	0.448322716	1	Measurement	3018003	XR Elbow Views	7036
+urn:ordercomms:npi-synonym:from-code	XELBL	XR Elbow Lt	0.448322716	1	Measurement	3018003	XR Elbow Views	6968
+urn:ordercomms:npi-synonym:from-code	MCSPN	MRI Spine Cervical	0.325800138	1	Measurement	3009302	MR Cervical spine	6826
+urn:ordercomms:npi-synonym:from-code	ULLVL	US Doppler Veins Leg Lt	0.333333333	1	Measurement	3038373	US.doppler Vein	6540
+urn:ordercomms:npi-synonym:from-code	XFOOB	XR Feet	0.225403331	1	Measurement	3050473	XR Foot AP	5947
+urn:ordercomms:npi-synonym:from-code	ULLVR	US Doppler Veins Leg Rt	0.333333333	1	Measurement	3038373	US.doppler Vein	5679
+urn:ordercomms:npi-synonym:from-code	UKIDB	US Kidneys	0.757464375	1	Measurement	3050272	US Kidney	5137
+urn:ordercomms:npi-synonym:from-code	XTHUR	XR Thumb Rt	0.448322716	1	Measurement	3034511	XR Thumb Views	4907
+urn:ordercomms:npi-synonym:from-code	UAORT	US Abdominal Aorta	1	1	Measurement	40771797	US Abdominal Aorta	4728
+urn:ordercomms:npi-synonym:from-code	XTHUL	XR Thumb Lt	0.552786405	1	Measurement	3049612	XR Thumb AP	4284
+urn:ordercomms:npi-synonym:from-code	MTSPN	MRI Spine Thoracic	0.325800138	1	Measurement	3014004	MR Thoracic spine	4219
+urn:ordercomms:npi-synonym:from-code	CHRC	CT Chest high resolution	0.269703257	1	Measurement	3027941	CT Chest	4215
+urn:ordercomms:npi-synonym:from-code	XLOLR	XR Tibia/Fibula (Lower Leg) Rt	0.22297131	1	Measurement	3019704	XR Tibia and Fibula Views	4070
+urn:ordercomms:npi-synonym:from-code	XLOLL	XR Tibia/Fibula (Lower Leg) Lt	0.22297131	1	Measurement	3019704	XR Tibia and Fibula Views	4027
+urn:ordercomms:npi-synonym:from-code	UNECK	US Neck	1	1	Measurement	3004062	US Neck	3984
+urn:ordercomms:npi-synonym:from-code	UINGU	US Groin/Inguinal Region	0.269703257	1	Measurement	3003845	US Groin	3851
+urn:ordercomms:npi-synonym:from-code	UDCAB	US Doppler carotid artery Both	0.444040551	1	Measurement	3032855	US.doppler Carotid arteries	3713
+urn:ordercomms:npi-synonym:from-code	UHIPB	US Hips	0.698488655	1	Measurement	3008991	US Hip	3638
+urn:ordercomms:npi-synonym:from-code	CSINU	CT Sinuses	1	1	Measurement	3011383	CT Sinuses	3488
+urn:ordercomms:npi-synonym:from-code	XKUBL	"Kidneys, Ureters and Bladder"	0.105572809	1	Measurement	3050272	US Kidney	3369
+urn:ordercomms:npi-synonym:from-code	MIAMB	MRI Internal auditory meatus Both	0.351114315	1	Measurement	3048647	MR Internal auditory canal	3248
+urn:ordercomms:npi-synonym:from-code	UABDA	US Anterior Abdominal Wall	0.458998219	1	Measurement	3040087	US Abdominal wall	3209
+urn:ordercomms:npi-synonym:from-code	XFARR	XR Radius/Ulna (Forearm) Rt	0.217539204	1	Measurement	3035555	XR Radius and Ulna Views	3073
+urn:ordercomms:npi-synonym:from-code	XFARL	XR Radius/Ulna (Forearm) Lt	0.217539204	1	Measurement	3035555	XR Radius and Ulna Views	2979
+urn:ordercomms:npi-synonym:from-code	UCARO	US Doppler Carotid Arteries	0.60776773	1	Measurement	3032855	US.doppler Carotid arteries	2826
+urn:ordercomms:npi-synonym:from-code	CSKUHC	CT Head with contrast	0.429912287	1	Measurement	3002086	CT Head W contrast IV	2740
+urn:ordercomms:npi-synonym:from-code	CCSPN	CT Spine Cervical	0.387627564	1	Measurement	3027189	CT Cervical spine	2712
+urn:ordercomms:npi-synonym:from-code	XUPAL	XR Humerus (Upper Arm) Lt	0.30201756	1	Measurement	3007996	XR Humerus Views	2495
+urn:ordercomms:npi-synonym:from-code	XFILR	XR Finger Little Rt	0.338562172	1	Measurement	3009895	XR Finger Views	2465
+urn:ordercomms:npi-synonym:from-code	XUPAR	XR Humerus (Upper Arm) Rt	0.30201756	1	Measurement	3007996	XR Humerus Views	2409
+urn:ordercomms:npi-synonym:from-code	XFILL	XR Finger Little Lt	0.338562172	1	Measurement	3009895	XR Finger Views	2396
+urn:ordercomms:npi-synonym:from-code	NBONW	NM Bone Whole Body	0.323876596	1	Measurement	3031410	NM Whole body Views	2392
+urn:ordercomms:npi-synonym:from-code	UAXIL	US axilla Left	0.5	1	Measurement	43055156	US Axilla - left	2260
+urn:ordercomms:npi-synonym:from-code	XFIMR	XR Finger Middle Rt	0.338562172	1	Measurement	3009895	XR Finger Views	2240
+urn:ordercomms:npi-synonym:from-code	UMAMB	US Breasts	0.757464375	1	Measurement	3011756	US Breast	2214
+urn:ordercomms:npi-synonym:from-code	UTHYD	US Thyroid	0.5	1	Measurement	3001462	US Thyroid gland	2212
+urn:ordercomms:npi-synonym:from-code	UAXIR	US axilla Right	0.516954108	1	Measurement	43055155	US Axilla - right	2174
+urn:ordercomms:npi-synonym:from-code	XFIML	XR Finger Middle Lt	0.338562172	1	Measurement	3009895	XR Finger Views	2148
+urn:ordercomms:npi-synonym:from-code	XFIRL	XR Finger Ring Lt	0.367544468	1	Measurement	3009895	XR Finger Views	1999
+urn:ordercomms:npi-synonym:from-code	XFIRR	XR Finger Ring Rt	0.367544468	1	Measurement	3009895	XR Finger Views	1955
+urn:ordercomms:npi-synonym:from-code	CABPE	CT Abdomen and Pelvis	1	1	Measurement	3046366	CT Abdomen and Pelvis	1910
+urn:ordercomms:npi-synonym:from-code	CCHHR	CT Chest High Resolution	0.269703257	1	Measurement	3027941	CT Chest	1882
+urn:ordercomms:npi-synonym:from-code	XFIIL	XR Finger Index Lt	0.352423874	1	Measurement	3009895	XR Finger Views	1880
+urn:ordercomms:npi-synonym:from-code	CSKWC	CT Head With/Without Contrast	0.357315413	1	Measurement	3025779	CT Head WO contrast	1845
+urn:ordercomms:npi-synonym:from-code	XTOGR	XR Toe Great Rt	0.215535459	1	Measurement	3035979	XR Toes Views	1841
+urn:ordercomms:npi-synonym:from-code	UALLB	US Doppler Arteries Femoro-Poplitea	0.251668523	1	Measurement	3040895	US.doppler Artery	1810
+urn:ordercomms:npi-synonym:from-code	XFIIR	XR Finger Index Rt	0.352423874	1	Measurement	3009895	XR Finger Views	1804
+urn:ordercomms:npi-synonym:from-code	MKNER	MRI Knee Rt	0.170843802	1	Measurement	3005648	MR Knee	1793
+urn:ordercomms:npi-synonym:from-code	CLSPN	CT Spine Lumbar	0.345346329	1	Measurement	3023673	CT Lumbar spine	1706
+urn:ordercomms:npi-synonym:from-code	NCGENW	NM Whole body FDG PET CT	0.395141621	1	Measurement	3031410	NM Whole body Views	1666
+urn:ordercomms:npi-synonym:from-code	MPEGY	MRI Pelvis Gynaecological	0.152208752	1	Measurement	3021689	MR Pelvis	1662
+urn:ordercomms:npi-synonym:from-code	XCLAR	XR Clavicle Rt	0.508696316	1	Measurement	3038094	XR Clavicle Views	1626
+urn:ordercomms:npi-synonym:from-code	UCHES	US Chest/Pleural Cavity	0.280805048	1	Measurement	3026631	US Chest	1625
+urn:ordercomms:npi-synonym:from-code	MKNEL	MRI Knee Lt	0.170843802	1	Measurement	3005648	MR Knee	1622
+urn:ordercomms:npi-synonym:from-code	UABRE	US Abdomen \T\ Renal Tract	0.314005659	1	Measurement	3014650	US Abdomen	1591
+urn:ordercomms:npi-synonym:from-code	MPEST	MRI Pelvis Prostate	0.268074945	1	Measurement	3020781	MR Prostate	1582
+urn:ordercomms:npi-synonym:from-code	XTOGL	XR Toe Great Lt	0.215535459	1	Measurement	3035979	XR Toes Views	1565
+urn:ordercomms:npi-synonym:from-code	XPATH	XR Pathological Specimen	0.307781345	1	Measurement	43534050	XR Surgical specimen Views	1557
+urn:ordercomms:npi-synonym:from-code	XFACI	XR Facial bones	0.579915975	1	Measurement	3025912	XR Facial bones Views	1550
+urn:ordercomms:npi-synonym:from-code	CCHAC	CT Chest/Abdo With Contrast	0.315832545	1	Measurement	3013610	CT Chest W contrast IV	1524
+urn:ordercomms:npi-synonym:from-code	XCLAL	XR Clavicle Lt	0.508696316	1	Measurement	3038094	XR Clavicle Views	1504
+urn:ordercomms:npi-synonym:from-code	XFACE	XR Facial Bones	0.579915975	1	Measurement	3025912	XR Facial bones Views	1501
+urn:ordercomms:npi-synonym:from-code	UMACLB	US Breast Core Biopsy Lt	0.27452375	1	Measurement	3006495	US Breast - left	1399
+urn:ordercomms:npi-synonym:from-code	XMAND	XR Mandible	0.519615539	1	Measurement	3008740	XR Mandible Views	1365
+urn:ordercomms:npi-synonym:from-code	UMACRB	US Breast Core Biopsy Rt	0.266200614	1	Measurement	3022956	US Breast - right	1359
+urn:ordercomms:npi-synonym:from-code	UABDU	US Upper Abdomen	0.3229968	1	Measurement	3014650	US Abdomen	1346
+urn:ordercomms:npi-synonym:from-code	UTHYR	US Thyroid	0.5	1	Measurement	3001462	US Thyroid gland	1249
+urn:ordercomms:npi-synonym:from-code	XTHIR	XR Femur (Thigh) Rt	0.304391656	1	Measurement	3010342	XR Femur Views	1239
+urn:ordercomms:npi-synonym:from-code	MNECKC	MRI Neck with contrast	0.284321915	1	Measurement	3017532	MR Neck W contrast IV	1234
+urn:ordercomms:npi-synonym:from-code	XFEML	XR Femur Lt	0.448322716	1	Measurement	3010342	XR Femur Views	1168
+urn:ordercomms:npi-synonym:from-code	ULLAL	US Doppler lower limb arteries Lt	0.196362437	1	Measurement	3040895	US.doppler Artery	1130
+urn:ordercomms:npi-synonym:from-code	ULLAR	US Doppler lower limb arteries Rt	0.196362437	1	Measurement	3040895	US.doppler Artery	1122
+urn:ordercomms:npi-synonym:from-code	XFEMR	XR Femur Rt	0.448322716	1	Measurement	3010342	XR Femur Views	1103
+urn:ordercomms:npi-synonym:from-code	MNECK	MRI Neck	0.215535459	1	Measurement	3026809	MR Neck	1100
+urn:ordercomms:npi-synonym:from-code	ULLVB	US Doppler Veins Legs	0.358311052	1	Measurement	3038373	US.doppler Vein	1097
+urn:ordercomms:npi-synonym:from-code	CABDO	CT Abdomen	1	1	Measurement	3032013	CT Abdomen	1089
+urn:ordercomms:npi-synonym:from-code	XCALR	XR Calcaneum Rt	0.404316603	1	Measurement	3017884	XR Calcaneus Views	1088
+urn:ordercomms:npi-synonym:from-code	CCHES	CT Chest	1	1	Measurement	3027941	CT Chest	1083
+urn:ordercomms:npi-synonym:from-code	XTHIL	XR Femur (Thigh) Lt	0.304391656	1	Measurement	3010342	XR Femur Views	1079
+urn:ordercomms:npi-synonym:from-code	MPEHB	MRI Pelvis Hips	0.231293885	1	Measurement	3021689	MR Pelvis	1076
+urn:ordercomms:npi-synonym:from-code	XCALL	XR Calcaneum Lt	0.404316603	1	Measurement	3017884	XR Calcaneus Views	1043
+urn:ordercomms:npi-synonym:from-code	UEXT	US Extremity	1	1	Measurement	3007077	US Extremity	992
+urn:ordercomms:npi-synonym:from-code	CCHEC	CT Chest With Contrast	0.44365136	1	Measurement	3013610	CT Chest W contrast IV	971
+urn:ordercomms:npi-synonym:from-code	XTOEL	XR Toes Lt	0.422649731	1	Measurement	3035979	XR Toes Views	918
+urn:ordercomms:npi-synonym:from-code	IACO1S	Cardiac Angio  Coronary Stent X 1	0.306624755	1	Measurement	21493435	Coronary stent number	900
+urn:ordercomms:npi-synonym:from-code	UMAMLN	US Breast Guided Aspiration Lt	0.231293885	1	Measurement	3006495	US Breast - left	895
+urn:ordercomms:npi-synonym:from-code	XTOER	XR Toes Rt	0.422649731	1	Measurement	3035979	XR Toes Views	887
+urn:ordercomms:npi-synonym:from-code	MPELV	MRI Pelvis	0.314005659	1	Measurement	3021689	MR Pelvis	886
+urn:ordercomms:npi-synonym:from-code	MWBOD	MRI Whole body	0.434314575	1	Measurement	3048738	MR Whole body	866
+urn:ordercomms:npi-synonym:from-code	UAILF	US Doppler Iliac \T\ Femoral	0.285714286	1	Measurement	3044231	US.doppler Iliac artery	852
+urn:ordercomms:npi-synonym:from-code	IASFLP	Angioplasty Superficial Femoral Lt	0.189907413	1	Measurement	21491859	Angioplasty balloon product name	812
+urn:ordercomms:npi-synonym:from-code	PGENW	PET FDG Whole Body	0.305191666	1	Measurement	3043261	PT Whole body	807
+urn:ordercomms:npi-synonym:from-code	MORBB	MRI Orbit Both	0.193774225	1	Measurement	3047812	MR Orbit	797
+urn:ordercomms:npi-synonym:from-code	CPELV	CT Pelvis	1	1	Measurement	3014964	CT Pelvis	795
+urn:ordercomms:npi-synonym:from-code	XWRIB	XR Wrists	0.422649731	1	Measurement	3025667	XR Wrist Views	795
+urn:ordercomms:npi-synonym:from-code	XANKB	XR Ankles	0.422649731	1	Measurement	3004662	XR Ankle Views	789
+urn:ordercomms:npi-synonym:from-code	UNECKN	US Guided Aspiration Neck	0.124404964	1	Measurement	3004062	US Neck	742
+urn:ordercomms:npi-synonym:from-code	USKUH	US Skull	0.167949706	1	Measurement	3004479	US Head	740
+urn:ordercomms:npi-synonym:from-code	UMAMRN	US Breast Guided Aspiration  Rt	0.219810502	1	Measurement	3022956	US Breast - right	736
+urn:ordercomms:npi-synonym:from-code	ULLAB	US Doppler lower limb arteries Both	0.18759616	1	Measurement	3040895	US.doppler Artery	733
+urn:ordercomms:npi-synonym:from-code	CTSPN	CT Spine Thoracic	0.387627564	1	Measurement	3018269	CT Thoracic spine	723
+urn:ordercomms:npi-synonym:from-code	IPACEI	Cardiac Permanent Pacemaker Inserti	0.54209453	1	Measurement	40761372	Permanent pacemaker insertion	723
+urn:ordercomms:npi-synonym:from-code	MMAMBC	MRI Breast with contrast Both	0.307179677	1	Measurement	3050819	MR Breast W contrast IV	700
+urn:ordercomms:npi-synonym:from-code	IASFRP	Angioplasty Superficial Femoral Rt	0.189907413	1	Measurement	21491859	Angioplasty balloon product name	697
+urn:ordercomms:npi-synonym:from-code	XLSSJ	XR Lumbar Spine and S.I. Joints	0.367544468	1	Measurement	3034396	XR Lumbar spine Views	697
+urn:ordercomms:npi-synonym:from-code	USHRR	US Shoulder Rt	0.461184094	1	Measurement	3017774	US Shoulder - right	689
+urn:ordercomms:npi-synonym:from-code	XORBB	XR Orbits	0.422649731	1	Measurement	3049563	XR Orbit Views	675
+urn:ordercomms:npi-synonym:from-code	UMULT	US Multiple Pregnancy	0.597306367	1	Measurement	3045823	Multiple pregnancy	673
+urn:ordercomms:npi-synonym:from-code	FWASW	Water Soluble Contrast Swallow	0.356349696	1	Measurement	3008355	RF Colon Views W water soluble contrast PR	664
+urn:ordercomms:npi-synonym:from-code	XFINR	XR Fingers Rt	0.379826327	1	Measurement	3009895	XR Finger Views	664
+urn:ordercomms:npi-synonym:from-code	XTHLU	XR Thoraco-Lumbar Spine	0.395529475	1	Measurement	3040484	XR Thoracic and lumbar spine AP	650
+urn:ordercomms:npi-synonym:from-code	UTHYDN	US Guided aspiration thyroid	0.16905103	1	Measurement	3001462	US Thyroid gland	646
+urn:ordercomms:npi-synonym:from-code	MABDO	MRI Abdomen	0.351114315	1	Measurement	3013540	MR Abdomen	629
+urn:ordercomms:npi-synonym:from-code	MHIPR	MRI Hip Rt	0.11359474	1	Measurement	3047762	MR Hip	603
+urn:ordercomms:npi-synonym:from-code	XFINL	XR Fingers Lt	0.379826327	1	Measurement	3009895	XR Finger Views	603
+urn:ordercomms:npi-synonym:from-code	CALLB	CT Angiogram Lower Limbs	0.214094752	1	Measurement	3047495	CT Lower leg	591
+urn:ordercomms:npi-synonym:from-code	UAOTD	US Doppler aorta	0.234358507	1	Measurement	3038373	US.doppler Vein	578
+urn:ordercomms:npi-synonym:from-code	USGPA	US Salivary Glands (Parotid)	0.494219461	1	Measurement	40771819	US Salivary gland	570
+urn:ordercomms:npi-synonym:from-code	USHRL	US Shoulder Lt	0.483602221	1	Measurement	3013984	US Shoulder - left	567
+urn:ordercomms:npi-synonym:from-code	MORBS	MRI Orbits	0.25	1	Measurement	3047812	MR Orbit	542
+urn:ordercomms:npi-synonym:from-code	XSKUH	XR Skull	0.452277442	1	Measurement	3018228	XR Skull Views	542
+urn:ordercomms:npi-synonym:from-code	XFBOB	XR Orbit foreign body demonstration	0.315346803	1	Measurement	3046944	XR Orbit Views for foreign body	533
+urn:ordercomms:npi-synonym:from-code	NDMSA	NM Renal DMSA	0.282259437	1	Measurement	3047081	NM Renal vessels Views	517
+urn:ordercomms:npi-synonym:from-code	IACO2S	Cardiac Angio  Coronary Stent X 2	0.306624755	1	Measurement	21493435	Coronary stent number	508
+urn:ordercomms:npi-synonym:from-code	IAILLP	Angioplasty Iliac Left	0.240445475	1	Measurement	21491859	Angioplasty balloon product name	502
+urn:ordercomms:npi-synonym:from-code	USAG	US Salivary gland	1	1	Measurement	40771819	US Salivary gland	499
+urn:ordercomms:npi-synonym:from-code	XSHOB	XR Shoulders	0.490824923	1	Measurement	3007342	XR Shoulder Views	499
+urn:ordercomms:npi-synonym:from-code	CNECKC	CT Neck with contrast	0.429912287	1	Measurement	3050247	CT Neck W contrast IV	497
+urn:ordercomms:npi-synonym:from-code	FLOLR	Fluoroscopy Lower Limb Rt	0.138108393	1	Measurement	3047495	CT Lower leg	496
+urn:ordercomms:npi-synonym:from-code	XNEST	XR Neck Soft Tissue	0.269703257	1	Measurement	3048196	XR Neck Views	488
+urn:ordercomms:npi-synonym:from-code	FLOLL	Fluoroscopy Lower Limb Lt	0.138108393	1	Measurement	3047495	CT Lower leg	486
+urn:ordercomms:npi-synonym:from-code	CHIPB	CT Hips	0.698488655	1	Measurement	3047946	CT Hip	481
+urn:ordercomms:npi-synonym:from-code	MMAMB	MRI Breasts	0.292893219	1	Measurement	3018779	MR Breast	479
+urn:ordercomms:npi-synonym:from-code	USKUN	US neo-natal head	0.174277176	1	Measurement	3004479	US Head	470
+urn:ordercomms:npi-synonym:from-code	MPLVPC	MRI Pelvis and Prostate with Contra	0.16062794	1	Measurement	3020781	MR Prostate	465
+urn:ordercomms:npi-synonym:from-code	MHIPL	MRI Hip Lt	0.11359474	1	Measurement	3047762	MR Hip	460
+urn:ordercomms:npi-synonym:from-code	MPESTC	MRI Pelvis Prostate with Contrast	0.292893219	1	Measurement	3047494	MR Prostate W contrast IV	451
+urn:ordercomms:npi-synonym:from-code	XSKUB	XR Skull	0.452277442	1	Measurement	3018228	XR Skull Views	443
+urn:ordercomms:npi-synonym:from-code	UMAWL	US Breast Wire Localisation Lt	0.231293885	1	Measurement	3006495	US Breast - left	442
+urn:ordercomms:npi-synonym:from-code	USHLR	US Shoulder Rt	0.461184094	1	Measurement	3017774	US Shoulder - right	439
+urn:ordercomms:npi-synonym:from-code	CNECK	CT Neck	1	1	Measurement	3047709	CT Neck	438
+urn:ordercomms:npi-synonym:from-code	UALLL	US Doppler femoropopliteal artery L	0.183503419	1	Measurement	3000229	US Popliteal space	428
+urn:ordercomms:npi-synonym:from-code	XSTRM	XR Sternum	0.5	1	Measurement	3007086	XR Sternum Views	424
+urn:ordercomms:npi-synonym:from-code	MAICA	MRA Head	0.396977311	1	Measurement	3015648	MRA Head vessels	423
+urn:ordercomms:npi-synonym:from-code	UALLR	US Doppler femoropopliteal artery R	0.183503419	1	Measurement	3000229	US Popliteal space	420
+urn:ordercomms:npi-synonym:from-code	MSIJB	MRI Pelvis SIJ Both	0.202275965	1	Measurement	3047388	MRA Pelvis veins	419
+urn:ordercomms:npi-synonym:from-code	MFOOL	MRI Foot Left	0.225403331	1	Measurement	3009464	MR Foot - left	405
+urn:ordercomms:npi-synonym:from-code	MANKR	MRI Ankle Right	0.280805048	1	Measurement	3018299	MR Ankle - right	403
+urn:ordercomms:npi-synonym:from-code	UMAWR	US Breast Wire Localisation Rt	0.225403331	1	Measurement	3022956	US Breast - right	402
+urn:ordercomms:npi-synonym:from-code	USULL	US Upper Limb Lt	0.292893219	1	Measurement	3009993	US Upper extremity	402
+urn:ordercomms:npi-synonym:from-code	XHWBA	XR Hand \T\ Wrist (Bone Age)	0.194612734	1	Measurement	42527983	XR Bone age	402
+urn:ordercomms:npi-synonym:from-code	MPELVC	MRI Pelvis with contrast	0.316869949	1	Measurement	3048185	MR Pelvis W contrast IV	396
+urn:ordercomms:npi-synonym:from-code	MFOOR	MRI Foot Right	0.254644008	1	Measurement	3023110	MR Foot - right	394
+urn:ordercomms:npi-synonym:from-code	ULVIB	US Doppler Veins Legs-Insufficiency	0.236237384	1	Measurement	3038373	US.doppler Vein	391
+urn:ordercomms:npi-synonym:from-code	MANKL	MRI Ankle  Left	0.244071054	1	Measurement	3006230	MR Ankle - left	390
+urn:ordercomms:npi-synonym:from-code	UEXTR	US Extremity	1	1	Measurement	3007077	US Extremity	385
+urn:ordercomms:npi-synonym:from-code	USULR	US Upper Limb Rt	0.292893219	1	Measurement	3009993	US Upper extremity	378
+urn:ordercomms:npi-synonym:from-code	USGSM	US Salivary Glands (Submandibular)	0.410984911	1	Measurement	40771819	US Salivary gland	375
+urn:ordercomms:npi-synonym:from-code	ULIVEB	US Guided Biopsy Liver	0.176245529	1	Measurement	3001979	US Liver	369
+urn:ordercomms:npi-synonym:from-code	MMAMC	MRI Breasts With Gadolinium	0.142507074	1	Measurement	3018779	MR Breast	359
+urn:ordercomms:npi-synonym:from-code	MLIVEC	MRI Liver with contrast	0.301163758	1	Measurement	3047604	MR Liver W contrast IV	357
+urn:ordercomms:npi-synonym:from-code	USHLL	US Shoulder Lt	0.483602221	1	Measurement	3013984	US Shoulder - left	353
+urn:ordercomms:npi-synonym:from-code	UHIPR	US Hip Rt	0.345346329	1	Measurement	3005575	US Hip - right	352
+urn:ordercomms:npi-synonym:from-code	MABDC	MRI Abdomen With Gadolinium	0.171921329	1	Measurement	3013540	MR Abdomen	350
+urn:ordercomms:npi-synonym:from-code	MWBO	MRI Whole Body	0.434314575	1	Measurement	3048738	MR Whole body	347
+urn:ordercomms:npi-synonym:from-code	MWBOR	MRI Whole Body Raw Data	0.292893219	1	Measurement	3048738	MR Whole body	342
+urn:ordercomms:npi-synonym:from-code	MLIVH	MRI liver with hepatobiliary contra	0.187363945	1	Measurement	3019892	MR Liver WO contrast	334
+urn:ordercomms:npi-synonym:from-code	MSHRR	MRI Shoulder Rt	0.3229968	1	Measurement	3015824	MR Shoulder	333
+urn:ordercomms:npi-synonym:from-code	UPORT	US Doppler Liver/Portal System	0.133974596	1	Measurement	3001979	US Liver	332
+urn:ordercomms:npi-synonym:from-code	IGPEGI	Gastrostomy Insertion	0.329179607	1	Measurement	3020557	Gastrostomy tube site	330
+urn:ordercomms:npi-synonym:from-code	ULVIL	US Doppler Veins Leg- Insufficiency	0.236237384	1	Measurement	3038373	US.doppler Vein	322
+urn:ordercomms:npi-synonym:from-code	NCTGAO	NM Card Gated Adeno Stress MIBI/TF	0.103145594	1	Measurement	3042147	NM Heart Gated	318
+urn:ordercomms:npi-synonym:from-code	XSACM	XR Sacrum	0.477767032	1	Measurement	3027575	XR Sacrum Views	317
+urn:ordercomms:npi-synonym:from-code	XTHUB	XR Thumbs Both	0.32063378	1	Measurement	3034511	XR Thumb Views	315
+urn:ordercomms:npi-synonym:from-code	CNECC	CT Neck With Contrast	0.429912287	1	Measurement	3050247	CT Neck W contrast IV	304
+urn:ordercomms:npi-synonym:from-code	CANKR	CT Ankle Right	0.5	1	Measurement	3049640	CT Ankle - right	296
+urn:ordercomms:npi-synonym:from-code	CFOOL	CT Foot Lt	0.396977311	1	Measurement	3048998	CT Foot - left	296
+urn:ordercomms:npi-synonym:from-code	UHIPL	US Hip Lt	0.367544468	1	Measurement	3020713	US Hip - left	295
+urn:ordercomms:npi-synonym:from-code	MSIJS	MRI Pelvis SIJS	0.234358507	1	Measurement	3047388	MRA Pelvis veins	289
+urn:ordercomms:npi-synonym:from-code	ULVIR	US Doppler Veins Leg- Insufficiency	0.236237384	1	Measurement	3038373	US.doppler Vein	288
+urn:ordercomms:npi-synonym:from-code	CFOOR	CT Foot Rt	0.374456758	1	Measurement	3049568	CT Foot - right	280
+urn:ordercomms:npi-synonym:from-code	UPELVD	US Guided Drainage Pelvis	0.337733821	1	Measurement	3005365	US Guidance for drainage of Pelvis	278
+urn:ordercomms:npi-synonym:from-code	CANKL	CT Ankle Left	0.481125478	1	Measurement	3048972	CT Ankle - left	268
+urn:ordercomms:npi-synonym:from-code	FALLL	Angio  Antegrade Femoral Lt	0.137337814	1	Measurement	3052506	US Femoral vessels	267
+urn:ordercomms:npi-synonym:from-code	MSHLR	MRI Shoulder Rt	0.3229968	1	Measurement	3015824	MR Shoulder	264
+urn:ordercomms:npi-synonym:from-code	ULAMR	US Doppler artery map lower limb Rt	0.278889745	1	Measurement	3040895	US.doppler Artery	263
+urn:ordercomms:npi-synonym:from-code	UABDOD	US Guided drainage abdomen	0.349055445	1	Measurement	3021091	US Guidance for drainage of Abdomen	259
+urn:ordercomms:npi-synonym:from-code	XSTER	XR Sternum	0.5	1	Measurement	3007086	XR Sternum Views	257
+urn:ordercomms:npi-synonym:from-code	MSHRL	MRI Shoulder Lt	0.3229968	1	Measurement	3015824	MR Shoulder	243
+urn:ordercomms:npi-synonym:from-code	ULAML	US Doppler artery map lower limb Lt	0.278889745	1	Measurement	3040895	US.doppler Artery	242
+urn:ordercomms:npi-synonym:from-code	MSACM	MRI Spine Sacrum	0.219810502	1	Measurement	3051517	MR Sacrum	239
+urn:ordercomms:npi-synonym:from-code	MSHLL	MRI Shoulder Lt	0.3229968	1	Measurement	3015824	MR Shoulder	239
+urn:ordercomms:npi-synonym:from-code	CCHESB	CT Chest and Biopsy	0.336675042	1	Measurement	3027941	CT Chest	237
+urn:ordercomms:npi-synonym:from-code	MLUSP	MRI Spine lumbar	0.280805048	1	Measurement	3012445	MR Lumbar spine	236
+urn:ordercomms:npi-synonym:from-code	ULAMB	US Doppler artery map lower limb Bo	0.278889745	1	Measurement	3040895	US.doppler Artery	236
+urn:ordercomms:npi-synonym:from-code	MWRIR	MRI Wrist Rt	0.21826404	1	Measurement	3017838	MR Wrist	233
+urn:ordercomms:npi-synonym:from-code	NBKNB	NM Bone Knees	0.354502776	1	Measurement	3016766	NM Bone Views	231
+urn:ordercomms:npi-synonym:from-code	UAXIRB	US Guided Core Biopsy Axilla Rt	0.15707277	1	Measurement	21493926	US Axilla	225
+urn:ordercomms:npi-synonym:from-code	CMAND	CT Mandible	1	1	Measurement	3050205	CT Mandible	222
+urn:ordercomms:npi-synonym:from-code	XTLSP	XR Thoracolumbar spine	0.405911474	1	Measurement	3040484	XR Thoracic and lumbar spine AP	218
+urn:ordercomms:npi-synonym:from-code	CABDOC	CT Abdomen with contrast	0.468390467	1	Measurement	21492176	CT Abdomen W contrast IV	217
+urn:ordercomms:npi-synonym:from-code	MPELC	MRI Pelvis with Gadolinium	0.147197135	1	Measurement	3021689	MR Pelvis	216
+urn:ordercomms:npi-synonym:from-code	IAPORP	Angioplasty Popliteal Right	0.220357045	1	Measurement	3034217	US Popliteal space - right	205
+urn:ordercomms:npi-synonym:from-code	FWSEN	Water Soluble Contrast Enema	0.369873962	1	Measurement	3008355	RF Colon Views W water soluble contrast PR	203
+urn:ordercomms:npi-synonym:from-code	CSACM	CT Spine Sacral	0.231293885	1	Measurement	3049025	CT Sacrum	201
+urn:ordercomms:npi-synonym:from-code	CSKUC	CT Head With Contrast	0.429912287	1	Measurement	3002086	CT Head W contrast IV	200
+urn:ordercomms:npi-synonym:from-code	XTMJB	XR Temporo-Mandibular Joints	0.491452372	1	Measurement	3005290	XR Temporomandibular joint Views	198
+urn:ordercomms:npi-synonym:from-code	MLSPC	MRI Spine Lumbar/Sacral With Gadoli	0.158374588	1	Measurement	3012445	MR Lumbar spine	197
+urn:ordercomms:npi-synonym:from-code	NPTHY	NM Parathyroid (MIBI)	0.385363703	1	Measurement	3039540	NM Parathyroid gland Views	193
+urn:ordercomms:npi-synonym:from-code	UIUCD	US Pelvis For IUCD (TA)	0.316869949	1	Measurement	3000777	US Pelvis	191
+urn:ordercomms:npi-synonym:from-code	MWRIL	MRI Wrist Lt	0.21826404	1	Measurement	3017838	MR Wrist	189
+urn:ordercomms:npi-synonym:from-code	FCSPN	Fluoroscopy Cervical Spine	0.337410844	1	Measurement	3027189	CT Cervical spine	185
+urn:ordercomms:npi-synonym:from-code	CKNEL	CT Knee Left	0.459938275	1	Measurement	3047532	CT Knee - left	184
+urn:ordercomms:npi-synonym:from-code	MAREV	MRA Renal/Visceral	0.316869949	1	Measurement	3049632	MRA Renal vein	181
+urn:ordercomms:npi-synonym:from-code	XPATL	XR Patella Lt	0.490824923	1	Measurement	3016855	XR Patella Views	181
+urn:ordercomms:npi-synonym:from-code	UACTR	US Achilles tendon Rt	0.268074945	1	Measurement	3040403	US Tendon	178
+urn:ordercomms:npi-synonym:from-code	CABDOB	CT Abdomen and Biopsy	0.384118238	1	Measurement	3032013	CT Abdomen	176
+urn:ordercomms:npi-synonym:from-code	IACO3S	Cardiac Angio  Coronary Stent X 3	0.306624755	1	Measurement	21493435	Coronary stent number	175
+urn:ordercomms:npi-synonym:from-code	MACTV	MRA Neck	0.396977311	1	Measurement	3052174	MRA Neck vessels	174
+urn:ordercomms:npi-synonym:from-code	XPATR	XR Patella Rt	0.490824923	1	Measurement	3016855	XR Patella Views	174
+urn:ordercomms:npi-synonym:from-code	XSCJB	XR Sterno-Clavicular Joints	0.524169049	1	Measurement	3051173	XR Sternoclavicular Joint AP	174
+urn:ordercomms:npi-synonym:from-code	UULVL	US Doppler Veins Arm Lt	0.333333333	1	Measurement	3038373	US.doppler Vein	172
+urn:ordercomms:npi-synonym:from-code	FJSHR	Arthrogram Shoulder Rt	0.422649731	1	Measurement	3008605	RF Shoulder Arthrogram	171
+urn:ordercomms:npi-synonym:from-code	UACTL	US Achilles tendon Lt	0.268074945	1	Measurement	3040403	US Tendon	170
+urn:ordercomms:npi-synonym:from-code	FNGFT	Naso-Gastric Feeding Tube	0.231293885	1	Measurement	3015853	Nasogastric tube site	169
+urn:ordercomms:npi-synonym:from-code	NBHIP	NM Bone Local Pelvis/Hips	0.21826404	1	Measurement	3016766	NM Bone Views	168
+urn:ordercomms:npi-synonym:from-code	MJSHR	MRI Arthrogram Shoulder Rt	0.410232175	1	Measurement	3052123	MR Shoulder Arthrogram	167
+urn:ordercomms:npi-synonym:from-code	UVMAP	US Vein Mapping	0.367544468	1	Measurement	3042635	US Vein	166
+urn:ordercomms:npi-synonym:from-code	FJHIR	Arthrogram Hip Rt	0.338562172	1	Measurement	3008314	RF Hip Arthrogram	162
+urn:ordercomms:npi-synonym:from-code	XELBB	XR Elbows	0.422649731	1	Measurement	3018003	XR Elbow Views	162
+urn:ordercomms:npi-synonym:from-code	CFACE	CT Facial Bones	1	1	Measurement	3027584	CT Facial bones	161
+urn:ordercomms:npi-synonym:from-code	UMAFLB	US Breast FNA Biopsy Lt	0.283401428	1	Measurement	3006495	US Breast - left	161
+urn:ordercomms:npi-synonym:from-code	MJHIR	MRI Arthrogram Hip Rt	0.333333333	1	Measurement	3047439	MR Hip Arthrogram	160
+urn:ordercomms:npi-synonym:from-code	CKNER	CT Knee Right	0.481125478	1	Measurement	3051127	CT Knee - right	159
+urn:ordercomms:npi-synonym:from-code	MLIVC	MRI Liver With Gadolinium	0.12011731	1	Measurement	3050260	MR Liver	159
+urn:ordercomms:npi-synonym:from-code	NGFRA	NM Renal Glomerular Filtration Rate	0.404659442	1	Measurement	21493838	NM Kidney Views for glomerular filtration rate	155
+urn:ordercomms:npi-synonym:from-code	UNECKB	US Guided Biopsy Neck	0.145149586	1	Measurement	3004062	US Neck	154
+urn:ordercomms:npi-synonym:from-code	MBRPX	MRI Brachial Plexus	0.521908556	1	Measurement	3002270	MR Brachial plexus	152
+urn:ordercomms:npi-synonym:from-code	MHANR	MRI Hand Rt	0.170843802	1	Measurement	3009406	MR Hand	152
+urn:ordercomms:npi-synonym:from-code	UULVR	US Doppler Veins Arm Rt	0.333333333	1	Measurement	3038373	US.doppler Vein	152
+urn:ordercomms:npi-synonym:from-code	MABPA	MRI Pancreas	0.3827866	1	Measurement	3047386	MR Pancreas	150
+urn:ordercomms:npi-synonym:from-code	NCHEQ	NM Lung Perfusion Scan (Q)	0.391419381	1	Measurement	3045583	NM Lung Perfusion quantitative	148
+urn:ordercomms:npi-synonym:from-code	USACM	US Sacrum	1	1	Measurement	3047852	US Sacrum	147
+urn:ordercomms:npi-synonym:from-code	XSIJB	XR Sacro-Iliac Joints	0.416125792	1	Measurement	3037074	XR Sacroiliac Joint Views	147
+urn:ordercomms:npi-synonym:from-code	CABAOC	CT Aorta abdominal with contrast	0.390928787	1	Measurement	3047759	CT Abdominal Aorta W contrast IV	146
+urn:ordercomms:npi-synonym:from-code	MAAOW	MRA Aorta Whole	0.292893219	1	Measurement	3050289	MRA Aortic arch	145
+urn:ordercomms:npi-synonym:from-code	CWRIR	CT Wrist Rt	0.4	1	Measurement	3052120	CT Wrist - right	144
+urn:ordercomms:npi-synonym:from-code	NGENWO	NM Whole body PET FDG	0.438048513	1	Measurement	3031410	NM Whole body Views	143
+urn:ordercomms:npi-synonym:from-code	ULLDR	US Lower Leg Rt	0.304391656	1	Measurement	3014826	US Lower extremity	143
+urn:ordercomms:npi-synonym:from-code	XSCPR	XR Scapula Rt	0.490824923	1	Measurement	3014736	XR Scapula Views	142
+urn:ordercomms:npi-synonym:from-code	MADRB	MRI Adrenal Both	0.247227347	1	Measurement	3050871	MR Adrenal gland	138
+urn:ordercomms:npi-synonym:from-code	MLOLR	MRI Lower Leg Rt	0.349556364	1	Measurement	3035690	MR Lower leg	136
+urn:ordercomms:npi-synonym:from-code	ULIVE	US Liver	1	1	Measurement	3001979	US Liver	135
+urn:ordercomms:npi-synonym:from-code	ULVMB	US Doppler vein map lower limb Both	0.236237384	1	Measurement	3038373	US.doppler Vein	135
+urn:ordercomms:npi-synonym:from-code	UWRIR	US Wrist Rt	0.579915975	1	Measurement	3006679	US Wrist	135
+urn:ordercomms:npi-synonym:from-code	CWRIL	CT Wrist Lt	0.422649731	1	Measurement	3048692	CT Wrist - left	133
+urn:ordercomms:npi-synonym:from-code	MBRSB	MRI Breast Screening Both	0.152208752	1	Measurement	3018779	MR Breast	129
+urn:ordercomms:npi-synonym:from-code	XLOLB	XR Tibia/Fibula (Lower Leg) Both	0.213754607	1	Measurement	3019704	XR Tibia and Fibula Views	129
+urn:ordercomms:npi-synonym:from-code	MCSPC	MRI Spine Cervical With Gadolinium	0.230690742	1	Measurement	3009302	MR Cervical spine	124
+urn:ordercomms:npi-synonym:from-code	ULLDL	US Lower Leg Lt	0.304391656	1	Measurement	3014826	US Lower extremity	124
+urn:ordercomms:npi-synonym:from-code	UPTHY	US Parathyroids	0.539433814	1	Measurement	3051770	US Parathyroid gland	123
+urn:ordercomms:npi-synonym:from-code	MLOLL	MRI Lower Leg Lt	0.303689376	1	Measurement	3047502	MR Lower leg - left	122
+urn:ordercomms:npi-synonym:from-code	MAAOT	MRA Aorta Thoracic	0.457673855	1	Measurement	3003319	MRA Thoracic Aorta	121
+urn:ordercomms:npi-synonym:from-code	UMAFRB	US Breast FNA Biopsy Rt	0.27452375	1	Measurement	3022956	US Breast - right	121
+urn:ordercomms:npi-synonym:from-code	MTMJB	MRI Temporomandibular joint Both	0.518187944	1	Measurement	3028675	MR Temporomandibular joint	120
+urn:ordercomms:npi-synonym:from-code	UAILB	US Doppler iliac and femoral artery	0.359130056	1	Measurement	3044231	US.doppler Iliac artery	120
+urn:ordercomms:npi-synonym:from-code	FJSHL	Arthrogram Shoulder Lt	0.422649731	1	Measurement	3008605	RF Shoulder Arthrogram	120
+urn:ordercomms:npi-synonym:from-code	UABDON	US Guided aspiration abdomen	0.200694746	1	Measurement	3014650	US Abdomen	119
+urn:ordercomms:npi-synonym:from-code	MJSHL	MRI Arthrogram Shoulder Lt	0.341241877	1	Measurement	3051434	MR Shoulder - left Arthrogram	118
+urn:ordercomms:npi-synonym:from-code	CORBB	CT Orbit Both	0.487010824	1	Measurement	3034002	CT Orbit	117
+urn:ordercomms:npi-synonym:from-code	MLSPNC	MRI Spine lumbar sacral with contra	0.209430585	1	Measurement	3012445	MR Lumbar spine	113
+urn:ordercomms:npi-synonym:from-code	UWRIL	US Wrist Lt	0.422649731	1	Measurement	3009216	US Wrist - left	113
+urn:ordercomms:npi-synonym:from-code	XSCPL	XR Scapula Lt	0.490824923	1	Measurement	3014736	XR Scapula Views	112
+urn:ordercomms:npi-synonym:from-code	MTMJS	MRI Temporo-Mandibular Joint	0.445299804	1	Measurement	3028675	MR Temporomandibular joint	110
+urn:ordercomms:npi-synonym:from-code	FJHIL	Arthrogram Hip Lt	0.338562172	1	Measurement	3008314	RF Hip Arthrogram	110
+urn:ordercomms:npi-synonym:from-code	CSHRR	CT Shoulder Rt	0.461184094	1	Measurement	3048319	CT Shoulder - right	108
+urn:ordercomms:npi-synonym:from-code	UACHT	US Achilles Tendon	0.307179677	1	Measurement	3040403	US Tendon	105
+urn:ordercomms:npi-synonym:from-code	MJHIL	MRI Arthrogram Hip Lt	0.333333333	1	Measurement	3047439	MR Hip Arthrogram	103
+urn:ordercomms:npi-synonym:from-code	MALLB	MRA Lower Limbs	0.147197135	1	Measurement	3048036	MRA Veins	98
+urn:ordercomms:npi-synonym:from-code	UULAR	US Upper Limb/Arm Arterial Doppler	0.175378875	1	Measurement	3009993	US Upper extremity	97
+urn:ordercomms:npi-synonym:from-code	XACJR	XR Acromio-Clavicular Joint Rt	0.5	1	Measurement	3007266	XR Acromioclavicular Joint Views	96
+urn:ordercomms:npi-synonym:from-code	XSHRB	XR Shoulder Both	0.461184094	1	Measurement	3007342	XR Shoulder Views	95
+urn:ordercomms:npi-synonym:from-code	UULAL	US Upper Limb/Arm Arterial Doppler	0.175378875	1	Measurement	3009993	US Upper extremity	94
+urn:ordercomms:npi-synonym:from-code	XACJL	XR Acromio-Clavicular Joint Lt	0.5	1	Measurement	3007266	XR Acromioclavicular Joint Views	94
+urn:ordercomms:npi-synonym:from-code	CABDC	CT Abdomen With Contrast	0.468390467	1	Measurement	21492176	CT Abdomen W contrast IV	93
+urn:ordercomms:npi-synonym:from-code	MTSPC	MRI Spine Thoracic With Gadolinium	0.230690742	1	Measurement	3014004	MR Thoracic spine	93
+urn:ordercomms:npi-synonym:from-code	MWSPC	MRI Whole Spine with Gadolinium	0.11359474	1	Measurement	3048738	MR Whole body	92
+urn:ordercomms:npi-synonym:from-code	CBODW	CT Whole Body	1	1	Measurement	3052262	CT Whole body	91
+urn:ordercomms:npi-synonym:from-code	CSHRL	CT Shoulder Lt	0.483602221	1	Measurement	3052166	CT Shoulder - left	90
+urn:ordercomms:npi-synonym:from-code	CELBL	CT Elbow Left	0.481125478	1	Measurement	3048331	CT Elbow - left	89
+urn:ordercomms:npi-synonym:from-code	MBPLX	MRI Spine Brachial Plexus	0.41565129	1	Measurement	3002270	MR Brachial plexus	89
+urn:ordercomms:npi-synonym:from-code	IBILIS	Biliary Bile Duct Stent	0.228900399	1	Measurement	3047489	MR Biliary ducts	87
+urn:ordercomms:npi-synonym:from-code	UABDUD	US Guided Drainage Upper Abdomen	0.309403825	1	Measurement	3021091	US Guidance for drainage of Abdomen	87
+urn:ordercomms:npi-synonym:from-code	MORBBC	MRI Orbit with contrast Both	0.292893219	1	Measurement	3051758	MR Orbit W contrast IV	82
+urn:ordercomms:npi-synonym:from-code	UBUTR	US Buttock Rt	0.125525368	1	Measurement	3008991	US Hip	81
+urn:ordercomms:npi-synonym:from-code	CTHIR	CT Upper Leg (Thigh) Rt	0.129011659	1	Measurement	3047786	CT Thigh	80
+urn:ordercomms:npi-synonym:from-code	MHANL	MRI Hand Lt	0.170843802	1	Measurement	3009406	MR Hand	80
+urn:ordercomms:npi-synonym:from-code	CELBR	CT Elbow Right	0.5	1	Measurement	3047598	CT Elbow - right	77
+urn:ordercomms:npi-synonym:from-code	UAXIB	US Axilla Both	0.512049964	1	Measurement	21493926	US Axilla	76
+urn:ordercomms:npi-synonym:from-code	UDIAL	US Doppler iliac and femoral artery	0.359130056	1	Measurement	3044231	US.doppler Iliac artery	74
+urn:ordercomms:npi-synonym:from-code	IBIIXD	Biliary Internal/External Drainage	0.212599213	1	Measurement	3003371	Biliary drain site	73
+urn:ordercomms:npi-synonym:from-code	UDIAR	US Doppler iliac and femoral artery	0.359130056	1	Measurement	3044231	US.doppler Iliac artery	73
+urn:ordercomms:npi-synonym:from-code	USHRRJ	US Guided injection shoulder Rt	0.209430585	1	Measurement	3016633	US Shoulder	72
+urn:ordercomms:npi-synonym:from-code	CSHOR	CT Shoulder Rt	0.461184094	1	Measurement	3048319	CT Shoulder - right	71
+urn:ordercomms:npi-synonym:from-code	CORBS	CT Orbits	0.74180111	1	Measurement	3034002	CT Orbit	68
+urn:ordercomms:npi-synonym:from-code	NPTHY2	NM Parathyroid (MIBI) Part 2	0.334937828	1	Measurement	3039540	NM Parathyroid gland Views	68
+urn:ordercomms:npi-synonym:from-code	ULIVR	US Liver	1	1	Measurement	3001979	US Liver	68
+urn:ordercomms:npi-synonym:from-code	NPTHY3	NM Parathyroid (MIBI) Part 3	0.334937828	1	Measurement	3039540	NM Parathyroid gland Views	67
+urn:ordercomms:npi-synonym:from-code	MUPAL	MRI Upper Arm Lt	0.303689376	1	Measurement	3047999	MR Upper arm - left	64
+urn:ordercomms:npi-synonym:from-code	CLOLL	CT Lower Leg Lt	0.5	1	Measurement	36304934	CT Lower leg - left	63
+urn:ordercomms:npi-synonym:from-code	IPACGI	Cardiac Permanent Pacemaker Change	0.347137451	1	Measurement	40761372	Permanent pacemaker insertion	63
+urn:ordercomms:npi-synonym:from-code	MELBL	MRI Elbow Left	0.254644008	1	Measurement	3006450	MR Elbow - left	62
+urn:ordercomms:npi-synonym:from-code	MELBR	MRI Elbow Right	0.280805048	1	Measurement	3023288	MR Elbow - right	62
+urn:ordercomms:npi-synonym:from-code	CTHIL	CT Upper Leg (Thigh) Lt	0.129011659	1	Measurement	3047786	CT Thigh	59
+urn:ordercomms:npi-synonym:from-code	FAABA	Angio abdominal aorta	0.430505203	1	Measurement	3050490	CT Abdominal Aorta	58
+urn:ordercomms:npi-synonym:from-code	CSHOL	CT Shoulder Lt	0.483602221	1	Measurement	3052166	CT Shoulder - left	57
+urn:ordercomms:npi-synonym:from-code	FSGPR	Sialogram Parotid (Fluoro) Rt	0.137337814	1	Measurement	3049906	CT Parotid gland	57
+urn:ordercomms:npi-synonym:from-code	IACO4S	Cardiac Angio  Coronary Stent X 4	0.306624755	1	Measurement	21493435	Coronary stent number	56
+urn:ordercomms:npi-synonym:from-code	XCALB	XR Calcanei	0.422649731	1	Measurement	3017884	XR Calcaneus Views	56
+urn:ordercomms:npi-synonym:from-code	MSINU	MRI Sinuses/Face	0.264019928	1	Measurement	3004678	MR Sinuses	55
+urn:ordercomms:npi-synonym:from-code	UPELVN	US Guided Aspiration Pelvis	0.177521679	1	Measurement	3000777	US Pelvis	53
+urn:ordercomms:npi-synonym:from-code	CCHAB	CT Chest/Abdo	0.487010824	1	Measurement	3027941	CT Chest	52
+urn:ordercomms:npi-synonym:from-code	CLOLR	CT Lower Leg Rt	0.653589838	1	Measurement	3047495	CT Lower leg	52
+urn:ordercomms:npi-synonym:from-code	CNECH	CT Neck and thorax	0.308435925	1	Measurement	3047709	CT Neck	52
+urn:ordercomms:npi-synonym:from-code	CNCAC	CT Neck/Thorax/Abdomen With Contras	0.21826404	1	Measurement	3050247	CT Neck W contrast IV	51
+urn:ordercomms:npi-synonym:from-code	UFNA	US Guided Fine Needle Aspiration	0.40515031	1	Measurement	36304373	Guidance for fine needle aspiration	51
+urn:ordercomms:npi-synonym:from-code	CADRB	CT Adrenals	0.470849738	1	Measurement	3047655	CT Adrenal gland	50
+urn:ordercomms:npi-synonym:from-code	IANKLJ	Fluoroscopic guided injection ankle	0.19960947	1	Measurement	36305106	Guidance for injection of Ankle	50
+urn:ordercomms:npi-synonym:from-code	CHIPL	CT Hip Lt	0.367544468	1	Measurement	3052759	CT Hip - left	49
+urn:ordercomms:npi-synonym:from-code	MRLIV	MRI Liver	0.269703257	1	Measurement	3050260	MR Liver	49
+urn:ordercomms:npi-synonym:from-code	UWRSR	US Wrist Rt	0.4	1	Measurement	3009048	US Wrist - right	49
+urn:ordercomms:npi-synonym:from-code	FSGPL	Sialogram Parotid (Fluoro) Lt	0.137337814	1	Measurement	3049906	CT Parotid gland	48
+urn:ordercomms:npi-synonym:from-code	NTHTC	NM Thyroid Scan (Pertechnetate)	0.220357045	1	Measurement	3035446	NM Thyroid gland Views	48
+urn:ordercomms:npi-synonym:from-code	UAXILN	US Guided FNA Axilla Lt	0.204177574	1	Measurement	21493926	US Axilla	48
+urn:ordercomms:npi-synonym:from-code	MUPAR	MRI Upper Arm Rt	0.292893219	1	Measurement	3050839	MR Upper arm - right	47
+urn:ordercomms:npi-synonym:from-code	UULVB	US Doppler Veins Arms	0.358311052	1	Measurement	3038373	US.doppler Vein	46
+urn:ordercomms:npi-synonym:from-code	XTHIB	XR Femora (Thighs)	0.183503419	1	Measurement	3010342	XR Femur Views	46
+urn:ordercomms:npi-synonym:from-code	CPANC	CT Pancreas With Contrast	0.4795835	1	Measurement	3010679	CT Pancreas W contrast IV	45
+urn:ordercomms:npi-synonym:from-code	CPELVB	CT Pelvis and Biopsy	0.361715261	1	Measurement	3014964	CT Pelvis	44
+urn:ordercomms:npi-synonym:from-code	UWRSL	US Wrist Lt	0.422649731	1	Measurement	3009216	US Wrist - left	44
+urn:ordercomms:npi-synonym:from-code	XTHLS	XR Thoracic and lumbar spine	0.683772234	1	Measurement	3031249	XR Thoracic and lumbar spine Views	43
+urn:ordercomms:npi-synonym:from-code	IBILXD	Biliary External Drainage	0.267480126	1	Measurement	3003371	Biliary drain site	42
+urn:ordercomms:npi-synonym:from-code	ULVMR	US Doppler vein map lower limb Rt	0.248190588	1	Measurement	3038373	US.doppler Vein	42
+urn:ordercomms:npi-synonym:from-code	USHRLJ	US Guided injection shoulder Lt	0.201064538	1	Measurement	3013984	US Shoulder - left	42
+urn:ordercomms:npi-synonym:from-code	XPEHR	XR Pelvis and hip right	0.5	1	Measurement	3047511	XR Pelvis and Hip - right Views	40
+urn:ordercomms:npi-synonym:from-code	UMAMRI	US Guided marker insertion breast R	0.140875307	1	Measurement	3011756	US Breast	39
+urn:ordercomms:npi-synonym:from-code	XPATB	XR Patellae	0.470849738	1	Measurement	3016855	XR Patella Views	37
+urn:ordercomms:npi-synonym:from-code	MADRE	MRI Adrenals	0.240445475	1	Measurement	3050871	MR Adrenal gland	35
+urn:ordercomms:npi-synonym:from-code	CLSPNT	CT Spine Lumbar Myelogram	0.27452375	1	Measurement	3023673	CT Lumbar spine	34
+urn:ordercomms:npi-synonym:from-code	XPEHL	XR Pelvis and hip left	0.490098049	1	Measurement	3051119	XR Pelvis and Hip - left Views	34
+urn:ordercomms:npi-synonym:from-code	MORBC	MRI Orbits with Gadolinium	0.116116524	1	Measurement	3047812	MR Orbit	32
+urn:ordercomms:npi-synonym:from-code	UABDUN	US Guided Aspiration Upper Abdomen	0.16905103	1	Measurement	3014650	US Abdomen	32
+urn:ordercomms:npi-synonym:from-code	ULVML	US Doppler vein map lower limb Lt	0.248190588	1	Measurement	3038373	US.doppler Vein	31
+urn:ordercomms:npi-synonym:from-code	CHIPR	CT Hip Rt	0.519615539	1	Measurement	3047946	CT Hip	30
+urn:ordercomms:npi-synonym:from-code	FASMA	Angio  Superior Mesenteric Artery	0.340087982	1	Measurement	3051926	MRA Superior mesenteric vessels	30
+urn:ordercomms:npi-synonym:from-code	IPACN	Cardiac Permanent Pacemaker Reposit	0.340087982	1	Measurement	40761372	Permanent pacemaker insertion	30
+urn:ordercomms:npi-synonym:from-code	UMPDO	US Multiple Pregnancy Dopplers	0.240445475	1	Measurement	21493938	US.doppler for pregnancy	30
+urn:ordercomms:npi-synonym:from-code	CCABD	CT Thorax and abdomen	0.257218647	1	Measurement	3032013	CT Abdomen	28
+urn:ordercomms:npi-synonym:from-code	CORBC	CT Orbits With Contrast	0.353003361	1	Measurement	3048837	CT Orbit W contrast IV	27
+urn:ordercomms:npi-synonym:from-code	MABDOC	MRI Abdomen with contrast	0.331562635	1	Measurement	3050565	MR Abdomen W contrast IV	26
+urn:ordercomms:npi-synonym:from-code	UOCVS	US Obstetric Chorionic Villus Sampl	0.35276054	1	Measurement	40771919	US Guidance for chorionic villus sampling	26
+urn:ordercomms:npi-synonym:from-code	XFARB	XR Radius/Ulna (Forearms) Both	0.203372493	1	Measurement	3035555	XR Radius and Ulna Views	26
+urn:ordercomms:npi-synonym:from-code	XUPAB	XR Humeri (Upper Arms)	0.21826404	1	Measurement	3007996	XR Humerus Views	26
+urn:ordercomms:npi-synonym:from-code	XCHAB	XR Chest and abdomen	0.630725527	1	Measurement	3032115	XR Chest and Abdomen Views	25
+urn:ordercomms:npi-synonym:from-code	XSALI	XR Salivary Gland Areas	0.523268705	1	Measurement	3041729	XR Salivary gland Views	25
+urn:ordercomms:npi-synonym:from-code	CABDOD	CT Abdomen and Drainage	0.352423874	1	Measurement	3032013	CT Abdomen	24
+urn:ordercomms:npi-synonym:from-code	UACTB	US Achilles tendon Both	0.247227347	1	Measurement	3040403	US Tendon	24
+urn:ordercomms:npi-synonym:from-code	CPANS	CT Pancreas	1	1	Measurement	3013253	CT Pancreas	23
+urn:ordercomms:npi-synonym:from-code	FPASC	Cardiac Permanent Pacemaker Check	0.354502776	1	Measurement	40761372	Permanent pacemaker insertion	23
+urn:ordercomms:npi-synonym:from-code	UAUMB	US Obstetric doppler umbilical arte	0.360397851	1	Measurement	40771806	US.doppler Umbilical artery Fetal	23
+urn:ordercomms:npi-synonym:from-code	CCLAR	CT Clavicle Rt	0.461184094	1	Measurement	36305542	CT Clavicle - right	22
+urn:ordercomms:npi-synonym:from-code	CHANR	CT Hand Rt	0.374456758	1	Measurement	3047405	CT Hand - right	22
+urn:ordercomms:npi-synonym:from-code	XFANKR	XR Foot and ankle Right	0.233035011	1	Measurement	3021549	XR Foot Views	22
+urn:ordercomms:npi-synonym:from-code	XCLAB	XR Clavicles	0.490824923	1	Measurement	3038094	XR Clavicle Views	21
+urn:ordercomms:npi-synonym:from-code	XTHIN	XR Thoracic Inlet	0.351114315	1	Measurement	3018634	XR Thoracic spine Views	21
+urn:ordercomms:npi-synonym:from-code	UIUCT	US Pelvis For IUCD (TV)	0.316869949	1	Measurement	3000777	US Pelvis	20
+urn:ordercomms:npi-synonym:from-code	UUPAR	US Upper arm Rt	0.304391656	1	Measurement	3009993	US Upper extremity	20
+urn:ordercomms:npi-synonym:from-code	NBONEO	NM Bone SPECT	0.213204208	1	Measurement	3040854	SPECT Bone	19
+urn:ordercomms:npi-synonym:from-code	UUPAL	US Upper arm Lt	0.304391656	1	Measurement	3009993	US Upper extremity	19
+urn:ordercomms:npi-synonym:from-code	XFEMB	XR Femur Both	0.4	1	Measurement	3010342	XR Femur Views	18
+urn:ordercomms:npi-synonym:from-code	CPANCB	CT Guided Biopsy Pancreas	0.337733821	1	Measurement	3019147	CT Guidance for biopsy of Pancreas	17
+urn:ordercomms:npi-synonym:from-code	MVSKU	MRV Cerebral Veins	0.151471863	1	Measurement	3048036	MRA Veins	17
+urn:ordercomms:npi-synonym:from-code	NM123W	NM MIBG Iodine 123 scan whole body	0.207881966	1	Measurement	3031410	NM Whole body Views	17
+urn:ordercomms:npi-synonym:from-code	UACTLUS	US Achilles Tendon Lt	0.268074945	1	Measurement	3040403	US Tendon	17
+urn:ordercomms:npi-synonym:from-code	CIAMB	CT Internal auditory meatus Both	0.465477516	1	Measurement	3047537	CT Internal auditory canal	16
+urn:ordercomms:npi-synonym:from-code	FCSMGT	Myelogram cervical	0.183503419	1	Measurement	3027189	CT Cervical spine	16
+urn:ordercomms:npi-synonym:from-code	MFOORC	MRI Foot with contrast Rt	0.292893219	1	Measurement	3050809	MR Foot W contrast IV	16
+urn:ordercomms:npi-synonym:from-code	CPELC	CT Pelvis With Contrast	0.456442693	1	Measurement	3019625	CT Pelvis W contrast IV	15
+urn:ordercomms:npi-synonym:from-code	CUPAR	CT Upper Arm Right	0.559041448	1	Measurement	3048179	CT Upper arm - right	15
+urn:ordercomms:npi-synonym:from-code	MCSPNC	MRI Spine cervical with contrast	0.322492514	1	Measurement	3053242	MR Cervical spine W contrast IT	15
+urn:ordercomms:npi-synonym:from-code	MFORL	MRI Forearm Lt	0.257218647	1	Measurement	3020376	MR Forearm - left	15
+urn:ordercomms:npi-synonym:from-code	UMACBB	US Guided core biopsy of breast Bot	0.367544468	1	Measurement	3052142	US Guidance for biopsy of Breast	15
+urn:ordercomms:npi-synonym:from-code	XHAWR	XR Hand and wrist Right	0.252454998	1	Measurement	3025885	XR Hand Views	15
+urn:ordercomms:npi-synonym:from-code	XLSPE	XR Lumbar spine and pelvis	0.422649731	1	Measurement	3034396	XR Lumbar spine Views	15
+urn:ordercomms:npi-synonym:from-code	MTSPNC	MRI Spine thoracic with contrast	0.322492514	1	Measurement	3051737	MR Thoracic spine W contrast IT	14
+urn:ordercomms:npi-synonym:from-code	UABDL	US Lower Abdomen	0.3229968	1	Measurement	3014650	US Abdomen	14
+urn:ordercomms:npi-synonym:from-code	UMAD	US Mesenteric Arterial Doppler	0.510102051	1	Measurement	40771913	US Mesenteric arteries	14
+urn:ordercomms:npi-synonym:from-code	XHAWL	XR Hand and wrist Left	0.261451054	1	Measurement	3025885	XR Hand Views	14
+urn:ordercomms:npi-synonym:from-code	CCLAL	CT Clavicle Left	0.532292827	1	Measurement	36303728	CT Clavicle - left	13
+urn:ordercomms:npi-synonym:from-code	CLIVE	CT Liver	1	1	Measurement	3034506	CT Liver	13
+urn:ordercomms:npi-synonym:from-code	MFARL	MRI Forearm Lt	0.257218647	1	Measurement	3020376	MR Forearm - left	13
+urn:ordercomms:npi-synonym:from-code	MVIVC	MRV Inferior Vena Cava	0.56356422	1	Measurement	3048311	MRA Inferior vena cava	13
+urn:ordercomms:npi-synonym:from-code	UDRNB	US Doppler renal Both	0.345346329	1	Measurement	3038955	US.doppler Renal artery	13
+urn:ordercomms:npi-synonym:from-code	CORBBC	CT Orbit with contrast Both	0.416540034	1	Measurement	3048837	CT Orbit W contrast IV	12
+urn:ordercomms:npi-synonym:from-code	CPELVC	CT Pelvis with contrast	0.456442693	1	Measurement	3019625	CT Pelvis W contrast IV	12
+urn:ordercomms:npi-synonym:from-code	MAICAC	MRA Head with contrast	0.338562172	1	Measurement	3051170	MRA Head veins W contrast IV	12
+urn:ordercomms:npi-synonym:from-code	MAXIL	MRI Axilla Lt	0.230199641	1	Measurement	3046177	MR Axilla - left	12
+urn:ordercomms:npi-synonym:from-code	NM123	NM MIBG I (123) Scan (Whole Body)	0.16062794	1	Measurement	3043261	PT Whole body	12
+urn:ordercomms:npi-synonym:from-code	UACTRUS	US Achilles Tendon Rt	0.268074945	1	Measurement	3040403	US Tendon	12
+urn:ordercomms:npi-synonym:from-code	UGRNR	US Groin Rt	0.579915975	1	Measurement	3003845	US Groin	12
+urn:ordercomms:npi-synonym:from-code	CNEWC	CT Neck With/Without Contrast	0.286493932	1	Measurement	3024625	CT Neck WO and W contrast IV	11
+urn:ordercomms:npi-synonym:from-code	CUPAL	CT Upper Arm Left	0.546257394	1	Measurement	3048215	CT Upper arm - left	11
+urn:ordercomms:npi-synonym:from-code	FABDOM	Mobile image intensifier abdomen	0.137337814	1	Measurement	3001757	XR Abdomen AP	11
+urn:ordercomms:npi-synonym:from-code	MBLPE	MRI Pelvis and Bladder	0.169545201	1	Measurement	3021689	MR Pelvis	11
+urn:ordercomms:npi-synonym:from-code	MFOOLC	MRI Foot with contrast Lt	0.292893219	1	Measurement	3050809	MR Foot W contrast IV	11
+urn:ordercomms:npi-synonym:from-code	MLOLB	MRI Lower Legs	0.387627564	1	Measurement	3035690	MR Lower leg	11
+urn:ordercomms:npi-synonym:from-code	MTHGL	MRI Thigh Left	0.254644008	1	Measurement	3014031	MR Thigh - left	11
+urn:ordercomms:npi-synonym:from-code	NBLLB	NM Bone Local Lower Legs	0.225403331	1	Measurement	3016766	NM Bone Views	11
+urn:ordercomms:npi-synonym:from-code	UREND	US Doppler Renal	0.36328546	1	Measurement	3038955	US.doppler Renal artery	11
+urn:ordercomms:npi-synonym:from-code	UTHYDB	US Guided biopsy thyroid	0.188892894	1	Measurement	3001462	US Thyroid gland	11
+urn:ordercomms:npi-synonym:from-code	CSAPA	CT Parotids	0.470849738	1	Measurement	3049906	CT Parotid gland	10
+urn:ordercomms:npi-synonym:from-code	FCSMG	Myelogram Cervical	0.183503419	1	Measurement	3027189	CT Cervical spine	10
+urn:ordercomms:npi-synonym:from-code	MANECC	MRA Neck with contrast	0.338562172	1	Measurement	3052452	MRA Neck veins W contrast IV	10
+urn:ordercomms:npi-synonym:from-code	MAREB	MRA Renal Both	0.445299804	1	Measurement	3049632	MRA Renal vein	10
+urn:ordercomms:npi-synonym:from-code	MTHGR	MRI Thigh Right	0.280805048	1	Measurement	3022212	MR Thigh - right	10
+urn:ordercomms:npi-synonym:from-code	UMAVLB	US Guided Vac Ass biopsy of breast	0.375	1	Measurement	3052142	US Guidance for biopsy of Breast	10
+urn:ordercomms:npi-synonym:from-code	CCSPNT	CT Spine Cervical Myelogram	0.309934441	1	Measurement	3027189	CT Cervical spine	9
+urn:ordercomms:npi-synonym:from-code	CLIVC	CT Liver With Contrast	0.44365136	1	Measurement	3035040	CT Liver W contrast IV	9
+urn:ordercomms:npi-synonym:from-code	CSINC	CT Sinuses With Contrast	0.468390467	1	Measurement	3048631	CT Sinuses W contrast IV	9
+urn:ordercomms:npi-synonym:from-code	MAAOA	MRA Aorta Abdominal	0.371719138	1	Measurement	3049961	MRA Abdominal vessels	9
+urn:ordercomms:npi-synonym:from-code	MLLCR	MRI Tib \T\ Fib (Lower Leg) With Gd	0.156725957	1	Measurement	3035690	MR Lower leg	9
+urn:ordercomms:npi-synonym:from-code	NBAFB	NM Bone Local Ankles/Feet	0.21826404	1	Measurement	3016766	NM Bone Views	9
+urn:ordercomms:npi-synonym:from-code	UMAMBN	US Guided aspiration of Breast Both	0.411215942	1	Measurement	3045667	US Guidance for fluid aspiration of Breast	9
+urn:ordercomms:npi-synonym:from-code	FJDSL	Arthrogram Shoulder Distention Lt	0.31319718	1	Measurement	3008605	RF Shoulder Arthrogram	9
+urn:ordercomms:npi-synonym:from-code	CABWC	CT Abdomen With/Without Contrast	0.322492514	1	Measurement	3047885	CT Abdomen WO and W contrast IV	8
+urn:ordercomms:npi-synonym:from-code	CHANL	CT Hand Lt	0.396977311	1	Measurement	3053064	CT Hand - left	8
+urn:ordercomms:npi-synonym:from-code	CTEMP	CT Temporal Bones	0.820394698	1	Measurement	3052767	CT Temporal bone	8
+urn:ordercomms:npi-synonym:from-code	FTHMGT	Myelogram thoracic	0.183503419	1	Measurement	3018269	CT Thoracic spine	8
+urn:ordercomms:npi-synonym:from-code	MCLAL	MRI Clavicle Lt	0.3229968	1	Measurement	3048711	MR Clavicle	8
+urn:ordercomms:npi-synonym:from-code	MCVVS	MRI Cardiac ventricular volume stud	0.233643955	1	Measurement	3036518	Left ventricular Stroke volume	8
+urn:ordercomms:npi-synonym:from-code	UCLOTS	US Veins for CLOTS trial	0.234358507	1	Measurement	3042635	US Vein	8
+urn:ordercomms:npi-synonym:from-code	UPEPRB	US Transrectal Prostate \T\ Biopsy	0.382085619	1	Measurement	3001108	US Prostate transrectal	8
+urn:ordercomms:npi-synonym:from-code	USMAD	US Doppler superior mesenteric arte	0.482693868	1	Measurement	3043864	US.doppler Superior mesenteric vessels	8
+urn:ordercomms:npi-synonym:from-code	UTRRE	US Transplant Kidney	0.360397851	1	Measurement	3039810	US for transplanted kidney	8
+urn:ordercomms:npi-synonym:from-code	XACJB	XR Acromio-Clavicular Joints	0.491452372	1	Measurement	3007266	XR Acromioclavicular Joint Views	8
+urn:ordercomms:npi-synonym:from-code	FJWRR	Arthrogram Wrist Rt	0.376390436	1	Measurement	3004687	RF Wrist Arthrogram	8
+urn:ordercomms:npi-synonym:from-code	CCHESD	CT Chest and Drainage	0.306111334	1	Measurement	3027941	CT Chest	7
+urn:ordercomms:npi-synonym:from-code	CLIVEB	CT Guided Biopsy Liver	0.176245529	1	Measurement	3034506	CT Liver	7
+urn:ordercomms:npi-synonym:from-code	CTHSPT	CT Spine Thoracic Myelogram	0.309934441	1	Measurement	3018269	CT Thoracic spine	7
+urn:ordercomms:npi-synonym:from-code	MCLAR	MRI Clavicle Rt	0.3229968	1	Measurement	3048711	MR Clavicle	7
+urn:ordercomms:npi-synonym:from-code	MFINL	MRI Fingers Lt	0.244071054	1	Measurement	3028584	MR Finger	7
+urn:ordercomms:npi-synonym:from-code	MFINR	MRI Fingers Rr	0.244071054	1	Measurement	3028584	MR Finger	7
+urn:ordercomms:npi-synonym:from-code	MLLCL	MRI Tib \T\ Fib (Lower Leg) With Gd	0.156725957	1	Measurement	3035690	MR Lower leg	7
+urn:ordercomms:npi-synonym:from-code	MTHGB	MRI Thigh Both	0.193774225	1	Measurement	3026933	MR Thigh	7
+urn:ordercomms:npi-synonym:from-code	NBLDP	NM Blood Pool Scan	0.381653058	1	Measurement	3042608	NM Bone Blood pool	7
+urn:ordercomms:npi-synonym:from-code	UABDOB	US Guided biopsy abdomen	0.22944825	1	Measurement	3014650	US Abdomen	7
+urn:ordercomms:npi-synonym:from-code	UBLAD	US Urinary bladder	1	1	Measurement	3014927	US Urinary bladder	7
+urn:ordercomms:npi-synonym:from-code	UGRNL	US Groin Lt	0.579915975	1	Measurement	3003845	US Groin	7
+urn:ordercomms:npi-synonym:from-code	UKIDR	US Kidney Rt	0.422649731	1	Measurement	3053134	US Kidney - right	7
+urn:ordercomms:npi-synonym:from-code	UOTV	US Obstetric TV	0.154845745	1	Measurement	40771909	US Ovary	7
+urn:ordercomms:npi-synonym:from-code	UPEN	US Penis	1	1	Measurement	3053103	US Penis	7
+urn:ordercomms:npi-synonym:from-code	CCLAB	CT Clavicle Both	0.552786405	1	Measurement	3051765	CT Clavicle	6
+urn:ordercomms:npi-synonym:from-code	CURITC	CT Urinary tract with contrast	0.304778213	1	Measurement	40771616	CT Urinary bladder W contrast IV	6
+urn:ordercomms:npi-synonym:from-code	FTHMG	Myelogram Thoracic	0.183503419	1	Measurement	3018269	CT Thoracic spine	6
+urn:ordercomms:npi-synonym:from-code	MCLAVR	MRI Clavicle Rt	0.3229968	1	Measurement	3048711	MR Clavicle	6
+urn:ordercomms:npi-synonym:from-code	MSHCR	MRI Shoulder Rt with Gadolinium	0.178416164	1	Measurement	3015824	MR Shoulder	6
+urn:ordercomms:npi-synonym:from-code	UMAALB	US Guided FNA and core Bx of breast	0.140875307	1	Measurement	3011756	US Breast	6
+urn:ordercomms:npi-synonym:from-code	MJWRR	MRI Arthrogram Wrist Rt	0.367544468	1	Measurement	3050213	MR Wrist Arthrogram	6
+urn:ordercomms:npi-synonym:from-code	CABAO	CT Aorta abdominal	0.457673855	1	Measurement	3050490	CT Abdominal Aorta	5
+urn:ordercomms:npi-synonym:from-code	CADRC	CT Adrenals With Contrast	0.327073415	1	Measurement	3048344	CT Adrenal gland W contrast IV	5
+urn:ordercomms:npi-synonym:from-code	CBONEB	CT Guided biopsy bone	0.145149586	1	Measurement	3043520	CT Bone	5
+urn:ordercomms:npi-synonym:from-code	CMSTB	CT Mastoid Both	0.345346329	1	Measurement	3052237	CT Mastoid - bilateral	5
+urn:ordercomms:npi-synonym:from-code	CPELVD	CT Pelvis and Drainage	0.330465937	1	Measurement	3014964	CT Pelvis	5
+urn:ordercomms:npi-synonym:from-code	CSACBJ	CT Guid injection sacroiliac joint	0.453464275	1	Measurement	3020587	CT Guidance for injection of Sacroiliac Joint	5
+urn:ordercomms:npi-synonym:from-code	CSHOB	CT Shoulders	0.78178211	1	Measurement	3052399	CT Shoulder	5
+urn:ordercomms:npi-synonym:from-code	FLSPNM	Mobile image intensifier lumbar spi	0.172240865	1	Measurement	3034396	XR Lumbar spine Views	5
+urn:ordercomms:npi-synonym:from-code	MPARC	MRI Parotid with Gadolinium	0.173606129	1	Measurement	3053124	MR Parotid gland	5
+urn:ordercomms:npi-synonym:from-code	UMAARB	US Guided FNA and core Bx of breast	0.140875307	1	Measurement	3011756	US Breast	5
+urn:ordercomms:npi-synonym:from-code	UUPPA	US Upper abdomen	0.3229968	1	Measurement	3014650	US Abdomen	5
+urn:ordercomms:npi-synonym:from-code	UWRIRJ	US Guided injection wrist Rt	0.142507074	1	Measurement	3006679	US Wrist	5
+urn:ordercomms:npi-synonym:from-code	UXAARB	US Guided FNA and core biopsy axill	0.11359474	1	Measurement	21493926	US Axilla	5
+urn:ordercomms:npi-synonym:from-code	XCOCX	XR Coccyx	0.477767032	1	Measurement	3026198	XR Coccyx Views	5
+urn:ordercomms:npi-synonym:from-code	XFANKL	XR Foot and ankle Left	0.241213089	1	Measurement	3021549	XR Foot Views	5
+urn:ordercomms:npi-synonym:from-code	XHAWB	XR Hand and wrist Both	0.261451054	1	Measurement	3025885	XR Hand Views	5
+urn:ordercomms:npi-synonym:from-code	XLLIL	XR Lower limb Left	0.246629196	1	Measurement	3047476	XR Lower extremity AP	5
+urn:ordercomms:npi-synonym:from-code	FJELR	Arthrogram Elbow Rt	0.376390436	1	Measurement	3048694	RF Elbow Arthrogram	5
+urn:ordercomms:npi-synonym:from-code	FJWRL	Arthrogram Wrist Lt	0.376390436	1	Measurement	3004687	RF Wrist Arthrogram	5
+urn:ordercomms:npi-synonym:from-code	MJWRL	MRI Arthrogram Wrist Lt	0.329179607	1	Measurement	3004687	RF Wrist Arthrogram	5
+urn:ordercomms:npi-synonym:from-code	FJDSR	Arthrogram Shoulder Distention Rt	0.31319718	1	Measurement	3008605	RF Shoulder Arthrogram	5
+urn:ordercomms:npi-synonym:from-code	CABDUB	CT Guided Biopsy Upper Abdomen	0.188892894	1	Measurement	3032013	CT Abdomen	4
+urn:ordercomms:npi-synonym:from-code	CHRCHC	CT Chest high resolution with contr	0.213754607	1	Measurement	3013610	CT Chest W contrast IV	4
+urn:ordercomms:npi-synonym:from-code	CIAMS	CT Internal Auditory Meatii	0.535579636	1	Measurement	3047537	CT Internal auditory canal	4
+urn:ordercomms:npi-synonym:from-code	CSASM	CT Submandibular Areas	0.157576461	1	Measurement	3050205	CT Mandible	4
+urn:ordercomms:npi-synonym:from-code	MANCL	MRI Ankle  With Gadolinium Lt	0.105572809	1	Measurement	3026800	MR Ankle	4
+urn:ordercomms:npi-synonym:from-code	MBRCC	MRI Brain and cervical cord	0.198216274	1	Measurement	3009302	MR Cervical spine	4
+urn:ordercomms:npi-synonym:from-code	MLULB	MRI Lower Limb(s)	0.230199641	1	Measurement	3035690	MR Lower leg	4
+urn:ordercomms:npi-synonym:from-code	MSCPL	MRI Scapula Lt	0.292893219	1	Measurement	3049003	MR Scapula	4
+urn:ordercomms:npi-synonym:from-code	MSIAG	MRI Salivary glands	0.485504245	1	Measurement	3051115	MR Salivary gland	4
+urn:ordercomms:npi-synonym:from-code	NCHEQD	NM Differential Lung Perfusion Scan	0.321767002	1	Measurement	3041029	NM Lung Perfusion	4
+urn:ordercomms:npi-synonym:from-code	UCHESB	US Guided biopsy chest	0.176245529	1	Measurement	3026631	US Chest	4
+urn:ordercomms:npi-synonym:from-code	UKIDL	US Kidney Lt	0.445299804	1	Measurement	3050231	US Kidney - left	4
+urn:ordercomms:npi-synonym:from-code	UKIDRB	US Guided biopsy kidney Rt	0.183503419	1	Measurement	3050272	US Kidney	4
+urn:ordercomms:npi-synonym:from-code	UWRILJ	US Guided injection wrist Lt	0.142507074	1	Measurement	3006679	US Wrist	4
+urn:ordercomms:npi-synonym:from-code	XLLIR	XR Lower limb Right	0.23911409	1	Measurement	3047476	XR Lower extremity AP	4
+urn:ordercomms:npi-synonym:from-code	XPSIN	XR Paranasal Sinuses	0.214094752	1	Measurement	3005815	XR Sinuses Views	4
+urn:ordercomms:npi-synonym:from-code	FJKNL	Arthrogram Knee Lt	0.358311052	1	Measurement	3020496	RF Knee Arthrogram	4
+urn:ordercomms:npi-synonym:from-code	MJELR	MRI Arthrogram Elbow Rt	0.367544468	1	Measurement	3050983	MR Elbow Arthrogram	4
+urn:ordercomms:npi-synonym:from-code	MJKNL	MRI Arthrogram Knee Left	0.315832545	1	Measurement	3048356	MR Knee - left Arthrogram	4
+urn:ordercomms:npi-synonym:from-code	CADRBC	CT Adrenal with contrast Both	0.351114315	1	Measurement	3048344	CT Adrenal gland W contrast IV	3
+urn:ordercomms:npi-synonym:from-code	CHENEC	CT Head and neck with contrast	0.526567924	1	Measurement	42528851	CT Head and Neck W contrast IV	3
+urn:ordercomms:npi-synonym:from-code	CLIVT	CT Liver Triple Phase	0.306111334	1	Measurement	3034506	CT Liver	3
+urn:ordercomms:npi-synonym:from-code	CSKNE	CT Head and neck	0.465477516	1	Measurement	42528852	CT Head and Neck WO contrast	3
+urn:ordercomms:npi-synonym:from-code	FAHEP	Angio  Hepatic	0.177521679	1	Measurement	3045636	Hepatic artery anatomy	3
+urn:ordercomms:npi-synonym:from-code	IGSTX	Gastrostomy Access Recannulation	0.245926097	1	Measurement	3020557	Gastrostomy tube site	3
+urn:ordercomms:npi-synonym:from-code	MFOLC	MRI Forearm With Gadolinium Lt	0.156725957	1	Measurement	3020376	MR Forearm - left	3
+urn:ordercomms:npi-synonym:from-code	MWRCL	MRI Wrist With Gadolinium Lt	0.108867211	1	Measurement	3017838	MR Wrist	3
+urn:ordercomms:npi-synonym:from-code	NWCHW	NM White cell HMPAO whole body	0.285410399	1	Measurement	3031410	NM Whole body Views	3
+urn:ordercomms:npi-synonym:from-code	UBRALD	US Guided drainage breast Left	0.202275965	1	Measurement	3006495	US Breast - left	3
+urn:ordercomms:npi-synonym:from-code	UDCAR	US Doppler carotid artery Rt	0.394469929	1	Measurement	3039566	US.doppler Carotid arteries -right	3
+urn:ordercomms:npi-synonym:from-code	UKIDLB	US Guided Biopsy Kidney Lt	0.183503419	1	Measurement	3050272	US Kidney	3
+urn:ordercomms:npi-synonym:from-code	UMAMBI	US Guided marker insertion breast B	0.140875307	1	Measurement	3011756	US Breast	3
+urn:ordercomms:npi-synonym:from-code	UMAWB	US Breasts Wire Localisation	0.263211602	1	Measurement	3011756	US Breast	3
+urn:ordercomms:npi-synonym:from-code	UPELT	US Doppler pelvis TV	0.371232287	1	Measurement	3010445	US.doppler Pelvis vessels	3
+urn:ordercomms:npi-synonym:from-code	UPELVB	US Guided Biopsy Pelvis	0.204177574	1	Measurement	3000777	US Pelvis	3
+urn:ordercomms:npi-synonym:from-code	USHRRN	US Guided aspiration shoulder Rt	0.203666941	1	Measurement	3016633	US Shoulder	3
+urn:ordercomms:npi-synonym:from-code	XSCPB	XR Scapulae	0.470849738	1	Measurement	3014736	XR Scapula Views	3
+urn:ordercomms:npi-synonym:from-code	FJANR	Arthrogram Ankle Rt	0.376390436	1	Measurement	3047517	RF Ankle Arthrogram	3
+urn:ordercomms:npi-synonym:from-code	FJELL	Arthrogram Elbow Lt	0.376390436	1	Measurement	3048694	RF Elbow Arthrogram	3
+urn:ordercomms:npi-synonym:from-code	CABDON	CT Abdomen and Aspiration	0.325800138	1	Measurement	3032013	CT Abdomen	2
+urn:ordercomms:npi-synonym:from-code	CABDUN	CT Guided Aspiration Upper Abdomen	0.16905103	1	Measurement	3032013	CT Abdomen	2
+urn:ordercomms:npi-synonym:from-code	CBSSK	CT Base of skull	0.254644008	1	Measurement	3049599	CT Skull base	2
+urn:ordercomms:npi-synonym:from-code	CFORL	CT Forearm Lt	0.465477516	1	Measurement	3048703	CT Forearm - left	2
+urn:ordercomms:npi-synonym:from-code	CLLBC	CT Lower Limbs With Contrast	0.334937828	1	Measurement	3048973	CT Lower leg W contrast IV	2
+urn:ordercomms:npi-synonym:from-code	CLLIBC	CT Lower limb with contrast Both	0.331846895	1	Measurement	3048973	CT Lower leg W contrast IV	2
+urn:ordercomms:npi-synonym:from-code	CPELVN	CT Guided Aspiration Pelvis	0.177521679	1	Measurement	3014964	CT Pelvis	2
+urn:ordercomms:npi-synonym:from-code	CPEWC	CT Pelvis With/Without Contrast	0.23911409	1	Measurement	3014964	CT Pelvis	2
+urn:ordercomms:npi-synonym:from-code	CSAIB	CT Sacroiliac joint Both	0.650784852	1	Measurement	3021511	CT Sacroiliac Joint	2
+urn:ordercomms:npi-synonym:from-code	CSAPC	CT Parotids With Contrast	0.327073415	1	Measurement	3051820	CT Parotid gland W contrast IV	2
+urn:ordercomms:npi-synonym:from-code	CSINUC	CT Sinuses with contrast	0.468390467	1	Measurement	3048631	CT Sinuses W contrast IV	2
+urn:ordercomms:npi-synonym:from-code	FACIL	Angio common iliac artery Left	0.207881966	1	Measurement	3044231	US.doppler Iliac artery	2
+urn:ordercomms:npi-synonym:from-code	MBRPXC	MRI Brachial plexus with contrast	0.422649731	1	Measurement	3051455	MR Brachial plexus W contrast IV	2
+urn:ordercomms:npi-synonym:from-code	MCTSPC	MRI Spine cervicothoracic with cont	0.2	1	Measurement	3014004	MR Thoracic spine	2
+urn:ordercomms:npi-synonym:from-code	MELCR	MRI Elbow With Gadolinium Rt	0.108867211	1	Measurement	3011971	MR Elbow	2
+urn:ordercomms:npi-synonym:from-code	MFARRC	MRI Forearm with contrast Rt	0.336675042	1	Measurement	3048984	MR Forearm W contrast IV	2
+urn:ordercomms:npi-synonym:from-code	MFORC	MRI Forearm With Gadolinium Rt	0.15707277	1	Measurement	3028641	MR Forearm	2
+urn:ordercomms:npi-synonym:from-code	MLOLLC	MRI Lower leg with contrast Lt	0.361715261	1	Measurement	3052794	MR Lower leg W contrast IV	2
+urn:ordercomms:npi-synonym:from-code	MPANCC	MRI Pancreas with contrast	0.345346329	1	Measurement	3052729	MR Pancreas W contrast IV	2
+urn:ordercomms:npi-synonym:from-code	MSCPR	MRI Scapula Rt	0.292893219	1	Measurement	3049003	MR Scapula	2
+urn:ordercomms:npi-synonym:from-code	MSUAB	MRA Subclavian artery Both	0.666666667	1	Measurement	3050483	MRA Subclavian artery	2
+urn:ordercomms:npi-synonym:from-code	MTHGLC	MRI Thigh with contrast Left	0.292893219	1	Measurement	3048122	MR Thigh W contrast IV	2
+urn:ordercomms:npi-synonym:from-code	MUPLC	MRI Upper Arm With Gadolinium Lt	0.191877964	1	Measurement	3047999	MR Upper arm - left	2
+urn:ordercomms:npi-synonym:from-code	N123W	NM Iodine 123 (Whole Body)	0.222406814	1	Measurement	3031410	NM Whole body Views	2
+urn:ordercomms:npi-synonym:from-code	NCHEV	NM Lung Ventilation Scan (V)	0.552786405	1	Measurement	3039236	NM Lung Ventilation	2
+urn:ordercomms:npi-synonym:from-code	UABPI	US Ankle /Brachial Pressure Index	0.233035011	1	Measurement	46237026	Ankle-brachial index	2
+urn:ordercomms:npi-synonym:from-code	UADRB	US Adrenal Both	0.442913985	1	Measurement	40771798	US Adrenal gland	2
+urn:ordercomms:npi-synonym:from-code	UAXIBB	US Guided core biopsy axilla Both	0.148530682	1	Measurement	21493926	US Axilla	2
+urn:ordercomms:npi-synonym:from-code	UELBRJ	US Guided injection elbow Rt	0.316869949	1	Measurement	21493927	US Guidance for injection of Elbow	2
+urn:ordercomms:npi-synonym:from-code	ULABD	US Lower abdomen	0.3229968	1	Measurement	3014650	US Abdomen	2
+urn:ordercomms:npi-synonym:from-code	UMAFBB	US Guided FNA biopsy breast Both	0.152681454	1	Measurement	3011756	US Breast	2
+urn:ordercomms:npi-synonym:from-code	UPANCD	US Guided Drainage Pancreas	0.3598156	1	Measurement	3046548	US Guidance for drainage of Pancreas	2
+urn:ordercomms:npi-synonym:from-code	UPANCN	US Guided Aspiration Pancreas	0.222013395	1	Measurement	3014375	US Pancreas	2
+urn:ordercomms:npi-synonym:from-code	UPEPR	US Transrectal Prostate	0.477767032	1	Measurement	3001108	US Prostate transrectal	2
+urn:ordercomms:npi-synonym:from-code	USALGB	US Guided biopsy salivary gland	0.398070735	1	Measurement	3047757	US Guidance for biopsy of Salivary gland	2
+urn:ordercomms:npi-synonym:from-code	USHRB	US Shoulder Both	0.552786405	1	Measurement	3016633	US Shoulder	2
+urn:ordercomms:npi-synonym:from-code	USHRBJ	US Guided injection shoulder Both	0.198216274	1	Measurement	3016633	US Shoulder	2
+urn:ordercomms:npi-synonym:from-code	XACEB	XR Acetabulum Both	0.492907447	1	Measurement	3004003	XR Acetabulum Views	2
+urn:ordercomms:npi-synonym:from-code	XMAST	XR Mastoids	0.470849738	1	Measurement	3009226	XR Mastoid Views	2
+urn:ordercomms:npi-synonym:from-code	XSACX	XR Sacrum and coccyx	0.630725527	1	Measurement	3033471	XR Sacrum and Coccyx Views	2
+urn:ordercomms:npi-synonym:from-code	CJSHL	CT Arthrogram Shoulder Lt	0.46251615	1	Measurement	3048617	CT Shoulder Arthrogram	2
+urn:ordercomms:npi-synonym:from-code	FJANL	Arthrogram Ankle Lt	0.376390436	1	Measurement	3047517	RF Ankle Arthrogram	2
+urn:ordercomms:npi-synonym:from-code	CABDP	CT Abdomen perfusion study	0.314005659	1	Measurement	3032013	CT Abdomen	1
+urn:ordercomms:npi-synonym:from-code	CADWC	CT Adrenals With/Without Contrast	0.214492981	1	Measurement	3047655	CT Adrenal gland	1
+urn:ordercomms:npi-synonym:from-code	CANKB	CT Ankle Both	0.487010824	1	Measurement	3051515	CT Ankle	1
+urn:ordercomms:npi-synonym:from-code	CANKLJ	CT Guided injection ankle Left	0.178770066	1	Measurement	3048972	CT Ankle - left	1
+urn:ordercomms:npi-synonym:from-code	CANKRJ	CT Guided injection ankle Right	0.197227028	1	Measurement	3049640	CT Ankle - right	1
+urn:ordercomms:npi-synonym:from-code	CAOTHC	CT Aorta thoracic with contrast	0.354502776	1	Measurement	3024238	CT Thoracic Aorta W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	CCSFJJ	CT Facet joint injection cervical	0.170843802	1	Measurement	3027189	CT Cervical spine	1
+urn:ordercomms:npi-synonym:from-code	CCSPC	CT Spine Cervical With Contrast	0.354502776	1	Measurement	3028249	CT Cervical spine W contrast IT	1
+urn:ordercomms:npi-synonym:from-code	CFORR	CT Forearm Rt	0.442913985	1	Measurement	3047838	CT Forearm - right	1
+urn:ordercomms:npi-synonym:from-code	CLOLB	CT Lower leg Both	0.569668517	1	Measurement	3047495	CT Lower leg	1
+urn:ordercomms:npi-synonym:from-code	CLOLRC	CT Lower leg with contrast Rt	0.486043831	1	Measurement	3048973	CT Lower leg W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	CLSPNC	CT Spine lumbar with contrast	0.331846895	1	Measurement	3036968	CT Lumbar spine W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	CMAXI	CT Maxilla	1	1	Measurement	3047544	CT Maxilla	1
+urn:ordercomms:npi-synonym:from-code	CSACLJ	CT Guid injection sacroiliac joint	0.453464275	1	Measurement	3020587	CT Guidance for injection of Sacroiliac Joint	1
+urn:ordercomms:npi-synonym:from-code	CSHRB	CT Shoulder Both	0.552786405	1	Measurement	3052399	CT Shoulder	1
+urn:ordercomms:npi-synonym:from-code	CSIAW	CT Salivary glands	0.46251615	1	Measurement	36303564	CT Salivary gland WO contrast	1
+urn:ordercomms:npi-synonym:from-code	CSINO	CT Sinogram	0.311752798	1	Measurement	3011383	CT Sinuses	1
+urn:ordercomms:npi-synonym:from-code	CSTRM	CT Sternum	1	1	Measurement	3049275	CT Sternum	1
+urn:ordercomms:npi-synonym:from-code	CUPLC	CT Upper Arm With Contrast Lt	0.486043831	1	Measurement	3050842	CT Upper arm W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	DPELV	XR Pelvis	0.602640293	1	Measurement	3049253	XR Pelvis AP	1
+urn:ordercomms:npi-synonym:from-code	MADRC	MRI Adrenals With Gadolinium	0.140875307	1	Measurement	3050871	MR Adrenal gland	1
+urn:ordercomms:npi-synonym:from-code	MANKLC	MRI Ankle with contrast Lt	0.308435925	1	Measurement	3048147	MR Ankle W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MANKRC	MRI Ankle with contrast Rt	0.308435925	1	Measurement	3048147	MR Ankle W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MAULL	MRA Upper limb Lt	0.183503419	1	Measurement	3049976	MR Upper arm	1
+urn:ordercomms:npi-synonym:from-code	MAWBW	MRA Whole Body	0.434314575	1	Measurement	3048738	MR Whole body	1
+urn:ordercomms:npi-synonym:from-code	MBRPC	MRI Brachial Plexus With Gadolinium	0.314005659	1	Measurement	3002270	MR Brachial plexus	1
+urn:ordercomms:npi-synonym:from-code	MBRSR	MRI Breast screening Right	0.147197135	1	Measurement	3018779	MR Breast	1
+urn:ordercomms:npi-synonym:from-code	MCLAVL	MRI Clavicle Lt	0.3229968	1	Measurement	3048711	MR Clavicle	1
+urn:ordercomms:npi-synonym:from-code	MELCL	MRI Elbow With Gadolinium Lt	0.108867211	1	Measurement	3011971	MR Elbow	1
+urn:ordercomms:npi-synonym:from-code	MFARLC	MRI Forearm with contrast Lt	0.336675042	1	Measurement	3048984	MR Forearm W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MFOOBC	MRI Foot with contrast Both	0.277684881	1	Measurement	3050809	MR Foot W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MHANB	MRI Hand Both	0.150163414	1	Measurement	3009406	MR Hand	1
+urn:ordercomms:npi-synonym:from-code	MHANRC	MRI Hand with contrast Rt	0.292893219	1	Measurement	3050265	MR Hand W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MHIPRC	MRI Hip with contrast Rt	0.276253136	1	Measurement	3047594	MR Hip W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MKNELC	MRI Knee with contrast Lt	0.292893219	1	Measurement	3048626	MR Knee W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MLARY	MRI Larynx	0.314005659	1	Measurement	3047805	MR Larynx	1
+urn:ordercomms:npi-synonym:from-code	MLOLBC	MRI Lower leg with contrast Both	0.345346329	1	Measurement	3052794	MR Lower leg W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MLOLRC	MRI Lower leg with contrast Rt	0.361715261	1	Measurement	3052794	MR Lower leg W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MMAMLC	MRI Breast with contrast Lt	0.3229968	1	Measurement	3050819	MR Breast W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MMAMRC	MRI Breast with contrast Rt	0.3229968	1	Measurement	3050819	MR Breast W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MPAGDC	MRI Parotid gland with contrast	0.403399461	1	Measurement	3050808	MR Parotid gland W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MSHCL	MRI Shoulder Lt with Gadolinium	0.178416164	1	Measurement	3015824	MR Shoulder	1
+urn:ordercomms:npi-synonym:from-code	MSHRLC	MRI Shoulder with contrast Lt	0.349556364	1	Measurement	3048169	MR Shoulder W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MSINC	MRI Sinuses/Face with Gadolinium	0.148530682	1	Measurement	3004678	MR Sinuses	1
+urn:ordercomms:npi-synonym:from-code	MSPINC	MRA Spine with contrast	0.334937828	1	Measurement	3052085	MRA Spine vessels W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MSUAL	MRA Subclavian artery Left	0.666666667	1	Measurement	3050483	MRA Subclavian artery	1
+urn:ordercomms:npi-synonym:from-code	MSUAR	MRA Subclavian artery Right	0.638842441	1	Measurement	3050483	MRA Subclavian artery	1
+urn:ordercomms:npi-synonym:from-code	MUPARC	MRI Upper arm with contrast Rt	0.361715261	1	Measurement	3047503	MR Upper arm W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	MWRIRC	MRI Wrist with contrast Rt	0.308435925	1	Measurement	3052489	MR Wrist W contrast IV	1
+urn:ordercomms:npi-synonym:from-code	N123W1	"NM Iodine 123 (Whole Body, Part 1)"	0.183503419	1	Measurement	3031410	NM Whole body Views	1
+urn:ordercomms:npi-synonym:from-code	N123W2	"NM Iodine 123 (Whole Body, Part 2)"	0.183503419	1	Measurement	3031410	NM Whole body Views	1
+urn:ordercomms:npi-synonym:from-code	NBHIPO	NM Bone local pelvis and hips SPECT	0.165942344	1	Measurement	3016766	NM Bone Views	1
+urn:ordercomms:npi-synonym:from-code	NBKNBD	NM Dual phase bone knee Both	0.122941981	1	Measurement	3002822	NM Knee Views	1
+urn:ordercomms:npi-synonym:from-code	NBONW2	NM Bone whole body dual phase	0.262790219	1	Measurement	3031410	NM Whole body Views	1
+urn:ordercomms:npi-synonym:from-code	NBSKN	NM Bone Local Skull/Neck	0.225403331	1	Measurement	3016766	NM Bone Views	1
+urn:ordercomms:npi-synonym:from-code	NBTHX	NM Bone local thorax	0.259468369	1	Measurement	3016766	NM Bone Views	1
+urn:ordercomms:npi-synonym:from-code	NLIVS	NM Liver and spleen	0.622035527	1	Measurement	3041492	NM Liver and Spleen Views	1
+urn:ordercomms:npi-synonym:from-code	NLYMP	NM Lymphoscintigram	0.21826404	1	Measurement	21493764	NM Lymph node Views	1
+urn:ordercomms:npi-synonym:from-code	NPTHY1	NM Parathyroid (MIBI) Part 1	0.334937828	1	Measurement	3039540	NM Parathyroid gland Views	1
+urn:ordercomms:npi-synonym:from-code	NTHTM	NM Thyroid Technetium MIBI	0.248190588	1	Measurement	3035446	NM Thyroid gland Views	1
+urn:ordercomms:npi-synonym:from-code	NTU13	Thyroid uptake (I131)(No images)	0.210923635	1	Measurement	21493753	NM Thyroid gland Uptake	1
+urn:ordercomms:npi-synonym:from-code	NTUIW	NM Tumour imaging whole body	0.23988305	1	Measurement	3031410	NM Whole body Views	1
+urn:ordercomms:npi-synonym:from-code	NVLLL	NM Venogram lower limb Lt	0.111476683	1	Measurement	3046763	NM Vessel Views	1
+urn:ordercomms:npi-synonym:from-code	UARTE	US Arterial	0.528595479	1	Measurement	3048449	US Artery	1
+urn:ordercomms:npi-synonym:from-code	UAVMB	US Doppler vein map upper limb Both	0.236237384	1	Measurement	3038373	US.doppler Vein	1
+urn:ordercomms:npi-synonym:from-code	UAXIBN	US Guided FNA axilla Both	0.189907413	1	Measurement	21493926	US Axilla	1
+urn:ordercomms:npi-synonym:from-code	UCHWA	US Scan chest wall	0.41277978	1	Measurement	3049983	US Chest wall	1
+urn:ordercomms:npi-synonym:from-code	UCHWAB	US Guided FNA chest wall	0.323876596	1	Measurement	3049983	US Chest wall	1
+urn:ordercomms:npi-synonym:from-code	UCSPN	US Spine cervical	0.387627564	1	Measurement	42869394	US Cervical spine	1
+urn:ordercomms:npi-synonym:from-code	UDCAL	US Doppler carotid artery Lt	0.468004823	1	Measurement	3032855	US.doppler Carotid arteries	1
+urn:ordercomms:npi-synonym:from-code	UDIAP	US Diaphragmatic Region	0.301163758	1	Measurement	3012571	US Diaphragm and Liver	1
+urn:ordercomms:npi-synonym:from-code	UDRNL	US Doppler renal Lt	0.367544468	1	Measurement	3038955	US.doppler Renal artery	1
+urn:ordercomms:npi-synonym:from-code	UELBLJ	US Guided injection elbow Lt	0.316869949	1	Measurement	21493927	US Guidance for injection of Elbow	1
+urn:ordercomms:npi-synonym:from-code	UFOTV	US Follicular tracking transvaginal	0.249242806	1	Measurement	3018554	US Pelvis transvaginal	1
+urn:ordercomms:npi-synonym:from-code	UGBLD	US Gallbladder	1	1	Measurement	3024034	US Gallbladder	1
+urn:ordercomms:npi-synonym:from-code	UKIDBB	US Guided biopsy kidney Both	0.171921329	1	Measurement	3050272	US Kidney	1
+urn:ordercomms:npi-synonym:from-code	UMARRJ	US Guided radiotracer Inj breast Rt	0.140875307	1	Measurement	3011756	US Breast	1
+urn:ordercomms:npi-synonym:from-code	UNECKD	US Guided drainage neck	0.133974596	1	Measurement	3004062	US Neck	1
+urn:ordercomms:npi-synonym:from-code	UORBL	US Eye Lt	0.422649731	1	Measurement	40771807	US Eye limited	1
+urn:ordercomms:npi-synonym:from-code	UPEND	US Doppler Penile	0.165942344	1	Measurement	3053103	US Penis	1
+urn:ordercomms:npi-synonym:from-code	USHRLN	US Guided aspiration shoulder Lt	0.203666941	1	Measurement	3016633	US Shoulder	1
+urn:ordercomms:npi-synonym:from-code	UTVOD	US Transvaginal obstetric dating	0.298911258	1	Measurement	21493939	US transvaginal for pregnancy	1
+urn:ordercomms:npi-synonym:from-code	UXAALB	US Guided FNA and core biopsy axill	0.11359474	1	Measurement	21493926	US Axilla	1
+urn:ordercomms:npi-synonym:from-code	XFFOR	XR Forefoot Rt	0.251668523	1	Measurement	3021549	XR Foot Views	1
+urn:ordercomms:npi-synonym:from-code	XNASA	XR Nasal Bones	0.566987298	1	Measurement	3016350	XR Nasal bones Views	1
+urn:ordercomms:npi-synonym:from-code	XRIBL	XR Ribs Lt	0.422649731	1	Measurement	3016482	XR Ribs Views	1
+urn:ordercomms:npi-synonym:from-code	XRIBR	XR Ribs Rt	0.422649731	1	Measurement	3016482	XR Ribs Views	1
+urn:ordercomms:npi-synonym:from-code	YABMP	Doppler ABPI	0.230199641	1	Measurement	3040895	US.doppler Artery	1
+urn:ordercomms:npi-synonym:from-code	CJELL	CT Arthrogram Elbow Lt	0.374456758	1	Measurement	40771624	CT Elbow - left Arthrogram	1
+urn:ordercomms:npi-synonym:from-code	CJWRR	CT Arthrogram Wrist Rt	0.364189243	1	Measurement	40771636	CT Wrist - right Arthrogram	1
+urn:ordercomms:npi-synonym:from-code	FJHIB	Arthrogram hip Both	0.314005659	1	Measurement	3008314	RF Hip Arthrogram	1
+urn:ordercomms:npi-synonym:from-code	FJKNR	Arthrogram knee Rt	0.358311052	1	Measurement	3020496	RF Knee Arthrogram	1
+urn:ordercomms:npi-synonym:from-code	MJANR	MRI Arthrogram ankle Rt	0.367544468	1	Measurement	3050795	MR Ankle Arthrogram	1
+urn:ordercomms:npi-synonym:from-code	MJELL	MRI Arthrogram Elbow Lt	0.367544468	1	Measurement	3050983	MR Elbow Arthrogram	1
+urn:ordercomms:npi-synonym:from-code	MJKNR	MRI Arthrogram knee Rt	0.351114315	1	Measurement	3050304	MR Knee Arthrogram	1
+urn:ordercomms:npi-synonym:from-code	MSHLRJ	MRI Shoulder Arthrogram Right	0.465477516	1	Measurement	3052123	MR Shoulder Arthrogram	1
+urn:ordercomms:npi-synonym:from-code	UANOM	US Obstetric Foetal Anomaly Scan	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	25311
+urn:ordercomms:npi-synonym:from-code	UODNU	US Obstetric Nuchal Dating Scan	0	1	Measurement	3036844	Gestational age US composite estimate	20530
+urn:ordercomms:npi-synonym:from-code	MSKUH	MRI Head	0	1	Measurement	3023655	MR Brain	20459
+urn:ordercomms:npi-synonym:from-code	XMAMB	XR Mammogram	0	1	Measurement	3042322	FFD mammogram Breast Screening	20365
+urn:ordercomms:npi-synonym:from-code	CCHAPC	CT Thoraxt/Abdo/Pelvis with Contras	0	1	Measurement	43055219	CT Chest and Abdomen and Pelvis W contrast IV	20072
+urn:ordercomms:npi-synonym:from-code	XDEXA	Bone Densitometry DEXA	0	1	Measurement	3049921	DXA Skeletal system Views for bone density	18757
+urn:ordercomms:npi-synonym:from-code	UOFG	US Obstetric fetal growth	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	16350
+urn:ordercomms:npi-synonym:from-code	MLSPN	MRI Spine Lumbar/Sacral	0	1	Measurement	3012445	MR Lumbar spine	13076
+urn:ordercomms:npi-synonym:from-code	CCAPC	CT Chest/Abdo/Pelvis/ With Contrast	0	1	Measurement	36305710	CT Chest and Abdomen and Pelvis	11804
+urn:ordercomms:npi-synonym:from-code	UFGRN	US Obstetric Foetal Growth Non Rout	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	10806
+urn:ordercomms:npi-synonym:from-code	UTEST	US Testes	0	0	Measurement	0	Unknown	9961
+urn:ordercomms:npi-synonym:from-code	UODAT	US Obstetric Dating Scan	0	1	Measurement	3036844	Gestational age US composite estimate	7812
+urn:ordercomms:npi-synonym:from-code	UABPE	US Abdomen and Pelvis	0	0	Measurement	0	Unknown	7566
+urn:ordercomms:npi-synonym:from-code	UDAVY	US Obstetric Dating Scan Viability	0	1	Measurement	3036844	Gestational age US composite estimate	7309
+urn:ordercomms:npi-synonym:from-code	CVCOY	CT Colonoscopy (Virtual)	0	0	Measurement	0	Unknown	6437
+urn:ordercomms:npi-synonym:from-code	NULL	Barium Swallow	0	0	Measurement	0	Unknown	5353
+urn:ordercomms:npi-synonym:from-code	XSCAR	XR Scaphoid Rt	0	0	Measurement	0	Unknown	4385
+urn:ordercomms:npi-synonym:from-code	XSCAL	XR Scaphoid Lt	0	0	Measurement	0	Unknown	4187
+urn:ordercomms:npi-synonym:from-code	UOEPV	US Obstetric (Early Pregnancy)	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	4014
+urn:ordercomms:npi-synonym:from-code	XOPTG	Orthopantomogram	0	0	Measurement	0	Unknown	3939
+urn:ordercomms:npi-synonym:from-code	FALHC	Cardiac Angio  LV \T\ Coronary	0	0	Measurement	0	Unknown	3787
+urn:ordercomms:npi-synonym:from-code	CKIDB	CT Renal	0	0	Measurement	0	Unknown	3696
+urn:ordercomms:npi-synonym:from-code	CAAAG	CT Angiogram Aorta	0	0	Measurement	0	Unknown	3486
+urn:ordercomms:npi-synonym:from-code	MMRCP	MRCP	0	0	Measurement	0	Unknown	3255
+urn:ordercomms:npi-synonym:from-code	NULL	Barium Enema	0	0	Measurement	0	Unknown	2742
+urn:ordercomms:npi-synonym:from-code	XMAMR	XR Right Mammogram	0	1	Measurement	3042322	FFD mammogram Breast Screening	2553
+urn:ordercomms:npi-synonym:from-code	NULL	XR Left Mammogram	0	1	Measurement	3042322	FFD mammogram Breast Screening	2380
+urn:ordercomms:npi-synonym:from-code	CKUB	CT Kidneys Ureter Bladder	0	0	Measurement	0	Unknown	2345
+urn:ordercomms:npi-synonym:from-code	NULL	E.R.C.P.	0	0	Measurement	0	Unknown	2343
+urn:ordercomms:npi-synonym:from-code	FACOR	Cardiac Angio  Coronaries	0	0	Measurement	0	Unknown	2137
+urn:ordercomms:npi-synonym:from-code	NULL	CT Cardiac Angiogram Coronary	0	0	Measurement	0	Unknown	2109
+urn:ordercomms:npi-synonym:from-code	XWHSP	XR Whole spine	0	0	Measurement	0	Unknown	2019
+urn:ordercomms:npi-synonym:from-code	MSKUHC	MRI Head with contrast	0	1	Measurement	3023655	MR Brain	1986
+urn:ordercomms:npi-synonym:from-code	FALLB	Angio  Aorto-Femoral Lower Limbs	0	0	Measurement	0	Unknown	1959
+urn:ordercomms:npi-synonym:from-code	NULL	MRI IAM	0	0	Measurement	0	Unknown	1861
+urn:ordercomms:npi-synonym:from-code	NSENT	NM Sentinel Node Location/Imaging	0	0	Measurement	0	Unknown	1793
+urn:ordercomms:npi-synonym:from-code	CCHESC	CT Thorax with contrast	0	0	Measurement	0	Unknown	1781
+urn:ordercomms:npi-synonym:from-code	CCABDC	CT Thorax and abdomen with contrast	0	1	Measurement	36305710	CT Chest and Abdomen and Pelvis	1693
+urn:ordercomms:npi-synonym:from-code	FINJTJ	Injection Under Fluoroscopic Contro	0	0	Measurement	0	Unknown	1562
+urn:ordercomms:npi-synonym:from-code	UPLAC	US Obstetric Placental Localisation	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	1403
+urn:ordercomms:npi-synonym:from-code	NULL	MRI Head With Gadolinium	0	1	Measurement	3023655	MR Brain	1335
+urn:ordercomms:npi-synonym:from-code	UO4D	US Obstetric 4D Baby Scan	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	1249
+urn:ordercomms:npi-synonym:from-code	UODOP	US Obstetric (Doppler Study)	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	1244
+urn:ordercomms:npi-synonym:from-code	CCHAP	CT Chest/Abdo/Pelvis	0	1	Measurement	36305710	CT Chest and Abdomen and Pelvis	1237
+urn:ordercomms:npi-synonym:from-code	FLSPN	Fluoroscopy Lumbar Spine	0	0	Measurement	0	Unknown	1210
+urn:ordercomms:npi-synonym:from-code	UOOTH	US Obstetric (Others)	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	1198
+urn:ordercomms:npi-synonym:from-code	MRECT	MRI Pelvis Rectum	0	0	Measurement	0	Unknown	1172
+urn:ordercomms:npi-synonym:from-code	XVDXA	DXA Vertebral morphometry	0	0	Measurement	0	Unknown	1099
+urn:ordercomms:npi-synonym:from-code	MCMOP	MRI Cardiac morphology function	0	0	Measurement	0	Unknown	1052
+urn:ordercomms:npi-synonym:from-code	XFBDEM	XR Foreign Body demonstration	0	0	Measurement	0	Unknown	1029
+urn:ordercomms:npi-synonym:from-code	XWSPN	XR Whole Spine	0	0	Measurement	0	Unknown	1021
+urn:ordercomms:npi-synonym:from-code	NULL	MRI Pituitary	0	0	Measurement	0	Unknown	1004
+urn:ordercomms:npi-synonym:from-code	CNCAPC	CT Neck thorax abdomen pelvis with	0	0	Measurement	0	Unknown	970
+urn:ordercomms:npi-synonym:from-code	NULL	XR Dental Intra-Oral Periapical	0	0	Measurement	0	Unknown	901
+urn:ordercomms:npi-synonym:from-code	MCSPS	MRI Cardiac Stress Perfusion	0	0	Measurement	0	Unknown	804
+urn:ordercomms:npi-synonym:from-code	XLCEP	XR Cephalometry Lateral	0	0	Measurement	0	Unknown	789
+urn:ordercomms:npi-synonym:from-code	CACDB	CT Angiogram Aortic Arch and Caroti	0	0	Measurement	0	Unknown	745
+urn:ordercomms:npi-synonym:from-code	XFBD	XR Foreign body demonstration	0	0	Measurement	0	Unknown	733
+urn:ordercomms:npi-synonym:from-code	FGEN	Fluoroscopy	0	0	Measurement	0	Unknown	730
+urn:ordercomms:npi-synonym:from-code	UGRAF	US Graft Surveillance	0	0	Measurement	0	Unknown	651
+urn:ordercomms:npi-synonym:from-code	MLIVE	MRI Liver/Spleen	0	0	Measurement	0	Unknown	645
+urn:ordercomms:npi-synonym:from-code	UKNEL	US Knee Lt	0	0	Measurement	0	Unknown	615
+urn:ordercomms:npi-synonym:from-code	NULL	MRI Neck With Gadolinium	0	0	Measurement	0	Unknown	612
+urn:ordercomms:npi-synonym:from-code	UKNER	US Knee Rt	0	0	Measurement	0	Unknown	601
+urn:ordercomms:npi-synonym:from-code	MLIVHC	MRI Liver with hepatobiliary contra	0	0	Measurement	0	Unknown	586
+urn:ordercomms:npi-synonym:from-code	MSMBO	MRI Small bowel study	0	0	Measurement	0	Unknown	585
+urn:ordercomms:npi-synonym:from-code	CAICN	CT Angiogram Intracranial	0	0	Measurement	0	Unknown	551
+urn:ordercomms:npi-synonym:from-code	ZRXTI	Review of External Images	0	0	Measurement	0	Unknown	545
+urn:ordercomms:npi-synonym:from-code	CNCPC	CT Neck/Thorax/Abdo/Pelvis With Con	0	0	Measurement	0	Unknown	539
+urn:ordercomms:npi-synonym:from-code	CPTRS	CT Petrous bones	0	0	Measurement	0	Unknown	508
+urn:ordercomms:npi-synonym:from-code	NSEBS	NM Radionuclide SeHCAT bile study	0	0	Measurement	0	Unknown	508
+urn:ordercomms:npi-synonym:from-code	NULL	Angioplasty Iliac Right	0	0	Measurement	0	Unknown	478
+urn:ordercomms:npi-synonym:from-code	UOBRT	US Obstetric Routine	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	470
+urn:ordercomms:npi-synonym:from-code	UFOOL	US Foot Lt	0	0	Measurement	0	Unknown	467
+urn:ordercomms:npi-synonym:from-code	UFOOR	US Foot Rt	0	0	Measurement	0	Unknown	459
+urn:ordercomms:npi-synonym:from-code	MSBOW	MRI Small Bowel Study	0	0	Measurement	0	Unknown	454
+urn:ordercomms:npi-synonym:from-code	CHNTPC	CT Head neck thorax Abdo and pelvis	0	0	Measurement	0	Unknown	439
+urn:ordercomms:npi-synonym:from-code	NULL	Barium Follow through	0	0	Measurement	0	Unknown	424
+urn:ordercomms:npi-synonym:from-code	IAASGS	Stent Graft Abdominal Aorta	0	0	Measurement	0	Unknown	409
+urn:ordercomms:npi-synonym:from-code	FHIPR	Fluoroscopy Hip Rt	0	0	Measurement	0	Unknown	407
+urn:ordercomms:npi-synonym:from-code	XSKSU	XR Skeletal survey	0	0	Measurement	0	Unknown	400
+urn:ordercomms:npi-synonym:from-code	UTHIL	US thigh Lt	0	0	Measurement	0	Unknown	397
+urn:ordercomms:npi-synonym:from-code	NULL	NM Renogram with diuretic	0	0	Measurement	0	Unknown	393
+urn:ordercomms:npi-synonym:from-code	MSMBOC	MRI Small Bowel with Contrast	0	0	Measurement	0	Unknown	382
+urn:ordercomms:npi-synonym:from-code	UTHIR	US thigh Rt	0	0	Measurement	0	Unknown	372
+urn:ordercomms:npi-synonym:from-code	USKFA	Ultrasound Cranio-Facial Soft Tissu	0	0	Measurement	0	Unknown	371
+urn:ordercomms:npi-synonym:from-code	NULL	XR Colonic Transit Study	0	0	Measurement	0	Unknown	366
+urn:ordercomms:npi-synonym:from-code	FHIPL	Fluoroscopy Hip Lt	0	0	Measurement	0	Unknown	365
+urn:ordercomms:npi-synonym:from-code	NULL	MRI Thorax	0	0	Measurement	0	Unknown	364
+urn:ordercomms:npi-synonym:from-code	UHANR	US Hand Rt	0	0	Measurement	0	Unknown	350
+urn:ordercomms:npi-synonym:from-code	MCORP	Cardiac MRI Perfusion Study	0	0	Measurement	0	Unknown	346
+urn:ordercomms:npi-synonym:from-code	ULLCL	US Compression Venography Lower Lim	0	0	Measurement	0	Unknown	332
+urn:ordercomms:npi-synonym:from-code	NULL	Angio  Arch Aortogram	0	0	Measurement	0	Unknown	325
+urn:ordercomms:npi-synonym:from-code	FSPEE	Speech video fluoroscopy	0	0	Measurement	0	Unknown	323
+urn:ordercomms:npi-synonym:from-code	NULL	MRI Anal sphincter	0	0	Measurement	0	Unknown	311
+urn:ordercomms:npi-synonym:from-code	CFACI	CT Face	0	0	Measurement	0	Unknown	307
+urn:ordercomms:npi-synonym:from-code	FSALT	Barium Swallow with Speech Therapis	0	0	Measurement	0	Unknown	305
+urn:ordercomms:npi-synonym:from-code	UBIOPB	US Guided Biopsy	0	0	Measurement	0	Unknown	303
+urn:ordercomms:npi-synonym:from-code	UHANL	US Hand Lt	0	0	Measurement	0	Unknown	303
+urn:ordercomms:npi-synonym:from-code	UDASPD	US Drainage	0	0	Measurement	0	Unknown	301
+urn:ordercomms:npi-synonym:from-code	NULL	Injection Under US Control	0	0	Measurement	0	Unknown	297
+urn:ordercomms:npi-synonym:from-code	ULLCR	US Compression Venography Lower Lim	0	0	Measurement	0	Unknown	297
+urn:ordercomms:npi-synonym:from-code	NULL	NM Renogram MAG3 with Diuretic	0	0	Measurement	0	Unknown	291
+urn:ordercomms:npi-synonym:from-code	FUPLL	Fluoroscopy Upper Limb Lt	0	0	Measurement	0	Unknown	289
+urn:ordercomms:npi-synonym:from-code	IAPOLP	Angioplasty Popliteal Left	0	0	Measurement	0	Unknown	286
+urn:ordercomms:npi-synonym:from-code	CBIOPB	CT Guided Biopsy	0	0	Measurement	0	Unknown	277
+urn:ordercomms:npi-synonym:from-code	NULL	US Guided Aspiration Thyroid	0	0	Measurement	0	Unknown	276
+urn:ordercomms:npi-synonym:from-code	UOCLT	US Obstetric Cervical Length (TV)	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	265
+urn:ordercomms:npi-synonym:from-code	MSCAR	MRI Scaphoid Right	0	0	Measurement	0	Unknown	255
+urn:ordercomms:npi-synonym:from-code	CAREA	CT Angiogram Renal/Abdominal	0	0	Measurement	0	Unknown	250
+urn:ordercomms:npi-synonym:from-code	FUPLR	Fluoroscopy Upper Limb Rt	0	0	Measurement	0	Unknown	248
+urn:ordercomms:npi-synonym:from-code	MSCAL	MRI Scaphoid Left	0	0	Measurement	0	Unknown	246
+urn:ordercomms:npi-synonym:from-code	MSPNWC	MRI Spine whole with contrast	0	0	Measurement	0	Unknown	243
+urn:ordercomms:npi-synonym:from-code	FFOOLJ	Fluoroscopic guided injection foot	0	0	Measurement	0	Unknown	239
+urn:ordercomms:npi-synonym:from-code	FFOORJ	Fluoroscopic guided injection foot	0	0	Measurement	0	Unknown	238
+urn:ordercomms:npi-synonym:from-code	INEPLD	Nephrostomy Lt	0	0	Measurement	0	Unknown	237
+urn:ordercomms:npi-synonym:from-code	INEPRD	Nephrostomy Rt	0	0	Measurement	0	Unknown	237
+urn:ordercomms:npi-synonym:from-code	UAXILB	US Guided Core Biopsy Axilla Lt	0	0	Measurement	0	Unknown	234
+urn:ordercomms:npi-synonym:from-code	FALLR	Angio  Antegrade Femoral Rt	0	0	Measurement	0	Unknown	218
+urn:ordercomms:npi-synonym:from-code	IAIPLP	Angioplasty Infrapopliteal Lt	0	0	Measurement	0	Unknown	216
+urn:ordercomms:npi-synonym:from-code	NULL	Herniogram	0	0	Measurement	0	Unknown	214
+urn:ordercomms:npi-synonym:from-code	IOESSS	Oesophageal Stent Insertion	0	0	Measurement	0	Unknown	212
+urn:ordercomms:npi-synonym:from-code	MIAMBC	MRI IAM with contrast Both	0	0	Measurement	0	Unknown	204
+urn:ordercomms:npi-synonym:from-code	UANKL	US Ankle Left	0	0	Measurement	0	Unknown	204
+urn:ordercomms:npi-synonym:from-code	NULL	Ureteric Stent Retrograde Lt	0	0	Measurement	0	Unknown	201
+urn:ordercomms:npi-synonym:from-code	UANKR	US Ankle Right	0	0	Measurement	0	Unknown	200
+urn:ordercomms:npi-synonym:from-code	NULL	Cystogram	0	0	Measurement	0	Unknown	198
+urn:ordercomms:npi-synonym:from-code	CNECHC	CT Neck and thorax with contrast	0	0	Measurement	0	Unknown	188
+urn:ordercomms:npi-synonym:from-code	MTHIR	MRI Femur (Thigh) Right	0	0	Measurement	0	Unknown	188
+urn:ordercomms:npi-synonym:from-code	NULL	MRI Spine Cocyx	0	0	Measurement	0	Unknown	173
+urn:ordercomms:npi-synonym:from-code	UCRAN	US Cranial contents	0	0	Measurement	0	Unknown	173
+urn:ordercomms:npi-synonym:from-code	IAIPRP	Angioplasty Infrapopliteal Rt	0	0	Measurement	0	Unknown	171
+urn:ordercomms:npi-synonym:from-code	IUSRR	Ureteric Stent Retrograde Right	0	0	Measurement	0	Unknown	170
+urn:ordercomms:npi-synonym:from-code	FPLLLM	Orthopaedic Pinning Lower Limb Lt	0	0	Measurement	0	Unknown	168
+urn:ordercomms:npi-synonym:from-code	MTHIL	MRI Femur (Thigh) Left	0	0	Measurement	0	Unknown	168
+urn:ordercomms:npi-synonym:from-code	ITCVCI	Tunnelled central venous line inser	0	0	Measurement	0	Unknown	167
+urn:ordercomms:npi-synonym:from-code	NULL	CT Venogram Cerebral	0	0	Measurement	0	Unknown	166
+urn:ordercomms:npi-synonym:from-code	FGBA	Fluoro guided adjustment gastric ba	0	0	Measurement	0	Unknown	161
+urn:ordercomms:npi-synonym:from-code	UO4DR	US Obstetric 4D Baby Bonding Recall	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	160
+urn:ordercomms:npi-synonym:from-code	XSSNA	XR Skeletal Survey Non Accidental I	0	0	Measurement	0	Unknown	160
+urn:ordercomms:npi-synonym:from-code	NGFR2	NM GFR estimation 2 samples	0	0	Measurement	0	Unknown	154
+urn:ordercomms:npi-synonym:from-code	IRADI	Cardiac Radi wire + Catheter	0	0	Measurement	0	Unknown	152
+urn:ordercomms:npi-synonym:from-code	FLUPUY	Fluoroscopic Guided Lumbar Puncture	0	0	Measurement	0	Unknown	151
+urn:ordercomms:npi-synonym:from-code	IFACJJ	Facet Joint Injection	0	0	Measurement	0	Unknown	151
+urn:ordercomms:npi-synonym:from-code	UASPRN	US Aspiration	0	0	Measurement	0	Unknown	149
+urn:ordercomms:npi-synonym:from-code	FPLLRM	Orthopaedic Pinning Lower Limb Rt	0	0	Measurement	0	Unknown	147
+urn:ordercomms:npi-synonym:from-code	NULL	NM Red Cell Mass \T\ Plasma Volume	0	0	Measurement	0	Unknown	144
+urn:ordercomms:npi-synonym:from-code	FPTCH	Percutaneous Transhepatic Cholangio	0	0	Measurement	0	Unknown	141
+urn:ordercomms:npi-synonym:from-code	UODA	US Obstetric detailed anatomy scan	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	139
+urn:ordercomms:npi-synonym:from-code	NULL	Micturating Cystourethrogram (MCUG)	0	0	Measurement	0	Unknown	137
+urn:ordercomms:npi-synonym:from-code	IAVGTP	Angioplasty Vein Graft	0	0	Measurement	0	Unknown	137
+urn:ordercomms:npi-synonym:from-code	CPETR	CT Petrous Bones	0	0	Measurement	0	Unknown	136
+urn:ordercomms:npi-synonym:from-code	UDOPP	US Doppler	0	0	Measurement	0	Unknown	136
+urn:ordercomms:npi-synonym:from-code	NULL	CT Guided Biopsy Thorax	0	0	Measurement	0	Unknown	133
+urn:ordercomms:npi-synonym:from-code	IIVFTI	Inferior Vena Cava Filter Temporary	0	0	Measurement	0	Unknown	131
+urn:ordercomms:npi-synonym:from-code	UELBL	US Elbow Lt	0	0	Measurement	0	Unknown	129
+urn:ordercomms:npi-synonym:from-code	UAMNI	US Guided Amniocentesis	0	0	Measurement	0	Unknown	127
+urn:ordercomms:npi-synonym:from-code	UOBSM	US Obstetric Routine (Mult Pregnanc	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	127
+urn:ordercomms:npi-synonym:from-code	CMAST	CT Mastoids	0	0	Measurement	0	Unknown	126
+urn:ordercomms:npi-synonym:from-code	NULL	Hickman Line Insertion	0	0	Measurement	0	Unknown	124
+urn:ordercomms:npi-synonym:from-code	IASILS	Arterial Stent Iliac Lt	0	0	Measurement	0	Unknown	122
+urn:ordercomms:npi-synonym:from-code	IASIRS	Arterial Stent Iliac Rt	0	0	Measurement	0	Unknown	122
+urn:ordercomms:npi-synonym:from-code	USPN	US Spine	0	0	Measurement	0	Unknown	117
+urn:ordercomms:npi-synonym:from-code	XSSMY	XR Skeletal Survey Myeloma	0	0	Measurement	0	Unknown	114
+urn:ordercomms:npi-synonym:from-code	NULL	CT Guided nerve root injection cerv	0	0	Measurement	0	Unknown	113
+urn:ordercomms:npi-synonym:from-code	UELBR	US Elbow Rt	0	0	Measurement	0	Unknown	105
+urn:ordercomms:npi-synonym:from-code	NULL	Ureteric stent antegrade Rt	0	0	Measurement	0	Unknown	104
+urn:ordercomms:npi-synonym:from-code	FPLULM	Orthopaedic Pinning Upper Limb Lt	0	0	Measurement	0	Unknown	102
+urn:ordercomms:npi-synonym:from-code	FNPGL	Nephrostogram Lt	0	0	Measurement	0	Unknown	100
+urn:ordercomms:npi-synonym:from-code	FPHIPM	Orthopaedic Pinning Hip	0	0	Measurement	0	Unknown	100
+urn:ordercomms:npi-synonym:from-code	FNJFT	Naso-Jejunal Feeding Tube	0	0	Measurement	0	Unknown	99
+urn:ordercomms:npi-synonym:from-code	FSBEN	Barium Small Bowel Enema	0	0	Measurement	0	Unknown	97
+urn:ordercomms:npi-synonym:from-code	UASPNN	US Guided aspiration	0	0	Measurement	0	Unknown	97
+urn:ordercomms:npi-synonym:from-code	FSBME	Barium Small Bowel Meal	0	0	Measurement	0	Unknown	93
+urn:ordercomms:npi-synonym:from-code	NULL	MRI IAM With Gadolinium	0	0	Measurement	0	Unknown	92
+urn:ordercomms:npi-synonym:from-code	FACRH	Cardiac Angio  Right Heart Study	0	0	Measurement	0	Unknown	92
+urn:ordercomms:npi-synonym:from-code	FPULRM	Orthopaedic Pinning Upper Limb Rt	0	0	Measurement	0	Unknown	90
+urn:ordercomms:npi-synonym:from-code	XMASRB	XR Breast Stereotactic Biopsy Rt	0	0	Measurement	0	Unknown	90
+urn:ordercomms:npi-synonym:from-code	NULL	Ureteric Stent Antegrade Rt	0	0	Measurement	0	Unknown	89
+urn:ordercomms:npi-synonym:from-code	FPACE	Cardiac Pacing Wire Screening	0	0	Measurement	0	Unknown	88
+urn:ordercomms:npi-synonym:from-code	NULL	US Guided injection foot Rt	0	0	Measurement	0	Unknown	86
+urn:ordercomms:npi-synonym:from-code	IPATEI	Cardiac Pacemaker Temporary	0	0	Measurement	0	Unknown	85
+urn:ordercomms:npi-synonym:from-code	NULL	NM MPS Tf stress	0	0	Measurement	0	Unknown	84
+urn:ordercomms:npi-synonym:from-code	XMASLB	XR Breast Stereotactic Biopsy Lt	0	0	Measurement	0	Unknown	84
+urn:ordercomms:npi-synonym:from-code	IIVFTX	Inferior Vena Cava Filter Removal	0	0	Measurement	0	Unknown	83
+urn:ordercomms:npi-synonym:from-code	XMASWL	XR Breast Stereotactic Guided Wire	0	0	Measurement	0	Unknown	80
+urn:ordercomms:npi-synonym:from-code	NULL	NM Radium 223 therapy	0	0	Measurement	0	Unknown	79
+urn:ordercomms:npi-synonym:from-code	IIVFPI	Inferior Vena Cava Filter Permanent	0	0	Measurement	0	Unknown	77
+urn:ordercomms:npi-synonym:from-code	USPIN	US spine	0	0	Measurement	0	Unknown	76
+urn:ordercomms:npi-synonym:from-code	NULL	XR Dental Intra-Oral Lower Occlusal	0	0	Measurement	0	Unknown	75
+urn:ordercomms:npi-synonym:from-code	FTUBG	Tubogram	0	0	Measurement	0	Unknown	75
+urn:ordercomms:npi-synonym:from-code	NULL	US Guided injection foot Lt	0	0	Measurement	0	Unknown	74
+urn:ordercomms:npi-synonym:from-code	FLSMGT	Myelogram lumbar	0	0	Measurement	0	Unknown	73
+urn:ordercomms:npi-synonym:from-code	FNPGR	Nephrostogram Rt	0	0	Measurement	0	Unknown	73
+urn:ordercomms:npi-synonym:from-code	FTSPN	Fluoroscopy Thoracic Spine	0	0	Measurement	0	Unknown	72
+urn:ordercomms:npi-synonym:from-code	IVTESE	Embolisation Of Testicular Vein	0	0	Measurement	0	Unknown	72
+urn:ordercomms:npi-synonym:from-code	CNCAP	CT Neck/Thorax/Abdo/Pelvis	0	0	Measurement	0	Unknown	71
+urn:ordercomms:npi-synonym:from-code	FABDO	Fluoroscopy Abdomen	0	0	Measurement	0	Unknown	70
+urn:ordercomms:npi-synonym:from-code	UULAB	US Upper Limb Arm Arterial Doppler	0	0	Measurement	0	Unknown	70
+urn:ordercomms:npi-synonym:from-code	NULL	XR Mammogram Wire Localisation Rt	0	1	Measurement	3042322	FFD mammogram Breast Screening	69
+urn:ordercomms:npi-synonym:from-code	CCALR	CT Calcaneum Rt	0	0	Measurement	0	Unknown	68
+urn:ordercomms:npi-synonym:from-code	INEPYX	Percutaneous Nephrolithotomy	0	0	Measurement	0	Unknown	66
+urn:ordercomms:npi-synonym:from-code	USML	Ultrasound Skin Marker Left	0	0	Measurement	0	Unknown	66
+urn:ordercomms:npi-synonym:from-code	XMASWR	XR Breast Stereotactic Guided Wire	0	0	Measurement	0	Unknown	65
+urn:ordercomms:npi-synonym:from-code	ZUFE	Fibroid Embolisation First Appointm	0	0	Measurement	0	Unknown	65
+urn:ordercomms:npi-synonym:from-code	MCORV	Cardiac MRI Ventriculogram	0	0	Measurement	0	Unknown	64
+urn:ordercomms:npi-synonym:from-code	FNRBK	Fluoroscopic guided nerve root bloc	0	0	Measurement	0	Unknown	63
+urn:ordercomms:npi-synonym:from-code	XLEMB	XR Leg Length Measurement Both	0	0	Measurement	0	Unknown	63
+urn:ordercomms:npi-synonym:from-code	NULL	XR Mammo guided guidewire Loc breas	0	1	Measurement	3042322	FFD mammogram Breast Screening	62
+urn:ordercomms:npi-synonym:from-code	CCALL	CT Calcaneum Lt	0	0	Measurement	0	Unknown	60
+urn:ordercomms:npi-synonym:from-code	IUTFDE	Embolisation Of Uterine Fibroid	0	0	Measurement	0	Unknown	60
+urn:ordercomms:npi-synonym:from-code	MANFIC	MRI Perianal Fistula with Contrast	0	0	Measurement	0	Unknown	60
+urn:ordercomms:npi-synonym:from-code	UBUTL	US Buttock Lt	0	0	Measurement	0	Unknown	60
+urn:ordercomms:npi-synonym:from-code	UMAMLI	US Guided marker insertion Breast L	0	0	Measurement	0	Unknown	60
+urn:ordercomms:npi-synonym:from-code	NULL	Prone Stereo Mammo and core biopsy	0	1	Measurement	3042322	FFD mammogram Breast Screening	59
+urn:ordercomms:npi-synonym:from-code	CFACIC	CT Face with contrast	0	0	Measurement	0	Unknown	57
+urn:ordercomms:npi-synonym:from-code	USMR	Ultrasound Skin Marker Right	0	0	Measurement	0	Unknown	57
+urn:ordercomms:npi-synonym:from-code	NULL	XR Colonic Transit Study Day 5	0	0	Measurement	0	Unknown	56
+urn:ordercomms:npi-synonym:from-code	EOESSS	Endoscopic Guided Oesophageal Stent	0	0	Measurement	0	Unknown	56
+urn:ordercomms:npi-synonym:from-code	IANKRJ	Fluoroscopic guided injection ankle	0	0	Measurement	0	Unknown	56
+urn:ordercomms:npi-synonym:from-code	IIIAPE	Embolisation Internal Iliac Artery	0	0	Measurement	0	Unknown	56
+urn:ordercomms:npi-synonym:from-code	UAXIRN	US Guided FNA axilla Rt	0	0	Measurement	0	Unknown	56
+urn:ordercomms:npi-synonym:from-code	UMAXR	US Guided skin marking breast Rt	0	0	Measurement	0	Unknown	56
+urn:ordercomms:npi-synonym:from-code	NULL	Endo colorectal metal stent Fluoro	0	0	Measurement	0	Unknown	55
+urn:ordercomms:npi-synonym:from-code	NBSAB7	NM Radionuclide SeHCAT bile study D	0	0	Measurement	0	Unknown	55
+urn:ordercomms:npi-synonym:from-code	ZRXTX	Review of External Radiographs	0	0	Measurement	0	Unknown	54
+urn:ordercomms:npi-synonym:from-code	UMAXL	US Guided skin marking breast Lt	0	0	Measurement	0	Unknown	53
+urn:ordercomms:npi-synonym:from-code	NBSAB	NM Radionuclide SeHCAT bile study	0	0	Measurement	0	Unknown	51
+urn:ordercomms:npi-synonym:from-code	FLSMG	Myelogram Lumbar	0	0	Measurement	0	Unknown	50
+urn:ordercomms:npi-synonym:from-code	FWSPN	Fluoroscopy Whole Spine	0	0	Measurement	0	Unknown	50
+urn:ordercomms:npi-synonym:from-code	NULL	Linogram Any Venous Cath/Line	0	0	Measurement	0	Unknown	49
+urn:ordercomms:npi-synonym:from-code	XKIDB	XR Kidney Both	0	0	Measurement	0	Unknown	47
+urn:ordercomms:npi-synonym:from-code	NULL	Retrograde Uretero-Pyelogram Lt	0	0	Measurement	0	Unknown	46
+urn:ordercomms:npi-synonym:from-code	FACRS	Cardiac Angio Rt Heart +/- Saturati	0	0	Measurement	0	Unknown	46
+urn:ordercomms:npi-synonym:from-code	INEPXG	Nephrostomy catheter exchange	0	0	Measurement	0	Unknown	46
+urn:ordercomms:npi-synonym:from-code	NULL	Barium Swallow \T\ Meal	0	0	Measurement	0	Unknown	45
+urn:ordercomms:npi-synonym:from-code	CAULB	CT Angiogram Upper Limbs	0	0	Measurement	0	Unknown	43
+urn:ordercomms:npi-synonym:from-code	NULL	Review of External US Images	0	0	Measurement	0	Unknown	42
+urn:ordercomms:npi-synonym:from-code	EIRDPS	E.R.C.P. Biliary Stent Plastic	0	0	Measurement	0	Unknown	41
+urn:ordercomms:npi-synonym:from-code	FHIPB	Fluoroscopy Hips	0	0	Measurement	0	Unknown	41
+urn:ordercomms:npi-synonym:from-code	NULL	CT Guided Drainage	0	0	Measurement	0	Unknown	39
+urn:ordercomms:npi-synonym:from-code	CFACC	CT Face With Contrast	0	0	Measurement	0	Unknown	39
+urn:ordercomms:npi-synonym:from-code	ICOLOS	Colorectal Stent	0	0	Measurement	0	Unknown	39
+urn:ordercomms:npi-synonym:from-code	IHIPRJ	Fluoroscopic guided injection hip R	0	0	Measurement	0	Unknown	39
+urn:ordercomms:npi-synonym:from-code	MSPINE	MRI Whole Spine	0	0	Measurement	0	Unknown	39
+urn:ordercomms:npi-synonym:from-code	FSACM	Fluoroscopy Sacrum	0	0	Measurement	0	Unknown	38
+urn:ordercomms:npi-synonym:from-code	NULL	US Guided injection ankle Lt	0	0	Measurement	0	Unknown	37
+urn:ordercomms:npi-synonym:from-code	FSGML	Sialogram Submandible (Fluoro) Lt	0	0	Measurement	0	Unknown	37
+urn:ordercomms:npi-synonym:from-code	INEPX	Nephrostomy Catheter Exchange	0	0	Measurement	0	Unknown	37
+urn:ordercomms:npi-synonym:from-code	NULL	Intravenous Urogram (IVU)	0	0	Measurement	0	Unknown	36
+urn:ordercomms:npi-synonym:from-code	FTHOR	Fluoroscopy Thorax	0	0	Measurement	0	Unknown	36
+urn:ordercomms:npi-synonym:from-code	IBILMS	Biliary bile duct stent metal	0	0	Measurement	0	Unknown	35
+urn:ordercomms:npi-synonym:from-code	IJYCXG	Jejunostomy catheter exchange	0	0	Measurement	0	Unknown	35
+urn:ordercomms:npi-synonym:from-code	MBLADC	MRI Urinary bladder with contrast	0	0	Measurement	0	Unknown	35
+urn:ordercomms:npi-synonym:from-code	EIRDMS	E.R.C.P. Biliary Stent Metal	0	0	Measurement	0	Unknown	34
+urn:ordercomms:npi-synonym:from-code	IOESDP	Oesophageal Dilatation	0	0	Measurement	0	Unknown	34
+urn:ordercomms:npi-synonym:from-code	NULL	US Guided injection hip Lt	0	0	Measurement	0	Unknown	33
+urn:ordercomms:npi-synonym:from-code	IASDRD	Fluoroscopic Drainage	0	0	Measurement	0	Unknown	33
+urn:ordercomms:npi-synonym:from-code	NULL	MRI Thorax With Gadolinium	0	0	Measurement	0	Unknown	32
+urn:ordercomms:npi-synonym:from-code	ULLCB	US Compression Venography Lower Lim	0	0	Measurement	0	Unknown	32
+urn:ordercomms:npi-synonym:from-code	NULL	MRI Foot With Gadolinium Rt	0	0	Measurement	0	Unknown	31
+urn:ordercomms:npi-synonym:from-code	MPENS	MRI Penis	0	0	Measurement	0	Unknown	31
+urn:ordercomms:npi-synonym:from-code	UO3T	US Obstetric 3rd trimester	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	30
+urn:ordercomms:npi-synonym:from-code	FDIAP	Fluoroscopy diaphragm	0	0	Measurement	0	Unknown	29
+urn:ordercomms:npi-synonym:from-code	FSGMR	Sialogram Submandible (Fluoro) Rt	0	0	Measurement	0	Unknown	29
+urn:ordercomms:npi-synonym:from-code	XZYGR	XR Zygoma Rt	0	0	Measurement	0	Unknown	29
+urn:ordercomms:npi-synonym:from-code	NULL	Venogram Leg Lt	0	0	Measurement	0	Unknown	28
+urn:ordercomms:npi-synonym:from-code	FFIST	Fistulogram	0	0	Measurement	0	Unknown	28
+urn:ordercomms:npi-synonym:from-code	MCHESC	MRI Thorax with contrast	0	0	Measurement	0	Unknown	28
+urn:ordercomms:npi-synonym:from-code	UCHESD	US Guided Drainage Thorax	0	0	Measurement	0	Unknown	28
+urn:ordercomms:npi-synonym:from-code	NULL	US Follicular Tracking (TV)	0	0	Measurement	0	Unknown	27
+urn:ordercomms:npi-synonym:from-code	FTHL1	Thrombolysis Lower Limb Follow Up 1	0	0	Measurement	0	Unknown	27
+urn:ordercomms:npi-synonym:from-code	FUREH	Urethrogram	0	0	Measurement	0	Unknown	27
+urn:ordercomms:npi-synonym:from-code	IHIPLJ	Fluoroscopic guided injection hip L	0	0	Measurement	0	Unknown	27
+urn:ordercomms:npi-synonym:from-code	FCPLN	Cardiac Pressure Line	0	0	Measurement	0	Unknown	26
+urn:ordercomms:npi-synonym:from-code	ITHLOJ	Thrombolysis Lower Limb	0	0	Measurement	0	Unknown	26
+urn:ordercomms:npi-synonym:from-code	ZUFEUS	Fibroid Embolisation Ultrasound	0	0	Measurement	0	Unknown	26
+urn:ordercomms:npi-synonym:from-code	NULL	Venogram Leg Rt	0	0	Measurement	0	Unknown	24
+urn:ordercomms:npi-synonym:from-code	FFOOBJ	Fluoroscopic guided injection foot	0	0	Measurement	0	Unknown	24
+urn:ordercomms:npi-synonym:from-code	IACOEP	Angioplasty Coeliac	0	0	Measurement	0	Unknown	24
+urn:ordercomms:npi-synonym:from-code	UKIDP	US Paediatric Renal	0	0	Measurement	0	Unknown	24
+urn:ordercomms:npi-synonym:from-code	NULL	Stent Graft Iliac	0	0	Measurement	0	Unknown	23
+urn:ordercomms:npi-synonym:from-code	ICARDN	Cardiac Angio Aspiration	0	0	Measurement	0	Unknown	23
+urn:ordercomms:npi-synonym:from-code	IRADP	Cardiac Radi wire + PCI	0	0	Measurement	0	Unknown	23
+urn:ordercomms:npi-synonym:from-code	IVSVCS	Pc stent superior vena cava	0	0	Measurement	0	Unknown	23
+urn:ordercomms:npi-synonym:from-code	ICDEF	Cardiac Defibrillator Implant	0	0	Measurement	0	Unknown	22
+urn:ordercomms:npi-synonym:from-code	NBSAB1	NM Radionuclide SeHCAT bile study D	0	0	Measurement	0	Unknown	22
+urn:ordercomms:npi-synonym:from-code	NULL	US Guided injection ankle Rt	0	0	Measurement	0	Unknown	21
+urn:ordercomms:npi-synonym:from-code	CSCAN	CT Scanogram For Leg Length	0	0	Measurement	0	Unknown	21
+urn:ordercomms:npi-synonym:from-code	FTHRC	Thrombolysis check angiogram	0	0	Measurement	0	Unknown	21
+urn:ordercomms:npi-synonym:from-code	EOESDP	Endoscopic Guided Oesophageal Dilat	0	0	Measurement	0	Unknown	20
+urn:ordercomms:npi-synonym:from-code	FBILDX	Biliary drain removal	0	0	Measurement	0	Unknown	20
+urn:ordercomms:npi-synonym:from-code	FWSMF	Water Soluble Contrast Meal \T\ FT	0	0	Measurement	0	Unknown	20
+urn:ordercomms:npi-synonym:from-code	MAXIR	MRI Axilla Rt	0	0	Measurement	0	Unknown	19
+urn:ordercomms:npi-synonym:from-code	NULL	NM Meckels Scan	0	0	Measurement	0	Unknown	19
+urn:ordercomms:npi-synonym:from-code	FBIDX	Biliary Drain Removal	0	0	Measurement	0	Unknown	19
+urn:ordercomms:npi-synonym:from-code	INEPBD	Nephrostomy Both	0	0	Measurement	0	Unknown	19
+urn:ordercomms:npi-synonym:from-code	MAXIR	MRI Axilla Rt	0	0	Measurement	0	Unknown	19
+urn:ordercomms:npi-synonym:from-code	MFARR	MRI Forearm Rt	0	0	Measurement	0	Unknown	18
+urn:ordercomms:npi-synonym:from-code	CENTE	CT Enterography	0	0	Measurement	0	Unknown	18
+urn:ordercomms:npi-synonym:from-code	FGAEN	Gastrografin Enema	0	0	Measurement	0	Unknown	18
+urn:ordercomms:npi-synonym:from-code	IMESAE	Embolisation Mesenteric Artery	0	0	Measurement	0	Unknown	18
+urn:ordercomms:npi-synonym:from-code	MFARR	MRI Forearm Rt	0	0	Measurement	0	Unknown	18
+urn:ordercomms:npi-synonym:from-code	NCRGXO	NM Cardiac Gated  Rest TF	0	0	Measurement	0	Unknown	18
+urn:ordercomms:npi-synonym:from-code	UCORA	US Intracoronary	0	0	Measurement	0	Unknown	18
+urn:ordercomms:npi-synonym:from-code	XSSGE	XR Skeletal Survey General	0	0	Measurement	0	Unknown	18
+urn:ordercomms:npi-synonym:from-code	NULL	Percutaneous Thrombin Injection	0	0	Measurement	0	Unknown	17
+urn:ordercomms:npi-synonym:from-code	EIRDSX	E.R.C.P. Biliary Stone Removal	0	0	Measurement	0	Unknown	17
+urn:ordercomms:npi-synonym:from-code	FAAAA	Angio  Abdominal Aortogram	0	0	Measurement	0	Unknown	17
+urn:ordercomms:npi-synonym:from-code	IACOEE	Embolisation Coeliac Artery	0	0	Measurement	0	Unknown	17
+urn:ordercomms:npi-synonym:from-code	ZRXTF	Review of External RF Images	0	0	Measurement	0	Unknown	17
+urn:ordercomms:npi-synonym:from-code	NULL	Venogram Arm Lt	0	0	Measurement	0	Unknown	16
+urn:ordercomms:npi-synonym:from-code	FAREN	Angio  Renal	0	0	Measurement	0	Unknown	16
+urn:ordercomms:npi-synonym:from-code	FJOINJ	Fluoroscopic joint injection	0	0	Measurement	0	Unknown	16
+urn:ordercomms:npi-synonym:from-code	FTHL2	Thrombolysis Lower Limb Follow Up 2	0	0	Measurement	0	Unknown	16
+urn:ordercomms:npi-synonym:from-code	ISUVCS	Superior Vena Cava Stent	0	0	Measurement	0	Unknown	16
+urn:ordercomms:npi-synonym:from-code	MBLAD	MRI Urinary bladder	0	0	Measurement	0	Unknown	16
+urn:ordercomms:npi-synonym:from-code	UULCR	US Compression Venography Upper Lim	0	0	Measurement	0	Unknown	16
+urn:ordercomms:npi-synonym:from-code	ZUFEF2	Fibroid Embolisation Second Follow	0	0	Measurement	0	Unknown	16
+urn:ordercomms:npi-synonym:from-code	NULL	Stereo Mammo Marker Insertion Breas	0	1	Measurement	3042322	FFD mammogram Breast Screening	15
+urn:ordercomms:npi-synonym:from-code	FAOFB	Angio aortofemoral lower limb Both	0	0	Measurement	0	Unknown	15
+urn:ordercomms:npi-synonym:from-code	UULCL	US Compression Venography Upper Lim	0	0	Measurement	0	Unknown	15
+urn:ordercomms:npi-synonym:from-code	NULL	XR Mammo guided core biopsy breast	0	1	Measurement	3042322	FFD mammogram Breast Screening	14
+urn:ordercomms:npi-synonym:from-code	CAABDO	CT Angiogram abdomen	0	0	Measurement	0	Unknown	14
+urn:ordercomms:npi-synonym:from-code	CKIDC	CT Renal With Contrast	0	0	Measurement	0	Unknown	14
+urn:ordercomms:npi-synonym:from-code	IASMAP	Angioplasty Superior Mesenteric	0	0	Measurement	0	Unknown	14
+urn:ordercomms:npi-synonym:from-code	MFORR	MRI Forearm Rt	0	0	Measurement	0	Unknown	13
+urn:ordercomms:npi-synonym:from-code	NULL	XR Mammo guided core biopsy breast	0	1	Measurement	3042322	FFD mammogram Breast Screening	13
+urn:ordercomms:npi-synonym:from-code	FANKRJ	Fluoroscopic guided injection ankle	0	0	Measurement	0	Unknown	13
+urn:ordercomms:npi-synonym:from-code	IBILDD	Biliary Drainage	0	0	Measurement	0	Unknown	13
+urn:ordercomms:npi-synonym:from-code	ITLLRJ	Thrombolysis lower limb Rt	0	0	Measurement	0	Unknown	13
+urn:ordercomms:npi-synonym:from-code	MFORR	MRI Forearm Rt	0	0	Measurement	0	Unknown	13
+urn:ordercomms:npi-synonym:from-code	FHIPRJ	Fluoroscopic guided injection hip r	0	0	Measurement	0	Unknown	12
+urn:ordercomms:npi-synonym:from-code	UO1T	US Obstetric 1st trimester	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	12
+urn:ordercomms:npi-synonym:from-code	XLEMR	XR Leg Length Measurement Rt	0	0	Measurement	0	Unknown	12
+urn:ordercomms:npi-synonym:from-code	NULL	US Guided injection knee Rt	0	0	Measurement	0	Unknown	11
+urn:ordercomms:npi-synonym:from-code	FACLV	Cardiac Angio  Left Heart Study	0	0	Measurement	0	Unknown	11
+urn:ordercomms:npi-synonym:from-code	FAFER	Angio antegrade femoral Rt	0	0	Measurement	0	Unknown	11
+urn:ordercomms:npi-synonym:from-code	FHIPLJ	Fluoroscopic guided injection hip l	0	0	Measurement	0	Unknown	11
+urn:ordercomms:npi-synonym:from-code	IEXCHD	Drainage Catheter Exchange	0	0	Measurement	0	Unknown	11
+urn:ordercomms:npi-synonym:from-code	XBLAD	XR Bladder	0	0	Measurement	0	Unknown	11
+urn:ordercomms:npi-synonym:from-code	NULL	Angio  Coeliac/SMA/Hepatic/IMA	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	CFACES	CT Face	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	FACAR	Angio  Carotid Rt	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	FAULR	Angio  Upper Limb Rt	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	FNERLX	Nephrostomy tube removal Lt	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	FPOCHM	Operative Cholangiogram	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	IAFELS	Arterial Stent Femoral Lt	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	IBILPS	Biliary bile duct stent plastic	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	NCTCAO	NM Cardiac Adenosine Stress MIBI/TF	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	NMTFS	NM MPS Tf stress gated	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	XOPTBO	XR Orthopantomogram full	0	0	Measurement	0	Unknown	10
+urn:ordercomms:npi-synonym:from-code	NULL	NM MIBG I (123) Scan (Part 2)	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	FACAL	Angio  Carotid Lt	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	FPELV	Fluoroscopy Pelvis	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	FTHL3	Thrombolysis Lower Limb Follow Up 3	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	IAATTJ	Thrombolysis Aorto-Femoral	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	IAFERS	Arterial Stent Femoral Rt	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	ISHRRJ	Fluoro guided injection shoulder Rt	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	NDYBW	NM Bone Dynamic	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	UDRAID	US Guided drainage	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	XLEML	XR Leg Length Measurement Lt	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	XSCAB	XR Scaphoids	0	0	Measurement	0	Unknown	9
+urn:ordercomms:npi-synonym:from-code	NULL	XR Dental Intra-Oral Vertex Occlusa	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	CBNTA	CT Brain neck thorax Abdo and pelvi	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	CUROG	CT Urogram	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	FDISC	Discogram	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	FHANRJ	Fluoroscopic guided injection hand	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	IAILBP	Angioplasty iliac Both	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	IAORAP	Angioplasty Aorta	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	IASMAS	Arterial Stent Superior Mesenteric	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	UFNECN	US Guided FNA biopsy neck	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	XIVA	XR Instant Vertebral Assessment	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	XPNSP	XR Post Nasal Space	0	0	Measurement	0	Unknown	8
+urn:ordercomms:npi-synonym:from-code	MMRCPC	MRCP with contrast	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	NULL	US Guided injection foot Both	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	CHNTAP	CT Head neck thorax abdomen and pel	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	FAFEL	Angio antegrade femoral Lt	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	FAIMA	Angio  Inferior Mesenteric Artery	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	FANKLJ	Fluoroscopic guided injection ankle	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	FNPGB	Nephrostogram Both	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	IARELE	Embolisation Renal Artery Lt	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	IBILDP	Biliary Bile Duct Dilatation	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	ITASPX	Thromboaspiration	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	IURTHS	Urethral Stent	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	MMRCPC	MRCP with contrast	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	MTHIB	MRI Femur Both	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	NCTCOO	NM Cardiac Rest MIBI/TF Scan	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	NGFR1	NM GFR estimation 1 sample	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	UFOOB	US Foot Both	0	0	Measurement	0	Unknown	7
+urn:ordercomms:npi-synonym:from-code	UOACU	US Obstetric (Acute)	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	7
+urn:ordercomms:npi-synonym:from-code	UOEPU	US Obstetric Scan (Early Pregnancy)	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	7
+urn:ordercomms:npi-synonym:from-code	NULL	Prone Stereo Mammo and guidewire Lo	0	1	Measurement	3042322	FFD mammogram Breast Screening	6
+urn:ordercomms:npi-synonym:from-code	EOESSX	Endoscopic Oesophageal Stent Remova	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	FAPEV	Angio  Pelvic	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	FPHIRM	Orthopaedic pinning hip Rt	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	FSVCG	Superior Vena Cavogram	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	FTHOX	Fluoroscopy thorax	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	IACILS	Pc stent common iliac artery Left	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	IBILDG	Biliary drain change	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	ISHRLJ	Fluoro guided injection shoulder Lt	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	MPITFC	MRI Pituitary with contrast	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	UFGRO	US Obstetric Foetal Growth Routine	0	1	Measurement	3036844	Gestational age US composite estimate	6
+urn:ordercomms:npi-synonym:from-code	UKNEB	US Knee Both	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	UOCLE	US Obstetric Cervical Length (TA)	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	6
+urn:ordercomms:npi-synonym:from-code	XSSPM	XR Skeletal survey post mortem	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	XZYGL	XR Zygoma Lt	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	ZRXTMG	Review of External MG Images	0	0	Measurement	0	Unknown	6
+urn:ordercomms:npi-synonym:from-code	NULL	Dacrocystogram Lt	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	CIAMBC	CT IAM with contrast	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	FHART	Fluoroscopy Heart	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	FHIPBJ	Fluoroscopic guided injection hip b	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	FLOOPU	Loopogram Urinary Tract	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	FLOOU	Loopogram urinary tract	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	FNERRX	Nephrostomy tube removal Rt	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	FPRCT	Proctogram	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	IACORP	Cardiac Angio  PTCA	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	IAHEPE	Embolisation Hepatic Artery	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	IAORAS	Arterial Stent Abdominal Aorta	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	IARERP	Angioplasty Renal Rt	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	IBIOPB	Fluoroscopic Guided Biopsy	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	IJYCX	Jejunostomy Catheter Exchange	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	ITLLLJ	Thrombolysis lower limb Lt	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	MKNERC	MRI Knee with contrast Rt	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	UTHYRB	US Guided Biopsy Thyroid	0	0	Measurement	0	Unknown	5
+urn:ordercomms:npi-synonym:from-code	MTHLUC	MRI Spine thoracic lumbar with cont	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	MTLSP	MRI Spine thoracolumbar	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	NULL	MP Anorectal Physiology	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	CAPAP	CT Angiogram pulmonary abdomen pelv	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	CKIDBC	CT Renal with contrast Both	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	FACIR	Angio common iliac artery Right	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	FAMES	Angio mesenteric arteries	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	FHANLJ	Fluoroscopic guided injection hand	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	IACIRS	Pc stent common iliac artery Right	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	IACOES	Arterial Stent Coeliac	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	IAIMAP	Angioplasty Inferior Mesenteric Art	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	IAPFRP	Angioplasty Profunda Femoris Rt	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	IARELP	Angioplasty Renal Lt	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	IARERS	Arterial Stent Renal Rt	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	IPATEX	Cardiac Removal Temp Wire	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	MANCR	MRI Ankle  With Gadolinium Rt	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	MSPICC	MRI Spinal cord with contrast	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	MTHILC	MRI Femur with contrast Lt	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	MTHLUC	MRI Spine thoracic lumbar with cont	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	MTLSP	MRI Spine thoracolumbar	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	MTMJBC	MRI TMJ with contrast Both	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	MWRCR	MRI Wrist With Gadolinium Rt	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	NBSKNO	NM Bone local skull and neck SPECT	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	UARTS	US Intrarterial	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	UOFEC	US Obstetric fetal echocardiogram	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	4
+urn:ordercomms:npi-synonym:from-code	ZRREV	Review of report	0	0	Measurement	0	Unknown	4
+urn:ordercomms:npi-synonym:from-code	MCTSP	MRI Spine cervicothoracic	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	MLSPE	MRI Lumbar spine and pelvis	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	NULL	MRI Hand With Gadolinium Lt	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	CMIDE	CT Middle Ear	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	CNCHA	CT Neck/Thorax/Abdomen	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	CTHIB	CT Upper leg Both	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	CTHRC	CT Upper Leg (Thigh) with Contrast	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	ECORE	Endo colorectal Balln Dilat Fluoro	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	EIRDN	E.R.C.P. Biliary Dilatation	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	FAIIL	Angio internal iliac artery Left	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	FAULL	Angio  Upper Limb Lt	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	FCSFPJ	Myelogram Lumbar/Cervical Puncture	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	FUPLLM	Mobile image intensifier upper limb	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	FWSSM	Water Soluble Contrast Swallow \T\	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IACORS	Cardiac Angio  Coronary Stenting	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IAIILE	Pc embolisation internal iliac A Lt	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IAPFLP	Angioplasty Profunda Femoris Lt	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IAPOBP	Angioplasty popliteal Both	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IARELS	Arterial Stent Renal Lt	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IARERE	Embolisation Renal Artery Rt	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IBILDC	Biliary Drain Change	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	ICDEX	Cardiac Defib Change	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IDRAII	Fluoroscopy guided insertion drain	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IELBLJ	Fluoroscopic guided injection elbow	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IMETCS	Internal Metallic Stent	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IPBRRP	PTA Brachial artery Right	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	IWRIRJ	Fluoroscopic guided injection wrist	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	MCTSP	MRI Spine cervicothoracic	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	MLSPE	MRI Lumbar spine and pelvis	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	MTRNE	MRI Trigeminal nerve	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	NCTCXO	NM Cardiac Exercise Stress MIBI/TF	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	UANKB	US Ankle Both	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	UDRAII	US guided insertion drain	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	UFARL	US Forearm Lt	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	UFARR	US Forearm Rt	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	UO2T	US Obstetric 2nd trimester	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	3
+urn:ordercomms:npi-synonym:from-code	UODNT	US Obstetric nuchal dating scan TV	0	1	Measurement	3036844	Gestational age US composite estimate	3
+urn:ordercomms:npi-synonym:from-code	XDFA	Dexa forearm	0	0	Measurement	0	Unknown	3
+urn:ordercomms:npi-synonym:from-code	CNCHC	CT Neck/Chest With Contrast	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	NULL	CT Facet joint injection lumbar	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	CHNTA	CT Head neck thorax and abdomen	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	CHNTAC	CT Head neck thorax abdomen contras	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	CIVU	CT IVU	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	FJSTL	Arthrogram Sub-Talar Lt	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	CNCHC	CT Neck/Chest With Contrast	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	CTHLC	CT Upper Leg (Thigh) with Contrast	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	FCARD	Cardiac Angio coronaries	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	FICVG	Inferior Vena Cavogram	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	FJSTL	Arthrogram Sub-Talar Lt	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	FOEPH	Fluoroscopy oesophagus	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	FSBMF	Barium Small Bowel Meal/Follow Thro	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	FWSIY	Ileostomy Water Sol Contrast Enema	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IAAFMP	Angioplasty Aorto-Femoral	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IAAPSE	Embolisation aortic arch	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IABDUN	Fluoro Guided Aspiration (Upper) Ab	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IACIBS	Pc stent common iliac artery Both	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IAIIRE	Pc embolisation internal iliac A Rt	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IARFBX	Intravascular Foreign Body Retrieva	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IASCRP	Angioplasty subclavian Rt	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IASFRS	Pc stent superficial femoral artery	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IASPNN	Fluoroscopic guided aspiration	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IAXILS	Pc stent external iliac artery Left	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IAXIRS	Pc stent external iliac artery Righ	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	ICDEU	Cardiac Defib Upgrade	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	ICXIXG	Biliary Ext to Int Ext drain conver	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IECBDD	PTC and endoscopic biliary drainage	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IELBRJ	Fluoroscopic guided injection elbow	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IGAJYD	Gastrojejunostomy	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IGPEGG	Gastrostomy catheter replacement	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IGSREX	Biliary Bile Duct Calculus Removal	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	ITASGS	Stent Graft Thoracic Aorta	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	ITASPN	Fluoroscopic guided thromboaspirati	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IVAOT	Interventional Vascular Other	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	IVOVAE	Embolisation of ovarian vein	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	MAORTC	MRI Aorta with contrast	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	NMTRG	NM MPS Tf rest gated	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	UCAFL	US Calf Lt	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	UFARB	US Forearm Both	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	UHANB	US Hand Both	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	UHYCO	US Hycosy	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	UMAVRB	US Guided Vac Ass biopsy of breast	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	UMFEA	US Multiple pregnancy fetal anomaly	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	UPEST	US Prostate	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	UULCB	US Compression Venography Upper Lim	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	XBRMRI	XR Guid marker insertion breast Rig	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	XLMAL	XR Mammogram lateral view Lt	0	1	Measurement	3042322	FFD mammogram Breast Screening	2
+urn:ordercomms:npi-synonym:from-code	XLMAR	XR Mammogram lateral view Rt	0	1	Measurement	3042322	FFD mammogram Breast Screening	2
+urn:ordercomms:npi-synonym:from-code	XSGML	Sialogram Submandibular Lt	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	XSGPR	Sialogram Parotid Rt	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	XSTSP	XR Soft tissue specimen	0	0	Measurement	0	Unknown	2
+urn:ordercomms:npi-synonym:from-code	CHTH	CT Head and thorax	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CSACMC	CT Spine sacral with contrast	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	XFANKB	XR Foot and ankle Both	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	NULL	US musculo-skeletal	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CCABC	CT Chest Without Cont./Abdo With Co	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CCOCX	CT Coccyx	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CCOLO	CT Colon	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CFINR	CT Fingers Rt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CFLMO	CT Floor of mouth	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CGRIR	CT Groin Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CHTH	CT Head and thorax	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CSACMC	CT Spine sacral with contrast	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CSCOUT	CT Scout	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	CWSPC	CT Spine C T L S With Contrast	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	EGASTY	Gastroscopy	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ELGIE	Lower GI endoscopy	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	EPYSTP	Endoscopic Guided Pyloric Dilatatio	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FABRL	Angio brachial Lt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FACIB	Angio common iliac artery Both	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FAEIB	Angio external iliac artery Both	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FAEIR	Angio external iliac artery Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FAIIR	Angio internal iliac artery Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FANGIM	Mobile image intensifier angiogram	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FANKBJ	Fluoroscopic guided injection ankle	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FAREL	Angio renal artery Left	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FARER	Angio renal artery Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FASCL	Angio  Subclavian Lt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FASCR	Angio  Subclavian Rt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FDSVC	IV DSA Superior Vena Cavogram	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FDTAA	IV DSA Arch Aorta	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FGASTX	Gastrostomy tube removal	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FJSTR	Arthrogram Sub-Talar Rt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FKNELJ	Fluoroscopic guided injection knee	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FLOLLM	Mobile image intensifier lower limb	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FLUNGB	Fluoroscopic guided biopsy lung	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FNECK	Fluoroscopy Neck	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FSACMM	Mobile image intensifier sacrum	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FSHRLJ	Fluoroscopic guided inj shoulder le	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FSTENS	Fluoroscopic guided stent insertion	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FUPLRM	Mobile image intensifier upper limb	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FVCATI	Central catheter repositioning	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	FVSUV	Venogram subclavian	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IABDON	Fluoroscopic guided aspiration abdo	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IABRLP	Angioplasty Brachial Artery Lt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IACARS	Arterial Stent Carotid Stent Rt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IACEGP	Angioplasty Cerebral	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IACOAS	Cardiac Angio coronary stent	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IAFBOX	Intravascular foreign body retrieva	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IAIIBE	Pc embolisation internal iliac A B	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IAIIRS	Pc stent internal iliac artery Righ	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IAPFRE	Pc Emb profunda femoris artery Righ	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IASCLP	Angioplasty Subclavian Lt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IASCLS	Arterial Stent Subclavian Stent Lt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IASFBP	Angioplasty superficial femoral Bot	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IASPNP	Angioplasty splenic	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IAUTBE	Pc embolisation uterine artery Both	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ICOREP	Colorectal dilatation	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ICXIXD	Biliary Ext To Int/Ext Drain Conver	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IGSJX	Gastrojejunostomy Catheter Replacem	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IGULRJ	Pc thrombolysis graft upper limb Ri	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IGXILS	Pc stentgraft external iliac artery	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IJPEGI	Jejunostomy	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IKNELJ	Fluoroscopic guided injection knee	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ILITJB	Liver biopsy transjugular	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPBRBP	PTA Brachial artery Both	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPCFLP	PTA Common femoral artery Left	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPEG	Percutaneous endoscopic gastrostomy	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPELVN	Fluoroscopic guided aspiration pelv	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPMBVI	Cardiac biventricular PPM insertion	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPRABP	PTA Radial artery Both	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPRARP	PTA Radial artery Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPRERP	PTA Renal artery Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPUNRP	PTA Ulnar artery Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IPYSTP	Dilatation of pyloric stenosis	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IQPORL	PTA Popliteal vein Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ISHRBJ	Fluoro guided injection shoulder Bo	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ISVFPI	Superior vena cava filter permanent	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ISVFTI	Superior vena cava filter temporary	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ITCVCG	Tunnelled central venous line excha	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ITCVCY	Tunnelled central venous line adjus	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IULLRJ	Pc thrombolysis lower limb veins Ri	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IVCATI	Fluoro guided central line insertio	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IVPL1J	Vertebroplasty 1 Vertebra	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IWRIBJ	Fluoroscopic guided injection wrist	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	IWRILJ	Fluoroscopic guided injection wrist	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	MACTL	MRI Achilles tendon Left	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	MACTR	MRI Achilles tendon Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	MAXBC	MRI Axillae With Gadolinium	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	MAXIB	MRI Axillae	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	MCVIA	MRI Cardiac myocardial viability	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	MSCJB	MRI Sternoclavicular joint Both	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	MSKBA	MRI Skull base	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	NBVOL	NM Red Cell Volume	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	NTHLO	Thrombus Localisation	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	UBRARD	US Guided drainage breast Right	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	UBURSJ	US Guided injection bursa	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	UCAFR	US Calf Rt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	UHIPRB	US Guided biopsy hip Rt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	ULUNGB	US Guided biopsy lung	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	UMLSL	US Marking Long Saph Vein Lt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	UMLSR	US Marking Long Saph Vein Rt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	UODTV	US Obstetric doppler TV	0	1	Measurement	3018428	US Pelvis Fetus for pregnancy	1
+urn:ordercomms:npi-synonym:from-code	USTRM	US Sternum	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	UTMJB	US Temporomandibular joint Both	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	UTPD	US Guided Tunnelled Peritoneal Drai	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	XCEP	XR Cephalogram	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	XDPB	XR Dental periapical 10	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	XFANKB	XR Foot and ankle Both	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	XMAEL	XR Mammogram extended view Lt	0	1	Measurement	3042322	FFD mammogram Breast Screening	1
+urn:ordercomms:npi-synonym:from-code	XPDEX	Bone mineral densitometry periphera	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	XSCML	XR Screening mammogram Left	0	1	Measurement	3042322	FFD mammogram Breast Screening	1
+urn:ordercomms:npi-synonym:from-code	XSGPL	Sialogram Parotid Lt	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	YBBMP	Autonomic Function Testing	0	0	Measurement	0	Unknown	1
+urn:ordercomms:npi-synonym:from-code	YOEMY	Oesophageal Manometry	0	0	Measurement	0	Unknown	1

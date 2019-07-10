@@ -1,0 +1,190 @@
+sourceDomain	sourceId	sourceTerm	certainty	reviewStatus	omopDomainId	omopConceptId	omopConceptName	usedCount
+urn:epro:speciaties:national-code	995	not known	0.202275965	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	993	all	0.183503419	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	100	general surgery	0.2	1	Document Type	3033187	Surgery Note	-1
+urn:epro:speciaties:national-code	101	urology	0.457673855	1	Document Type	3031785	Urology Note	-1
+urn:epro:speciaties:national-code	110	trauma & orthopaedics	0.222406814	1	Document Type	3031179	Orthopaedic surgery Note	-1
+urn:epro:speciaties:national-code	120	ent	1	1	Document Type	3031204	Otolaryngology Note	-1
+urn:epro:speciaties:national-code	102	transplantation surgery	0.378418439	1	Document Type	40771403	Transplant surgery Note	-1
+urn:epro:speciaties:national-code	130	ophthalmology	0.584772601	1	Document Type	3032610	Ophthalmology Note	-1
+urn:epro:speciaties:national-code	140	oral surgery	0.231293885	1	Document Type	3033187	Surgery Note	-1
+urn:epro:speciaties:national-code	141	restorative dentistry	0.221501056	1	Document Type	3037691	Dentistry Note	-1
+urn:epro:speciaties:national-code	105	hepatobiliary & pancreatic surgery	0.112737895	1	Document Type	42528146	Hepatology Note	-1
+urn:epro:speciaties:national-code	142	paediatric dentistry	0.22944825	1	Document Type	3037691	Dentistry Note	-1
+urn:epro:speciaties:national-code	106	upper gastrointestinal surgery	0.119659157	1	Document Type	3033187	Surgery Note	-1
+urn:epro:speciaties:national-code	143	orthodontics	0.133974596	1	Document Type	46235033	Orthotics prosthetics Note	-1
+urn:epro:speciaties:national-code	145	oral & maxillofacial surgery	0.48785248	1	Document Type	3031155	Oral and Maxillofacial Surgery Note	-1
+urn:epro:speciaties:national-code	146	endodontics	0.118082896	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	147	periodontics	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	148	prosthodontics	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	149	surgical dentistry	0.247227347	1	Document Type	3037691	Dentistry Note	-1
+urn:epro:speciaties:national-code	150	neurosurgery	0.244071054	1	Document Type	3030906	Neurological surgery Note	-1
+urn:epro:speciaties:national-code	160	plastic surgery	0.610750528	1	Document Type	3032905	Plastic surgery Note	-1
+urn:epro:speciaties:national-code	170	cardiothoracic surgery	0.673835963	1	Document Type	36203288	Cardiothoracic surgery Note	-1
+urn:epro:speciaties:national-code	171	paediatric surgery	0.415102348	1	Document Type	40771435	Pediatric surgery Note	-1
+urn:epro:speciaties:national-code	180	accident & emergency	0.178770066	1	Document Type	3029201	Emergency department Note	-1
+urn:epro:speciaties:national-code	190	anaesthetics	0.118082896	1	Document Type	3002857	Surgical operation note	-1
+urn:epro:speciaties:national-code	192	critical care medicine	0.673835963	1	Document Type	3032896	Critical care medicine Note	-1
+urn:epro:speciaties:national-code	300	general medicine	0.622035527	1	Document Type	3031753	General medicine Note	-1
+urn:epro:speciaties:national-code	307	diabetic medicine	0.176945108	1	Document Type	3033196	Diabetology Note	-1
+urn:epro:speciaties:national-code	103	breast surgery	0.209430585	1	Document Type	3033187	Surgery Note	-1
+urn:epro:speciaties:national-code	107	vascular surgery	0.622035527	1	Document Type	42527950	Vascular surgery Note	-1
+urn:epro:speciaties:national-code	191	pain management	0.176945108	1	Document Type	3032076	Pain medicine Note	-1
+urn:epro:speciaties:national-code	301	gastroenterology	0.622035527	1	Document Type	3030853	Gastroenterology Note	-1
+urn:epro:speciaties:national-code	302	endocrinology	0.584772601	1	Document Type	3032889	Endocrinology Note	-1
+urn:epro:speciaties:national-code	303	clinical haematology	0.183503419	1	Document Type	36203295	Hematology Note	-1
+urn:epro:speciaties:national-code	324	anticoagulant service	1	1	Document Type	3032052	Evaluation and management of anticoagulation note	-1
+urn:epro:speciaties:national-code	304	clinical physiology	0.319586183	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	305	clinical pharmacology	0.504739443	1	Document Type	21494855	Clinical pharmacology Consult note	-1
+urn:epro:speciaties:national-code	310	audiological medicine	0.241213089	1	Document Type	40771213	Audiology Note	-1
+urn:epro:speciaties:national-code	311	clinical genetics	0.632392689	1	Document Type	40771231	Clinical genetics Note	-1
+urn:epro:speciaties:national-code	312	clinical cytogenetics and molecular genetics	0.362622561	1	Document Type	40771231	Clinical genetics Note	-1
+urn:epro:speciaties:national-code	313	clinical immunology and allergy	0.359130056	1	Document Type	40771206	Allergy and immunology Note	-1
+urn:epro:speciaties:national-code	314	rehabilitation	0.309934441	1	Document Type	46235118	Vocational rehabilitation Note	-1
+urn:epro:speciaties:national-code	315	palliative medicine	0.322165611	1	Document Type	36203287	Palliative care Note	-1
+urn:epro:speciaties:national-code	318	intermediate care	0.152681454	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	320	cardiology	0.533747596	1	Document Type	3032659	Cardiology Note	-1
+urn:epro:speciaties:national-code	321	paediatric cardiology	0.456442693	1	Document Type	40771291	Pediatric cardiology Note	-1
+urn:epro:speciaties:national-code	330	dermatology	0.552786405	1	Document Type	3032349	Dermatology Note	-1
+urn:epro:speciaties:national-code	340	respiratory medicine	0.309934441	1	Document Type	3031432	Pulmonary Note	-1
+urn:epro:speciaties:national-code	350	infectious diseases	0.612701665	1	Document Type	3032030	Infectious disease Note	-1
+urn:epro:speciaties:national-code	352	tropical medicine	0.246629196	1	Document Type	3032030	Infectious disease Note	-1
+urn:epro:speciaties:national-code	361	nephrology	0.533747596	1	Document Type	3030876	Nephrology Note	-1
+urn:epro:speciaties:national-code	370	medical oncology	0.230199641	1	Document Type	3032377	Oncology Note	-1
+urn:epro:speciaties:national-code	371	nuclear medicine	0.622035527	1	Document Type	1175827	Nuclear medicine Note	-1
+urn:epro:speciaties:national-code	400	neurology	0.512049964	1	Document Type	3030835	Neurology Note	-1
+urn:epro:speciaties:national-code	401	clinical neuro-physiology	0.408392022	1	Document Type	21493545	Clinical neurophysiology Consult note	-1
+urn:epro:speciaties:national-code	410	rheumatology	0.569668517	1	Document Type	3032918	Rheumatology Note	-1
+urn:epro:speciaties:national-code	144	maxillofacial surgery	0.438916392	1	Document Type	3031155	Oral and Maxillofacial Surgery Note	-1
+urn:epro:speciaties:national-code	420	paediatrics	0.264019928	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	422	neonatology	0.175378875	1	Document Type	36203290	Neonatal perinatal medicine Note	-1
+urn:epro:speciaties:national-code	424	well babies	0.143651161	1	Document Type	36203290	Neonatal perinatal medicine Note	-1
+urn:epro:speciaties:national-code	421	paediatric neurology	0.22944825	1	Document Type	3030835	Neurology Note	-1
+urn:epro:speciaties:national-code	430	geriatric medicine	0.641942563	1	Document Type	36203297	Geriatric medicine Note	-1
+urn:epro:speciaties:national-code	450	dental medicine specialties	0.206000767	1	Document Type	3037691	Dentistry Note	-1
+urn:epro:speciaties:national-code	460	medical ophthalmology	0.342404051	1	Document Type	3032610	Ophthalmology Note	-1
+urn:epro:speciaties:national-code	500	obstetrics and gynaecology	0.30201756	1	Document Type	36304866	Obstetrics Note	-1
+urn:epro:speciaties:national-code	501	obstetrics	0.533747596	1	Document Type	36304866	Obstetrics Note	-1
+urn:epro:speciaties:national-code	502	gynaecology	0.264019928	1	Document Type	36203806	Gynecology Note	-1
+urn:epro:speciaties:national-code	503	gynaecological oncology	0.308435925	1	Document Type	36203296	Gynecologic oncology Note	-1
+urn:epro:speciaties:national-code	560	midwife episode	0.133974596	1	Document Type	42529441	Obstetrics Midwife Consult note	-1
+urn:epro:speciaties:national-code	601	general dental practice	0.183503419	1	Document Type	3037691	Dentistry Note	-1
+urn:epro:speciaties:national-code	700	learning disability	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	710	adult mental illness	0.133974596	1	Document Type	3032074	Mental health Note	-1
+urn:epro:speciaties:national-code	711	child and adolescent psychiatry	0.722649902	1	Document Type	40771221	Child and adolescent psychiatry Note	-1
+urn:epro:speciaties:national-code	712	forensic psychiatry	0.271131013	1	Document Type	3008379	Psychiatry Note	-1
+urn:epro:speciaties:national-code	713	psychotherapy	0.215535459	1	Document Type	3030556	Psychology Note	-1
+urn:epro:speciaties:national-code	715	old age psychiatry	0.281578792	1	Document Type	3008379	Psychiatry Note	-1
+urn:epro:speciaties:national-code	161	burns care	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	800	clinical oncology	0.220806278	1	Document Type	3032377	Oncology Note	-1
+urn:epro:speciaties:national-code	810	radiology	0.512049964	1	Document Type	46235057	Radiology Note	-1
+urn:epro:speciaties:national-code	820	general pathology	0.237999238	1	Document Type	42528405	Pathology Letter	-1
+urn:epro:speciaties:national-code	821	blood transfusion	0.292893219	1	Document Type	42528001	Blood banking and transfusion medicine Note	-1
+urn:epro:speciaties:national-code	822	chemical pathology	0.474076294	1	Document Type	21494850	Chemical pathology Consult note	-1
+urn:epro:speciaties:national-code	823	haematology	0.264019928	1	Document Type	36203295	Hematology Note	-1
+urn:epro:speciaties:national-code	824	histopathology	0.220806278	1	Document Type	42528405	Pathology Letter	-1
+urn:epro:speciaties:national-code	830	immunopathology	0.212161403	1	Document Type	42528405	Pathology Letter	-1
+urn:epro:speciaties:national-code	831	medical microbiology	0.370059212	1	Document Type	21494852	Medical microbiology - pathology Consult note	-1
+urn:epro:speciaties:national-code	900	community medicine	0.244071054	1	Document Type	36203717	Community health care Note	-1
+urn:epro:speciaties:national-code	901	occupational medicine	0.666666667	1	Document Type	3031484	Occupational medicine Note	-1
+urn:epro:speciaties:national-code	172	cardiac surgery	0.436907494	1	Document Type	21493273	Cardiac surgery Consult note	-1
+urn:epro:speciaties:national-code	902	community health services dental	0.345346329	1	Document Type	3037691	Dentistry Note	-1
+urn:epro:speciaties:national-code	173	thoracic surgery	0.375304952	1	Document Type	36203288	Cardiothoracic surgery Note	-1
+urn:epro:speciaties:national-code	903	public health medicine	0.438048513	1	Document Type	42527763	Public health Note	-1
+urn:epro:speciaties:national-code	174	cardiothoracic transplantation	0.29935095	1	Document Type	36203288	Cardiothoracic surgery Note	-1
+urn:epro:speciaties:national-code	904	public health dental	0.472953723	1	Document Type	3037691	Dentistry Note	-1
+urn:epro:speciaties:national-code	950	nursing episode	0.140273046	1	Document Type	3031439	Nurse Note	-1
+urn:epro:speciaties:national-code	960	allied health professional episode	0.105572809	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	654	dietetics	0.207175033	1	Document Type	3031475	Nutrition and dietetics Note	-1
+urn:epro:speciaties:national-code	653	podiatry	0.487010824	1	Document Type	3032931	Podiatry Note	-1
+urn:epro:speciaties:national-code	652	speech therapy	0.147197135	1	Document Type	3014527	Speech-language pathology Note	-1
+urn:epro:speciaties:national-code	650	physiotherapy	0.271131013	1	Document Type	3010331	Physical therapy Note	-1
+urn:epro:speciaties:national-code	104	colorectal surgery	0.367544468	1	Document Type	42528007	Colon and rectal surgery Note	-1
+urn:epro:speciaties:national-code	290	community paediatrics	0.225403331	1	Document Type	36203717	Community health care Note	-1
+urn:epro:speciaties:national-code	211	paediatric urology	0.415102348	1	Document Type	40771436	Pediatric urology Note	-1
+urn:epro:speciaties:national-code	212	paediatric transplantation surgery	0.249242806	1	Document Type	40771403	Transplant surgery Note	-1
+urn:epro:speciaties:national-code	213	paediatric gastrointestinal surgery	0.202275965	1	Document Type	40771435	Pediatric surgery Note	-1
+urn:epro:speciaties:national-code	214	paediatric trauma and orthopaedics	0.198216274	1	Document Type	3031179	Orthopaedic surgery Note	-1
+urn:epro:speciaties:national-code	215	paediatric ear nose and throat	0.110788172	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	216	paediatric ophthalmology	0.310797562	1	Document Type	3032610	Ophthalmology Note	-1
+urn:epro:speciaties:national-code	217	paediatric maxillo-facial surgery	0.261451054	1	Document Type	3031155	Oral and Maxillofacial Surgery Note	-1
+urn:epro:speciaties:national-code	218	paediatric neurosurgery	0.237507148	1	Document Type	40771435	Pediatric surgery Note	-1
+urn:epro:speciaties:national-code	219	paediatric plastic surgery	0.308435925	1	Document Type	40771435	Pediatric surgery Note	-1
+urn:epro:speciaties:national-code	220	paediatric burns care	0.142507074	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	221	paediatric cardiac surgery	0.277684881	1	Document Type	40771435	Pediatric surgery Note	-1
+urn:epro:speciaties:national-code	222	paediatric thoracic surgery	0.300456076	1	Document Type	40771435	Pediatric surgery Note	-1
+urn:epro:speciaties:national-code	241	paediatric pain management	0.122941981	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	242	paediatric intensive care	0.285410399	1	Document Type	46234999	Intensive care unit Note	-1
+urn:epro:speciaties:national-code	251	paediatric gastroenterology	0.518187944	1	Document Type	40771307	Pediatric gastroenterology Note	-1
+urn:epro:speciaties:national-code	252	paediatric endocrinology	0.490098049	1	Document Type	40771446	Pediatric endocrinology Note	-1
+urn:epro:speciaties:national-code	253	paediatric clinical haematology	0.108117415	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	254	paediatric audiological medicine	0.105572809	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	255	paediatric clinical immunology and allergy	0.287635847	1	Document Type	40771206	Allergy and immunology Note	-1
+urn:epro:speciaties:national-code	256	paediatric infectious diseases	0.54209453	1	Document Type	40771325	Pediatric infectious diseases Note	-1
+urn:epro:speciaties:national-code	257	paediatric dermatology	0.468390467	1	Document Type	40771441	Pediatric dermatology Note	-1
+urn:epro:speciaties:national-code	258	paediatric respiratory medicine	0.108117415	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	259	paediatric nephrology	0.456442693	1	Document Type	40771421	Pediatric nephrology Note	-1
+urn:epro:speciaties:national-code	260	paediatric medical oncology	0.15707277	1	Document Type	3032377	Oncology Note	-1
+urn:epro:speciaties:national-code	261	paediatric metabolic disease	0.116547791	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	262	paediatric rheumatology	0.4795835	1	Document Type	40771430	Pediatric rheumatology Note	-1
+urn:epro:speciaties:national-code	263	paediatric diabetic medicine	0.116547791	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	264	paediatric cystic fibrosis	0.285994453	1	Document Type	44786805	Cystic fibrosis action plan	-1
+urn:epro:speciaties:national-code	280	paediatric interventional radiology	0.446419281	1	Document Type	42528213	Interventional radiology Note	-1
+urn:epro:speciaties:national-code	291	paediatric neuro-disability	0.119659157	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	306	hepatology	0.533747596	1	Document Type	42528146	Hepatology Note	-1
+urn:epro:speciaties:national-code	308	blood and marrow transplantation	0.153252616	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	309	haemophilia	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	316	clinical immunology	0.275431163	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	317	allergy	0.209430585	1	Document Type	40771206	Allergy and immunology Note	-1
+urn:epro:speciaties:national-code	319	respite care	0.396977311	1	Document Type	42528091	Respite note	-1
+urn:epro:speciaties:national-code	322	clinical microbiology	0.25998713	1	Document Type	3032030	Infectious disease Note	-1
+urn:epro:speciaties:national-code	323	spinal injuries	0.211189362	1	Document Type	42527866	Spinal cord injury medicine Note	-1
+urn:epro:speciaties:national-code	325	sport and exercise medicine	0.199057159	1	Document Type	21491343	Sports medicine Consult note	-1
+urn:epro:speciaties:national-code	326	acute internal medicine	0.429402598	1	Document Type	46235002	Internal medicine Note	-1
+urn:epro:speciaties:national-code	327	cardiac rehabilitation	0.121689934	1	Document Type	3032659	Cardiology Note	-1
+urn:epro:speciaties:national-code	328	stroke medicine	0.202275965	1	Document Type	36203297	Geriatric medicine Note	-1
+urn:epro:speciaties:national-code	329	transient ischaemic attack	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	341	respiratory physiology	0.292893219	1	Document Type	3031764	Respiratory therapy Note	-1
+urn:epro:speciaties:national-code	342	programmed pulmonary rehabilitation	0.174863003	1	Document Type	3031432	Pulmonary Note	-1
+urn:epro:speciaties:national-code	343	adult cystic fibrosis	0.324336075	1	Document Type	44786805	Cystic fibrosis action plan	-1
+urn:epro:speciaties:national-code	451	special care dentistry	0.214094752	1	Document Type	3037691	Dentistry Note	-1
+urn:epro:speciaties:national-code	504	community sexual and reproductive health	0.21937525	1	Document Type	36203717	Community health care Note	-1
+urn:epro:speciaties:national-code	510	retired	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	520	retired	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	610	retired	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	620	retired	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	651	occupational therapy	0.65900283	1	Document Type	3027217	Occupational therapy Note	-1
+urn:epro:speciaties:national-code	655	orthoptics	0.170843802	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	656	clinical psychology	0.271131013	1	Document Type	3030556	Psychology Note	-1
+urn:epro:speciaties:national-code	657	prosthetics	0.263211602	1	Document Type	46235033	Orthotics prosthetics Note	-1
+urn:epro:speciaties:national-code	658	orthotics	0.282259437	1	Document Type	46235033	Orthotics prosthetics Note	-1
+urn:epro:speciaties:national-code	659	dramatherapy	0.129011659	1	Document Type	3032054	Kinesiotherapy Note	-1
+urn:epro:speciaties:national-code	660	art therapy	0.142507074	1	Document Type	3030852	Recreational therapy Note	-1
+urn:epro:speciaties:national-code	661	music therapy	0.152208752	1	Document Type	3030852	Recreational therapy Note	-1
+urn:epro:speciaties:national-code	662	optometry	0.512049964	1	Document Type	3031133	Optometry Note	-1
+urn:epro:speciaties:national-code	720	eating disorders	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	721	addiction services	0.266200614	1	Document Type	3032061	Addiction medicine Note	-1
+urn:epro:speciaties:national-code	722	liaison psychiatry	0.281578792	1	Document Type	3008379	Psychiatry Note	-1
+urn:epro:speciaties:national-code	723	psychiatric intensive care	0.232052352	1	Document Type	3008379	Psychiatry Note	-1
+urn:epro:speciaties:national-code	724	perinatal psychiatry	0.261451054	1	Document Type	3008379	Psychiatry Note	-1
+urn:epro:speciaties:national-code	811	interventional radiology	0.686887854	1	Document Type	42528213	Interventional radiology Note	-1
+urn:epro:speciaties:national-code	812	diagnostic imaging	0.322165611	1	Document Type	42868493	Diagnostic study note	-1
+urn:epro:speciaties:national-code	832	retired	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	833	medical microbiology	0.370059212	1	Document Type	21494852	Medical microbiology - pathology Consult note	-1
+urn:epro:speciaties:national-code	834	medical virology	0.264785378	1	Document Type	3032030	Infectious disease Note	-1
+urn:epro:speciaties:national-code	840	audiology	0.512049964	1	Document Type	40771213	Audiology Note	-1
+urn:epro:speciaties:national-code	997	non-medical	0.129011659	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	991	unknown	1	1	Document Type	3030653	Note	-1
+urn:epro:speciaties:national-code	990	Pre-Operative Assessment	0.193053415	1	Document Type	40770460	Preoperative evaluation and management note	-1
+urn:epro:speciaties:national-code	600	general medical practice	0.335274143	1	Document Type	3031753	General medicine Note	-1
+urn:epro:speciaties:national-code	223	paediatric epilepsy	0.152208752	1	Document Type	40771375	Pediatrics Note	-1
+urn:epro:speciaties:national-code	108	spinal surgery service	0.189907413	1	Document Type	3033187	Surgery Note	-1
+urn:epro:speciaties:national-code	331	congenital heart disease service	0.237229929	1	Document Type	44786803	Heart disease action plan	-1
+urn:epro:speciaties:national-code	344	complex specialised rehabilitation service	0.198216274	1	Document Type	3032645	Physical medicine and rehab Note	-1
+urn:epro:speciaties:national-code	345	specialised rehabilitation service	0.227488386	1	Document Type	3032645	Physical medicine and rehab Note	-1
+urn:epro:speciaties:national-code	346	local specialised rehabilitation service	0.204793774	1	Document Type	3032645	Physical medicine and rehab Note	-1
+urn:epro:speciaties:national-code	663	podiatric surgery	0.244071054	1	Document Type	3032931	Podiatry Note	-1
+urn:epro:speciaties:national-code	725	mental health recovery and rehabilitation service	0.225403331	1	Document Type	3032074	Mental health Note	-1
+urn:epro:speciaties:national-code	726	mental health dual diagnosis service	0.292893219	1	Document Type	3032074	Mental health Note	-1
+urn:epro:speciaties:national-code	727	dementia assessment service	0.219810502	1	Document Type	36203297	Geriatric medicine Note	-1
+urn:epro:speciaties:national-code	920	diabetic education service	0.292893219	1	Document Type	3032668	Diabetology Education note	-1

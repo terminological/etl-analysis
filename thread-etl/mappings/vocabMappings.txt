@@ -1,0 +1,252 @@
+﻿sourceDomain	sourceId	sourceTerm	certainty	reviewStatus	omopDomainId	omopConceptId	omopConceptName	usedCount
+urn:omop-build:master-index:Gender	M	Male	1	1	Gender	8507	MALE	-1
+urn:omop-build:master-index:Gender	F	Female	1	1	Gender	8532	FEMALE	-1
+urn:omop-build:master-index:Gender	U	Unknown	1	1	Gender	0	Unknown concept	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Emergency|RBA11:Emergency Department	Emergency|RBA11:Emergency Department	1	1	Visit	9203	Emergency Room Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Acorn Ward	Inpatient|RBA11:Acorn Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Acute Medical Unit	Inpatient|RBA11:Acute Medical Unit	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Ambulatory Emergency Care	Inpatient|RBA11:Ambulatory Emergency Care	1	1	Visit	9203	Emergency Room Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Barrington Ward	Inpatient|RBA11:Barrington Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Beacon	Inpatient|RBA11:Beacon	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Beacon Day Unit	Inpatient|RBA11:Beacon Day Unit	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Beacon Ward	Inpatient|RBA11:Beacon Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Blake Day Case	Inpatient|RBA11:Blake Day Case	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Blake Ward	Inpatient|RBA11:Blake Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Bracken Birth Centre	Inpatient|RBA11:Bracken Birth Centre	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Cardiac Catheter Laboratory	Inpatient|RBA11:Cardiac Catheter Laboratory	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Coleridge Ward	Inpatient|RBA11:Coleridge Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Conservators Ward	Inpatient|RBA11:Conservators Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Coronary Care Unit	Inpatient|RBA11:Coronary Care Unit	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Day Surgery Ward	Inpatient|RBA11:Day Surgery Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Derm Max-Fax	Inpatient|RBA11:Derm Max-Fax	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Dermatology Procedure Room	Inpatient|RBA11:Dermatology Procedure Room	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Discharge Lounge	Inpatient|RBA11:Discharge Lounge	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Dunkery Ward	Inpatient|RBA11:Dunkery Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Eliot Ward	Inpatient|RBA11:Eliot Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Endoscopy Suite	Inpatient|RBA11:Endoscopy Suite	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Exmoor Ward	Inpatient|RBA11:Exmoor Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Fern Ward	Inpatient|RBA11:Fern Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Fielding Ward	Inpatient|RBA11:Fielding Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Gen Th PACU	Inpatient|RBA11:Gen Th PACU	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Gould Ward	Inpatient|RBA11:Gould Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:H+N Th PACU	Inpatient|RBA11:H+N Th PACU	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Hestercombe Ward	Inpatient|RBA11:Hestercombe Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:High Dependency Unit	Inpatient|RBA11:High Dependency Unit	1	1	Visit	32037	Intensive Care	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Home Birth Ward	Inpatient|RBA11:Home Birth Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Intensive Therapy Unit	Inpatient|RBA11:Intensive Therapy Unit	1	1	Visit	32037	Intensive Care	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Jowett Ward	Inpatient|RBA11:Jowett Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Labour Ward	Inpatient|RBA11:Labour Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Medical Day Centre	Inpatient|RBA11:Medical Day Centre	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Mendip Ward	Inpatient|RBA11:Mendip Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Montacute Ward	Inpatient|RBA11:Montacute Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Oak Ward	Inpatient|RBA11:Oak Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Ortho Th PACU	Inpatient|RBA11:Ortho Th PACU	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Parkside Ward	Inpatient|RBA11:Parkside Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Portman Ward	Inpatient|RBA11:Portman Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Sheppard Ward	Inpatient|RBA11:Sheppard Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:SNICU	Inpatient|RBA11:SNICU	1	1	Visit	32037	Intensive Care	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Somerset Neuro Rehab Unit	Inpatient|RBA11:Somerset Neuro Rehab Unit	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Surgical Admissions Lounge	Inpatient|RBA11:Surgical Admissions Lounge	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Surgical Assessment Unit	Inpatient|RBA11:Surgical Assessment Unit	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:SurgicalInvestigationUnit	Inpatient|RBA11:SurgicalInvestigationUnit	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Test Ward	Inpatient|RBA11:Test Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:The Woodlands Unit	Inpatient|RBA11:The Woodlands Unit	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Triscombe Ward	Inpatient|RBA11:Triscombe Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Vascular Department Ward	Inpatient|RBA11:Vascular Department Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Ward 09	Inpatient|RBA11:Ward 09	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Willow Ward	Inpatient|RBA11:Willow Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:Wordsworth Ward	Inpatient|RBA11:Wordsworth Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA11:X Ray DCU	Inpatient|RBA11:X Ray DCU	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA1E:SMTC Ward	Inpatient|RBA1E:SMTC Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBA95:Nuffield Ward NHS	Inpatient|RBA95:Nuffield Ward NHS	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC2:Blake Ward	Inpatient|RBAC2:Blake Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC2:Montacute Ward	Inpatient|RBAC2:Montacute Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC2:Somerset Neuro Rehab Unit	Inpatient|RBAC2:Somerset Neuro Rehab Unit	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC3:BCH Derm Procedure Ward	Inpatient|RBAC3:BCH Derm Procedure Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC3:BCH Endoscopy Recovery Ward	Inpatient|RBAC3:BCH Endoscopy Recovery Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC3:BCH Mary Stanley Midwifery Led	Inpatient|RBAC3:BCH Mary Stanley Midwifery Led	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC3:Bracken Birth Centre	Inpatient|RBAC3:Bracken Birth Centre	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC3:Fern Ward	Inpatient|RBAC3:Fern Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC3:Labour Ward	Inpatient|RBAC3:Labour Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC3:Sheppard Ward	Inpatient|RBAC3:Sheppard Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC3:Willow Ward	Inpatient|RBAC3:Willow Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAC6:Minehead Day Unit	Inpatient|RBAC6:Minehead Day Unit	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAD3:Yeovil Day Surgery	Inpatient|RBAD3:Yeovil Day Surgery	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAD3:Yeovil Ward	Inpatient|RBAD3:Yeovil Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAD3:Yeovil Ward 10	Inpatient|RBAD3:Yeovil Ward 10	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAE2:Exeter Ward	Inpatient|RBAE2:Exeter Ward	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Inpatient|RBAF2:SomersetSurgicalServicesWard	Inpatient|RBAF2:SomersetSurgicalServicesWard	1	1	Visit	9201	Inpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Ambulatory Emergency Care OPAL Clinic	Outpatient|RBA11:Ambulatory Emergency Care OPAL Clinic	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Antenatal OPD	Outpatient|RBA11:Antenatal OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Audiology Department	Outpatient|RBA11:Audiology Department	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Bariatric/Upper GI Service	Outpatient|RBA11:Bariatric/Upper GI Service	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Beacon Centre OPD	Outpatient|RBA11:Beacon Centre OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Breast Care Centre OPD	Outpatient|RBA11:Breast Care Centre OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Cardiology Dept OPD	Outpatient|RBA11:Cardiology Dept OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Children's OPD	Outpatient|RBA11:Children's OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Colorectal Nurse (Portacabin nr Blackdown House)	Outpatient|RBA11:Colorectal Nurse (Portacabin nr Blackdown House)	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Diabetes OPD	Outpatient|RBA11:Diabetes OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Dietetic OPD	Outpatient|RBA11:Dietetic OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Early Pregnancy Assessment Centre	Outpatient|RBA11:Early Pregnancy Assessment Centre	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:East OPD Reception	Outpatient|RBA11:East OPD Reception	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Endocrinology OPD	Outpatient|RBA11:Endocrinology OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Endoscopy OPD	Outpatient|RBA11:Endoscopy OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Fertility Clinic	Outpatient|RBA11:Fertility Clinic	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Fracture Liaison Clinic	Outpatient|RBA11:Fracture Liaison Clinic	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Grace Centre OPD	Outpatient|RBA11:Grace Centre OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Hip & Knee OPD Hestercombe	Outpatient|RBA11:Hip & Knee OPD Hestercombe	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:HOPE Counselling Centre	Outpatient|RBA11:HOPE Counselling Centre	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Maxillofacial and Orthodontics	Outpatient|RBA11:Maxillofacial and Orthodontics	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Mendip Ward Clinic Room	Outpatient|RBA11:Mendip Ward Clinic Room	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Metabolic OPD	Outpatient|RBA11:Metabolic OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Neurosciences OPD	Outpatient|RBA11:Neurosciences OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:North OPD Reception	Outpatient|RBA11:North OPD Reception	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Orthotics OPD	Outpatient|RBA11:Orthotics OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Outpatients Plaster Room	Outpatient|RBA11:Outpatients Plaster Room	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Parkside OPD	Outpatient|RBA11:Parkside OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Physiotherapy Department	Outpatient|RBA11:Physiotherapy Department	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Pre Operative Assessment Clinic	Outpatient|RBA11:Pre Operative Assessment Clinic	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:PUVA Clinic	Outpatient|RBA11:PUVA Clinic	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Rheumatology OPD	Outpatient|RBA11:Rheumatology OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Somerset Lung Centre OPD	Outpatient|RBA11:Somerset Lung Centre OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:South Eye Assessment	Outpatient|RBA11:South Eye Assessment	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:South OPD Reception	Outpatient|RBA11:South OPD Reception	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Stoma Care Clinic	Outpatient|RBA11:Stoma Care Clinic	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Surgical Investigation Unit OP	Outpatient|RBA11:Surgical Investigation Unit OP	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Surgical Orthotics	Outpatient|RBA11:Surgical Orthotics	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Test OPD	Outpatient|RBA11:Test OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:The Academy OPD	Outpatient|RBA11:The Academy OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Trauma & Orthopaedic OPD	Outpatient|RBA11:Trauma & Orthopaedic OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Trauma & Orthopaedics Consultants Office	Outpatient|RBA11:Trauma & Orthopaedics Consultants Office	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBA11:Vascular Department	Outpatient|RBA11:Vascular Department	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC1:WDCH OPD	Outpatient|RBAC1:WDCH OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC2:DBCU OPD	Outpatient|RBAC2:DBCU OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC3:BCH OPD	Outpatient|RBAC3:BCH OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC3:Bridgwater Orthopaedic OPD	Outpatient|RBAC3:Bridgwater Orthopaedic OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC4:WH OPD	Outpatient|RBAC4:WH OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC5:BOS OPD	Outpatient|RBAC5:BOS OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC6:MH OPD	Outpatient|RBAC6:MH OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC6:Minehead Day Unit - OPD	Outpatient|RBAC6:Minehead Day Unit - OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC7:CH OPD	Outpatient|RBAC7:CH OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAC8:WMH OPD	Outpatient|RBAC8:WMH OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAD1:FCH OPD	Outpatient|RBAD1:FCH OPD	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAD3:Yeovil Main Outpatients	Outpatient|RBAD3:Yeovil Main Outpatients	1	1	Visit	9202	Outpatient Visit	-1
+urn:trinetx:tbl-trinetx-encounter:Location-id	Outpatient|RBAD3:Yeovil POAC	Outpatient|RBAD3:Yeovil POAC	1	1	Visit	9202	Outpatient Visit	-1
+urn:code-system:ICD10	K403	Unilateral or unspecified inguinal hernia with obstruction without gangrene	1	1	Condition	4025663	Obstructed inguinal hernia	157
+urn:code-system:ICD10	M45X0	Ankylosing spondylitis	0	0	Condition	0	Unknown	17
+urn:code-system:ICD10	P293	Persistent fetal circulation	0	0	Condition	0	Unknown	32
+urn:code-system:ICD10	M45X8	Ankylosing spondylitis	0	0	Condition	0	Unknown	6
+urn:code-system:ICD10	K440	Diaphragmatic hernia with obstruction without gangrene	1	1	Condition	201061	Diaphragmatic hernia	132
+urn:code-system:ICD10	Q255	Atresia of pulmonary artery	0	0	Condition	0	Unknown	4
+urn:code-system:ICD10	K410	Bilateral femoral hernia with obstruction without gangrene	0	0	Condition	0	Unknown	4
+urn:code-system:ICD10	Q868	Other congenital malformation syndromes due to known exogenous causes	0	0	Condition	0	Unknown	4
+urn:code-system:ICD10	W554	Bitten or struck by other mammals	0	0	Condition	0	Unknown	3
+urn:code-system:ICD10	K419	Unilateral or unspecified femoral hernia without obstruction or gangrene	1	1	Condition	4178874	Femoral hernia	164
+urn:code-system:ICD10	T230	Burn of unspecified degree of wrist and hand	0	0	Condition	0	Unknown	34
+urn:code-system:ICD10	T230	Burn and corrosion of wrist and hand - Burn of unspecified degree of wrist and hand	0	0	Condition	0	Unknown	14
+urn:code-system:ICD10	K439	Other and unspecified ventral hernia without obstruction or gangrene	1	1	Condition	4218667	Uncomplicated ventral incisional hernia	615
+urn:code-system:SNOMED	1776873015	COMPLICATION OF WOUND NEUROLOGICAL	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	K047	Periapical abscess without sinus	1	1	Condition	4025325	Periapical abscess	591
+urn:code-system:ICD10	L700	Acne vulgaris	0	0	Condition	0	Unknown	18
+urn:code-system:ICD10	B348	Other viral infections of unspecified site	1	1	Condition	4207186	Viral infection by site	16
+urn:code-system:ICD10	B348	Viral infection of unspecified site - Other viral infections of unspecified site	1	1	Condition	4207186	Viral infection by site	136
+urn:code-system:ICD10	W548	Bitten or struck by dog	1	1	Observation	433116	Dog bite	6
+urn:code-system:ICD10	B350	Tinea barbae and tinea capitis	0	0	Condition	0	Unknown	10
+urn:code-system:ICD10	W548	Bitten or struck by dog - Bitten or struck by dog. Other specified places	1	1	Observation	433116	Dog bite	2
+urn:code-system:ICD10	W550	Bitten or struck by other mammals	0	0	Condition	0	Unknown	45
+urn:code-system:SNOMED	631431000000105	OTHER PREGNANCY-RELATED CONDITION	1	1	Condition	435875	Complication of pregnancy, childbirth and/or the puerperium	518
+urn:code-system:SNOMED	29445011	CARDIAC CONTUSION	0	0	Condition	0	Unknown	4
+urn:code-system:ICD10	Z004	General psychiatric examination not elsewhere classified	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	Z004	 - General psychiatric examination not elsewhere classified	0	0	Condition	0	Unknown	10
+urn:code-system:SNOMED	643301000000106	SURGICAL PROCEDURE COMPLICATION	1	1	Condition	434547	Complication of surgical procedure	402
+urn:code-system:SNOMED	2120811000000114	COMPLICATION OF BURN RHABDOMYOLYSIS	0	0	Condition	0	Unknown	4
+urn:code-system:ICD10	T201	Burn of first degree of head and neck	0	0	Condition	0	Unknown	7
+urn:code-system:ICD10	C437	Malignant neoplasm Malignant melanoma of lower limb including hip	1	1	Condition	42709763	Primary malignant neoplasm of lower leg	158
+urn:code-system:ICD10	V119	Pedal cyclist injured in collision with other pedal cycle	0	0	Condition	0	Unknown	1
+urn:code-system:ICD10	W553	Bitten or struck by other mammals	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	S759	Injury of unspecified blood vessel at hip and thigh level	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	L581	Chronic radiodermatitis	0	0	Condition	0	Unknown	12
+urn:code-system:ICD10	K409	Unilateral or unspecified inguinal hernia without obstruction or gangrene	1	1	Condition	4057530	Uncomplicated inguinal hernia	3593
+urn:code-system:ICD10	T233	Burn of third degree of wrist and hand	0	0	Condition	0	Unknown	3
+urn:code-system:ICD10	K413	Unilateral or unspecified femoral hernia with obstruction without gangrene	0	0	Condition	0	Unknown	80
+urn:code-system:ICD10	C519	Malignant neoplasm Vulva unspecified	1	1	Condition	195197	Primary malignant neoplasm of vulva	343
+urn:code-system:ICD10	M45X7	Ankylosing spondylitis	0	0	Condition	0	Unknown	6
+urn:code-system:SNOMED	421996018	PENETRATING ABDOMINAL INJURY	0	0	Condition	0	Unknown	26
+urn:code-system:ICD10	N835	Torsion of ovary ovarian pedicle and fallopian tube	0	0	Condition	0	Unknown	79
+urn:code-system:SNOMED	821491000000000	INFECTIOUS BLOODY DIARRHOEA	0	0	Condition	0	Unknown	28
+urn:code-system:ICD10	E282	Ovarian dysfunction - Polycystic ovarian syndrome	0	0	Condition	0	Unknown	4
+urn:code-system:ICD10	K420	Umbilical hernia with obstruction without gangrene	0	0	Condition	0	Unknown	164
+urn:code-system:ICD10	E282	Polycystic ovarian syndrome	1	1	Condition	36683296	Polycystic ovary	1610
+urn:code-system:ICD10	V112	Pedal cyclist injured in collision with other pedal cycle	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	W557	Bitten or struck by other mammals	0	0	Condition	0	Unknown	57
+urn:code-system:ICD10	W558	Bitten or struck by other mammals	0	0	Condition	0	Unknown	23
+urn:code-system:ICD10	T232	Burn of second degree of wrist and hand	0	0	Condition	0	Unknown	13
+urn:code-system:ICD10	W544	Bitten or struck by dog	0	1	Observation	433116	Dog bite	8
+urn:code-system:SNOMED	483451016	ACROMIOCLAVICULAR JOINT SPRAIN	1	1	Condition	80249	Sprain of acromioclavicular ligament	266
+urn:code-system:SNOMED	681851000000105	OTHER SKIN OR SUBCUTANEOUS TISSUE DISORDER	1	1	Condition	4133026	Acute skin disorder	636
+urn:code-system:SNOMED	1223195015	SOFT TISS INJ/ WOUNDS COMPLICATION OF WOUND/TENDON INJURY	1	1	Condition	4083964	Soft tissue injury	486
+urn:code-system:SNOMED	350540014	LIMB ISCHAEMIA	0	0	Condition	0	Unknown	68
+urn:code-system:ICD10	M151	Heberden nodes (with arthropathy)	0	0	Condition	0	Unknown	16
+urn:code-system:ICD10	W54	Bitten or struck by dog - Bitten or struck by dog	1	1	Observation	433116	Dog bite	116
+urn:code-system:ICD10	M151	Heberden's nodes (with arthropathy)	0	0	Condition	0	Unknown	16
+urn:code-system:ICD10	T10X0	Fracture of upper limb level unspecified	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	T10X0	Fracture of upper limb level unspecified closed - Fracture of upper limb level unspecified closed	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	W540	Bitten or struck by dog	1	1	Observation	433116	Dog bite	28
+urn:code-system:ICD10	K450	Other specified abdominal hernia with obstruction without gangrene	0	0	Condition	0	Unknown	26
+urn:code-system:ICD10	T295	Burns and corrosions of multiple body regions - Corrosions of multiple regions no more than first-degree corrosions mentioned	0	0	Condition	0	Unknown	2
+urn:code-system:SNOMED	318473019	CLOSED FRACTURE SACRUM	0	0	Condition	0	Unknown	30
+urn:code-system:ICD10	Z32	Pregnancy examination and test - Pregnancy examination and test	0	0	Condition	0	Unknown	16
+urn:code-system:SNOMED	151281010	SEPSIS	1	1	Condition	132797	Sepsis	2546
+urn:code-system:ICD10	I861	Scrotal varices	1	1	Condition	4155604	Vascular disorder of scrotum	188
+urn:code-system:SNOMED	95884011	COMPLICATION OF WOUND VASCULAR	0	0	Condition	0	Unknown	60
+urn:code-system:SNOMED	Pseudoseizure	NON EPILEPTIC ATTACK	1	1	Condition	377091	Seizure	308
+urn:code-system:ICD10	M45X3	Ankylosing spondylitis	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	K460	Unspecified abdominal hernia with obstruction without gangrene	0	0	Condition	0	Unknown	8
+urn:code-system:ICD10	M45X9	Ankylosing spondylitis	0	0	Condition	0	Unknown	24
+urn:code-system:ICD10	W559	Bitten or struck by other mammals	0	0	Condition	0	Unknown	154
+urn:code-system:ICD10	A379	Whooping cough unspecified	0	0	Condition	0	Unknown	10
+urn:code-system:ICD10	K412	Bilateral femoral hernia without obstruction or gangrene	0	0	Condition	0	Unknown	6
+urn:code-system:ICD10	T982	Sequelae of certain early complications of trauma	0	0	Condition	0	Unknown	8
+urn:code-system:ICD10	M45X5	Ankylosing spondylitis	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	T134	Injury of unspecified blood vessel of lower limb level unspecified	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	K429	Umbilical hernia without obstruction or gangrene	1	1	Condition	4025018	Uncomplicated umbilical hernia	1843
+urn:code-system:ICD10	T08X0	Fracture of spine level unspecified	0	0	Condition	0	Unknown	3
+urn:code-system:ICD10	W555	Bitten or struck by other mammals	0	0	Condition	0	Unknown	3
+urn:code-system:SNOMED	350544017	LIMB ISCHAEMIA	0	0	Condition	0	Unknown	68
+urn:code-system:ICD10	B338	Other viral diseases not elsewhere classified - Other specified viral diseases	0	0	Condition	0	Unknown	14
+urn:code-system:ICD10	M45X4	Ankylosing spondylitis	0	0	Condition	0	Unknown	8
+urn:code-system:ICD10	K400	Bilateral inguinal hernia with obstruction without gangrene	0	0	Condition	0	Unknown	21
+urn:code-system:ICD10	W549	Bitten or struck by dog	1	1	Observation	433116	Dog bite	79
+urn:code-system:ICD10	P073	Other preterm infants	1	1	Condition	4217564	Premature infant	1764
+urn:code-system:SNOMED	680131000000102	ALLERGIC REACTION UNSPECIFIED	1	1	Condition	4084167	Acute allergic reaction	716
+urn:code-system:ICD10	A70X	Chlamydia psittaci infection	0	0	Condition	0	Unknown	2
+urn:code-system:ICD10	M45X2	Ankylosing spondylitis	0	0	Condition	0	Unknown	19
+urn:code-system:ICD10	M45X6	Ankylosing spondylitis	0	0	Condition	0	Unknown	8
+urn:code-system:ICD10	K436	Other and unspecified ventral hernia with obstruction without gangrene	0	0	Condition	0	Unknown	49
+urn:code-system:SNOMED	421512008	NON-SPECIFIC VIRAL RASH	1	1	Condition	140020	Viral Exanthem	462
+urn:code-system:OPCS4	M064	Attention to nephrostomy tube NEC	0	0	Procedure	0	Unknown	8
+urn:code-system:OPCS4	M064	Code retired - refer to introduction	0	0	Procedure	0	Unknown	8
+urn:code-system:OPCS4	G453	Fibreoptic endoscopic insertion of Bravo pH capsule into upper gastrointestinal tract	0	0	Procedure	0	Unknown	16
+urn:code-system:OPCS4	Q154	Removal of therapeutic substance from uterine cavity	0	0	Procedure	0	Unknown	2
+urn:code-system:OPCS4	S681	Total excision of nail	0	0	Procedure	0	Unknown	47
+urn:code-system:OPCS4	T251	Primary repair of incisional hernia using insert of natural material	0	0	Procedure	0	Unknown	2
+urn:code-system:OPCS4	B375	Lipofilling of breast	0	0	Procedure	0	Unknown	10
+urn:code-system:OPCS4	W384	Revision of one component of total prosthetic replacement of hip joint not using cement	0	0	Procedure	0	Unknown	72
+urn:code-system:OPCS4	U061	Computed tomography of sinuses	0	0	Procedure	0	Unknown	40
+urn:code-system:OPCS4	G445	Fibreoptic endoscopic percutaneous insertion of gastrostomy	0	0	Procedure	0	Unknown	103
+urn:code-system:OPCS4	G163	Diagnostic fibreoptic insertion of Bravo pH capsule into oesophagus	0	0	Procedure	0	Unknown	4
+urn:code-system:OPCS4	O180	Conversion from previous hybrid prosthetic replacement of knee joint using cement	0	0	Procedure	0	Unknown	2
+urn:code-system:OPCS4	T253	Primary repair of incisional hernia using sutures	0	0	Procedure	0	Unknown	122
+urn:code-system:OPCS4	W374	Revision of one component of total prosthetic replacement of hip joint using cement	0	0	Procedure	0	Unknown	40
+urn:code-system:OPCS4	T252	Primary repair of incisional hernia using insert of prosthetic material	0	0	Procedure	0	Unknown	234
+urn:code-system:OPCS4	T259	Unspecified primary repair of incisional hernia	0	0	Procedure	0	Unknown	8
+urn:code-system:OPCS4	W404	Revision of one component of total prosthetic replacement of knee joint using cement	0	0	Procedure	0	Unknown	6
+urn:code-system:OPCS4	A483	Insertion of neurostimulator adjacent to spinal cord	0	0	Procedure	0	Unknown	2
+urn:code-system:OPCS4	H592	Excision of pilonidal sinus and skin flap NEC	0	0	Procedure	0	Unknown	62
+urn:code-system:OPCS4	A704	Insertion of neurostimulator electrodes into peripheral nerve	0	0	Procedure	0	Unknown	180
+urn:code-system:OPCS4	K631	Angiocardiography of combination of right and left side of heart	0	0	Procedure	0	Unknown	76
+urn:code-system:OPCS4	J091	Diagnostic endoscopic examination of liver and biopsy of lesion of liver using laparoscope	0	0	Procedure	0	Unknown	4
+urn:code-system:OPCS4	W933	Revision of hybrid prosthetic replacement of hip joint using cemented acetabular component	0	0	Procedure	0	Unknown	4
+urn:code-system:OPCS4	F345	Excision of remnant of tonsil	0	0	Procedure	0	Unknown	12
+urn:code-system:OPCS4	T982	Repair of recurrent ventral hernia using insert of prosthetic material	0	0	Procedure	0	Unknown	14
+urn:code-system:OPCS4	T983	Repair of recurrent ventral hernia using sutures	0	0	Procedure	0	Unknown	4
