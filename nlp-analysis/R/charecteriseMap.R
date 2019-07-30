@@ -13,15 +13,16 @@ library(huxtable)
 library(riverplot)
 library(circlize)
 
-pwd <- readline(prompt="Enter DB: ");
+library(config)
+config <- config::get(file="~/Dropbox/db.yaml")
 
 con <- dbConnect(odbc(),
-                 Driver = "ODBC Driver 13 for SQL Server",
-                 Server = "10.174.129.118",
-                 Database = "RobsDatabase",
-                 UID = "RobertSQL",
-                 PWD = pwd,
-                 Port = 1433,
+                 Driver = config$odbcName,
+                 Server = config$server,
+                 Database = config$databaseName,
+                 UID = config$user,
+                 PWD = config$password,
+                 Port = config$port,
                  bigint = "integer");
 mapping <- dbReadTable(con,"mappingFullUmlsOmopSCT")
 
