@@ -4,8 +4,8 @@
 \alias{saveThesis}
 \title{A standard plot for publication}
 \usage{
-saveThesis(filename, maxWidth, maxHeight,
-  aspectRatio = maxWidth/maxHeight, plot = last_plot())
+saveThesis(filename, maxWidth, maxHeight, plot = last_plot(),
+  aspectRatio = NULL)
 }
 \arguments{
 \item{filename}{base of target filename (excuding extension).}
@@ -14,9 +14,9 @@ saveThesis(filename, maxWidth, maxHeight,
 
 \item{maxHeight}{maximum height in inches}
 
-\item{aspectRatio}{defaults to maxWidth/maxHeight}
-
 \item{plot}{a GGplot object or none}
+
+\item{aspectRatio}{defaults to maxWidth/maxHeight}
 }
 \description{
 A standard plot for publication

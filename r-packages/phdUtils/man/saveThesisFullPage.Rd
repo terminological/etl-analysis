@@ -4,32 +4,19 @@
 \alias{saveThesisFullPage}
 \title{A standard 6x8 plot size for a full page}
 \usage{
-saveThesisFullPage(...)
-
-saveThesisFullPage(...)
+saveThesisFullPage(filename, plot = last_plot(), aspectRatio = NULL)
 }
 \arguments{
-\item{...}{passed to saveThesis()}
-
 \item{filename}{base of target filename (excuding extension).}
 
 \item{plot}{a GGplot object or none}
 
-\item{filename}{base of target filename (excuding extension).}
-
-\item{plot}{a GGplot object or none}
-
-\item{print_aspect_ratio}{svg aspect ratio}
-
-\item{...}{passed to cowplot}
+\item{aspectRatio}{defaults to maxWidth/maxHeight}
 }
 \description{
 A standard 6x8 plot size for a full page
-
-A standard publication shaped plotting
 }
 \examples{
 saveThesisFullPage("the_filename",ggplot())
-savePubBig("the_filename",ggplot())
 }
 \keyword{axes}

@@ -20,16 +20,15 @@ defaultTableLayout = function(hux) {
             set_bottom_border(1, everywhere, 1) %>%
             set_bottom_border(nrow(hux), everywhere, 1) %>%
             set_wrap(TRUE) %>%
-            set_top_padding(everywhere,everywhere,"0pt") %>%
-            set_bottom_padding(everywhere,everywhere,"0pt") %>%
+            set_top_padding(everywhere,everywhere,"1pt") %>%
+            set_bottom_padding(everywhere,everywhere,"1pt") %>%
             set_valign(everywhere,everywhere,"top") )
 }
 
 # sudo apt install ttf-mscorefonts-installer
 # sudo apt-get install ttf2ufm
-# cd /usr/share/fonts/truetype/msttcorefonts
-# sudo ttf2ufm Arial*.ttf
-# sudo cp Arial.* ../../type1/
+# cd /usr/share/fonts/type1/gsfonts/
+# for f in /usr/share/fonts/truetype/msttcorefonts/*.ttf; do; sudo ttf2ufm $f; done;
 # sudo fc-cache -f -v
 # install.packages("extrafont")
 # library(extrafont)
@@ -70,15 +69,17 @@ saveTable = function(labelledDataframe, filename, pageWidth=5.9, defaultFontSize
 
   # tableWidth = tableWidth-(ncol(tmp)*0.1) # adjust for
   write(
-    str_remove(
-      tmp %>% to_html(),
-      fixed("margin-bottom: 2em; margin-top: 2em;")
+    paste0("<html><head><meta charset='UTF-8'></head><body>",
+           str_remove(
+            tmp %>% to_html(),
+            fixed("margin-bottom: 2em; margin-top: 2em;")
+          ),"</body></html>"
     ),
-    file=paste0(filename,'.html'))
+    file=normalizePath(paste0(filename,".html"),mustWork = FALSE))
 
   webshot(
-    url=paste0("file://",getwd(),"/",filename,".html"),
-    file=paste0(filename,'.pdf'),vwidth=pageWidth*72,vheight=10)
+    url=paste0("file://",normalizePath(paste0(filename,".html"))),
+    file=normalizePath(paste0(filename,".pdf"),mustWork = FALSE),vwidth=as.integer(pageWidth*72),vheight=10)
 
   # write(
   #   tmp %>%

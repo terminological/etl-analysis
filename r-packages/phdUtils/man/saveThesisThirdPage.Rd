@@ -4,14 +4,14 @@
 \alias{saveThesisThirdPage}
 \title{A standard max 6x3 plot size for a third page}
 \usage{
-saveThesisThirdPage(filename, ...)
+saveThesisThirdPage(filename, plot = last_plot(), aspectRatio = NULL)
 }
 \arguments{
 \item{filename}{base of target filename (excuding extension).}
 
-\item{...}{passed to saveThesis()}
-
 \item{plot}{a GGplot object or none}
+
+\item{aspectRatio}{defaults to maxWidth/maxHeight}
 }
 \description{
 A standard max 6x3 plot size for a third page

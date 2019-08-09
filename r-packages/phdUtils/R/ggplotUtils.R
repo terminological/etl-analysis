@@ -139,85 +139,69 @@ savePubBig = function(filename, plot = last_plot(), print_aspect_ratio=1.1,...) 
 #' @export
 #' @examples
 #' saveThesis("the_filename",maxWidth=4,maxHeight=4,plot=ggplot())
-saveThesis <- function(filename,maxWidth,maxHeight,aspectRatio=maxWidth/maxHeight,plot = last_plot()) {
-  ggplot2::ggsave(paste0(filename,".pdf"), plot, width = min(maxWidth,maxHeight*aspectRatio), height = min(maxHeight,maxWidth/aspectRatio));
-  ggplot2::ggsave(paste0(filename,".png"), plot, width = min(maxWidth,maxHeight*aspectRatio), height = min(maxHeight,maxWidth/aspectRatio), dpi=300);
-  embedFonts(paste0(filename,".pdf"));
+saveThesis <- function(filename,maxWidth,maxHeight,plot = last_plot(),aspectRatio=NULL) {
+  if (is.null(aspectRatio)) aspectRatio=maxWidth/maxHeight;
+  ggplot2::ggsave(normalizePath(paste0(filename,".pdf"),mustWork = FALSE), plot, width = min(maxWidth,maxHeight*aspectRatio), height = min(maxHeight,maxWidth/aspectRatio));
+  ggplot2::ggsave(normalizePath(paste0(filename,".png"),mustWork = FALSE), plot, width = min(maxWidth,maxHeight*aspectRatio), height = min(maxHeight,maxWidth/aspectRatio), dpi=300);
+  embedFonts(normalizePath(paste0(filename,".pdf"),mustWork = FALSE));
 }
 
 #' A standard 6x8 plot size for a full page
 #'
 #' @param filename base of target filename (excuding extension).
 #' @param plot a GGplot object or none
-#' @param ... passed to saveThesis()
+#' @param aspectRatio defaults to maxWidth/maxHeight
 #' @keywords axes
 #' @import ggplot2
 #' @export
 #' @examples
 #' saveThesisFullPage("the_filename",ggplot())
-saveThesisFullPage = function(filename, ...) {
-  saveThesis(filename, plot=last_plot(),maxWidth=5.9, maxHeight=8, ...)
+saveThesisFullPage = function(filename,plot = last_plot(), aspectRatio=NULL) {
+  saveThesis(filename, plot=plot, maxWidth=5.9, maxHeight=8, aspectRatio=aspectRatio)
 }
 
 #' A standard max 6x4 plot size for a half page
 #'
 #' @param filename base of target filename (excuding extension).
 #' @param plot a GGplot object or none
-#' @param ... passed to saveThesis()
+#' @param aspectRatio defaults to maxWidth/maxHeight
 #' @keywords axes
 #' @import ggplot2
 #' @export
 #' @examples
 #' saveThesisFullPage("the_filename",ggplot())
-saveThesisHalfPage = function(filename, ...) {
-  saveThesis(filename, plot=last_plot(),maxWidth=5.9, maxHeight=4, ...)
+saveThesisHalfPage = function(filename,plot = last_plot(), aspectRatio=NULL) {
+  saveThesis(filename, plot=plot,maxWidth=5.9, maxHeight=4, aspectRatio=aspectRatio)
 }
 
 #' A standard max 6x3 plot size for a third page
 #'
 #' @param filename base of target filename (excuding extension).
 #' @param plot a GGplot object or none
-#' @param ... passed to saveThesis()
+#' @param aspectRatio defaults to maxWidth/maxHeight
 #' @keywords axes
 #' @import ggplot2
 #' @export
 #' @examples
 #' saveThesisFullPage("the_filename",ggplot())
-saveThesisThirdPage = function(filename, ...) {
-  saveThesis(filename, plot=last_plot(),maxWidth=5.9, maxHeight=3, ...)
+saveThesisThirdPage = function(filename,plot = last_plot(), aspectRatio=NULL) {
+  saveThesis(filename, plot=plot,maxWidth=5.9, maxHeight=3, aspectRatio=aspectRatio)
 }
 
 #' A standard max 3x3 plot size for a page
 #'
 #' @param filename base of target filename (excuding extension).
 #' @param plot a GGplot object or none
-#' @param ... passed to saveThesis()
+#' @param aspectRatio defaults to maxWidth/maxHeight
 #' @keywords axes
 #' @import ggplot2
 #' @export
 #' @examples
 #' saveThesisSixthPage("the_filename",ggplot())
-saveThesisSixthPage = function(filename, ...) {
-  saveThesis(filename, plot=last_plot(),maxWidth=3, maxHeight=3, ...)
+saveThesisSixthPage = function(filename,plot = last_plot(), aspectRatio=NULL) {
+  saveThesis(filename, plot=plot,maxWidth=3, maxHeight=3, aspectRatio=aspectRatio)
 }
 
-
-#' A standard publication shaped plotting
-#'
-#' @param filename base of target filename (excuding extension).
-#' @param plot a GGplot object or none
-#' @param print_aspect_ratio svg aspect ratio
-#' @param ... passed to cowplot
-#' @keywords axes
-#' @import ggplot2
-#' @import cowplot
-#' @import ggpubr
-#' @export
-#' @examples
-#' savePubBig("the_filename",ggplot())
-saveThesisFullPage = function(...) {
-  saveThesis(filename, plot=last_plot(),maxWidth=5.9, maxHeight=8, ...)
-}
 
 # aspect ratios: screen 16/9
 
@@ -235,24 +219,30 @@ saveThesisFullPage = function(...) {
 # font_import()
 # loadfonts()
 
+#' A phd ggplot2 theme
+#' 
 #' @keywords plot theme
 #' @import ggplot2
 #' @import extrafont
+#' @param base_size default 10
+#' @param base_family default "Arial"
 #' @export
 #' @examples
 #' theme_set(themePhd())
-themePhd <- function(...) {
+themePhd <- function(base_size=10, base_family="Arial") {
   if(!("package:extrafont") %in% search()) library(extrafont)
   return(
-  theme_bw(base_size=10, base_family = "Arial", ...)+
+  theme_bw(base_size, base_family)+
     theme(
-      plot.title=element_text(size=10,hjust=0.5),
-      axis.title=element_text(size=10),
-      axis.text=element_text(size=10),
-      axis.text.x=element_text(angle = 30, hjust = 1)
+      plot.title=element_text(size=base_size,hjust=0.5),
+      axis.title=element_text(size=base_size),
+      axis.text=element_text(size=base_size),
+      axis.text.x=element_text(angle=30, hjust=1)
     )
   )}
 
+#' reorganise plot to minimise width (or maximise plotting width)
+#' 
 #' @keywords plot theme
 #' @import ggplot2
 #' @export

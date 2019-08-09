@@ -4,14 +4,14 @@
 \alias{saveThesisHalfPage}
 \title{A standard max 6x4 plot size for a half page}
 \usage{
-saveThesisHalfPage(filename, ...)
+saveThesisHalfPage(filename, plot = last_plot(), aspectRatio = NULL)
 }
 \arguments{
 \item{filename}{base of target filename (excuding extension).}
 
-\item{...}{passed to saveThesis()}
-
 \item{plot}{a GGplot object or none}
+
+\item{aspectRatio}{defaults to maxWidth/maxHeight}
 }
 \description{
 A standard max 6x4 plot size for a half page
