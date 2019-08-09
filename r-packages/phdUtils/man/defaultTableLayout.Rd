@@ -4,7 +4,7 @@
 \alias{defaultTableLayout}
 \title{A tidy article theme for huxtables that works with google docs}
 \usage{
-defaultTableLayout(...)
+defaultTableLayout(hux)
 }
 \arguments{
 \item{...}{a huxtable object}
@@ -13,6 +13,6 @@ defaultTableLayout(...)
 Once copied and pasted table needs to have leading spaces removed in google docs
 }
 \examples{
-defaultTableLayout(huxtable(dataframe \%>\% select("col 1 title"=col1))
+huxtable(dataframe \%>\% select("col 1 title"=col1)) \%>\% defaultTableLayout()
 }
 \keyword{huxtable}

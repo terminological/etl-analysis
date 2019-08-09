@@ -1,8 +1,8 @@
-library(config)
-library(DBI)
-library(odbc)
-library(dbplyr)
-library(dbplot)
+# library(config)
+# library(DBI)
+# library(odbc)
+# library(dbplyr)
+# library(dbplot)
 
 #' Get a handle to the omop databse
 #'
@@ -13,8 +13,8 @@ library(dbplot)
 #' @import config
 #' @import DBI
 #' @import odbc
-#' @import dplyr
 #' @import dbplyr
+#' @import dplyr
 #' @import dbplot
 #' @export
 #' @examples

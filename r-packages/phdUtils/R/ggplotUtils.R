@@ -42,7 +42,6 @@ dayXaxis <- function() {
 #'
 #' @keywords axes
 #' @import ggplot2
-#' @import cowplot
 #' @import ggpubr
 #' @export
 #' @examples
@@ -95,13 +94,113 @@ monthsXaxis2 <- function(plot) {
 #' @examples
 #' savePubSmall("the_filename",ggplot())
 savePubSmall = function(filename, plot = last_plot(), print_aspect_ratio=1.1,...) {
-  save_plot(paste0(filename,".svg"), plot+
-              theme_cowplot(font_size = 8)+
+  cowplot::save_plot(paste0(filename,".svg"), plot+
+          cowplot::theme_cowplot(font_size = 8)+
               theme(title = element_blank(), legend.position = "bottom", legend.direction = "horizontal"),
               base_height = NULL,base_width = 89,base_aspect_ratio = print_aspect_ratio, unit="mm",...
   )
-  save_plot(paste0(filename,".png"), plot+theme_cowplot(font_size = 12), base_width = 5, base_height = 5, dpi=1500/5,...)
+  cowplot::save_plot(paste0(filename,".png"), plot+theme_cowplot(font_size = 12), base_width = 5, base_height = 5, dpi=1500/5,...)
 }
+
+#' A standard publication shaped plotting
+#'
+#' @param filename base of target filename (excuding extension).
+#' @param plot a GGplot object or none
+#' @param print_aspect_ratio svg aspect ratio
+#' @param ... passed to cowplot
+#' @keywords axes
+#' @import ggplot2
+#' @import ggpubr
+#' @export
+#' @examples
+#' savePubBig("the_filename",ggplot())
+savePubBig = function(filename, plot = last_plot(), print_aspect_ratio=1.1,...) {
+  cowplot::save_plot(paste0(filename,".svg"), plot+
+              cowplot::theme_cowplot(font_size = 8)+
+              theme(title = element_blank(), legend.position = "bottom", legend.direction = "horizontal"),
+            base_height = NULL,base_width = 183, base_aspect_ratio = print_aspect_ratio,unit="mm",...
+  )
+  cowplot::save_plot(paste0(filename,".png"), plot+theme_cowplot(font_size = 12), base_width = 10, base_height = 5, dpi=1500/5,...)
+}
+
+# print sizes - width between 8.3 cms to 17.35 cms - BMJ
+# nature: 89mm (single) 183mm (double) and max depth 247mm
+
+
+#' A standard plot for publication
+#'
+#' @param filename base of target filename (excuding extension).
+#' @param plot a GGplot object or none
+#' @param maxWidth maximum width in inches
+#' @param maxHeight maximum height in inches
+#' @param aspectRatio defaults to maxWidth/maxHeight
+#' @keywords plot
+#' @import ggplot2
+#' @export
+#' @examples
+#' saveThesis("the_filename",maxWidth=4,maxHeight=4,plot=ggplot())
+saveThesis <- function(filename,maxWidth,maxHeight,aspectRatio=maxWidth/maxHeight,plot = last_plot()) {
+  ggplot2::ggsave(paste0(filename,".pdf"), plot, width = min(maxWidth,maxHeight*aspectRatio), height = min(maxHeight,maxWidth/aspectRatio));
+  ggplot2::ggsave(paste0(filename,".png"), plot, width = min(maxWidth,maxHeight*aspectRatio), height = min(maxHeight,maxWidth/aspectRatio), dpi=300);
+  embedFonts(paste0(filename,".pdf"));
+}
+
+#' A standard 6x8 plot size for a full page
+#'
+#' @param filename base of target filename (excuding extension).
+#' @param plot a GGplot object or none
+#' @param ... passed to saveThesis()
+#' @keywords axes
+#' @import ggplot2
+#' @export
+#' @examples
+#' saveThesisFullPage("the_filename",ggplot())
+saveThesisFullPage = function(filename, ...) {
+  saveThesis(filename, plot=last_plot(),maxWidth=5.9, maxHeight=8, ...)
+}
+
+#' A standard max 6x4 plot size for a half page
+#'
+#' @param filename base of target filename (excuding extension).
+#' @param plot a GGplot object or none
+#' @param ... passed to saveThesis()
+#' @keywords axes
+#' @import ggplot2
+#' @export
+#' @examples
+#' saveThesisFullPage("the_filename",ggplot())
+saveThesisHalfPage = function(filename, ...) {
+  saveThesis(filename, plot=last_plot(),maxWidth=5.9, maxHeight=4, ...)
+}
+
+#' A standard max 6x3 plot size for a third page
+#'
+#' @param filename base of target filename (excuding extension).
+#' @param plot a GGplot object or none
+#' @param ... passed to saveThesis()
+#' @keywords axes
+#' @import ggplot2
+#' @export
+#' @examples
+#' saveThesisFullPage("the_filename",ggplot())
+saveThesisThirdPage = function(filename, ...) {
+  saveThesis(filename, plot=last_plot(),maxWidth=5.9, maxHeight=3, ...)
+}
+
+#' A standard max 3x3 plot size for a page
+#'
+#' @param filename base of target filename (excuding extension).
+#' @param plot a GGplot object or none
+#' @param ... passed to saveThesis()
+#' @keywords axes
+#' @import ggplot2
+#' @export
+#' @examples
+#' saveThesisSixthPage("the_filename",ggplot())
+saveThesisSixthPage = function(filename, ...) {
+  saveThesis(filename, plot=last_plot(),maxWidth=3, maxHeight=3, ...)
+}
+
 
 #' A standard publication shaped plotting
 #'
@@ -116,16 +215,52 @@ savePubSmall = function(filename, plot = last_plot(), print_aspect_ratio=1.1,...
 #' @export
 #' @examples
 #' savePubBig("the_filename",ggplot())
-savePubBig = function(filename, plot = last_plot(), print_aspect_ratio=1.1,...) {
-  save_plot(paste0(filename,".svg"), plot+
-              theme_cowplot(font_size = 8)+
-              theme(title = element_blank(), legend.position = "bottom", legend.direction = "horizontal"),
-            base_height = NULL,base_width = 183, base_aspect_ratio = print_aspect_ratio,unit="mm",...
-  )
-  save_plot(paste0(filename,".png"), plot+theme_cowplot(font_size = 12), base_width = 10, base_height = 5, dpi=1500/5,...)
+saveThesisFullPage = function(...) {
+  saveThesis(filename, plot=last_plot(),maxWidth=5.9, maxHeight=8, ...)
 }
+
+# aspect ratios: screen 16/9
 
 # print sizes - width between 8.3 cms to 17.35 cms - BMJ
 # nature: 89mm (single) 183mm (double) and max depth 247mm
 
+# sudo apt install ttf-mscorefonts-installer
+# sudo apt-get install ttf2ufm
+# cd /usr/share/fonts/truetype/msttcorefonts
+# sudo ttf2ufm Arial*.ttf
+# sudo cp Arial.* ../../type1/
+# sudo fc-cache -f -v
+# install.packages("extrafont")
+# library(extrafont)
+# font_import()
+# loadfonts()
 
+#' @keywords plot theme
+#' @import ggplot2
+#' @import extrafont
+#' @export
+#' @examples
+#' theme_set(themePhd())
+themePhd <- function(...) {
+  if(!("package:extrafont") %in% search()) library(extrafont)
+  return(
+  theme_bw(base_size=10, base_family = "Arial", ...)+
+    theme(
+      plot.title=element_text(size=10,hjust=0.5),
+      axis.title=element_text(size=10),
+      axis.text=element_text(size=10),
+      axis.text.x=element_text(angle = 30, hjust = 1)
+    )
+  )}
+
+#' @keywords plot theme
+#' @import ggplot2
+#' @export
+#' @examples
+#' theme_set(themePhd())
+narrowAndTall <- function() {
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal"
+  );
+}

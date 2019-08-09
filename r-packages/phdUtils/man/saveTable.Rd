@@ -4,17 +4,28 @@
 \alias{saveTable}
 \title{save labelled dataframe to html and tex file silently}
 \usage{
-saveTable(labelledDataframe, filename)
+saveTable(labelledDataframe, filename, pageWidth = 5.9,
+  defaultFontSize = 10, tableWidth = NULL, colWidths = NULL)
 }
 \arguments{
 \item{filename}{file of desired output without extension.}
 
+\item{pageWidth}{width of the desired pdf output in inches (5.9)}
+
+\item{defaultFontSize}{default size of font in points (10)}
+
+\item{tableWidth}{width of the table in inches or NULL to fit contents automatically}
+
+\item{colWidths}{a vector of relative column widths}
+
 \item{labelledDataFrame}{e.g. dataframe %>% select("col 1 title"=col1)}
+
+\item{caption}{a table caption}
 }
 \description{
 save labelled dataframe to html and tex file silently
 }
 \examples{
-getOmop()
+hux(iris) \%>\% saveTable("iris")
 }
 \keyword{omop}
