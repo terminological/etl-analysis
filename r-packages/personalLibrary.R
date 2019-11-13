@@ -3,6 +3,8 @@
 # sudo apt-get install unixodbc-dev
 # install.packages(c("config","dbplyr","dbplot","odbc"))
 # devtools::install_github("thomasp85/patchwork")
+# font_import()
+
 
 # devtools::install_github("rstudio/webshot2")
 # devtools::install_github("rstudio/promises")
