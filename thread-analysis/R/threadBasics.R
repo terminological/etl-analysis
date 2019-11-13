@@ -1,144 +1,149 @@
 library(tidyverse)
 library(reshape2)
-library(cowplot)
+library(ggplot2)
+# library(zoo)
+library(extrafont)
+library(dbplot)
+# detach("package:dbplot", unload=TRUE)
+
+
+# devtools::install_github("terminological/standard-print-output")
+# detach("package:standardPrintOutput", unload=TRUE)
+library(standardPrintOutput)
+
+# devtools::load_all("~/Git/etl-analysis/r-packages/phdUtils/")
 # detach("package:phdUtils", unload=TRUE)
 library(phdUtils)
-library(dbplot)
-# library(boot)
-library(zoo)
-library(extrafont)
 
-theme_set(themePhd())
+
+theme_set(defaultFigureLayout())
 
 # ---- database setup ----
 setwd('~/Dropbox/threadAnalysis/summary')
 config <- config::get(file="~/Dropbox/db.yaml")
-omop <- getOmop("omop",config)
+omop <- Omop$new("omop",config)
 
 visits <- omop$visit_occurrence %>% summarise(min=min(visit_start_date),max=max(visit_start_date)) %>% collect()
 
 # ---- people by year of birth (figure) and gender (table) ----
 
-genders = data.frame(
-  concept_id = c(0,8532,8507),
-  concept_name = c("unknown","female","male")
-)
-
 totalPeople=(omop$person %>% count() %>% collect())$n[1]
-tmp <- omop$person %>% group_by(gender_concept_id) %>% 
+tmp <- omop$person %>% group_by(gender_concept_id) %>%
   summarise(Count = n()) %>% collect() %>%
-  inner_join(genders, by=c("gender_concept_id"="concept_id")) %>% select(Gender=concept_name, Count) %>%
+  vocabLookup(omop) %>% select(Gender=gender_concept_name, Count) %>%
   mutate(`% age`=Count/totalPeople*100) %>%
-  union(tibble(Gender=factor("total"),Count=totalPeople,`% age`=100)) %>% 
-  saveTable("peopleByGender2",colWidths = c(0.5,0.25,0.25))
+  union(tibble(Gender=factor("total"),Count=totalPeople,`% age`=100))
+tmp %>% saveTable("peopleByGender",colWidths = c(0.5,0.25,0.25))
 
-omop$person %>% 
-  filter(!is.na(year_of_birth) & year_of_birth>1910) %>%
-  db_compute_bins(year_of_birth, binwidth = 1) %>% 
-  select(year_of_birth,count) %>%
-  ggplot(aes(x=year_of_birth,y=count))+
+tmp <- omop$person %>%
+  filter(!is.na(year_of_birth) & gender_concept_id != 0 & year_of_birth>(2019-110)) %>%
+  group_by(gender_concept_id,year_of_birth) %>%
+  summarise(count=n()) %>% collect() %>% vocabLookup(omop)
+
+p <- tmp %>%
+  ggplot(aes(x=year_of_birth,y=count,fill=gender_concept_name))+
   xlab("Year of birth")+ylab("Count")+
-  geom_col(fill="blue",width=0.8)
-saveThesisHalfPage("peopleByYob")
+  geom_col(width=0.7)+
+  scale_fill_manual(name="Gender",values=c("MALE"="#b0b0ff","FEMALE"="#ffb0b0"),breaks=c("MALE","FEMALE"),labels=c("M","F"))+
+  narrowAndTall()
+p %>% saveHalfPageFigure("peopleByYob")
 
 # ---- visits by type (table) and over time (figure) ----
-# omop$visit_occurrence %>% 
+# omop$visit_occurrence %>%
 #   inner_join(omop$concept, by=c("visit_concept_id"="concept_id")) %>%
 #   dbplot_bar(concept_name) + scale_y_log10()
 # saveThesisSixthPage("visitsByType")
 
 # tryCatch({
 tmp <- omop$person %>% left_join(
-  omop$visit_occurrence %>% 
-    inner_join(omop$concept, by=c("visit_concept_id"="concept_id")) %>% 
-    group_by(person_id, concept_name) %>%
+  omop$visit_occurrence %>%
+    group_by(person_id, visit_concept_id) %>%
     summarise(count = n())) %>%
-  select(person_id,concept_name,count) %>%
   collect() %>%
-  filter(!is.na(concept_name)) %>%
-  mutate(concept_name=factor(concept_name)) %>%
-  complete(person_id,concept_name,fill = list(count = 0)) %>%
-  group_by("Visit type"=concept_name) %>%
+  omop$vocabLookup() %>%
+  filter(!is.na(visit_concept_name)) %>%
+  mutate(visit_concept_name=factor(visit_concept_name)) %>%
+  complete(person_id,visit_concept_name,fill = list(count = 0)) %>%
+  group_by("Visit type"=visit_concept_name) %>%
   summarise(
     "Count" = as.integer(sum(count)),
-    "Per patient" = mean(count)
-  ) %>% saveTable("visitsByType",colWidths = c(0.5,0.25,0.25))
+    "Per patient" = meanAndConfidence(count, f=threeDp)
+  )
+tmp %>% saveTable("visitsByType",colWidths = c(0.5,0.20,0.30))
 
 
-tmp <- omop$visit_occurrence %>% 
-  group_by(visit_concept_id,visit_start_date) %>% 
+tmp <- omop$visit_occurrence %>%
+  group_by(visit_concept_id,visit_start_date) %>%
   summarise(count=n()) %>%
-  inner_join(omop$concept, by=c("visit_concept_id"="concept_id")) %>%
-  select(visit_start_date,concept_name,count) %>%
-  collect()
-tmp <- tmp %>% mutate(roll = rollmedian(count,49, fill="extend"))
-tmp %>%
-  ggplot(aes(x=visit_start_date, y=count,colour=concept_name))+
+  select(visit_start_date,visit_concept_id,count) %>%
+  collect() %>% omop$vocabLookup()
+tmp <- tmp %>% mutate(roll = zoo::rollmedian(count,49, fill="extend"))
+p <- tmp %>%
+  ggplot(aes(x=visit_start_date, y=count,colour=visit_concept_name))+
   geom_point(alpha=0.2,size=1,stroke=0)+
   geom_line(aes(y=roll))+
   xlab("start date")+
   ylab("visits")+labs(colour=NULL)+scale_color_brewer(palette="Set1")+narrowAndTall()
-saveThesisThirdPage("visitsByTime")
+p %>% saveThirdPageFigure("visitsByTime")
 
 
 
 # ---- Deprecated: non outpatient visits by type - length of stay (int days) and counts ----
 
-outpatient_visit_concept_id <- 9202
-
-# omop$visit %>% 
+# omop$visit %>%
 #   mutate( los = datediff(minute,visit_start_datetime,visit_end_datetime)) %>%
 #   filter( visit_concept_id != outpatient_visit_concept_id) %>%
 #   group_by( visit_concept_id ) %>%
-#   summarise( 
+#   summarise(
 #     count = n(),
 #     mean = mean(los)
 # ) %>% inner_join(omop$concept, by=c("visit_concept_id"="concept_id"))
 
 # ---- Deprecated: non outpatient visits by time of week - los vs time of week (figure) ----
 # No clear cut weekly pattern but affected by deidentification
-tmp <- omop$visit_occurrence %>% 
-  mutate( 
+tmp <- omop$visit_occurrence %>%
+  mutate(
     los = datediff(minute,visit_start_datetime,visit_end_datetime),
     from_week_start = datediff(hour,dateadd(week, datediff(week, '19050101', visit_start_datetime), '19050101'),visit_start_datetime)
-  ) %>% 
-  filter( visit_concept_id != outpatient_visit_concept_id) %>%
+  ) %>%
+  filter( visit_concept_id != local(concepts$outpatient_visit)) %>%
   group_by( from_week_start ) %>%
-  summarise( 
+  summarise(
     count = n(),
     los = mean(los)
   ) %>%
   collect()
 
 tmp <- tmp %>%
-  mutate( los_trend = rollmean(los,21, fill="extend"))
+  mutate( los_trend = zoo::rollmean(los,21, fill="extend"))
 
-tmp %>%
+p <- tmp %>%
   ggplot() +
   geom_line(aes(x=from_week_start, y=los_trend))+
   geom_point(aes(x=from_week_start, y=los))+
   xlab("hours from start of week")+
-  ylab("daily average length of stay (minutes)")+narrowAndTall()
+  ylab("daily average length of stay (minutes)")+
+  scale_week_continuous()
 
-saveThesisThirdPage("losOverWeek")
+p %>% saveThirdPageFigure("losOverWeek")
 
 # ---- Maybe deprecated: non outpatient visits by time of week - los vs daily volume (figure) ----
 # No clear cut weekly pattern but affected by deidentification
-tmp <- omop$visit_occurrence %>% 
-  mutate( 
+tmp <- omop$visit_occurrence %>%
+  mutate(
     los = datediff(minute,visit_start_datetime,visit_end_datetime)
-  ) %>% 
-  filter( visit_concept_id != 9202) %>%
+  ) %>%
+  filter( visit_concept_id != local(concepts$outpatient_visit)) %>%
   group_by( visit_start_date ) %>%
-  summarise( 
+  summarise(
     count = n(),
     los = mean(los)
   )
-tmp %>% ggplot() +
+p <- tmp %>% ggplot() +
   geom_point(aes(x=count, y=los),alpha=0.1)+
   xlab("daily volume of inpatient stays")+
   ylab("daily average length of stay (minutes)")
-saveThesisSixthPage("losVsInptVisitsPerDay")
+p -> saveSixthPageFigure("losVsInptVisitsPerDay")
 
 summary(lm(count ~ los,tmp))
 # No clear relationship between los and daily counts but again this will be affected by deidentification
@@ -146,85 +151,85 @@ summary(lm(count ~ los,tmp))
 
 
 # ---- counts of various observations by day (figure) ----
-tmp <- omop$condition_occurrence %>% db_compute_count( condition_start_date ) %>% 
-  collect() %>% select( date = condition_start_date, count = `n()`) %>% mutate(type = 'condition') %>% 
+tmp <- omop$condition_occurrence %>% db_compute_count( condition_start_date ) %>%
+  collect() %>% select( date = condition_start_date, count = `n()`) %>% mutate(type = 'condition') %>%
   union(
-    omop$procedure_occurrence %>% db_compute_count( procedure_date ) %>% 
+    omop$procedure_occurrence %>% db_compute_count( procedure_date ) %>%
       collect() %>% select( date = procedure_date, count = `n()`) %>% mutate(type = 'procedure')
   ) %>%
   union(
-    omop$drug_exposure %>% db_compute_count( drug_exposure_start_date ) %>% 
+    omop$drug_exposure %>% db_compute_count( drug_exposure_start_date ) %>%
       collect() %>% select( date = drug_exposure_start_date, count = `n()`) %>% mutate(type = 'drug')
   ) %>%
   union(
-    omop$note %>% db_compute_count( note_date ) %>% 
+    omop$note %>% db_compute_count( note_date ) %>%
       collect() %>% select( date = note_date, count = `n()`) %>% mutate(type = 'note')
   ) %>%
   union(
-    omop$measurement %>% db_compute_count( measurement_date ) %>% 
+    omop$measurement %>% db_compute_count( measurement_date ) %>%
       collect() %>% select( date = measurement_date, count = `n()`) %>% mutate(type = 'measurement')
   ) %>%
   union(
-    omop$observation %>% db_compute_count( observation_date ) %>% 
+    omop$observation %>% db_compute_count( observation_date ) %>%
       collect() %>% select( date = observation_date, count = `n()`) %>% mutate(type = 'observation')
   )
-tmp <- tmp %>% arrange(date) %>% group_by(type) %>% mutate( count_trend = rollmedian(count,49, fill="extend"))
+tmp <- tmp %>% arrange(date) %>% group_by(type) %>% mutate( count_trend = zoo::rollmedian(count,49, fill="extend"))
 
 
 # https://www.ryanopel.com/post/dplyr-zoo-rollapply/
-ggplot(tmp %>% filter(date > '2000-01-01'), aes(x=date, y=count, colour=type))+
+p <- ggplot(tmp %>% filter(date > '2000-01-01'), aes(x=date, y=count, colour=type))+
   annotate("rect", xmin = visits$min, xmax = visits$max, ymin = 5600, ymax = 5800)+
   geom_point(alpha=0.2,stroke=0,size=1)+
   geom_line(aes(y=count_trend))+
   lims(x=c(as.Date('2009-01-01'),as.Date('2019-02-01')),y=c(0,6000))+
   scale_color_brewer(palette="Set3")+narrowAndTall()
 
-saveThesisHalfPage("dataPointsOverTime")
+p %>% saveHalfPageFigure("dataPointsOverTime")
 
 # ---- summary of various observations by patient (table) ----
 
 counts <-
-    omop$visit_occurrence %>% count() %>% mutate(table="Visits") %>% 
-    union(omop$condition_occurrence %>% count() %>% mutate(table="Condition codes")) %>% 
-    union(omop$procedure_occurrence %>% count() %>% mutate(table="Procedures")) %>% 
-    union(omop$drug_exposure %>% count() %>% mutate(table="Medication orders")) %>% 
-    union(omop$note %>% count() %>% mutate(table="Clinical note metadata")) %>% 
-    union(omop$note_nlp %>% count() %>% mutate(table="NLP derived codes")) %>% 
-    union(omop$measurement %>% count() %>% mutate(table="Measurements")) %>% 
+    omop$visit_occurrence %>% count() %>% mutate(table="Visits") %>%
+    union(omop$condition_occurrence %>% count() %>% mutate(table="Condition codes")) %>%
+    union(omop$procedure_occurrence %>% count() %>% mutate(table="Procedures")) %>%
+    union(omop$drug_exposure %>% count() %>% mutate(table="Medication orders")) %>%
+    union(omop$note %>% count() %>% mutate(table="Clinical note metadata")) %>%
+    union(omop$note_nlp %>% count() %>% mutate(table="NLP derived codes")) %>%
+    union(omop$measurement %>% count() %>% mutate(table="Measurements")) %>%
     union(omop$observation %>% count() %>% mutate(table="Observations")) %>% collect();
 
 distincts <-
-  omop$visit_occurrence %>% distinct(visit_concept_id) %>% count() %>% mutate(table="Visits") %>% 
-  union(omop$condition_occurrence %>% distinct(condition_concept_id) %>% count() %>% mutate(table="Condition codes")) %>% 
-  union(omop$procedure_occurrence %>% distinct(procedure_concept_id) %>% count() %>% mutate(table="Procedures")) %>% 
-  union(omop$drug_exposure %>% distinct(drug_concept_id) %>% count() %>% mutate(table="Medication orders")) %>% 
-  union(omop$note %>% distinct(note_class_concept_id) %>% count() %>% mutate(table="Clinical note metadata")) %>% 
-  union(omop$note_nlp %>% distinct(note_nlp_concept_id) %>% count() %>% mutate(table="NLP derived codes")) %>% 
-  union(omop$measurement %>% distinct(measurement_concept_id) %>% count() %>% mutate(table="Measurements")) %>% 
+  omop$visit_occurrence %>% distinct(visit_concept_id) %>% count() %>% mutate(table="Visits") %>%
+  union(omop$condition_occurrence %>% distinct(condition_concept_id) %>% count() %>% mutate(table="Condition codes")) %>%
+  union(omop$procedure_occurrence %>% distinct(procedure_concept_id) %>% count() %>% mutate(table="Procedures")) %>%
+  union(omop$drug_exposure %>% distinct(drug_concept_id) %>% count() %>% mutate(table="Medication orders")) %>%
+  union(omop$note %>% distinct(note_class_concept_id) %>% count() %>% mutate(table="Clinical note metadata")) %>%
+  union(omop$note_nlp %>% distinct(note_nlp_concept_id) %>% count() %>% mutate(table="NLP derived codes")) %>%
+  union(omop$measurement %>% distinct(measurement_concept_id) %>% count() %>% mutate(table="Measurements")) %>%
   union(omop$observation %>% distinct(observation_concept_id) %>% count() %>% mutate(table="Observations")) %>% collect();
 
 people = omop$person %>% count() %>% collect() %>% .$n
-counts <- counts %>% mutate(per_patient = n/people) %>% inner_join(distincts %>% rename(dist=n));
-counts %>% select("Data type"=table,"Total"=n,"Per patient"=per_patient, "Distinct types"=dist) %>% 
+tmp <- counts %>% mutate(per_patient = twoDp(n/people)) %>% inner_join(distincts %>% rename(dist=n));
+tmp %>% select("Data type"=table,"Total"=n,"Per patient"=per_patient, "Distinct types"=dist) %>% mergeCells() %>% huxtable::set_align(huxtable::everywhere,3,"right") %>%
   saveTable("dataPoints",colWidths = c(0.4,0.2,0.2,0.2))
 
 # ---- los by visit start time density map - doesn't work as los is integer days
-# omop$visit %>% 
-#   mutate( 
+# omop$visit %>%
+#   mutate(
 #     log_los = log(datediff(minute,visit_start_datetime,visit_end_datetime)+1),
 #     from_week_start = datediff(minute,dateadd(week, datediff(week, '19050101', visit_start_datetime), '19050101'),visit_start_datetime)
-#   ) %>% 
+#   ) %>%
 #   filter( visit_concept_id != 9202) %>%
 #   db_compute_raster2(from_week_start,log_los) %>%
 #   collect() %>%
 #   ggplot() +
 #   geom_rect(aes(xmin=from_week_start, xmax=from_week_start_2,ymin=log_los,ymax=log_los_2, fill=`n()`))
-# 
-# omop$visit %>% 
-#   mutate( 
+#
+# omop$visit %>%
+#   mutate(
 #     los = datediff(minute,visit_start_datetime,visit_end_datetime),
 #     from_week_start = datediff(minute,dateadd(week, datediff(week, '19050101', visit_start_datetime), '19050101'),visit_start_datetime)
-#   ) %>% 
+#   ) %>%
 #   filter( visit_concept_id != 9202) %>%
 #   filter( los < 30*24*60) %>%
 #   mutate( log_los = log(los+1)) %>%
@@ -235,33 +240,43 @@ counts %>% select("Data type"=table,"Total"=n,"Per patient"=per_patient, "Distin
 
 
 # ---- notes by type summary (table) ----
-omop$note %>% group_by(note_type_concept_id) %>% summarise(count = n()) %>%
-  inner_join(omop$concept_ancestor, by=c("note_type_concept_id"="descendant_concept_id")) %>%
-  inner_join(omop$concept, by=c("ancestor_concept_id"="concept_id")) %>%
-  group_by(concept_name) %>%
-  summarise(count = sum(count)) %>%
-  select("Note type"=concept_name, "Count" = count) %>%
+tmp <- omop$note %>%
+  # group_by(note_type_concept_id,note_class_concept_id) %>% summarise(count = n()) %>%
+  # inner_join(omop$concept_ancestor, by=c("note_type_concept_id"="descendant_concept_id")) %>%
+  # inner_join(omop$concept, by=c("ancestor_concept_id"="concept_id")) %>%
+  group_by(note_type_concept_id) %>%
+  summarise(count = n()) %>%
+  vocabLookup(omop) %>%
   collect() %>%
-  arrange(desc(Count)) %>%
-  saveTable("noteTypeCounts")
-  
-  
+# tmp <- tmp %>% ungroup() %>%
+# select(-note_type_concept_id,-note_class_concept_id) %>%
+  select(`Note type`=note_type_concept_name,
+         #`Note class`=note_class_concept_name,
+         Count=count) %>%
+  arrange(desc(Count))
+
+tmp %>% bind_rows( tibble(`Note type`="Total",Count=sum(tmp$Count)) ) %>% saveTable("noteTypeCounts")
+
+
 # ---- notes by class over time (figure) ----
-omop$note %>% group_by(note_class_concept_id) %>% summarise(count = n()) %>%
+tmp <- omop$note %>% group_by(note_class_concept_id) %>% summarise(count = n()) %>%
   # inner_join(omop$concept_ancestor, by=c("note_class_concept_id"="descendant_concept_id")) %>%
   # inner_join(omop$concept, by=c("ancestor_concept_id"="concept_id")) %>%
   inner_join(omop$concept, by=c("note_class_concept_id"="concept_id")) %>%
   group_by(concept_name, note_class_concept_id) %>%
   summarise(count = sum(count)) %>%
   select(
-    "Note class"=concept_name, 
+    "Note class"=concept_name,
     # "Concept id"=note_class_concept_id,
     "Count" = count) %>%
-  collect() %>%
-  arrange(desc(Count)) %>%
-  saveTable("noteClassCounts", colWidths = c(0.8,0.2))
+  collect()
 
-tmp <- omop$note %>% 
+p <- tmp %>% ggplot(aes(area=`Count`,fill=`Note class`,label=`Note class`))+
+  treemapify::geom_treemap(show.legend = FALSE, colour="black", start="topleft")+
+  treemapify::geom_treemap_text(start="topleft", reflow=TRUE)+scale_fill_hue(h=c(180,270))
+p %>% saveThirdPageFigure("noteClassCounts")
+
+tmp <- omop$note %>%
   inner_join(omop$concept, by=c("note_class_concept_id"="concept_id")) %>%
   mutate(concept_name=if_else(
     note_class_concept_id == 44803912 |
@@ -275,7 +290,7 @@ tmp <- omop$note %>%
   collect() %>%
   ungroup()
 
-tmp <- tmp %>% arrange(Date) %>% group_by(Type) %>% mutate( count_trend = rollmedian(Count,49, fill="extend"))
+tmp <- tmp %>% arrange(Date) %>% group_by(Type) %>% mutate( count_trend = zoo::rollmedian(Count,49, fill="extend"))
 
 # https://www.ryanopel.com/post/dplyr-zoo-rollapply/
 ggplot(tmp, aes(x=Date, y=Count, colour=Type))+
