@@ -30,7 +30,7 @@ visits <- omop$visit_occurrence %>% summarise(min=min(visit_start_date),max=max(
 totalPeople=(omop$person %>% count() %>% collect())$n[1]
 tmp <- omop$person %>% group_by(gender_concept_id) %>%
   summarise(Count = n()) %>% collect() %>%
-  vocabLookup(omop) %>% select(Gender=gender_concept_name, Count) %>%
+  omop$getConceptNames() %>% select(Gender=gender_concept_name, Count) %>%
   mutate(`% age`=Count/totalPeople*100) %>%
   union(tibble(Gender=factor("total"),Count=totalPeople,`% age`=100))
 tmp %>% saveTable("peopleByGender",colWidths = c(0.5,0.25,0.25))
@@ -38,7 +38,7 @@ tmp %>% saveTable("peopleByGender",colWidths = c(0.5,0.25,0.25))
 tmp <- omop$person %>%
   filter(!is.na(year_of_birth) & gender_concept_id != 0 & year_of_birth>(2019-110)) %>%
   group_by(gender_concept_id,year_of_birth) %>%
-  summarise(count=n()) %>% collect() %>% vocabLookup(omop)
+  summarise(count=n()) %>% collect() %>% omop$getConceptNames()
 
 p <- tmp %>%
   ggplot(aes(x=year_of_birth,y=count,fill=gender_concept_name))+
@@ -60,7 +60,7 @@ tmp <- omop$person %>% left_join(
     group_by(person_id, visit_concept_id) %>%
     summarise(count = n())) %>%
   collect() %>%
-  omop$vocabLookup() %>%
+  omop$getConceptNames() %>%
   filter(!is.na(visit_concept_name)) %>%
   mutate(visit_concept_name=factor(visit_concept_name)) %>%
   complete(person_id,visit_concept_name,fill = list(count = 0)) %>%
@@ -76,7 +76,7 @@ tmp <- omop$visit_occurrence %>%
   group_by(visit_concept_id,visit_start_date) %>%
   summarise(count=n()) %>%
   select(visit_start_date,visit_concept_id,count) %>%
-  collect() %>% omop$vocabLookup()
+  collect() %>% omop$getConceptNames()
 tmp <- tmp %>% mutate(roll = zoo::rollmedian(count,49, fill="extend"))
 p <- tmp %>%
   ggplot(aes(x=visit_start_date, y=count,colour=visit_concept_name))+
@@ -210,7 +210,9 @@ distincts <-
 
 people = omop$person %>% count() %>% collect() %>% .$n
 tmp <- counts %>% mutate(per_patient = twoDp(n/people)) %>% inner_join(distincts %>% rename(dist=n));
-tmp %>% select("Data type"=table,"Total"=n,"Per patient"=per_patient, "Distinct types"=dist) %>% mergeCells() %>% huxtable::set_align(huxtable::everywhere,3,"right") %>%
+tmp %>% select("Data type"=table,"Total"=n,"Per patient"=per_patient, "Distinct types"=dist) %>%
+  mergeCells() %>%
+  huxtable::set_align(huxtable::everywhere,3,"right") %>%
   saveTable("dataPoints",colWidths = c(0.4,0.2,0.2,0.2))
 
 # ---- los by visit start time density map - doesn't work as los is integer days
@@ -246,7 +248,7 @@ tmp <- omop$note %>%
   # inner_join(omop$concept, by=c("ancestor_concept_id"="concept_id")) %>%
   group_by(note_type_concept_id) %>%
   summarise(count = n()) %>%
-  vocabLookup(omop) %>%
+  omop$getConceptNames() %>%
   collect() %>%
 # tmp <- tmp %>% ungroup() %>%
 # select(-note_type_concept_id,-note_class_concept_id) %>%
