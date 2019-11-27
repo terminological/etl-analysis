@@ -23,6 +23,7 @@ Analyser = R6::R6Class("Analyser", public=list(
   #' @param omop an R6 Omop object
   #' @param field the field name of the concept_id
   #' @param expanded has the data already been expanded to include ancestors
+  #' @param groupedDf a data frame including at least a concept_id plus the groupings defining documents, and ideally counts
   initialize = function(
         omop, 
         field = "concept_id",
@@ -69,7 +70,6 @@ Analyser = R6::R6Class("Analyser", public=list(
   # TODO: make private?
   #' @description get ancestors for a grouped set of concepts preserving grouping and count information
   #' @return the analyser with expanded
-  #' @examples
   countAncestorConcepts = function() {
     # first get the concepts by group in groupedDf - i.e. concepts in each document and sum counts
     # this gives us the freqency of a concept_id in a document
@@ -186,7 +186,7 @@ Analyser = R6::R6Class("Analyser", public=list(
   #' TODO: facet plot on different scoreVars
   #' TODO: make layout fixed for multiple graphs: https://github.com/thomasp85/ggraph/issues/130
   #' @param scoreVar a node feature the the graph will use as e.g.count, norm_okapi_bm25,
-  #' @param labelSore a percentage of score that will trigger a node being labelled
+  #' @param labelScore a percentage of score that will trigger a node being labelled
   #' @import tidygraph
   #' @return the networkAnalysis object with a graph loaded
   #' @examples
@@ -241,15 +241,7 @@ Analyser = R6::R6Class("Analyser", public=list(
   #' @description plot the currently loaded graph as sankey diagram.
   #' TODO: facet plot on different scoreVars
   #' TODO: make layout fixed for multiple graphs: https://github.com/thomasp85/ggraph/issues/130
-  #' @param scoreVar a node feature the the graph will use as e.g.count, norm_okapi_bm25,
-  #' @param labelSore a percentage of score that will trigger a node being labelled
-  #' @import tidygraph
-  #' @return the networkAnalysis object with a graph loaded
-  #' @examples
-  #' omop = Omop$new(...)
-  #' s = Searcher$new(omop)
-  #' df = s.search("%myoc%inf%") 
-  #' a = Analyser$from...
+  #' @param linkWeightVar the score on the link that will define the width of the network
   plotSankeyD3 = function(linkWeightVar = "weight") {
     linkWeightVar = ensym(linkWeightVar)
     
@@ -276,6 +268,7 @@ Analyser = R6::R6Class("Analyser", public=list(
   # or estimate an earth mover distance between pdfs of score in each outcome groups
   # or chiSq on pdfs
   
+  #' @description print the analyser
   print = function() {
     print("R6 network analyser class")
     invisible(self)
@@ -284,21 +277,21 @@ Analyser = R6::R6Class("Analyser", public=list(
 ))
 
 #### static ----
-#' @name Analyser$fromSearcher
-#' @title Create a searcher from a .RDS file
+#' @name Analyser_fromSearcher
+#' @title Create an analyser from a searcher
 #' @usage Analyser$fromSearcher(searcher)
 #' @description creates a network analyser from a searcher
 #' @param searcher the name of the file - initial part of path - no .vocab.rds extension
 #' @param expanded has the searcher already had ancestors expanded?
 #' @return an analyser with idf and graph counts precomputed.
 NULL
-Analyser$fromSearcher(searcher, expanded = FALSE) {
+Analyser$fromSearcher = function(searcher, expanded = FALSE) {
   a = Analyser$new(omop, field = "concept_id",expanded=expanded,searcher=searcher) 
   return(a)
 }
 
-#' @name Analyser$fromDataframe
-#' @title Create a searcher from a .RDS file
+#' @name Analyser_fromDataframe
+#' @title Create an analyser from a data frame
 #' @usage Analyser$fromSearcher(searcher)
 #' @description creates a network analyser from a searcher
 #' @param omop an instance of the Omop class
@@ -307,7 +300,7 @@ Analyser$fromSearcher(searcher, expanded = FALSE) {
 #' @param expanded has the searcher already had ancestors expanded?
 #' @return an analyser with idf and graph counts precomputed.
 NULL
-Analyser$fromDataframe(omop, groupedDf, field = "concept_id", expanded = FALSE) {
+Analyser$fromDataframe = function(omop, groupedDf, field = "concept_id", expanded = FALSE) {
   a = Analyser$new(omop, field = field, expanded = expanded, groupedDf = groupedDf)
   return(a)
 }

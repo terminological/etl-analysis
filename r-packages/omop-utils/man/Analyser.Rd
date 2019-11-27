@@ -11,36 +11,12 @@ Get an of the omop databse analyser
 \examples{
 
 ## ------------------------------------------------
-## Method `Analyser$countAncestorConcepts`
-## ------------------------------------------------
-
-omop = Omop$new(...)
-s = omop$searcher
-s$findConcepts("\%myoc\%infarc\%") \%>\% s$expandAncestorConcepts()
-s$findConceptByCode("SNOMED","239913004") \%>\% s$expandAncestorConcepts()
-
-## ------------------------------------------------
 ## Method `Analyser$calculateTfidf`
 ## ------------------------------------------------
 
 omop = Omop$new(...)
 a = Analyser$new(omop)
-df = ... get all concepts from a set of documents
-groupedDf = df \%>\% group_by(note_id) # or could be (person_id)
-groupedDf \%>\% 
-  a$countAncestorConcepts() \%>\%  # get all ancestor concepts and counts by group (optional step)
-  a$calculateTfidf() # a groupedDf with each concept_id per group and different tfidf stats
-
-## ------------------------------------------------
-## Method `Analyser$loadGraph`
-## ------------------------------------------------
-
-omop = Omop$new(...)
-a = Searcher$new(omop)
-a = Analyser$new(omop)
-df = s$findConceptByCode("SNOMED","239913004") \%>\% 
-  a$countAncestorConcepts() \%>\%
-  a$loadGraph()
+df = ... get all concepts from a set of documents ...
 
 ## ------------------------------------------------
 ## Method `Analyser$plotConceptNetwork`
@@ -48,12 +24,8 @@ df = s$findConceptByCode("SNOMED","239913004") \%>\%
 
 omop = Omop$new(...)
 s = Searcher$new(omop)
-a = Analyser$new(omop)
 df = s.search("\%myoc\%inf\%") 
-#... a list of concept_ids, optionally grouped and optionally with a count column...
-df \%>\% 
-  a$countAncestorConcepts() \%>\%
-  a$loadGraph()
+a = Analyser$from...
 a$plotConceptNetwork()
 }
 \keyword{omop}
@@ -62,11 +34,13 @@ a$plotConceptNetwork()
 \describe{
 \item{\code{omop}}{the omop connection}
 
-\item{\code{graph}}{a tidygraph object}
+\item{\code{groupedDf}}{a grouped dataframe including a grouping representing the documents, distinct concepts in the groups and counts of concepts in document}
 
-\item{\code{graph}}{a tidygraph object}
+\item{\code{grps}}{the original grouping of the data - corresponds to a document}
 
-\item{\code{graph}}{a tidygraph object}
+\item{\code{nodes}}{a dataframe including unique concept_ids, overall counts and count of documents containing}
+
+\item{\code{edges}}{a dataframe of shortest ancestor edges between nodes}
 }
 \if{html}{\out{</div>}}
 }
@@ -76,7 +50,6 @@ a$plotConceptNetwork()
 \item \href{#method-new}{\code{Analyser$new()}}
 \item \href{#method-countAncestorConcepts}{\code{Analyser$countAncestorConcepts()}}
 \item \href{#method-calculateTfidf}{\code{Analyser$calculateTfidf()}}
-\item \href{#method-loadGraph}{\code{Analyser$loadGraph()}}
 \item \href{#method-plotConceptNetwork}{\code{Analyser$plotConceptNetwork()}}
 \item \href{#method-plotSankeyD3}{\code{Analyser$plotSankeyD3()}}
 \item \href{#method-print}{\code{Analyser$print()}}
@@ -86,15 +59,21 @@ a$plotConceptNetwork()
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-create a vocabulary searcher
+create a concept analyser - typically not designed to be called directly. See Analyser$fromSearcher and Analyser$fromDataframe
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$new(omop)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$new(omop, field = "concept_id", expanded = FALSE, groupedDf)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{omop}}{an R6 Omop object}
+
+\item{\code{field}}{the field name of the concept_id}
+
+\item{\code{expanded}}{has the data already been expanded to include ancestors}
+
+\item{\code{groupedDf}}{a data frame including at least a concept_id plus the groupings defining documents, and ideally counts}
 }
 \if{html}{\out{</div>}}
 }
@@ -104,96 +83,35 @@ create a vocabulary searcher
 \subsection{Method \code{countAncestorConcepts()}}{
 get ancestors for a grouped set of concepts preserving grouping and count information
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$countAncestorConcepts(groupedDf)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$countAncestorConcepts()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{groupedDf}}{a dataframe with a concept_id field}
-}
-\if{html}{\out{</div>}}
-}
 \subsection{Returns}{
-an expanded data.frame of concepts expanded to include all ancestors which maybe duplicated
+the analyser with expanded
 }
-\subsection{Examples}{
-\if{html}{\out{<div class="r example copy">}}
-\preformatted{omop = Omop$new(...)
-s = omop$searcher
-s$findConcepts("\%myoc\%infarc\%") \%>\% s$expandAncestorConcepts()
-s$findConceptByCode("SNOMED","239913004") \%>\% s$expandAncestorConcepts()
-}
-\if{html}{\out{</div>}}
-
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-calculateTfidf"></a>}}
 \subsection{Method \code{calculateTfidf()}}{
 get an inverse document frequency for concepts associated with a grouping
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateTfidf(groupedDf)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateTfidf()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{groupedDf}}{a dataframe with a concept_id field and at least one group_by active defining the "document"}
-}
-\if{html}{\out{</div>}}
-}
 \subsection{Details}{
-The grouping here acts as a "Document" from the perpective of the calculation but might be a person
+The grouped datafram here acts as a "Document" from the perpective of the TFIDF calculation but might be a person
 
-TODO: allow this to take an idf derived from the whole corpus
+a dataframe with a concept_id field and at least one group_by active defining the "document"
 }
 
 \subsection{Returns}{
-an expanded data.frame of concepts expanded to include tfidf stats for each concept in each group
+an analysis object with the groupedDf expanded to include tfidf stats for each concept in each group
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{omop = Omop$new(...)
 a = Analyser$new(omop)
-df = ... get all concepts from a set of documents
-groupedDf = df \%>\% group_by(note_id) # or could be (person_id)
-groupedDf \%>\% 
-  a$countAncestorConcepts() \%>\%  # get all ancestor concepts and counts by group (optional step)
-  a$calculateTfidf() # a groupedDf with each concept_id per group and different tfidf stats
-}
-\if{html}{\out{</div>}}
-
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-loadGraph"></a>}}
-\subsection{Method \code{loadGraph()}}{
-get all the is-a relationships connecting a list of nodes
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$loadGraph(df)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{df}}{a dataframe with a set of concept_ids representing the node list}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-the networkAnalysis object with a graph loaded
-}
-\subsection{Examples}{
-\if{html}{\out{<div class="r example copy">}}
-\preformatted{omop = Omop$new(...)
-a = Searcher$new(omop)
-a = Analyser$new(omop)
-df = s$findConceptByCode("SNOMED","239913004") \%>\% 
-  a$countAncestorConcepts() \%>\%
-  a$loadGraph()
+df = ... get all concepts from a set of documents ...
 }
 \if{html}{\out{</div>}}
 
@@ -215,7 +133,7 @@ TODO: make layout fixed for multiple graphs: https://github.com/thomasp85/ggraph
 \describe{
 \item{\code{scoreVar}}{a node feature the the graph will use as e.g.count, norm_okapi_bm25,}
 
-\item{\code{labelSore}}{a percentage of score that will trigger a node being labelled}
+\item{\code{labelScore}}{a percentage of score that will trigger a node being labelled}
 }
 \if{html}{\out{</div>}}
 }
@@ -226,12 +144,8 @@ the networkAnalysis object with a graph loaded
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{omop = Omop$new(...)
 s = Searcher$new(omop)
-a = Analyser$new(omop)
 df = s.search("\%myoc\%inf\%") 
-#... a list of concept_ids, optionally grouped and optionally with a count column...
-df \%>\% 
-  a$countAncestorConcepts() \%>\%
-  a$loadGraph()
+a = Analyser$from...
 a$plotConceptNetwork()
 }
 \if{html}{\out{</div>}}
@@ -242,14 +156,25 @@ a$plotConceptNetwork()
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plotSankeyD3"></a>}}
 \subsection{Method \code{plotSankeyD3()}}{
+plot the currently loaded graph as sankey diagram.
+TODO: facet plot on different scoreVars
+TODO: make layout fixed for multiple graphs: https://github.com/thomasp85/ggraph/issues/130
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Analyser$plotSankeyD3(linkWeightVar = "weight")}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{linkWeightVar}}{the score on the link that will define the width of the network}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-print"></a>}}
 \subsection{Method \code{print()}}{
+print the analyser
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Analyser$print()}\if{html}{\out{</div>}}
 }

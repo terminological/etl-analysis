@@ -323,7 +323,7 @@ Searcher = R6::R6Class("Searcher", public=list(
   }
 ))
 
-#' @name Searcher$fromSearch
+#' @name Searcher_fromSearch
 #' @title Create a searcher from a search term
 #' @usage Searcher$fromSearch(omop,term)
 #' @description perform a search of the concept table
@@ -338,7 +338,7 @@ Searcher$fromSearch = function(omop, term) {
   return(s)
 }
   
-#' @name Searcher$fromDataframe
+#' @name Searcher_fromDataframe
 #' @title Create a searcher from a data frame
 #' @usage Searcher$fromDataframe(omop,df,field)
 #' @description selects concepts which are used in a specific vocabulary and returns the results
@@ -359,7 +359,7 @@ Searcher$fromDataframe = function(omop, df, field = "concept_id") {
   return(s)
 }
 
-#' @name Searcher$fromConceptCode
+#' @name Searcher_fromConceptCode
 #' @title Create a searcher from a code based search
 #' @usage Searcher$fromConceptCode(omop,vocabulary_id,concept_code)
 #' @description get concept by vocabulary and concept code and return as a searcher
@@ -378,12 +378,13 @@ Searcher$fromConceptCode = function(omop, vocabulary_id, concept_code) {
   return(s)
 }
 
-#' @name Searcher$load
+#' @name Searcher_load
 #' @title Create a searcher from a .RDS file
 #' @usage Searcher$load(path)
 #' @description loads the data from local path
 #' @param name the name of the file - initial part of path - no .vocab.rds extension
 #' @return the modified searcher itself
+NULL
 Searcher$load = function(omop, name) {
   filename = normalizePath(paste0(name,".vocab.rds"),mustWork = FALSE)
   s = Searcher$new(omop)

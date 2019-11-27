@@ -47,7 +47,6 @@ search = Searcher$new(omop)
 \item \href{#method-toDataframe}{\code{Searcher$toDataframe()}}
 \item \href{#method-summary}{\code{Searcher$summary()}}
 \item \href{#method-save}{\code{Searcher$save()}}
-\item \href{#method-load}{\code{Searcher$load()}}
 \item \href{#method-print}{\code{Searcher$print()}}
 \item \href{#method-printSql}{\code{Searcher$printSql()}}
 \item \href{#method-clone}{\code{Searcher$clone()}}
@@ -476,25 +475,6 @@ saves the data locally
 }
 \subsection{Returns}{
 the searcher itself (not modified)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-load"></a>}}
-\subsection{Method \code{load()}}{
-loads the data from local path
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Searcher$load(name)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{name}}{the name of the file - initial part of path}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-the modified searcher itself
 }
 }
 \if{html}{\out{<hr>}}
