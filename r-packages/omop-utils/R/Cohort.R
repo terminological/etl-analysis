@@ -28,7 +28,7 @@ Cohort = R6::R6Class("Cohort", public=list(
   #' @return the builder with a cohort filtered and augmented with any additional fields from the person_df groups
   withConceptSetFilter = function(personDf, conceptIdField, conceptDf) {
     conceptIdField = ensym(conceptIdField)
-    grps <- c(personDf %>% groups(),as.symbol("person_id"))
+    grps = c(personDf %>% groups(),as.symbol("person_id"))
     self$cohort = self$cohort %>% inner_join(
       personDf %>% mutate(concept_id=(!!conceptIdField)) %>% inner_join(conceptDf, by="concept_id") %>% select(!!!grps),
       by("person_id")
@@ -42,7 +42,7 @@ Cohort = R6::R6Class("Cohort", public=list(
   #' @return the builder with a cohort filtered and augmented with any additional fields from the person_df groups
   withValueFilter = function(personDf, valueExpr) {
     valueExpr = enexpr(valueExpr)
-    grps <- c(personDf %>% groups(),as.symbol("person_id"))
+    grps = c(personDf %>% groups(),as.symbol("person_id"))
     self$cohort = self$cohort %>% inner_join(
       personDf %>% filter(!!valueExpr) %>% select(!!!grps),
       by("person_id")
@@ -59,7 +59,7 @@ Cohort = R6::R6Class("Cohort", public=list(
   withConceptAndValueFilter = function(personDf, conceptIdField, conceptDf, valueExpr) {
     conceptIdField = ensym(conceptIdField)
     valueExpr = enexpr(valueExpr)
-    grps <- c(personDf %>% groups(),as.symbol("person_id"))
+    grps = c(personDf %>% groups(),as.symbol("person_id"))
     self$cohort = self$cohort %>% inner_join(
       personDf %>% mutate(concept_id = (!!conceptIdField)) %>% inner_join(conceptDf, by="concept_id") %>% filter(!!valueExpr) %>% select(!!!grps),
       by("person_id")

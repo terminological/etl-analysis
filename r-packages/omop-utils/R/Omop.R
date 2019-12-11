@@ -94,7 +94,7 @@ Omop = R6::R6Class("Omop", public=list(
   #' @param config Config object from yaml file. (defaults to config::get(file="~/Dropbox/db.yaml"))
   #' @examples omop = Omop$new(dbname,config)
   initialize = function(dbname = "omop", config = config::get(file="~/Dropbox/db.yaml")) {
-    self$con <- odbc::dbConnect(odbc::odbc(),
+    self$con = odbc::dbConnect(odbc::odbc(),
                    Driver = config$odbcName,
                    Server = config$server,
                    Database = dbname,
@@ -102,42 +102,42 @@ Omop = R6::R6Class("Omop", public=list(
                    PWD = config$password,
                    Port = config$port,
                    bigint = "integer64");
-    self$care_site <- dplyr::tbl(self$con, "care_site")
-    self$cdm_source <- dplyr::tbl(self$con, "cdm_source")
-    self$concept <- dplyr::tbl(self$con, "concept")
-    self$concept_ancestor <- dplyr::tbl(self$con, "concept_ancestor")
-    self$concept_class <- dplyr::tbl(self$con, "concept_class")
-    self$concept_synonym <- dplyr::tbl(self$con, "concept_synonym")
-    self$concept_relationship <- dplyr::tbl(self$con, "concept_relationship")
-    self$condition_era <- dplyr::tbl(self$con, "condition_era")
-    self$condition_occurrence <- dplyr::tbl(self$con, "condition_occurrence")
-    self$cost <- dplyr::tbl(self$con, "cost")
-    self$device_exposure <- dplyr::tbl(self$con, "device_exposure")
-    self$domain <- dplyr::tbl(self$con, "domain")
-    self$dose_era <- dplyr::tbl(self$con, "dose_era")
-    self$drug_era <- dplyr::tbl(self$con, "drug_era")
-    self$drug_exposure <- dplyr::tbl(self$con, "drug_exposure")
-    self$drug_strength <- dplyr::tbl(self$con, "drug_strength")
-    self$fact_relationship <- dplyr::tbl(self$con, "fact_relationship")
-    self$location <- dplyr::tbl(self$con, "location")
-    self$location_history <- dplyr::tbl(self$con, "location_history")
-    self$measurement <- dplyr::tbl(self$con, "measurement")
-    self$metadata <- dplyr::tbl(self$con, "metadata")
-    self$note <- (dplyr::tbl(self$con,"note") %>% select(-note_text)) # varchar(max) fields have to be at end of query. in our case they are null anyway.
-    self$note_nlp <- dplyr::tbl(self$con,"note_nlp")
-    self$observation <- dplyr::tbl(self$con,"observation")
-    self$observation_period <- dplyr::tbl(self$con,"observation_period")
-    self$payer_plan_period <- dplyr::tbl(self$con,"payer_plan_period")
-    self$person <- dplyr::tbl(self$con, "person")
-    self$procedure_occurrence <- dplyr::tbl(self$con,"procedure_occurrence")
-    self$provider <- dplyr::tbl(self$con,"provider")
-    self$relationship <- dplyr::tbl(self$con,"relationship")
-    self$source_to_concept_map <- dplyr::tbl(self$con,"source_to_concept_map")
-    self$specimen <- dplyr::tbl(self$con,"specimen")
-    self$survey_conduct <- dplyr::tbl(self$con,"survey_conduct")
-    self$visit_detail <- dplyr::tbl(self$con,"visit_detail")
-    self$visit_occurrence <- dplyr::tbl(self$con,"visit_occurrence")
-    self$vocabulary <- dplyr::tbl(self$con,"vocabulary")
+    self$care_site = dplyr::tbl(self$con, "care_site")
+    self$cdm_source = dplyr::tbl(self$con, "cdm_source")
+    self$concept = dplyr::tbl(self$con, "concept")
+    self$concept_ancestor = dplyr::tbl(self$con, "concept_ancestor")
+    self$concept_class = dplyr::tbl(self$con, "concept_class")
+    self$concept_synonym = dplyr::tbl(self$con, "concept_synonym")
+    self$concept_relationship = dplyr::tbl(self$con, "concept_relationship")
+    self$condition_era = dplyr::tbl(self$con, "condition_era")
+    self$condition_occurrence = dplyr::tbl(self$con, "condition_occurrence")
+    self$cost = dplyr::tbl(self$con, "cost")
+    self$device_exposure = dplyr::tbl(self$con, "device_exposure")
+    self$domain = dplyr::tbl(self$con, "domain")
+    self$dose_era = dplyr::tbl(self$con, "dose_era")
+    self$drug_era = dplyr::tbl(self$con, "drug_era")
+    self$drug_exposure = dplyr::tbl(self$con, "drug_exposure")
+    self$drug_strength = dplyr::tbl(self$con, "drug_strength")
+    self$fact_relationship = dplyr::tbl(self$con, "fact_relationship")
+    self$location = dplyr::tbl(self$con, "location")
+    self$location_history = dplyr::tbl(self$con, "location_history")
+    self$measurement = dplyr::tbl(self$con, "measurement")
+    self$metadata = dplyr::tbl(self$con, "metadata")
+    self$note = (dplyr::tbl(self$con,"note") %>% select(-note_text)) # varchar(max) fields have to be at end of query. in our case they are null anyway.
+    self$note_nlp = dplyr::tbl(self$con,"note_nlp")
+    self$observation = dplyr::tbl(self$con,"observation")
+    self$observation_period = dplyr::tbl(self$con,"observation_period")
+    self$payer_plan_period = dplyr::tbl(self$con,"payer_plan_period")
+    self$person = dplyr::tbl(self$con, "person")
+    self$procedure_occurrence = dplyr::tbl(self$con,"procedure_occurrence")
+    self$provider = dplyr::tbl(self$con,"provider")
+    self$relationship = dplyr::tbl(self$con,"relationship")
+    self$source_to_concept_map = dplyr::tbl(self$con,"source_to_concept_map")
+    self$specimen = dplyr::tbl(self$con,"specimen")
+    self$survey_conduct = dplyr::tbl(self$con,"survey_conduct")
+    self$visit_detail = dplyr::tbl(self$con,"visit_detail")
+    self$visit_occurrence = dplyr::tbl(self$con,"visit_occurrence")
+    self$vocabulary = dplyr::tbl(self$con,"vocabulary")
   },
   #' @description Closes the omop database connection
   finalize = function() {
@@ -191,6 +191,44 @@ Omop = R6::R6Class("Omop", public=list(
       }
     }
     return(df)
+  },
+  
+  #' Drops a temporary table created by dbplyr
+  #' 
+  #' This function could have major side effects and does not check to
+  #' see if the table is still in use anywhere to use with caution only
+  #' if you know that no other current queries depend on it
+  #' @param tableRef a dbplyr backed dataframe
+  #' @param dryRun defaults to debuggingState(). will only log intention when TRUE. set to FALSE to actually drop the table.
+  #' @param force defaults to FALSE. If an attemp is made to drop a non temporary table it will only be attempted if this flag is TRUE
+  tidyTempTable = function(tableRef, dryRun = debuggingState(), force=FALSE) {
+    return()
+    # TODO: this needs a lot of work
+    # ?enquo, ?eval, ?eval_tidy
+    name = deparse(substitute(tableRef))
+    tableRef = enquo(tableRef)
+    if (is.null(rlang::eval_tidy(tableRef))) return() # evaluates to null of self$nodes but works on groupedDf
+      # possible we shoudl be dealing with enquo sures
+    rn = rlang::eval_tidy(tableRef) %>% dbplyr::remote_name() # doesn;t in general return a table name but a remote_query seems to work
+    if (is.null(rn)) {
+      print(paste0("attempt to drop a table failed - maybe it is a query: ",name))
+      return()
+    }
+    rn = rn %>% as.character()
+    if (substring(rn,1,2) == "##") {
+      if (test) {
+        print(paste0("DEBUG: would have dropped: ",name," = ",rn))
+      } else {
+        odbc::dbRemoveTable(self$con,rn)
+      }
+    } else {
+      if (force) {
+        print(paste0("WARNING: Forced drop of non temporary table: ",name," = ",rn))
+        odbc::dbRemoveTable(self$con,rn)
+      } else {
+        stop(paste0("CRITICAL: tried to drop non temporary table: ",name," = ",rn))
+      }
+    }
   }
 ))
 

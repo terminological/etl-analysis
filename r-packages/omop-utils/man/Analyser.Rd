@@ -11,14 +11,6 @@ Get an of the omop databse analyser
 \examples{
 
 ## ------------------------------------------------
-## Method `Analyser$calculateTfidf`
-## ------------------------------------------------
-
-omop = Omop$new(...)
-a = Analyser$new(omop)
-df = ... get all concepts from a set of documents ...
-
-## ------------------------------------------------
 ## Method `Analyser$plotConceptNetwork`
 ## ------------------------------------------------
 
@@ -41,6 +33,8 @@ a$plotConceptNetwork()
 \item{\code{nodes}}{a dataframe including unique concept_ids, overall counts and count of documents containing}
 
 \item{\code{edges}}{a dataframe of shortest ancestor edges between nodes}
+
+\item{\code{totalDocuments}}{a count of all the docuemnt level groupings in the analyser}
 }
 \if{html}{\out{</div>}}
 }
@@ -48,7 +42,10 @@ a$plotConceptNetwork()
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Analyser$new()}}
-\item \href{#method-countAncestorConcepts}{\code{Analyser$countAncestorConcepts()}}
+\item \href{#method-calculateIdfNodes}{\code{Analyser$calculateIdfNodes()}}
+\item \href{#method-calculateGraph}{\code{Analyser$calculateGraph()}}
+\item \href{#method-redefineGroups}{\code{Analyser$redefineGroups()}}
+\item \href{#method-calculateAncestorConcepts}{\code{Analyser$calculateAncestorConcepts()}}
 \item \href{#method-calculateTfidf}{\code{Analyser$calculateTfidf()}}
 \item \href{#method-plotConceptNetwork}{\code{Analyser$plotConceptNetwork()}}
 \item \href{#method-plotSankeyD3}{\code{Analyser$plotSankeyD3()}}
@@ -61,7 +58,7 @@ a$plotConceptNetwork()
 \subsection{Method \code{new()}}{
 create a concept analyser - typically not designed to be called directly. See Analyser$fromSearcher and Analyser$fromDataframe
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$new(omop, field = "concept_id", expanded = FALSE, groupedDf)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$new(omop, groupedDf, field)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -69,25 +66,58 @@ create a concept analyser - typically not designed to be called directly. See An
 \describe{
 \item{\code{omop}}{an R6 Omop object}
 
+\item{\code{groupedDf}}{a data frame including at least a concept_id plus the groupings defining documents, and ideally counts}
+
 \item{\code{field}}{the field name of the concept_id}
 
 \item{\code{expanded}}{has the data already been expanded to include ancestors}
-
-\item{\code{groupedDf}}{a data frame including at least a concept_id plus the groupings defining documents, and ideally counts}
 }
 \if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-countAncestorConcepts"></a>}}
-\subsection{Method \code{countAncestorConcepts()}}{
-get ancestors for a grouped set of concepts preserving grouping and count information
+\if{html}{\out{<a id="method-calculateIdfNodes"></a>}}
+\subsection{Method \code{calculateIdfNodes()}}{
+creates the nodes field containing IDF information
+
+TODO: save and restore IDFs based on different corpuses
+TODO: calculate IDFs of ancestor frequencies based on child frequencies (if possible)
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$countAncestorConcepts()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateIdfNodes()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-calculateGraph"></a>}}
+\subsection{Method \code{calculateGraph()}}{
+build the nodes and links using the ancestor table and shortest paths
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateGraph()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-redefineGroups"></a>}}
+\subsection{Method \code{redefineGroups()}}{
+define document aggregation grouping post hoc. usually better to group data before importing
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$redefineGroups(...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-the analyser with expanded
+the analyser
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-calculateAncestorConcepts"></a>}}
+\subsection{Method \code{calculateAncestorConcepts()}}{
+get ancestors for a grouped set of concepts preserving grouping and count information
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateAncestorConcepts()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the analyser with expanded groupedDf including extra concepts
 }
 }
 \if{html}{\out{<hr>}}
@@ -95,28 +125,25 @@ the analyser with expanded
 \subsection{Method \code{calculateTfidf()}}{
 get an inverse document frequency for concepts associated with a grouping
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateTfidf()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateTfidf(k1 = 1.2, b = 0.95)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{k1}}{default 1.2 - okapi BM25}
+
+\item{\code{b}}{default 0.95 - okapi BM25}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Details}{
 The grouped datafram here acts as a "Document" from the perpective of the TFIDF calculation but might be a person
-
-a dataframe with a concept_id field and at least one group_by active defining the "document"
 }
 
 \subsection{Returns}{
 an analysis object with the groupedDf expanded to include tfidf stats for each concept in each group
 }
-\subsection{Examples}{
-\if{html}{\out{<div class="r example copy">}}
-\preformatted{omop = Omop$new(...)
-a = Analyser$new(omop)
-df = ... get all concepts from a set of documents ...
-}
-\if{html}{\out{</div>}}
-
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plotConceptNetwork"></a>}}
@@ -124,14 +151,17 @@ df = ... get all concepts from a set of documents ...
 plot the currently loaded graph.
 TODO: facet plot on different scoreVars
 TODO: make layout fixed for multiple graphs: https://github.com/thomasp85/ggraph/issues/130
+TODO: split this into own class?
+TODO: aggregatre tfidf measures
+TODO: mutual information measures
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$plotConceptNetwork(scoreVar = "count", labelScore = 1)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$plotConceptNetwork(scoreVar = "f_t", labelScore = 1)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{scoreVar}}{a node feature the the graph will use as e.g.count, norm_okapi_bm25,}
+\item{\code{scoreVar}}{a node feature the the graph will use as e.g. f_t, N_t, idf measures...}
 
 \item{\code{labelScore}}{a percentage of score that will trigger a node being labelled}
 }
@@ -157,8 +187,8 @@ a$plotConceptNetwork()
 \if{html}{\out{<a id="method-plotSankeyD3"></a>}}
 \subsection{Method \code{plotSankeyD3()}}{
 plot the currently loaded graph as sankey diagram.
-TODO: facet plot on different scoreVars
-TODO: make layout fixed for multiple graphs: https://github.com/thomasp85/ggraph/issues/130
+TODO: figure out how the links get a weight that is meaningful in this context
+This would be good for visualising a classifier network
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Analyser$plotSankeyD3(linkWeightVar = "weight")}\if{html}{\out{</div>}}
 }
