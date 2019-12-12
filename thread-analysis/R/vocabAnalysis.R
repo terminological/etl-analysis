@@ -1,0 +1,181 @@
+# library(devtools)
+# library(dplyr)
+# library(tidygraph)
+# library(ggraph)
+
+# setwd("~/Git/etl-analysis/r-packages/omop-utils/")
+omop$finalize()
+devtools::document("~/Git/etl-analysis/r-packages/omop-utils/")
+devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+omop = Omop$new()
+s = Searcher$new(omop)
+
+
+# conduct a simple search and return result in df
+myocInf = Searcher$fromSearch(omop,"%myoc%inf%")
+myocInf$summary()
+
+# find used concepts in df
+measurementDf = Searcher$fromDataframe(omop, omop$measurement, measurement_concept_id)
+valuesDf = Searcher$fromDataframe(omop, omop$measurement, value_as_concept_id)
+
+# find concepts based on the code
+Searcher$fromConceptCode(omop,"%ICD%","J45%")
+
+# find counts of different classes of concept
+measurementDf$getVocabularies()
+measurementDf$getConceptClasses()
+measurementDf$getDomains()
+
+# find different classes of concept
+valuesDf$getRelationshipIds()
+
+# investigate the co-occurence of tests and concept values
+labTestValues = omop$measurement %>% 
+  filter(!is.na(value_as_concept_id)) %>% 
+  group_by(measurement_concept_id,value_as_concept_id) %>% 
+  summarise(count=n()) %>% 
+  omop$getConceptNames() %>% 
+  arrange(desc(count)) %>% collect()
+
+testConcepts = Searcher$fromDataframe(omop,labTestValues,measurement_concept_id)
+
+valueConcepts = Searcher$fromDataframe(omop,labTestValues,value_as_concept_id)
+
+generalMicroMeasurement = testConcepts$clone()$applyFilter(
+  (concept_name %like% "%culture%") |
+  (concept_name %like% "%suscept%") |
+  (concept_name %like% "%organis%") |
+  (concept_name %like% "%immunoassay%"))
+
+# understand lexical content of terms in used tests 
+generalRadiologyMeasurement = testConcepts$clone()$applyFilter(
+  (concept_name %like% "CT%") |
+  (concept_name %like% "MR%") |
+  (concept_name %like% "US%") |
+  (concept_name %like% "NM%") |
+  (concept_name %like% "XR%") |
+  (concept_name %like% "RF%") |
+  (concept_name %like% "SPECT%"))
+
+generalMicroMeasurement$save("~/Dropbox/threadAnalysis/vocab/generalMicro")
+generalMicroMeasurement = Searcher$load(omop,"~/Dropbox/threadAnalysis/vocab/generalMicro")
+
+tmp = generalMicroMeasurement$clone()$expandAncestorConcepts(max=100)
+tmp$summary()
+tmp$applyConceptClassesFilter("LOINC Group")
+
+
+
+ts = omop$buildVocabSet()
+# import the valueConcepts into a vocab set retaining the count data
+ts$useConcepts(testConcepts %>% group_by(count))
+ts$get() %>% filter(
+  (concept_name %like% "%culture%") |
+  # (concept_name %like% "%suscept%") |
+  (concept_name %like% "%organis%")
+) %>% ts$expandAncestorConcepts(min=1,max=1) %>% ts$show() %>% filter(
+  (concept_name %like% "%culture%") |
+  (concept_name %like% "%bacteria%")
+) %>% ts$show()
+  
+ts$search("Microbiology") %>% ts$applyVocabularyFilter("LOINC") %>% ts$expandDescendantConcepts(max=1) %>% ts$show()
+
+
+ts$search("Antibiotic susceptibilities") %>% ts$expandDescendantConcepts() %>% ts$show()
+
+
+View(labTestValues %>% filter(
+  (measurement_concept_name %like% "%culture%") |
+  (measurement_concept_name %like% "%organis%")
+))
+
+vs = omop$buildVocabSet()
+# import the valueConcepts into a vocab set retaining the count data
+vs$useConcepts(valueConcepts %>% group_by(count))
+vs$show()
+vs$get() %>% vs$applyFilters(c(
+  concept_id != 4155143,
+  concept_id != 4155142))
+
+
+
+
+View(labTestValues %>% arrange(value_as_concept_id))
+
+
+remoteLabTestValues = omop$con %>% copy_to(labTestValues)
+
+# %>% collect()
+
+omop$buildVocabSet()$findUsedConcepts(omop$measurement, value_as_concept_id)
+omop$buildVocabSet()$findUsedConcepts(omop$measurement, measurement_concept_id)
+
+micro = omop$buildVocabSet()$selectUsedConcepts(omop$measurement, value_as_concept_id)
+
+omop$buildVocabSet()$findUsedConcepts(omop$observation, observation_concept_id)
+
+
+s = omop$buildVocabSet()
+s$selectConceptByCode("SNOMED","239913004")
+s$expandAncestorConcepts(2)
+s$get()
+
+s$findRelationshipIds()
+
+#### Anayser demo ----
+
+omop$finalize()
+devtools::document("~/Git/etl-analysis/r-packages/omop-utils/")
+devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+omop = Omop$new()
+
+groupedDf = omop$note %>% head(5) %>%
+  left_join(omop$note_nlp, by="note_id") %>%
+  select(note_id,lexical_variant, concept_id=note_nlp_concept_id) %>%
+  omop$getConceptNames() %>% group_by(note_id) %>% compute()
+
+a = Analyser$fromDataframe(omop,groupedDf)
+groupedDf %>% a$countAncestorConcepts() %>% a$loadGraph()
+a$plotConceptNetwork()
+
+b = Analyser$new(omop)
+groupedDf %>% b$countAncestorConcepts() %>% b$calculateTfidf() %>% a$loadGraph()
+a$plotConceptNetwork(scoreVar = norm_okapi_bm25)
+
+
+nodeIds = df %>% group_by(concept_id) %>% summarise(count = n())
+compute(nodeIds)
+nodes =
+  nodeIds %>% inner_join(omop$concept, by="concept_id") %>% collect() %>%
+  mutate(id = as.character(concept_id))
+edges = omop$concept_ancestor %>% filter(min_levels_of_separation == 1) %>%
+  inner_join(nodeIds, by=c("descendant_concept_id"="concept_id")) %>%
+  inner_join(nodeIds, by=c("ancestor_concept_id"="concept_id")) %>%
+  collect() %>%
+  mutate(to=as.character(ancestor_concept_id),from=as.character(descendant_concept_id))
+graph = tbl_graph(nodes = nodes, edges = edges, directed = TRUE)
+
+plot(graph)
+
+# c('star', 'circle', 'gem', 'dh', 'graphopt', 'grid', 'mds',
+#  'randomly', 'fr', 'kk', 'drl', 'lgl')
+root = graph %N>% filter(node_is_sink())
+ggraph(graph, layout="lgl", root=root)+
+geom_edge_fan(arrow = arrow(length=unit(0.1,"inches"))) +
+# geom_conn_bundle(data = get_con(from = from, to = to,mode="out"), alpha = 0.1) +
+geom_node_label(aes(label=concept_name))
+
+graph %N>% filter(node_is_sink())
+
+
+# create_notable('bull') %>%
+#   activate(nodes) %>%
+#   mutate(centrality = centrality_power()) %>%
+#   activate(edges) %>%
+#   mutate(mean_centrality = (.N()$centrality[from] + .N()$centrality[to])/2)
+
+
+#' a = omop$analyser
+#' df = s$findConceptByCode("SNOMED","239913004") %>% s$expandAncestorConcepts()
+#' df %>% a$loadGraph()
