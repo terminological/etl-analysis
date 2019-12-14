@@ -1,0 +1,54 @@
+---
+title: "dbplyr-mutual-info.Rmd"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(devtools)
+#library(tidyinfostats)
+devtools::load_all("..")
+set.seed(101)
+```
+
+## Using DBPLYR tables in tidyinfostats
+
+Suppose you have a database connection and you have some data loaded into it. Here we will use a single test table created from a test distribution
+
+```{r}
+con <- DBI::dbConnect(RSQLite::SQLite(), dbname = ":memory:")
+
+hb = ConditionalDistribution$new()
+hb$withDistribution(0.75, LogNormalDistribution$new(mode=12,sd=2), "asymptomatic")
+hb$withDistribution(0.25, LogNormalDistribution$new(mode=8,sd=3), "tired")
+hb$withDistribution(0.25, LogNormalDistribution$new(mode=4,sd=5), "unwell")
+
+k = ConditionalDistribution$new()
+k$withDistribution(0.125, LogNormalDistribution$new(mode=1,sd=0.5), "unwell")
+k$withDistribution(0.75, LogNormalDistribution$new(mode=2,sd=1), "asymptomatic")
+k$withDistribution(0.125, LogNormalDistribution$new(mode=8,sd=3), "tired")
+
+theoretical = tibble(
+  measure = c("Mean","Variance","Mutual Information"),
+  hb = c(hb$theoreticalMean(),hb$theoreticalVariance(), hb$theoreticalMI()),
+  k = c(k$theoreticalMean(),k$theoreticalVariance(),k$theoreticalMI()))
+
+testData = k$sample(5000) %>% mutate(test="k") %>% bind_rows(
+  hb$sample(5000) %>% mutate(test="hb")) %>% rename(outcome=y, value=x)
+
+testData = con %>% copy_to(testData)
+testData
+```
+
+## Executing a 
+
+You can also embed plots, for example:
+
+```{r}
+lazyResult = testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow")
+lazyResult %>% show_query()
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

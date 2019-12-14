@@ -140,9 +140,11 @@ calculateDiscreteContinuousMI_SGolay = function(df, groupXVar, valueYVar, k_05=1
 #' @param groupXVar - the column of the categorical value (X)
 #' @param valueYVar - the column of the continuous value (Y)
 #' @param k_05 - half the sliding window width - this should be a small number like 1,2,3.
+#' @param a - adjustment parameter 1 (adjusts k digamma term - constant)
+#' @param b - adjustment parameter 2 (adjusts m_i digamma term - varies with MI)
 #' @return a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry
 #' @import dplyr
-calculateDiscreteContinuousMI_KWindow = function(df, groupXVar, valueYVar, k_05=2) {
+calculateDiscreteContinuousMI_KWindow = function(df, groupXVar, valueYVar, k_05=2,a=1,b=1) {
   grps = df %>% groups()
   groupXVar = ensym(groupXVar)
   valueYVar = ensym(valueYVar)
@@ -167,9 +169,28 @@ calculateDiscreteContinuousMI_KWindow = function(df, groupXVar, valueYVar, k_05=
   tmp4 = tmp %>% group_by(!!!grps) %>% arrange(y) %>% mutate(rank = row_number())
   tmp4 = tmp4 %>% group_by(!!!grps,x) %>% arrange(y) %>% mutate(
     m_i = lead(rank,as.integer(k_05))-lag(rank,as.integer(k_05))
-  ) %>% mutate(
-    I_i = digamma(N)-digamma(N_X)+0.99*digamma(k_05*2)-digamma(m_i)
-  ) %>% group_by(!!!grps) %>% summarize(
+  ) 
+  if ("tbl_sql" %in% class(tmp4)) {
+    # estimate digamma in SQL
+    # for large n digamma(n) is approx ln(n-1)+1/(2*(n-1))
+    digammaTbl = digammaTable(tmp4$src$con)
+    tmp4 = tmp4 %>% 
+      left_join(digammaTbl %>% rename(N = n, digammaN = digamma), by="N") %>%
+      left_join(digammaTbl %>% rename(N_X = n, digammaN_X = digamma), by="N_X") %>%
+      left_join(digammaTbl %>% rename(m_i = n, digammam_i = digamma), by="m_i") %>%
+      mutate(
+        digammaN = ifelse(is.na(digammaN), log(N-1)+1/(2*(N-1)),digammaN),
+        digammaN_X = ifelse(is.na(digammaN_X), log(N_X-1)+1/(2*(N_X-1)),digammaN_X)
+      ) %>%
+      mutate(
+        I_i = digammaN-digammaN_X+local(a*digamma(k_05*2))-local(b)*digammam_i
+      )
+  } else {
+    tmp4 = tmp4 %>% mutate(
+      I_i = digamma(N)-digamma(N_X)+a*digamma(k_05*2)-b*digamma(m_i)
+    )
+  }
+  tmp4 = tmp4 %>% group_by(!!!grps) %>% summarize(
     I = mean(I_i,na.rm=TRUE)
   )
   return(tmp4)
@@ -192,4 +213,18 @@ calculateDiscreteContinuousMI_Discretise = function(df, groupXVar, valueYVar, bi
         return(data.frame(I=infotheo::mutinformation(d$x, d$y)))
     })
   )
+}
+
+digammaTable = function(con) {
+  if(con %>% db_has_table("digamma")) return(tbl(con,"digamma"))
+  digammaTbl = tibble(n = c(1:10000),
+    digamma = digamma(c(1:10000))
+  )
+  return(con %>% copy_to(digammaTbl,name="digamma"))
+}
+
+harmonicTable = function(con) {
+  if(con %>% db_has_table("harmonic")) return(tbl(con,"harmonic"))
+  harmonicTbl = tibble(n = c(1:10000), harmonic=c(0,1/c(1:9999))) %>% mutate(harmonic = cumsum(harmonic))
+  return(con %>% copy_to(digammaTbl,name="digamma"))
 }
