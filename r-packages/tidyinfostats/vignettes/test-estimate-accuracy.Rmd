@@ -1,0 +1,327 @@
+---
+title: "test-estimate-accuracy"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setup}
+library(infotheo)
+library(tidyverse)
+library(ggplot2)
+library(devtools)
+library(standardPrintOutput)
+#library(tidyinfostats)
+devtools::load_all("..")
+set.seed(101)
+theme_set(standardPrintOutput::defaultFigureLayout())
+```
+
+##Experiment
+
+B. C. Ross, “Mutual information between discrete and continuous data sets,” PLoS One, vol. 9, no. 2, p. e87357, Feb. 2014 [Online]. Available: http://dx.doi.org/10.1371/journal.pone.0087357
+
+The first experiment replicates Ross's findings around discretising data & KNN method for estimating MI but using 2 new algorithms and only the smaller sample size
+
+```{r echo=FALSE}
+experiment1 = function(distribution, sampleSize, reps) {
+  
+  kout = NULL
+  thMi = distribution$theoreticalMI()
+  thMu = distribution$theoreticalMean()
+  thSd = sqrt(distribution$theoreticalVariance())
+  
+  for (i in c(1:reps)) {
+	  # i = 1
+	  df = distribution$sample(sampleSize)
+	  estMean = mean(df$x)
+  	estSd = sd(df$x)
+  	
+  	# SGolay method
+	  k = c(5,7,10,15,20,30,40)
+	  kresult = sapply(k, function(k2) (calculateDiscreteContinuousMI(df, y, x, method = "SGolay", k_05=k2) %>% pull(I)))
+  	kout = kout %>% bind_rows(tibble(
+  			method = rep("SGolay",length(k)),
+  			param = rep("filter width",length(k)),
+  			test = rep(i,length(k)),
+  			value = k,
+  			estimatedMI = kresult,
+  			estimatedMean = rep(estMean,length(k)),
+  			estimatedSd = rep(estSd,length(k))
+  	))
+	
+		# KWindow method
+  	k = c(2:10)
+		wresult = sapply(k, function(k2) (calculateDiscreteContinuousMI(df, y, x, method = "KWindow", k_05=k2) %>% pull(I)))
+	  kout = kout %>% bind_rows(tibble(
+  			method = rep("KWindow",length(k)),
+  			param = rep("window width",length(k)),
+  			test = rep(i,length(k)),
+  			value = k,
+  			estimatedMI = wresult,
+  			estimatedMean = rep(estMean,length(k)),
+  			estimatedSd = rep(estSd,length(k))
+  	))
+	  
+	  # Discretise method
+	  binPow = seq(0.1,0.9,0.1)
+	  k = floor(sampleSize^binPow)
+	  nresult = sapply(k, function(k2) (calculateDiscreteContinuousMI(df, y, x, method = "Discrete", bins=k2) %>% pull(I)))
+	  kout = kout %>% bind_rows(tibble(
+  			method = rep("Discrete",length(k)),
+  			param = rep("number bins",length(k)),
+  			test = rep(i,length(k)),
+  			value = sampleSize/k,
+  			estimatedMI = nresult,
+  			estimatedMean = rep(estMean,length(k)),
+  			estimatedSd = rep(estSd,length(k))
+  	))
+	  
+  }
+  
+  kout = kout %>% mutate(
+    theoreticalMI = thMi,
+  	theoreticalMean = thMu,
+  	theoreticalSd = thSd
+  )
+  
+  return(kout)
+}
+
+
+# todo summarise experimental data
+plotExperiment1 = function(df) {
+  exp1aDataGrouped = df %>% group_by(method,param,value) %>% summarise( #,estimatedMean,estimatedSd,theoreticalMI,theoreticalMean,theoreticalSd) %>% summarise(
+    estMIMean = mean(estimatedMI),
+    estMIsd = sd(estimatedMI)
+  )
+
+  # p3 = 
+  return(
+    ggplot(exp1aDataGrouped, aes(x=value))+
+  		geom_ribbon(aes(ymin=estMIMean-1.96*estMIsd,ymax=estMIMean+1.96*estMIsd), fill = "grey75")+
+  		geom_line(aes(y=estMIMean))+
+  		coord_cartesian(ylim = c(0,1))+
+    	geom_hline(yintercept=min(df$theoreticalMI), colour="blue")+
+      facet_wrap(vars(method),scales = "free_x")
+  )
+}
+
+```
+
+## gaussians
+
+% gaussian test params
+
+y0 = [ .4 .5 .8 ];          % the center of the gaussian
+sigma_y = [ .2 .3 .25 ];    % the gaussian decay constant
+p{2} = [ .2 1 0.5 ];        % the (normalized) amplitude p(x)
+
+
+
+```{r}
+gaussians = ConditionalDistribution$new()
+gaussians$withDistribution(0.2,NormalDistribution$new(0.4,0.2))
+gaussians$withDistribution(1,NormalDistribution$new(0.5,0.3))
+gaussians$withDistribution(0.5,NormalDistribution$new(0.8,0.25))
+
+gaussians$plot(-1,2)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/gaussiansDist")
+```
+
+Using a sample size of 400 and 100 repetitions of the test for bootstrapping
+
+```{r}
+exp1aData = experiment1(distribution=gaussians, sampleSize=400, reps=100)
+plotExperiment1(exp1aData)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/gaussiansEstimated400")
+```
+
+Using a sample size of 10000 and 100 repetitions of the test for bootstrapping
+
+```{r}
+exp1bData = experiment1(distribution=gaussians, sampleSize=10000, reps=100)
+plotExperiment1(exp1bData)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/gaussiansEstimated10K")
+```
+
+### Uniform distributions
+
+% square wave test params
+
+a = [ 0 .1 .2 ];            % the left side of each square wave
+b_a = [ 1 1.1 1.1 ];        % the length in y of each square wave
+p{1} = [ .2 1 0.5 ];        % the (normalized) amplitude p(x)
+
+
+```{r}
+squareWaves = ConditionalDistribution$new()
+squareWaves$withDistribution(0.2,UniformDistribution$new(min=0,max=1))
+squareWaves$withDistribution(1,UniformDistribution$new(min=0.1,max=1.2))
+squareWaves$withDistribution(0.5,UniformDistribution$new(min=0.2,max=1.3))
+squareWaves$plot(-0.5,1.5)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/squareDist")
+```
+
+Using a sample size of 400 and 100 repetitions of the test for bootstrapping
+
+```{r}
+exp1cData = experiment1(distribution=squareWaves, sampleSize=400, reps=100)
+plotExperiment1(exp1cData)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/squareEstimated400")
+```
+
+Using a sample size of 10000 and 100 repetitions of the test for bootstrapping
+
+```{r}
+exp1dData = experiment1(distribution=squareWaves, sampleSize=10000, reps=100)
+plotExperiment1(exp1dData)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/squareEstimated10K")
+```
+
+### Log normals
+
+% square wave test params
+
+a = [ 0 .1 .2 ];            % the left side of each square wave
+b_a = [ 1 1.1 1.1 ];        % the length in y of each square wave
+p{1} = [ .2 1 0.5 ];        % the (normalized) amplitude p(x)
+
+
+```{r}
+lognorm = ConditionalDistribution$new()
+lognorm$withDistribution(0.5,LogNormalDistribution$new(mode=1,sd=0.25))
+lognorm$withDistribution(1,LogNormalDistribution$new(mode=1.5,sd=1))
+lognorm$withDistribution(0.3,LogNormalDistribution$new(mode=2.5,sd=0.5))
+lognorm$plot(0,5)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/lognormDist")
+```
+
+Using a sample size of 400 and 100 repetitions of the test for bootstrapping
+
+```{r}
+exp1eData = experiment1(distribution=lognorm, sampleSize=400, reps=100)
+plotExperiment1(exp1eData)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/lognormEstimated400")
+```
+
+Using a sample size of 10000 and 100 repetitions of the test for bootstrapping
+
+```{r}
+exp1fData = experiment1(distribution=lognorm, sampleSize=10000, reps=100)
+plotExperiment1(exp1fData)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/lognormEstimated10K")
+```
+
+## Experiment 2
+
+TODO:
+* Assess bias in KWindow estimate
+** Random distributions
+** Plot estimated versus theoretical MI
+** Plot estimated versus theoretical Mean & Variance
+** Corrected versus uncorrected?
+*** solve estimated versus theoretical for parameters a&b for random distributions & samples
+
+* Look at sample size versus accuracy
+** MI, Mean and SD with increasing sample size
+** regression to predict SD of MI from est mean versus theoretical mean  & est versus theoretical SD
+
+
+```{r echo=FALSE}
+experiment2 = function(reps,aAdj = seq(0.98,1.0,0.002)) {
+  
+  result = NULL
+  
+  for (i in c(1:reps)) {
+    
+    ndist = sample(2:4,1)
+    distribution = ConditionalDistribution$new()$withRandomDistributions(ndist)
+    thMi = tryCatch(distribution$theoreticalMI(), error = function(e) {NA})
+    thMu = tryCatch(distribution$theoreticalMean(), error = function(e) {NA})
+    thSd = tryCatch(sqrt(distribution$theoreticalVariance()), error = function(e) {NA})
+    
+    df = distribution$sample(1000)
+    
+    estMi = sapply(aAdj, function(a) calculateDiscreteContinuousMI(df, y, x, method = "KWindow", k_05=4, a=a) %>% pull(I))
+    estMean = mean(df$x)
+    estSd = sd(df$x)
+    
+    result = result %>% bind_rows(
+      tibble(
+        sample = rep(i,length(aAdj)+2),
+        distributions = rep(ndist,length(aAdj)+2),
+        param = c(rep("MI",length(aAdj)),"Mean","Std deviation"),
+        adjustmentFactor = c(aAdj,1,1),
+        theoretical = c(rep(thMi,length(aAdj)),thMu,thSd),
+        estimated = c(estMi,estMean,estSd)
+      )
+    )
+    
+  }
+  
+  return(result)
+}
+
+
+# todo summarise experimental data
+plotExperiment2 = function(df) {
+  # p3 = 
+  return(
+    ggplot(df %>% filter(adjustmentFactor==1) %>% mutate(components=as.factor(distributions)), aes(x=theoretical,y=estimated,colour=components))+
+  		geom_point()+
+  		geom_abline(slope=1,intercept=0,colour="grey75")+
+  		#coord_cartesian(ylim = c(0,1))+
+    	facet_wrap(vars(param),scales = "free")
+  )
+}
+
+```
+
+
+```{r}
+exp2data = experiment2(1000)
+plotExperiment2(exp2data)
+standardPrintOutput::saveThirdPageFigure(filename="~/Dropbox/featureSelection/mutinfo/kwindowError")
+```
+
+```{r}
+df = exp2data %>% mutate(error = ((theoretical-estimated)/theoretical), components=as.factor(distributions))
+
+tmp1 = df %>% filter(!is.na(error)) %>% group_by(`Estimate`=param,`Adjustment`=adjustmentFactor) %>% group_modify(function(d,...) {
+    tryCatch({
+      tResult = t.test(d$error, paired=FALSE)
+      tibble(
+        `Error size` = twoDp(tResult$estimate),
+        `Confidence interval` = paste0(twoDp(tResult$conf.int),collapse=", "),
+        `P Value` = twoDp(tResult$p.value)
+      )},
+      error = function(e) {
+        tibble(
+        `Error size` = as.character(mean(d$error)),
+        `Confidence interval` = paste0(mean(d$error),", ",mean(d$error)),
+        `P Value` = "0"
+        )
+      }
+    )
+}) %>% group_by(Estimate) %>% arrange(Adjustment) %>% standardPrintOutput::mergeCells() 
+
+tmp1
+tmp1 %>% standardPrintOutput::saveTable(filename = "~/Dropbox/featureSelection/mutinfo/adjustedError")
+```
+
+```{r}
+tmp2 = df %>% group_by(param,adjustmentFactor) %>% group_modify(function(d,...) {
+    tResult = t.test(d$theoretical, d$estimated, paired=TRUE)
+    tibble(
+      effectSize = twoDp(tResult$estimate),
+      confidenceInt = paste0(twoDp(tResult$conf.int),collapse=", "),
+      pValue = twoDp(tResult$p.value)
+    )
+}) %>% rename(`Estimate`=param, Adjustment=adjustmentFactor, Difference = effectSize, `Confidence interval`=confidenceInt, `P value` = pValue ) %>% group_by(Estimate) %>% arrange(Adjustment) %>% standardPrintOutput::mergeCells() 
+tmp2
+tmp2 %>% standardPrintOutput::saveTable(filename = "~/Dropbox/featureSelection/mutinfo/adjustedError2")
+# ggplot(df, aes)
+```

@@ -21,6 +21,7 @@ Remotes:
   thomasp85/patchwork
 Suggests: 
   knitr,
-  rmarkdown
+  rmarkdown,
+  RSQLite
 VignetteBuilder: knitr
 RoxygenNote: 7.0.0.9000

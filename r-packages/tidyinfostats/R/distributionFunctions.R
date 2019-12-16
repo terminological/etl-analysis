@@ -124,7 +124,7 @@ NormalDistribution = R6::R6Class("NormalDistribution", inherit=Distribution, pub
 LogNormalDistribution = R6::R6Class("LogNormalDistribution", inherit=Distribution, public=list(
   mu=NULL,
   sigma=NULL,
-  initialize = function(mode=runif(1,0,4),sd=runif(1,0.5,5)) {
+  initialize = function(mode=runif(1,1,4),sd=runif(1,0.5,5)) {
     self$mu = mode
     self$sigma = sd
     fn = function(mean,mode,sd) exp(mean)*mode-exp(2*mean)+sd^2
@@ -192,6 +192,7 @@ ConditionalDistribution = R6::R6Class("ConditionalDistribution", public=list(
         self$withDistribution(sample(1:5, 1), LogNormalDistribution$new())
       )
     }
+    invisible(self)
   },
   
   #' @description produce a set of samples conforming to this distribution
@@ -227,8 +228,8 @@ ConditionalDistribution = R6::R6Class("ConditionalDistribution", public=list(
   #' @return a ggassemble plot object
   plot = function(xmin,xmax) {
     out = self$getPdf(xmin=xmin,xmax=xmax)
-    pdfPlot = ggplot(out,aes(x=x,y=pxy,ymax=CDFxy,colour=y,fill=y))+geom_line(aes(y=px),colour="grey50")+geom_line()+geom_area(alpha=0.3,position="identity")+ylab("p(x\u2229y)")
-    cdfPlot = ggplot(out,aes(x=x,y=CDFxy,colour=y))+geom_line(aes(y=CDFx),colour="grey50")+geom_line()+ylab("P(x\u2229y)")
+    pdfPlot = ggplot(out,aes(x=x,y=pxy,ymax=CDFxy,colour=y,fill=y))+geom_line(aes(y=px),colour="grey50")+geom_line()+geom_area(alpha=0.3,position="identity")+ylab("p(x\u2229y)")+theme(legend.position = "bottom",legend.direction = "vertical")
+    cdfPlot = ggplot(out,aes(x=x,y=CDFxy,colour=y))+geom_line(aes(y=CDFx),colour="grey50")+geom_line()+ylab("P(x\u2229y)")+theme(legend.position = "bottom",legend.direction = "vertical")
     return(patchwork::wrap_plots(pdfPlot,cdfPlot,nrow=1))
   },
 
@@ -255,6 +256,7 @@ ConditionalDistribution = R6::R6Class("ConditionalDistribution", public=list(
     pxy = function(x) py*sapply(self$dists, function(dist) dist$p(x)) # i.e. p(y) * p(x given y)
     px = function(x) sapply(x, function(x) sum(pxy(x))) # this gives us over all x
     Iix = function(x) sapply(x, function(x) sum(ifelse(px(x)==0|pxy(x)==0,0,pxy(x)*log(pxy(x)/(py*px(x))))))
+    #TODO: can throw error here due to non finite function. To investigate.
     return(integrate(Iix,-Inf,Inf)$value)
   },
   

@@ -7,7 +7,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
-library(devtools)
 #library(tidyinfostats)
 devtools::load_all("..")
 set.seed(101)
@@ -35,8 +34,8 @@ theoretical = tibble(
   hb = c(hb$theoreticalMean(),hb$theoreticalVariance(), hb$theoreticalMI()),
   k = c(k$theoreticalMean(),k$theoreticalVariance(),k$theoreticalMI()))
 
-testData = k$sample(5000) %>% mutate(test="k") %>% bind_rows(
-  hb$sample(5000) %>% mutate(test="hb")) %>% rename(outcome=y, value=x)
+testData = k$sample(50000) %>% mutate(test="k") %>% bind_rows(
+  hb$sample(50000) %>% mutate(test="hb")) %>% rename(outcome=y, value=x)
 
 testData = con %>% copy_to(testData)
 testData
@@ -49,6 +48,7 @@ You can also embed plots, for example:
 ```{r}
 lazyResult = testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow")
 lazyResult %>% show_query()
+lazyResult
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
