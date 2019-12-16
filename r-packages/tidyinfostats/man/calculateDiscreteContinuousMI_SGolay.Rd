@@ -4,16 +4,16 @@
 \alias{calculateDiscreteContinuousMI_SGolay}
 \title{calculate mutual information between a categorical value (X) and a continuous value (Y)}
 \usage{
-calculateDiscreteContinuousMI_SGolay(df, groupXVar, valueYVar, k_05 = 10)
+calculateDiscreteContinuousMI_SGolay(df, discreteVar, continuousVar, k_05 = 10)
 }
 \arguments{
 \item{df}{- may be grouped, in which case the value is interpreted as different types of continuous variable}
 
-\item{groupXVar}{- the column of the categorical value (X)}
-
-\item{valueYVar}{- the column of the continuous value (Y)}
-
 \item{k_05}{- the half window width of the SG filter that smooths the data. This is dependent on data but typically not less that 10.}
+
+\item{groupVar}{- the column of the categorical value (X)}
+
+\item{valueVar}{- the column of the continuous value (Y)}
 }
 \value{
 a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry

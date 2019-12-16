@@ -12,6 +12,15 @@ Get a log normal distribution wrapper
 \section{Super class}{
 \code{\link[tidyinfostats:Distribution]{tidyinfostats::Distribution}} -> \code{LogNormalDistribution}
 }
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{mu}}{the mean of the normal distribuition}
+
+\item{\code{sigma}}{the sd of the normal distribuition}
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -35,18 +44,32 @@ Get a log normal distribution wrapper
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
+plot this dictributions as pdf and cdf
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LogNormalDistribution$new(mode = runif(1, 0, 4), sd = runif(1, 0.5, 5))}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{LogNormalDistribution$new(mode = runif(1, 1, 4), sd = runif(1, 0.5, 5))}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{mode}}{the mode - must be 1 or greater TODO: find out why}
+
+\item{\code{sd}}{the sd}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-label"></a>}}
 \subsection{Method \code{label()}}{
+gets a label for this distribution based on the parameters passed
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{LogNormalDistribution$label()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a string
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

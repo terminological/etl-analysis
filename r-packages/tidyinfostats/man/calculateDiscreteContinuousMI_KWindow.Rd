@@ -4,16 +4,27 @@
 \alias{calculateDiscreteContinuousMI_KWindow}
 \title{calculate mutual information between a categorical value (X) and a continuous value (Y) using a sliding window and local entropy measure}
 \usage{
-calculateDiscreteContinuousMI_KWindow(df, groupXVar, valueYVar, k_05 = 2)
+calculateDiscreteContinuousMI_KWindow(
+  df,
+  discreteVar,
+  continuousVar,
+  k_05 = 4,
+  a = 0.992,
+  b = 1
+)
 }
 \arguments{
 \item{df}{- may be grouped, in which case the value is interpreted as different types of continuous variable}
 
+\item{k_05}{- half the sliding window width - this should be a small number like 1,2,3.}
+
+\item{a}{- adjustment parameter 1 (adjusts k digamma term - constant)}
+
+\item{b}{- adjustment parameter 2 (adjusts m_i digamma term - varies with MI)}
+
 \item{groupXVar}{- the column of the categorical value (X)}
 
 \item{valueYVar}{- the column of the continuous value (Y)}
-
-\item{k_05}{- half the sliding window width - this should be a small number like 1,2,3.}
 }
 \value{
 a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry

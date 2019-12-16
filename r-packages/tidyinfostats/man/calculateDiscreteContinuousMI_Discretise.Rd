@@ -6,19 +6,19 @@
 \usage{
 calculateDiscreteContinuousMI_Discretise(
   df,
-  groupXVar,
-  valueYVar,
+  discreteVar,
+  continuousVar,
   bins = nrow(df)^(1/3)
 )
 }
 \arguments{
 \item{df}{- may be grouped, in which case the value is interpreted as different types of continuous variable}
 
+\item{bins}{- the number of bins (see infotheo::discretize)}
+
 \item{groupXVar}{- the column of the categorical value (X)}
 
 \item{valueYVar}{- the column of the continuous value (Y)}
-
-\item{bins}{- the number of bins (see infotheo::discretize)}
 }
 \value{
 a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry
