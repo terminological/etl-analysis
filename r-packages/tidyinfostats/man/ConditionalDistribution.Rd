@@ -12,22 +12,11 @@ Get a named class distribution wrapper
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{names}}{the class name}
+\item{\code{classes}}{the class names}
 
-\item{\code{probabilities}}{the marginal probability of the class}
+\item{\code{weights}}{the relative weights of each distribution}
 
-\item{\code{df}}{the distribution functions}
-}
-\if{html}{\out{</div>}}
-}
-\section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{names}}{the class name}
-
-\item{\code{probabilities}}{the marginal probability of the class}
-
-\item{\code{df}}{the distribution functions}
+\item{\code{dists}}{the distribution as Distribution objects}
 }
 \if{html}{\out{</div>}}
 }
@@ -39,7 +28,6 @@ Get a named class distribution wrapper
 \item \href{#method-sample}{\code{ConditionalDistribution$sample()}}
 \item \href{#method-getPdf}{\code{ConditionalDistribution$getPdf()}}
 \item \href{#method-plot}{\code{ConditionalDistribution$plot()}}
-\item \href{#method-numericalMI}{\code{ConditionalDistribution$numericalMI()}}
 \item \href{#method-theoreticalMI}{\code{ConditionalDistribution$theoreticalMI()}}
 \item \href{#method-theoreticalMean}{\code{ConditionalDistribution$theoreticalMean()}}
 \item \href{#method-theoreticalVariance}{\code{ConditionalDistribution$theoreticalVariance()}}
@@ -73,10 +61,18 @@ adds in a Distribution with a class name and weight
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-withRandomDistributions"></a>}}
 \subsection{Method \code{withRandomDistributions()}}{
+adds a set of random distributions to the composite
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConditionalDistribution$withRandomDistributions(n = 2)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{n}}{the number of distributions to add}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sample"></a>}}
@@ -100,11 +96,22 @@ a data frame of samples (labelled x) associated with classes (labelled "class")
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPdf"></a>}}
 \subsection{Method \code{getPdf()}}{
-plot this dictributions as pdf and cdf
+get the pdf of these distributions as a dataframe
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConditionalDistribution$getPdf(xmin, xmax, resolution = 1001)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xmin}}{- the minimum of the support}
+
+\item{\code{xmax}}{- the maximum of the support}
+
+\item{\code{resolution}}{-  the number of points in the pdf}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 a datafram containing all classes
 }
@@ -112,46 +119,59 @@ a datafram containing all classes
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
 \subsection{Method \code{plot()}}{
-plot this dictributions as pdf and cdf
+plot this distributions as pdf and cdf
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConditionalDistribution$plot(xmin, xmax)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xmin}}{- the minimum of the support}
+
+\item{\code{xmax}}{- the maximum of the support}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 a ggassemble plot object
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-numericalMI"></a>}}
-\subsection{Method \code{numericalMI()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ConditionalDistribution$numericalMI(xmin, xmax, resolution = 1001)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-theoreticalMI"></a>}}
 \subsection{Method \code{theoreticalMI()}}{
+generate the theoretical mutual information
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConditionalDistribution$theoreticalMI()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a single value for the mutual information of this function
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-theoreticalMean"></a>}}
 \subsection{Method \code{theoreticalMean()}}{
+generate the theoretical mean
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConditionalDistribution$theoreticalMean()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a single value for the mean of this function
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-theoreticalVariance"></a>}}
 \subsection{Method \code{theoreticalVariance()}}{
+generate the theoretical variance
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConditionalDistribution$theoreticalVariance()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a single value for the variance of this function
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

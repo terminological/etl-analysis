@@ -118,18 +118,33 @@ a dataframe
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-label"></a>}}
 \subsection{Method \code{label()}}{
+gets a label for this distribution based on the parameters passed
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Distribution$label()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a string
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-inverse"></a>}}
 \subsection{Method \code{inverse()}}{
+gets a label for this distribution based on the parameters passed
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Distribution$inverse(y)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{y}}{a vector of y values to apply the quantile function to}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a daat frame of y and corresponding x values
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sample"></a>}}
@@ -158,6 +173,15 @@ plot this dictributions as pdf and cdf
 \if{html}{\out{<div class="r">}}\preformatted{Distribution$plot(xmin, xmax, resolution = 1001)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xmin}}{the minimum of the support range to plot}
+
+\item{\code{xmax}}{the maximum of the support range to plot}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 a ggassemble plot object
 }

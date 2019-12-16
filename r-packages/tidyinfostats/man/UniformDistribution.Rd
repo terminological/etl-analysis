@@ -35,10 +35,20 @@ Get a uniform distribution wrapper
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
+plot this dictributions as pdf and cdf
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{UniformDistribution$new(min = runif(1, -3, 3), max = min + runif(1, 0, 6))}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{min}}{the min value of the uniform distribution}
+
+\item{\code{max}}{the max value of the uniform distribution}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
