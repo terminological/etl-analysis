@@ -9,16 +9,18 @@
 calculateBinaryMI = function(df) {
 	return(
 		df %>% mutate(
-			pmi_x1y1 = ifelse( p_x1y1==0, ifelse(p_x1==0 | p_y1==0, 0, -Inf), log(p_x1y1/(p_x1*p_y1)) ),
-			pmi_x0y1 = ifelse( p_x0y1==0, ifelse(p_x0==0 | p_y1==0, 0, -Inf), log(p_x0y1/(p_x0*p_y1)) ),
-			pmi_x1y0 = ifelse( p_x1y0==0, ifelse(p_x1==0 | p_y0==0, 0, -Inf), log(p_x1y0/(p_x1*p_y0)) ),
-			pmi_x0y0 = ifelse( p_x0y0==0, ifelse(p_x0==0 | p_y0==0, 0, -Inf), log(p_x0y0/(p_x0*p_y0)) ),
+			pmi_x1y1 = ifelse( p_x1y1==0, ifelse(p_x1==0 | p_y1==0, 0, NA), log(p_x1y1/(p_x1*p_y1)) ),
+			pmi_x0y1 = ifelse( p_x0y1==0, ifelse(p_x0==0 | p_y1==0, 0, NA), log(p_x0y1/(p_x0*p_y1)) ),
+			pmi_x1y0 = ifelse( p_x1y0==0, ifelse(p_x1==0 | p_y0==0, 0, NA), log(p_x1y0/(p_x1*p_y0)) ),
+			pmi_x0y0 = ifelse( p_x0y0==0, ifelse(p_x0==0 | p_y0==0, 0, NA), log(p_x0y0/(p_x0*p_y0)) )
+		) %>% mutate(
 			I_xy = (
 				ifelse(p_x1y1==0|p_x1==0|p_y1==0, 0, p_x1y1*pmi_x1y1)+
 				ifelse(p_x0y1==0|p_x0==0|p_y1==0, 0, p_x0y1*pmi_x0y1)+
 				ifelse(p_x1y0==0|p_x1==0|p_y0==0, 0, p_x1y0*pmi_x1y0)+
 				ifelse(p_x0y0==0|p_x0==0|p_y0==0, 0, p_x0y0*pmi_x0y0)
-			),
+			)
+		) %>% mutate(
 			npmi_x1y1 = ifelse( p_x1y1==0, ifelse(p_x1==0 | p_y1==0, 0, -1), pmi_x1y1 / (-log(p_x1y1)) ),
 			npmi_x0y1 = ifelse( p_x0y1==0, ifelse(p_x0==0 | p_y1==0, 0, -1), pmi_x0y1 / (-log(p_x0y1)) ),
 			npmi_x1y0 = ifelse( p_x1y0==0, ifelse(p_x1==0 | p_y0==0, 0, -1), pmi_x1y0 / (-log(p_x1y0)) ),

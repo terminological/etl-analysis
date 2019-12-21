@@ -1,22 +1,62 @@
+---
+title: "Analyse the content of the "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE}
 library(ggplot2)
 library(ggdendro)
 library(ggraph)
+# devtools::install_github("terminological/standard-print-output")
 library(standardPrintOutput)
 
-omop$finalize()
+#omop$finalize()
 rm(list = ls(all.names = TRUE))
 
 devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+devtools::load_all("~/Git/etl-analysis/r-packages/tidyinfostats/")
+```
 
+Generate a test data set from the first 50 orthopaedic and 50 rheumatology
+documents:
+ 
+
+```{r echo=FALSE}
 omop = Omop$new()
 
-groupedDf = 
-  omop$note %>% filter(note_class_concept_id == 3032918L) %>% head(50) %>% union(
+groupedDf = omop$note %>% filter(note_class_concept_id == 3032918L) %>% head(50) %>% union(
     omop$note %>% filter(note_class_concept_id == 3031179L) %>% head(50)
   ) %>%
   left_join(omop$note_nlp, by="note_id") %>%
   select(note_class_concept_id, note_id,lexical_variant, concept_id=note_nlp_concept_id) %>%
-  omop$getConceptNames() %>% group_by(note_class_concept_id, note_id) %>% compute()
+  omop$getConceptNames() %>% group_by(note_class_concept_id, note_id) %>% 
+  #show_query()
+  compute()
+
+groupedDf = groupedDf %>% omop$expandAncestorConcepts(concept_id)
+```
+
+```{r}
+
+# devtools::load_all("~/Git/etl-analysis/r-packages/tidyinfostats/")
+# groupedDf = groupedDf %>% group_by(note_class_concept_id, note_id)
+idfDf = groupedDf %>% tidyinfostats::calculateIdf(concept_id, count)
+
+tfidfDf = groupedDf %>% tidyinfostats::calculateTfidf(concept_id, idfDf=idfDf ) %>% compute()
+miDf = tfidfDf %>% ungroup() %>% 
+	tidyinfostats::probabilitiesFromGroups(note_class_concept_id, concept_id) %>% 
+	tidyinfostats::calculateBinaryMI()
+
+miContinuousDf = tfidfDf %>% group_by(concept_id,N_t) %>% 
+  tidyinfostats::calculateDiscreteContinuousMI(note_class_concept_id, norm_okapi_bm25)
+```
+
+```{r}
+cooc = tfidfDf %>% arrange(desc(f_t)) %>% head(30)
 
 a = Analyser$fromDataframe(omop,groupedDf)
 a$calculateTfidf()

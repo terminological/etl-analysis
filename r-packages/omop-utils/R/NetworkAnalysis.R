@@ -49,10 +49,11 @@ Analyser = R6::R6Class("Analyser", public=list(
     # count = number of occurrences in corpus
     # documents = number of documents that each concept appears in (useful for idf)
     self$nodes = self$groupedDf %>% ungroup() %>% 
-      group_by(concept_id,concept_name) %>% #,isOrigin) %>% 
+      group_by(concept_id) %>% #,isOrigin) %>% 
       # f_t - is the number of instances of a given term in the corpus
       # N_t - is number of documents containing given term in the corpus 
       summarise(
+		concept_name = first(concept_name),
         f_t=sum(count, na.rm=TRUE), 
         N_t=n()
       ) %>% ungroup() %>%

@@ -27,7 +27,7 @@ calculateDiscreteContinuousMI_SGolay = function(df, discreteVar, continuousVar, 
   discreteVar = ensym(discreteVar)
   continuousVar = ensym(continuousVar)
 
-  if (identical(grps,NULL)) {
+  if (length(grps)==0) {
     grpsList = NULL
   } else {
     grpsList = sapply(grps,as.character)
@@ -157,44 +157,72 @@ calculateDiscreteContinuousMI_SGolay = function(df, discreteVar, continuousVar, 
 #' @param valueYVar - the column of the continuous value (Y)
 #' @param k_05 - half the sliding window width - this should be a small number like 1,2,3.
 #' @param a - adjustment parameter 1 (adjusts k digamma term - constant)
-#' @param b - adjustment parameter 2 (adjusts m_i digamma term - varies with MI)
 #' @return a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry
 #' @import dplyr
-calculateDiscreteContinuousMI_KWindow = function(df, discreteVar, continuousVar, k_05=4, a=0.992, b=1) {
+calculateDiscreteContinuousMI_KWindow = function(df, discreteVar, continuousVar, k_05=4, a=1) { #a=0.992, b=1) {
   k_05 = as.integer(k_05)
   if (k_05<2) k_05=2
   grps = df %>% groups()
   discreteVar = ensym(discreteVar)
   continuousVar = ensym(continuousVar)
   
-  if (identical(grps,NULL)) {
+  if (length(grps)==0) {
     grpsList = NULL
   } else {
     grpsList = sapply(grps,as.character)
   }
   joinList = c(grpsList, as.character(discreteVar))
   
+  df = df %>% select(!!!grps,!!discreteVar,!!continuousVar)
   # this is confusing because groups mean 2 things here - the 
   # different types of Y (grps) which should be preserved and the categorical X 
   # NX has group counts (N) and subgroup counts (N_X) 
-  N_X = df %>% group_by(!!!grps,!!discreteVar) %>% summarise(N_X = n()) %>% group_by(!!!grps) %>% mutate(N = sum(N_X))
+  grpCounts = df %>% group_by(!!!grps,!!discreteVar) %>% summarise(N_X = n()) %>% group_by(!!!grps) %>% mutate(N = sum(N_X))
   
-  tmp = df %>% inner_join(N_X, by=joinList) %>% mutate(
+  totalN = df %>% ungroup() %>% count() %>% pull(n)
+  
+  #if (min(grpCounts$N_X) < k_05*2+1) {
+  #  return(df %>% group_by(!!!grps) %>% summarise(I = NA))
+  #}
+  
+  tmp = df %>% inner_join(grpCounts, by=joinList) %>% mutate(
     x.discrete=!!discreteVar,
     y.continuous=!!continuousVar)
   
   # the knn approach without using neighbours - i.e. a k wide sliding window
   tmp4 = tmp %>% group_by(!!!grps) %>% arrange(y.continuous) %>% mutate(rank = row_number())
   tmp4 = tmp4 %>% group_by(!!!grps,x.discrete) %>% arrange(y.continuous) %>% mutate(
-    # m_i = lead(rank,n=k_05,default=first(N))-lag(rank,n=k_05,default=0)
-    m_i = floor((lead(rank,n=k_05)-lag(rank,n=k_05)+lead(rank,n=k_05+1)-lag(rank,n=k_05+1)+lead(rank,n=k_05-1)-lag(rank,n=k_05-1))/3)
+    
+    
+    # correct k for tails of distributions exclusive
+    # kRank = row_number(),
+    # m_i = lead(rank,n=k_05,default=totalN)-lag(rank,n=k_05,default=1)+1L,
+    # k = lead(kRank,n=k_05,default=max(N_X))-lag(kRank,n=k_05,default=1)+1L
+    
+    # correct k for tails of distributions inclusive
+    # kRank = row_number(),
+    # m_i = lead(rank,n=k_05,default=totalN)-lag(rank,n=k_05,default=1),
+    # k = lead(kRank,n=k_05,default=max(N_X))-lag(kRank,n=k_05,default=1)
+    
+    # dont correct k & exclude tails
+    k = k_05*2,
+    m_i = lead(rank,n=k_05)-lag(rank,n=k_05)
+    
+    # average m_i over 3 window sizes
+    # k = k_05*2,
+    # m_i = floor((
+	  #				lead(rank,n=local(k_05))-lag(rank,n=local(k_05))+
+	  #				lead(rank,n=local(k_05+1L))-lag(rank,n=local(k_05+1L))+
+	  #				lead(rank,n=local(k_05-1L))-lag(rank,n=local(k_05-1L))
+	  #				)/3*2)/2
   ) 
   if ("tbl_sql" %in% class(tmp4)) {
     # estimate digamma in SQL
     # for large n digamma(n) is approx ln(n-1)+1/(2*(n-1))
-    # digammaTbl = tibble(n = c(1:1000), digamma = digamma(c(1:1000)))
-    digammaTbl = digammaTable(tmp4$src$con)
+    digammaTbl = tibble(n = c(1:1000), digamma = digamma(c(1:1000)))
+	# TODO: how do we cache this properly?    digammaTbl = digammaTable(tmp4$src$con)
     tmp4 = tmp4 %>% 
+      left_join(digammaTbl %>% rename(k = n, digammak = digamma), by="k",copy=TRUE) %>%
       left_join(digammaTbl %>% rename(N = n, digammaN = digamma), by="N",copy=TRUE) %>%
       left_join(digammaTbl %>% rename(N_X = n, digammaN_X = digamma), by="N_X",copy=TRUE) %>%
       left_join(digammaTbl %>% rename(m_i = n, digammam_i = digamma), by="m_i",copy=TRUE) %>%
@@ -203,15 +231,15 @@ calculateDiscreteContinuousMI_KWindow = function(df, discreteVar, continuousVar,
         digammaN_X = ifelse(is.na(digammaN_X), log(N_X-1)+1/(2*(N_X-1)),digammaN_X)
       ) %>%
       mutate(
-        I_i = digammaN-digammaN_X+local(a*digamma(k_05*2))-local(b)*digammam_i
+        I_i = digammaN-digammaN_X+local(a)*digammak-digammam_i
       )
   } else {
     tmp4 = tmp4 %>% mutate(
-      I_i = digamma(N)-digamma(N_X)+a*digamma(k_05*2)-b*digamma(m_i)
+      I_i = digamma(N)-digamma(N_X)+a*digamma(k)-digamma(m_i)
     )
   }
-  tmp4 = tmp4 %>% group_by(!!!grps) %>% summarize(
-    I = mean(I_i ,na.rm=TRUE)
+  tmp4 = tmp4 %>% filter(!is.na(I_i)) %>% group_by(!!!grps) %>% summarize(
+    I = mean(I_i)
   )
   return(tmp4)
 }
@@ -230,7 +258,7 @@ calculateDiscreteContinuousMI_Discretise = function(df, discreteVar, continuousV
   grps = df %>% groups()
   
   df = df %>% group_by(!!!grps) %>% arrange(!!continuousVar) %>% mutate(y.discrete = ntile(n=bins), x.discrete = !!discreteVar)
-  return(df %>% probabilitiesFromGroups(x.discrete, y.discrete) %>% calculateMultiClassMI() %>% rename(I=mi))
+  return(df %>% probabilitiesFromGroups(x.discrete, y.discrete) %>% calculateMultiClassMI())
   
   #return(
   #  df %>% group_modify(function(d,...) {
@@ -241,11 +269,10 @@ calculateDiscreteContinuousMI_Discretise = function(df, discreteVar, continuousV
 }
 
 digammaTable = function(con) {
-  if(con %>% db_has_table("digamma")) return(tbl(con,"digamma"))
-  digammaTbl = tibble(n = c(1:1000),
-    digamma = digamma(c(1:1000))
-  )
-  return(con %>% copy_to(digammaTbl,name="digamma"))
+	return(tibble(n = c(1:300), digamma = digamma(c(1:300)) ))
+  #if(con %>% db_has_table("digamma") || con %>% db_has_table("##digamma")) return(tbl(con,"digamma"))
+  #digammaTbl = tibble(n = c(1:1000), digamma = digamma(c(1:1000)) )
+  #return(con %>% copy_to(digammaTbl,name="digamma", overwrite=TRUE))
 }
 
 # harmonicTable = function(con) {

@@ -35,9 +35,9 @@ And another
 
 ```{r}
 k = ConditionalDistribution$new()
-k$withDistribution(0.125, LogNormalDistribution$new(mode=1,sd=0.5), "unwell")
-k$withDistribution(0.75, LogNormalDistribution$new(mode=2,sd=1), "asymptomatic")
-k$withDistribution(0.125, LogNormalDistribution$new(mode=8,sd=3), "tired")
+k$withDistribution(0.125, NormalDistribution$new(mean=1,sd=0.5), "unwell")
+k$withDistribution(0.75, NormalDistribution$new(mean=2,sd=1), "asymptomatic")
+k$withDistribution(0.125, NormalDistribution$new(mean=8,sd=3), "tired")
 ```
 
 We can use the properties of the underlying distributions to calculate theoretical values for the Mean, Variance and Mutual Information
@@ -62,7 +62,7 @@ And use this sample to estimate the MI using 3 methods.
 TODO: Explain the methods.
 
 ```{r}
-
+devtools::load_all("..")
 testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow") %>% rename(I.win=I) %>% left_join(
 testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "SGolay") %>% rename(I.sg=I), by="test") %>% left_join(
 testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "Discrete") %>% rename(I.disc=I), by="test") %>% left_join(

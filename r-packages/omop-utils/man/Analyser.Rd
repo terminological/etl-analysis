@@ -46,9 +46,11 @@ a$plotConceptNetwork()
 \item \href{#method-calculateGraph}{\code{Analyser$calculateGraph()}}
 \item \href{#method-redefineGroups}{\code{Analyser$redefineGroups()}}
 \item \href{#method-calculateAncestorConcepts}{\code{Analyser$calculateAncestorConcepts()}}
+\item \href{#method-calculateOutcomeMI}{\code{Analyser$calculateOutcomeMI()}}
 \item \href{#method-calculateTfidf}{\code{Analyser$calculateTfidf()}}
 \item \href{#method-plotConceptNetwork}{\code{Analyser$plotConceptNetwork()}}
 \item \href{#method-plotSankeyD3}{\code{Analyser$plotSankeyD3()}}
+\item \href{#method-calculateCooccurrenceMI}{\code{Analyser$calculateCooccurrenceMI()}}
 \item \href{#method-print}{\code{Analyser$print()}}
 \item \href{#method-clone}{\code{Analyser$clone()}}
 }
@@ -118,6 +120,30 @@ get ancestors for a grouped set of concepts preserving grouping and count inform
 
 \subsection{Returns}{
 the analyser with expanded groupedDf including extra concepts
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-calculateOutcomeMI"></a>}}
+\subsection{Method \code{calculateOutcomeMI()}}{
+caluculates a mutual information table for the outcomes given in outcomeVar
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateOutcomeMI(outcomeVar)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{outcomeVar}}{the outcome}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Details}{
+The grouped dataframe here acts as a "Document" from the perpective of the TFIDF calculation but might be a person
+}
+
+\subsection{Returns}{
+an analysis object with the nodes expanded to include a MI score for each concept assuming a binary outcome
+and an expanded groupedDf which includes the normalised pointwise mutual information stats for each concept in each outcome
 }
 }
 \if{html}{\out{<hr>}}
@@ -199,6 +225,29 @@ This would be good for visualising a classifier network
 \item{\code{linkWeightVar}}{the score on the link that will define the width of the network}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-calculateCooccurrenceMI"></a>}}
+\subsection{Method \code{calculateCooccurrenceMI()}}{
+calculate a co-occurence matrix for the most
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateCooccurrenceMI(filteredNodes)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{filteredNodes}}{- a list of}
+
+\item{\code{limit}}{the max number of terms co-occurrences that will be used for cooccurrence or NA for no limit}
+
+\item{\code{ascending}}{order the factor as ascending}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+the co-occurrence matrix as a dataframe
 }
 }
 \if{html}{\out{<hr>}}

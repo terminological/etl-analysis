@@ -11,12 +11,12 @@
 calculateMultiClassMI = function(df) {
   return(
     df %>% mutate(
-      pmi_x1y1 = ifelse( p_x1y1==0, ifelse(p_x1==0 | p_y1==0, 0, -Inf), log(p_x1y1/(p_x1*p_y1)) ),
+      pmi_x1y1 = ifelse( p_x1y1==0, ifelse(p_x1==0 | p_y1==0, 0, NA), log(p_x1y1/(p_x1*p_y1)) ),
       # h_x1y1 = -log(p_x1y1),
       # npmi_x1y1 = ifelse( p_x1y1==0, ifelse(p_x1==0 | p_y1==0, 0, -1), pmi_x1y1 / h_x1y1 ),
-      mi_component = ifelse(p_x1y1==0|p_x1==0|p_y1==0, 0, p_x1y1*pmi_x1y1)
+      I_xy = ifelse(p_x1y1==0|p_x1==0|p_y1==0, 0, p_x1y1*pmi_x1y1)
     ) %>% summarise(
-      mi = sum(mi_component)
+      I = sum(I_xy)
     )
   )
 }

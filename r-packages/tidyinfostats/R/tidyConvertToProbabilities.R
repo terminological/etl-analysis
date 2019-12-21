@@ -14,25 +14,25 @@
 #' @return A new datatable with all possible combinations of X&Y and the probabilities associated with each outcome (i.e. an N(X) by N(Y) set of binary confusion matrices)
 #' @import dplyr
 #' @export
-probabilitiesFromGroups = function(df, groupXVar, groupYVar, countVar=NA) {
+probabilitiesFromGroups = function(df, groupXVar, groupYVar, countVar=NULL) {
   grps = df %>% groups()
   groupXVar = ensym(groupXVar)
   groupYVar = ensym(groupYVar)
-  if (identical(grps,NULL)) {
+  countVar = tryCatch(ensym(countVar),error = function(e) NULL)
+  if (length(grps)==0) {
     grpsList = NULL
   } else {
     grpsList = sapply(grps,as.character)
   }
   joinList = c(grpsList,"join")
-  if (is.na(countVar)) {
+  if (identical(countVar,NULL)) {
     df = df %>% group_by(!!!grps, !!groupXVar, !!groupYVar) %>% summarise(f_xy = n())
   } else {
-    countVar = ensym(countVar)
     df = df %>% group_by(!!!grps, !!groupXVar, !!groupYVar) %>% summarise(f_xy = sum(!!countVar))
   }
-  N = df %>% group_by(!!!grps) %>% summarise(N=sum(f_xy)) %>% mutate(join=1)
-  X = df %>% group_by(!!!grps,!!groupXVar) %>% summarise(f_x = sum(f_xy)) %>% mutate(join=1) # grouping
-  Y = df %>% group_by(!!!grps,!!groupYVar) %>% summarise(f_y = sum(f_xy)) %>% mutate(join=1) # grouping
+  N = df %>% ungroup() %>% group_by(!!!grps) %>% summarise(N=sum(f_xy)) %>% mutate(join=1)
+  X = df %>% ungroup() %>% group_by(!!!grps,!!groupXVar) %>% summarise(f_x = sum(f_xy)) %>% mutate(join=1) # grouping
+  Y = df %>% ungroup() %>% group_by(!!!grps,!!groupYVar) %>% summarise(f_y = sum(f_xy)) %>% mutate(join=1) # grouping
   XY = (X %>% inner_join(Y, by=joinList) %>% inner_join(N, by=joinList)) %>% select(-join)
   joinAll = c(grpsList,as.character(groupXVar),as.character(groupYVar))
   XY = XY %>% 

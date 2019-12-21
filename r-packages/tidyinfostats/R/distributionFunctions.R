@@ -150,14 +150,14 @@ LogNormalDistribution = R6::R6Class("LogNormalDistribution", inherit=Distributio
 					self$mu = mode
 					self$sigma = sd
 					fn = function(mean,mode,sd) exp(mean)*mode-exp(2*mean)+sd^2
-					meanlog = stats::uniroot(fn, interval=c(0,100), mode=mode, sd=sd)$root
+					meanlog = stats::uniroot(fn, interval=c(-1000,1000), mode=mode, sd=sd)$root
 					sdlog = sqrt(meanlog-log(mode))
 					super$initialize(density=dlnorm,quantile=qlnorm,meanlog=meanlog,sdlog=sdlog)
 				},
 				#' @description gets a label for this distribution based on the parameters passed
 				#' @return a string
 				label = function() {
-					return(paste0("\U003BC=",twoDp(self$mu),"; \u03C3=",twoDp(self$sigma)))
+					return(paste0("mode=",twoDp(self$mu),"; var=",twoDp(self$sigma)))
 				}
 		))
 
@@ -227,7 +227,11 @@ ConditionalDistribution = R6::R6Class("ConditionalDistribution", public=list(
 				#' @param n the number of samples
 				#' @return a data frame of samples (labelled x) associated with classes (labelled "class")
 				sample = function(n=1000) {
-					counts = self$weights*n/sum(self$weights)
+					counts = floor(self$weights*n/sum(self$weights))
+					while (sum(counts) < n) {
+					  i = sample(length(wts),size=1)
+					  counts[i] = counts[i]+1
+					}
 					out = NULL
 					for(i in c(1:length(self$classes))) {
 						out = out %>% rbind(self$dists[[i]]$sample(counts[[i]]) %>% mutate(y = self$classes[[i]]))

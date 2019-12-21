@@ -94,6 +94,8 @@ Omop = R6::R6Class("Omop", public=list(
   #' @param config Config object from yaml file. (defaults to config::get(file="~/Dropbox/db.yaml"))
   #' @examples omop = Omop$new(dbname,config)
   initialize = function(dbname = "omop", config = config::get(file="~/Dropbox/db.yaml")) {
+    
+    #TODO: conside switching to jdbc: https://cran.r-project.org/web/packages/RJDBC/RJDBC.pdf
     self$con = odbc::dbConnect(odbc::odbc(),
                    Driver = config$odbcName,
                    Server = config$server,
@@ -191,6 +193,45 @@ Omop = R6::R6Class("Omop", public=list(
       }
     }
     return(df)
+  },
+  
+  #' @description get ancestors for a grouped set of concepts preserving grouping and count information
+  #' @param groupedDf a grouped data frame
+  #' @param conceptIdVar the concept variable
+  #' @return the analyser with expanded groupedDf including extra concepts
+  expandAncestorConcepts = function(groupedDf, conceptIdVar, countVar = NULL) {
+	  conceptIdVar = ensym(conceptIdVar)
+	  grps = groupedDf %>% groups()
+	  # first get the concepts by group in groupedDf - i.e. concepts in each document and sum counts
+	  # this gives us the freqency of a concept_id in a document
+	
+	if (identical(countVar,NULL)) {
+		tmp = groupedDf %>% group_by(!!!grps, !!conceptIdVar) %>% summarise(count = n())
+	} else {
+		countVar = ensym(countVar)
+		tmp = groupedDf %>% group_by(!!!grps, !!conceptIdVar) %>% summarise(count = sum(!!countVar))
+	}
+	
+	  tmp = tmp %>% rename(descendant_concept_id=!!conceptIdVar) %>% compute()
+	  # expand to the ancestor table.
+	  tmp2 = self$concept_ancestor %>%
+			  inner_join(tmp, by="descendant_concept_id", copy=TRUE) %>%
+			  rename(concept_id=ancestor_concept_id) %>%
+			  # reapply the grouping as the columns have changed name
+			  # this will include the original concepts (as they are 1:1 mapped in the ancestor table)
+			  # as well as probably multiple copies of all the ancestors to root
+			  ungroup() %>% group_by(!!!grps,concept_id) 
+	  tmp2 = tmp2 %>%
+			  # when more than one concept within a document matches the ancestor we sum the count
+			  summarise(
+					  count = sum(count, na.rm = TRUE)
+			  ) %>% compute()
+	  #the searcher here gives us a standard filtered list of concepts
+	  return(
+			  Searcher$new(self)$toDataframe() %>% select(concept_id,concept_name) %>% inner_join(tmp2, by="concept_id") %>% 
+			  compute() %>% select(!!!grps,!!conceptIdVar:=concept_id,count) %>% group_by(!!!grps)
+	)
+	  
   },
   
   #' Drops a temporary table created by dbplyr

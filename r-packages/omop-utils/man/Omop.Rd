@@ -27,11 +27,6 @@ omop = Omop$new(dbname,config)
 
 omop = Omop$new()
 df \%>\% omop$getConceptNames()
-Drops a temporary table created by dbplyr
-
-This function could have major side effects and does not check to
-see if the table is still in use anywhere to use with caution only
-if you know that no other current queries depend on it
 }
 \keyword{omop}
 \section{Public fields}{
@@ -121,6 +116,7 @@ if you know that no other current queries depend on it
 \item \href{#method-buildVocabSet}{\code{Omop$buildVocabSet()}}
 \item \href{#method-buildCohort}{\code{Omop$buildCohort()}}
 \item \href{#method-getConceptNames}{\code{Omop$getConceptNames()}}
+\item \href{#method-expandAncestorConcepts}{\code{Omop$expandAncestorConcepts()}}
 \item \href{#method-tidyTempTable}{\code{Omop$tidyTempTable()}}
 \item \href{#method-clone}{\code{Omop$clone()}}
 }
@@ -210,16 +206,37 @@ resolve all ???_concept_id fields in result set and look them up in the concept 
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{omop = Omop$new()
 df \%>\% omop$getConceptNames()
+}
+\if{html}{\out{</div>}}
+
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-expandAncestorConcepts"></a>}}
+\subsection{Method \code{expandAncestorConcepts()}}{
+get ancestors for a grouped set of concepts preserving grouping and count information
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$expandAncestorConcepts(groupedDf, conceptIdVar)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{groupedDf}}{a grouped data frame}
+
+\item{\code{conceptIdVar}}{the concept variable}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+the analyser with expanded groupedDf including extra concepts
 Drops a temporary table created by dbplyr
 
 This function could have major side effects and does not check to
 see if the table is still in use anywhere to use with caution only
 if you know that no other current queries depend on it
 }
-\if{html}{\out{</div>}}
-
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tidyTempTable"></a>}}

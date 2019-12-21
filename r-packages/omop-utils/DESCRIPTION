@@ -21,4 +21,7 @@ Imports:
     dplyr,
     tidygraph,
     ggraph,
-    networkD3
+    networkD3,
+    tidyinfostats
+Remotes: 
+	terminological/tidyinfostats
