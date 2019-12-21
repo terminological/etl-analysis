@@ -150,7 +150,7 @@ LogNormalDistribution = R6::R6Class("LogNormalDistribution", inherit=Distributio
 					self$mu = mode
 					self$sigma = sd
 					fn = function(mean,mode,sd) exp(mean)*mode-exp(2*mean)+sd^2
-					meanlog = stats::uniroot(fn, interval=c(-1000,1000), mode=mode, sd=sd)$root
+					meanlog = stats::uniroot(fn, interval=c(-100,100), mode=mode, sd=sd)$root
 					sdlog = sqrt(meanlog-log(mode))
 					super$initialize(density=dlnorm,quantile=qlnorm,meanlog=meanlog,sdlog=sdlog)
 				},
