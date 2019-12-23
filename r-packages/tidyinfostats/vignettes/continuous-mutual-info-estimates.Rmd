@@ -62,10 +62,12 @@ And use this sample to estimate the MI using 3 methods.
 TODO: Explain the methods.
 
 ```{r}
-devtools::load_all("..")
+#devtools::load_all("..")
+debug(calculateDiscreteContinuousMI_KNN)
 testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow") %>% rename(I.win=I) %>% left_join(
 testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "SGolay") %>% rename(I.sg=I), by="test") %>% left_join(
 testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "Discrete") %>% rename(I.disc=I), by="test") %>% left_join(
+  testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KNN") %>% rename(I.knn=I), by="test") %>% left_join(
 tibble(test=c("hb","k"),I.theory = c(hb$theoreticalMI(),k$theoreticalMI())), by="test"
 )
 ```

@@ -229,7 +229,7 @@ ConditionalDistribution = R6::R6Class("ConditionalDistribution", public=list(
 				sample = function(n=1000) {
 					counts = floor(self$weights*n/sum(self$weights))
 					while (sum(counts) < n) {
-					  i = sample(length(wts),size=1)
+					  i = sample(length(self$weights),size=1)
 					  counts[i] = counts[i]+1
 					}
 					out = NULL

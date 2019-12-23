@@ -8,15 +8,14 @@
 #' @return the datatable with additional columns for MI
 #' @import dplyr
 #' @export
-calculateMultiClassMI = function(df) {
+calculateMultiClassMI = function(df, adjust=TRUE) {
   return(
     df %>% mutate(
       pmi_x1y1 = ifelse( p_x1y1==0, ifelse(p_x1==0 | p_y1==0, 0, NA), log(p_x1y1/(p_x1*p_y1)) ),
-      # h_x1y1 = -log(p_x1y1),
-      # npmi_x1y1 = ifelse( p_x1y1==0, ifelse(p_x1==0 | p_y1==0, 0, -1), pmi_x1y1 / h_x1y1 ),
       I_xy = ifelse(p_x1y1==0|p_x1==0|p_y1==0, 0, p_x1y1*pmi_x1y1)
     ) %>% summarise(
-      I = sum(I_xy)
+      I = sum(I_xy)+ifelse(adjust,mm_adjust,0)
     )
   )
 }
+

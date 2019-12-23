@@ -34,11 +34,11 @@ theoretical = tibble(
   hb = c(hb$theoreticalMean(),hb$theoreticalVariance(), hb$theoreticalMI()),
   k = c(k$theoreticalMean(),k$theoreticalVariance(),k$theoreticalMI()))
 
-testData = k$sample(50000) %>% mutate(test="k") %>% bind_rows(
-  hb$sample(50000) %>% mutate(test="hb")) %>% rename(outcome=y, value=x)
+testData = k$sample(5000) %>% mutate(test="k") %>% bind_rows(
+  hb$sample(5000) %>% mutate(test="hb")) %>% rename(outcome=y, value=x)
 
-testData = con %>% copy_to(testData)
-testData
+testDataLazy = con %>% copy_to(testData)
+testDataLazy
 ```
 
 ## Executing a 
@@ -46,9 +46,23 @@ testData
 You can also embed plots, for example:
 
 ```{r}
-lazyResult = testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow")
+
+result = testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow")
+lazyResult = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow")
 lazyResult %>% show_query()
+result
 lazyResult
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+lazyResult2 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KNN")
+lazyResult2 %>% show_query()
+lazyResult2
+```
+
+
+```{r}
+lazyResult3 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "Discrete")
+lazyResult3 %>% show_query()
+lazyResult3
+```

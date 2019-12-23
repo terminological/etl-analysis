@@ -5,6 +5,25 @@
 #' you either have a set of observations of their co-occurrence, containing non-unique X & Y combinations, or you have a confusion matrix of the counts of their combinations where 
 #' each row has a unique combination of X and Y and a third column contains the counts of XY co-occurrences.
 #' 
+#' https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-461
+#' 
+#' $$I = H_x + H_y - H_xy$$
+#' 
+#' Where I is information
+#' 
+#' x is a member of X and |X| is number of possible values of x with no non empty bins (classes_X):
+#' y is a member of Y and |Y| is number of possible values of y with no non empty bins (classes_Y):
+#' xy is a member of XY and |XY| is number of possible values of combination of x and y with no non empty bins (classes_XY):
+#' N is the number of samples
+#' 
+#' $$H_x__mm = H_x__emp + (|Z_x| - 1)/2N$$
+#' 
+#' $$I__mm = I__emp + (|X| - 1)/2N + (|Y| - 1)/2N - (|XY| - 1)/2N$$
+#' 
+#' $$I__mm = I__emp + (|X| + |Y| - |XY| - 1)/2N$$
+#' 
+#' This is a Miller-Maddow adjustment.
+#' 
 #' @param df a dataframe containing 2 columns defining class of event X and class of event Y and either one row per event, 
 #' or a count of observations, for each class combination. 
 #' df may also be grouped and in which case the grouping is preserved in the result.
@@ -26,13 +45,28 @@ probabilitiesFromGroups = function(df, groupXVar, groupYVar, countVar=NULL) {
   }
   joinList = c(grpsList,"join")
   if (identical(countVar,NULL)) {
+    # there is no count column.  The data is grouped and has event X and event Y entried for each occurrence
     df = df %>% group_by(!!!grps, !!groupXVar, !!groupYVar) %>% summarise(f_xy = n())
   } else {
+    # there is a count column.  The data is grouped and has event X and event Y and counts of occurrences
     df = df %>% group_by(!!!grps, !!groupXVar, !!groupYVar) %>% summarise(f_xy = sum(!!countVar))
   }
-  N = df %>% ungroup() %>% group_by(!!!grps) %>% summarise(N=sum(f_xy)) %>% mutate(join=1)
+  N = df %>% ungroup() %>% group_by(!!!grps) %>% summarise(
+    N=sum(f_xy), 
+    classes_XY=n_distinct(!!groupXVar,!!groupYVar),
+    classes_X=n_distinct(!!groupXVar), 
+    classes_Y=n_distinct(!!groupXVar)
+    ) %>% 
+    mutate(mm_adjust = (classes_X+classes_Y-classes_XY-1)/(2*N)) %>% 
+    mutate(join=1)
+  # N = N %>% mutate(classes_XY = nrow(N))
   X = df %>% ungroup() %>% group_by(!!!grps,!!groupXVar) %>% summarise(f_x = sum(f_xy)) %>% mutate(join=1) # grouping
+  # X = X %>% mutate(classes_X = nrow(X))
   Y = df %>% ungroup() %>% group_by(!!!grps,!!groupYVar) %>% summarise(f_y = sum(f_xy)) %>% mutate(join=1) # grouping
+  #Y = Y %>% mutate(classes_Y = nrow(Y))
+  # I__mm = I__emp + (|X| + |Y| - |XY| - 1)/2N
+  
+  
   XY = (X %>% inner_join(Y, by=joinList) %>% inner_join(N, by=joinList)) %>% select(-join)
   joinAll = c(grpsList,as.character(groupXVar),as.character(groupYVar))
   XY = XY %>% 
