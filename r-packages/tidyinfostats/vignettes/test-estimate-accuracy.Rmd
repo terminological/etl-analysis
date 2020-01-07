@@ -1,6 +1,8 @@
 ---
-title: "test-estimate-accuracy"
+title: "Test estimate accuracy"
 output: html_document
+knit: (function(inputFile, encoding,...) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "~/Dropbox/featureSelection/tidyinfostats") })
 ---
 
 ```{r include=FALSE}

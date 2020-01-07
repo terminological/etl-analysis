@@ -26,7 +26,7 @@ calculateMultiClassMI = function(df, adjust=TRUE) {
 #' @param df - may be grouped, in which case the value is interpreted as different types of continuous variable
 #' @param groupXVar - the column of the discrete value (X)
 #' @param groupYVar - the column of the discrete value (Y)
-#' @param method - the method employed - valid options are "Empirical","MontgomerySmith","Compression","Entropy"
+#' @param method - the method employed - valid options are "Empirical","MontgomerySmith","Compression","Histogram","Entropy"
 #' @param ... - the other parameters are passed onto the implementations
 #' @return a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry
 calculateDiscreteDiscreteMI =  function(df, groupXVar, groupYVar, method="Empirical", ...) {
@@ -37,7 +37,8 @@ calculateDiscreteDiscreteMI =  function(df, groupXVar, groupYVar, method="Empiri
           MontgomerySmith = calculateDiscreteDiscreteMI_Entropy(df, !!groupXVar, !!groupYVar, entropyMethod="MontgomerySmith", ...),
           Compression = calculateDiscreteDiscreteMI_Entropy(df, !!groupXVar, !!groupYVar, entropyMethod="Compression", ...),
           Histogram = calculateDiscreteDiscreteMI_Entropy(df, !!groupXVar, !!groupYVar, entropyMethod="Histogram", ...),
-          Entropy = calculateDiscreteDiscreteMI_Entropy(df, !!groupXVar, !!groupYVar, ...)
+          Entropy = calculateDiscreteDiscreteMI_Entropy(df, !!groupXVar, !!groupYVar, ...),
+          {stop(paste0(method," not a valid option"))}
   )
 }
 
@@ -116,7 +117,7 @@ calculateDiscreteDiscreteMI_Entropy = function(df, groupXVar, groupYVar, entropy
     method =  paste0("Entropy - ",entropyMethod)
     ) %>% select(!!!grps, I, I_sd, method)
   
-  return(tmp2)
+  return(tmp2 %>% ungroup())
 }
 
 

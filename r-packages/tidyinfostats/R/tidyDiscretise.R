@@ -14,6 +14,7 @@ discretise = function(df, continuousVar, discreteOutputVar, method, ...) {
           #Histogram = discretise_Histogram(df, {{continuousVar}}, {{discreteOutputVar}}, ...)
           #ChiSq
           #MaxMI
+          {stop(paste0(method," not a valid option"))}
   )
 }
 
@@ -48,7 +49,7 @@ fixedNumber = function(bins) {
 
 #' binning strategy - number of bins depends on size of 
 #' 
-#' @param fn - the distribution function that geneartes the cut points (e.g. tidyinfostats::fixedNumber (uniform), tidyinfostats::logNormalCentiles  )
+#' @param fn - the distribution function that genertes the cut points (e.g. tidyinfostats::fixedNumber (uniform), tidyinfostats::logNormalCentiles  )
 linearBySize = function(slope,minBins,maxBins, fn=fixedNumber) {
   return(
     function(n, ...) {
@@ -127,7 +128,7 @@ discretise_ByRank = function(df, continuousVar, discreteOutputVar, bins=NA, binS
   
   if (!is.na(bins)) {
     # the easy case - a fixed number of bins for all groups
-    tmp = df %>% arrange(!!continuousVar) %>% mutate(!!discreteOutputVar := ntile(bins) )
+    tmp = df %>% mutate(!!discreteOutputVar := ntile(!!continuousVar, n=bins) )
     # TODO: so if we want a label this is a bit harder
     # nead to get a group & tile wise max value and lag it for the other end
     return(tmp)

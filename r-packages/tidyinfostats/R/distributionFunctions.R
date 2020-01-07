@@ -135,7 +135,7 @@ NormalDistribution = R6::R6Class("NormalDistribution", inherit=Distribution, pub
 				#' @description gets a label for this distribution based on the parameters passed
 				#' @return a string
 				label = function() {
-					return(paste0("\U003BC=",twoDp(self$mu),"; \u03C3=",twoDp(self$sigma)))
+					return(paste0("Norm: \U003BC=",twoDp(self$mu),"; \u03C3=",twoDp(self$sigma)))
 				}
 		))
 
@@ -163,7 +163,7 @@ LogNormalDistribution = R6::R6Class("LogNormalDistribution", inherit=Distributio
 				#' @description gets a label for this distribution based on the parameters passed
 				#' @return a string
 				label = function() {
-					return(paste0("mode=",twoDp(self$mu),"; var=",twoDp(self$sigma)))
+					return(paste0("LogNorm: mode=",twoDp(self$mu),"; var=",twoDp(self$sigma)))
 				}
 		))
 
@@ -179,6 +179,10 @@ UniformDistribution = R6::R6Class("UniformDistribution", inherit=Distribution, p
 				#' @param max the max value of the uniform distribution
 				initialize = function(min=runif(1,-3,3),max=min+runif(1,0.5,6)) {
 					super$initialize(density=dunif,quantile=qunif,min=min,max=max)
+				},
+				
+				label = function() {
+				  return(paste0("Unif: ",paste(paste0(names(self$dots),"=",twoDp(self$dots)),collapse="; ")))
 				}
 		))
 

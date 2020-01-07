@@ -13,7 +13,8 @@ calculateDiscreteContinuousMI = function(df, groupXVar, valueYVar, method="KWind
     SGolay = calculateDiscreteContinuousMI_SGolay(df, {{groupXVar}}, {{valueYVar}}, ...),
     DiscretiseByRank = calculateDiscreteContinuousMI_DiscretiseByRank(df, {{groupXVar}}, {{valueYVar}}, ...),
     DiscretiseByValue = calculateDiscreteContinuousMI_DiscretiseByValue(df, {{groupXVar}}, {{valueYVar}}, ...),
-    Compression = calculateDiscreteContinuousMI_Compression(df, {{groupXVar}}, {{valueYVar}}, ...)
+    Compression = calculateDiscreteContinuousMI_Compression(df, {{groupXVar}}, {{valueYVar}}, ...),
+    {stop(paste0(method," not a valid option"))}
     # Entropy = calculateDiscreteContinuousMI_Entropy(df, {{groupXVar}}, {{valueYVar}}, method="Empirical", ...),
   )
 }
@@ -186,7 +187,7 @@ calculateDiscreteContinuousMI_KWindow = function(df, discreteVar, continuousVar,
   # this is confusing because groups mean 2 things here - the 
   # different types of Y (grps) which should be preserved and the categorical X 
   # NX has group counts (N) and subgroup counts (N_X) 
-  grpCounts = df %>% group_by(!!!grps,!!discreteVar) %>% summarise(N_X = n()) %>% group_by(!!!grps) %>% mutate(N = sum(N_X)) %>% compute()
+  grpCounts = df %>% group_by(!!!grps,!!discreteVar) %>% summarise(N_X = n()) %>% group_by(!!!grps) %>% mutate(N = sum(N_X, na.rm=TRUE)) %>% compute()
   
   tmp = df %>% inner_join(grpCounts, by=joinList) %>% mutate(
     x_discrete=!!discreteVar,
@@ -232,19 +233,30 @@ calculateDiscreteContinuousMI_KWindow = function(df, discreteVar, continuousVar,
         digammaN_X = ifelse(is.na(digammaN_X), log(N_X-1)+1/(2*(N_X-1)),digammaN_X)
       ) %>%
       mutate(
-        I_i = digammaN-digammaN_X+local(a)*digammak-digammam_i
+        I_i = digammaN-digammaN_X+digammak-digammam_i
       )
   } else {
     tmp4 = tmp4 %>% mutate(
       I_i = digamma(N)-digamma(N_X)+digamma(k)-digamma(m_i)
     )
   }
-  tmp4 = tmp4 %>% filter(!is.na(I_i)) %>% group_by(!!!grps) %>% summarize(
+  tmp5 = tryCatch(
+    tmp4 %>% filter(!is.na(I_i)) %>% group_by(!!!grps) %>% summarize(
+      # TODO: catch the NaN when no group is larger that k_05*2+1
       I = mean(I_i,na.rm = TRUE),
-      I_sd = sd(I_i,na.rm = TRUE),
+      I_sd = sd(I_i,na.rm = TRUE)/sqrt(max(N,na.rm=TRUE)),
       method = "KWindow"
+    ),
+    warning = function(w) {
+      tmp4 %>% filter(!is.na(I_i)) %>% group_by(!!!grps) %>% summarize(
+        I = NA,
+        I_sd = NA,
+        method = "KWindow"
+      )
+    }
   )
-  return(tmp4)
+  #browser()
+  return(tmp5)
 }
 
 #' calculate mutual information between a categorical value (X) and a continuous value (Y) using a discretisation and infotheo
@@ -265,9 +277,9 @@ calculateDiscreteContinuousMI_DiscretiseByRank = function(df, discreteVar, conti
     y_continuous=!!continuousVar
   )
   
-  tmp = tmp %>% discretise_ByRank(y_continuous, y_discrete, bins, binStrategy)
+  tmp = tmp %>% discretise_ByRank(y_continuous, y_discrete, bins, binStrategy) %>% compute()
   
-  return(tmp %>% calculateDiscreteDiscreteMI(x_discrete, y_discrete, method=discreteMethod, ...) %>% mutate(method = paste0("DiscretiseByRank - ",method)))
+  return(tmp %>% calculateDiscreteDiscreteMI(x_discrete, y_discrete, method=discreteMethod, ...) %>% collect() %>% mutate(method = paste0("DiscretiseByRank - ",method)))
   
   #return(
   #  df %>% group_modify(function(d,...) {
@@ -295,9 +307,9 @@ calculateDiscreteContinuousMI_DiscretiseByValue = function(df, discreteVar, cont
     y_continuous=!!continuousVar
   )
   
-  tmp = tmp %>% discretise_ByValue(y_continuous, y_discrete, bins, binStrategy)
+  tmp = tmp %>% discretise_ByValue(y_continuous, y_discrete, bins, binStrategy) %>% compute()
   
-  return(tmp %>% calculateDiscreteDiscreteMI(x_discrete, y_discrete, method=discreteMethod, ...) %>% mutate(method = paste0("DiscretiseByValue - ",method)))
+  return(tmp %>% calculateDiscreteDiscreteMI(x_discrete, y_discrete, method=discreteMethod, ...) %>% collect() %>% mutate(method = paste0("DiscretiseByValue - ",method)))
   
   #return(
   #  df %>% group_modify(function(d,...) {
@@ -328,10 +340,10 @@ digammaTable = function(con) {
 #' @param a - adjustment parameter 1 (adjusts k digamma term - constant)
 #' @return a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry
 #' @import dplyr
-calculateDiscreteContinuousMI_KNN = function(df, discreteVar, continuousVar, k_05=4, ...) { #a=0.992, b=1) {
+calculateDiscreteContinuousMI_KNN = function(df, discreteVar, continuousVar, k_05=4, useKWindow = TRUE,...) { #a=0.992, b=1) {
   grps = df %>% groups()
-  maxN = df %>% group_by(!!!grps) %>% summarise(N = n()) %>% summarise(maxN = max(N)) %>% pull(maxN)
-  if(maxN > 500) {
+  maxN = df %>% group_by(!!!grps) %>% summarise(N = n()) %>% summarise(maxN = max(N, na.rm=TRUE)) %>% pull(maxN)
+  if(maxN > 500 && useKWindow) {
     # warning("using KWindow method instead of KNN for larger sample")
     return(calculateDiscreteContinuousMI_KWindow(df,{{discreteVar}}, {{continuousVar}}, k_05))
   }
@@ -412,20 +424,28 @@ calculateDiscreteContinuousMI_KNN = function(df, discreteVar, continuousVar, k_0
         digammaN_X = ifelse(is.na(digammaN_X), log(N_X-1)+1/(2*(N_X-1)),digammaN_X)
       ) %>%
       mutate(
-        I_i = digammaN-digammaN_X+local(a)*digammak-digammam_i
+        I_i = digammaN-digammaN_X+digammak-digammam_i
       )
   } else {
     tmp4 = tmp4 %>% mutate(
-      I_i = digamma(N)-digamma(N_X)+a*digamma(k)-digamma(m_i)
+      I_i = digamma(N)-digamma(N_X)+digamma(k)-digamma(m_i)
     )
   }
-  tmp4 = tmp4 %>% filter(!is.na(I_i)) %>% group_by(!!!grps) %>% summarize(
-    # I = mean(I_i)
+  
+  tmp5 = tryCatch(tmp4 %>% filter(!is.na(I_i)) %>% group_by(!!!grps) %>% summarize(
     I = mean(I_i,na.rm = TRUE),
-    I_sd = sd(I_i,na.rm = TRUE),
+    I_sd = sd(I_i,na.rm = TRUE)/sqrt(max(N,na.rm=TRUE)),
     method = "KNN"
+  ),
+  warning = function(w) {
+    tmp4 %>% filter(!is.na(I_i)) %>% group_by(!!!grps) %>% summarize(
+      I = NA,
+      I_sd = NA,
+      method = "KNN"
+    )
+  }
   )
-  return(tmp4)
+  return(tmp5)
 }
 
 
@@ -473,14 +493,12 @@ calculateDiscreteContinuousMI_Compression = function(df, discreteVar, continuous
   # private function - TODO: consider moving to Entropy package
   compressionEntropy = function(d,g,...) {
     Cy = n_distinct(d$y_discrete)
-    classes = unique(d$y_discrete)
+    #classes = unique(d$y_discrete)
     N = length(d$y_raw)
     C0 = length(memCompress(as.raw(rep(0,N))))
-    # TODO: Does not produce same answer as entropy compression ? just use that 
-    # reason is because entropy compression remaps classes to lowest possible integers before compressing. 
-    # This does not change the mapping but instead samples from the same support range to get C1.
-    # This works but gives a randomly different answer.
-    C1 = max(sapply(c(1:10),function(i) length(memCompress(as.raw(sample(classes,size=N,replace=TRUE)-1)))))
+    # https://math.stackexchange.com/questions/1406747/whats-theoretical-maximum-information-compression-rate
+    # in this case our we are looking to find L (compressed message length) based on max possible entropy for message type (log(Cy)) and uncompressed message length (N)
+    C1 = C0+N/log(Cy) #max(sapply(c(1:10),function(i) length(memCompress(as.raw(sample(classes,size=N,replace=TRUE)-1)))))
     C = length(memCompress(as.vector(d$y_raw)))
     if (C > C1) C=C1 # prevent entropy exceeding theoretical maximum
     H = (C-C0)/(C1-C0) * log(Cy) # original paper includes a degrees of freedom parameter here. with this setup this can only be one...?

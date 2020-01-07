@@ -2,7 +2,7 @@
 #' 
 #' @param df - may be grouped, in which case the value is interpreted as different types of continuous variable
 #' @param groupVars - the columns that define the discrete subgroups of the data quoted by vars().
-#' @param method - the method employed - valid options are "MontgomerySmith", "Histogram", "InfoTheo"
+#' @param method - the method employed - valid options are "MontgomerySmith", "Histogram", "InfoTheo", "Compression"
 #' @param ... - the other parameters are passed onto the implementations
 #' @return a single value for the entropy of the vector
 calculateEntropy = function(df, groupVars, method, ...) {
@@ -10,7 +10,8 @@ calculateEntropy = function(df, groupVars, method, ...) {
           MontgomerySmith = calculateEntropy_MontgomerySmith(df, {{groupVars}}, ...),
           Histogram = calculateEntropy_Histogram(df, {{groupVars}}, ...),
           InfoTheo = calculateEntropy_InfoTheo(df, {{groupVars}}, ...),
-          Compression = calculateEntropy_Compression(df, {{groupVars}}, ...)
+          Compression = calculateEntropy_Compression(df, {{groupVars}}, ...),
+          {stop(paste0(method," not a valid option"))}
   )
 }
 
@@ -29,7 +30,7 @@ calculateEntropy = function(df, groupVars, method, ...) {
 #' @param orderingVar - (optional) the column of an ordering variable (e.g. time) - if missing assumes df order,
 #' @param j - the width of the interval considered for the estimator. A small number << the smallest sample size
 #' @return a dataframe containing the disctinct values of the groups of df, and for each group an entropy value (H). If df was not grouped this will be a single entry
-calculateEntropy_MontgomerySmith = function(df, groupVars, orderingVar = NULL, j=1, ...) {
+calculateEntropy_MontgomerySmith = function(df, groupVars, orderingVar = NULL, ...) {
   
   # Euler–Mascheroni constant (lambda)
   lambda = 0.577215664901532
@@ -56,7 +57,11 @@ calculateEntropy_MontgomerySmith = function(df, groupVars, orderingVar = NULL, j
   # tmp = tmp %>% group_by(!!!grps, !!!groupVars) %>% arrange(seq) %>% mutate( # would also probably work
   # browser()
   tmp = tmp %>% group_by(!!!grps, !!!groupVars) %>% arrange(rank) %>% mutate(
-    k = (lead(rank,j,NA)-rank)/j, # this is the N in the paper - j is as mentioned in the paper 
+    k = lead(rank,1,NA)-rank, # this is the N in the paper - j is as mentioned in the paper,
+    # TODO: they discuss a esimator be redone for different values of lead and averaged.
+    # I don't understand how this doesn't just increase the estimate as the large j is the larger digamma k is.
+    #k2 = lead(rank,2,NA)-rank, would need digamma calc & average
+    #k3 = lead(rank,3,NA)-rank,
     NX = n()
   ) #%>% filter(!is.na(k))
   
@@ -72,10 +77,10 @@ calculateEntropy_MontgomerySmith = function(df, groupVars, orderingVar = NULL, j
     # mutate(digammaNX = ifelse(is.na(digammaNX), log(NX-1) + 1/(2*(NX-1) - 1/(12*(NX-1)^2) ),digammaNX)) %>%
     # mutate(digammaC_x = ifelse(is.na(digammaC_x), log(C_x-1) + 1/(2*(C_x-1) - 1/(12*(C_x-1)^2) ),digammaC_x))
   
-  tmp2 = tmp %>% group_by(!!!grps, C_x) %>% summarise(
+  tmp2 = tmp %>% group_by(!!!grps) %>% summarise(
     H = (mean(digammak, na.rm=TRUE) + lambda), #-digammaC_x+log(C_x), na.rm=TRUE) + lambda),
-    H_sd = sd(digammak, na.rm=TRUE) #-digammaC_x+log(C_x), na.rm=TRUE)
-  ) # %>% mutate(
+    H_sd = sd(digammak, na.rm=TRUE)/sqrt(max(N)) #-digammaC_x+log(C_x), na.rm=TRUE)
+  )  # %>% mutate(
   #  H = H/log(C_x),
   #  H_sd = H_sd/log(C_x) #TODO: making this up
   #)
@@ -112,9 +117,9 @@ calculateEntropy_Histogram = function(df, groupVars, mm=TRUE, ...) {
     H_sd = NA
   )
   
-  return(tmp3)
+  return(tmp3 %>% ungroup())
 }
-
+ 
 #' calculate entropy of an optionally discrete value (X) using a infotheo library
 #' 
 #' @param df - may be grouped, in which case the grouping is interpreted as different types of discrete variable
@@ -188,7 +193,7 @@ calculateEntropy_Compression = function(df, groupVars, orderingVar = NULL, ...) 
   
   tmp2 = tmp %>% group_by(!!!grps, C_x, N) %>% group_modify(function(d,g,...) {
     C0 = length(memCompress(as.raw(rep(0,g$N))))
-    C1 = max(sapply(c(1:10), function(i) length(memCompress(as.raw(sample.int(g$C_x,size=g$N,replace=TRUE)-1)))))
+    C1 = C0+g$N/log(g$C_x) #max(sapply(c(1:10), function(i) length(memCompress(as.raw(sample.int(g$C_x,size=g$N,replace=TRUE)-1)))))
     C = length(memCompress(as.vector(d$x_raw)))
     if (C > C1) C=C1 # prevent entropy exceeding theoretical maximum
     H = (C-C0)/(C1-C0) * log(g$C_x) # original paper includes a degrees of freedom parameter here. with this setup this can only be one...?

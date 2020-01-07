@@ -1,15 +1,15 @@
 ---
 title: "distribution-functions"
 output: html_document
-    #pandoc_args: "--mathml"
-    #mathjax: NULL
+knit: (function(inputFile, encoding,...) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "~/Dropbox/featureSelection/tidyinfostats") })
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(ggplot2)
-library(reticulate)
+# library(reticulate)
 devtools::load_all("..")
 ```
 
@@ -38,14 +38,14 @@ n2$plot(xmin=0,xmax=5)
 
 Log normal plots are specified using a mode and a measure of variance
 
-```{python results='asis'}
-from sympy import *
-import numpy as np
-x, y, z, t = symbols('x y z t')
-k, m, n = symbols('k m n', integer=True)
-f, g, h = symbols('f g h', cls=Function)
-print('<math>'+mathml(integrate(1/x, x))+'</math>')
-```
+<!-- ```{python results='asis'} -->
+<!-- from sympy import * -->
+<!-- import numpy as np -->
+<!-- x, y, z, t = symbols('x y z t') -->
+<!-- k, m, n = symbols('k m n', integer=True) -->
+<!-- f, g, h = symbols('f g h', cls=Function) -->
+<!-- print('<math>'+mathml(integrate(1/x, x))+'</math>') -->
+<!-- ``` -->
 
 $$\mathit{mode}={{e}^{\mu-{{\sigma}^{2}}}} \\
 \mathit{var}={{e}^{2\cdot \mu-{{\sigma}^{2}}}}\cdot \left( {{e}^{{{\sigma}^{2}}}}-1\right) $$
@@ -57,11 +57,17 @@ $$\mathit{var}+{{e}^{\mu}}\cdot \mathit{mode}-{{e}^{2\cdot \mu}}=0$$
 Which can be numerically solved for $\mu$ given the mode and variance, leaving the substitution for $\sigma$
 $$\sigma=\sqrt{\mu-\mathrm{log}\left( \mathit{mode}\right) }$$
 
-Which allows us to pecify a log normal distribution with meaningful shape parameters.
+Which allows us to specify a log normal distribution with meaningful shape parameters.
 
 ```{r}
 n3 = LogNormalDistribution$new(mode=5,sd=3)
 n3$plot(0,20)
+```
+
+The theoretical entropy value of this distribution is 
+
+```{r}
+paste0("Entropy: ",n3$theoreticalEntropy())
 ```
 
 ## Combining distributions

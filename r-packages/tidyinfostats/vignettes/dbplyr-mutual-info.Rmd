@@ -1,12 +1,15 @@
 ---
 title: "dbplyr-mutual-info.Rmd"
 output: html_document
+knit: (function(inputFile, encoding,...) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "~/Dropbox/featureSelection/tidyinfostats") })
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
+#devtools::install_github("cwida/duckdb/tools/rpkg", build = FALSE)
 #library(tidyinfostats)
 devtools::load_all("..")
 set.seed(101)
@@ -17,7 +20,8 @@ set.seed(101)
 Suppose you have a database connection and you have some data loaded into it. Here we will use a single test table created from a test distribution
 
 ```{r}
-con <- DBI::dbConnect(RSQLite::SQLite(), dbname = ":memory:")
+# con <- DBI::dbConnect(RSQLite::SQLite(), dbname = ":memory:")
+con <- DBI::dbConnect(duckdb::duckdb(), dbname = ":memory:")
 
 hb = ConditionalDistribution$new()
 hb$withDistribution(0.75, LogNormalDistribution$new(mode=12,sd=2), "asymptomatic")
@@ -41,28 +45,46 @@ testDataLazy = con %>% copy_to(testData)
 testDataLazy
 ```
 
-## Executing a 
+## Executing a KWindow MI estimator in SQL
 
-You can also embed plots, for example:
-
+For reference results as executed in R
 ```{r}
+devtools::load_all("..")
 
 result = testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow")
+result
+```
+
+Now executed on the dbplyr database:
+```{r}
 lazyResult = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow")
 lazyResult %>% show_query()
-result
 lazyResult
+
+# DONT run this. The KNN method is not efficient in SQL
+# lazyResult2 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KNN", useKWindow=FALSE)
+# lazyResult2 %>% show_query()
+# lazyResult2
 ```
 
+## Discretisation in database
+
+By rank discretisation with a fixed number of bins is equivalent to an N_tile in sql
+
 ```{r}
-lazyResult2 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KNN")
-lazyResult2 %>% show_query()
-lazyResult2
+devtools::load_all("..")
+discretised = testDataLazy %>% group_by(test) %>% tidyinfostats::discretise_ByRank(value, value_discrete, bins=3) %>% collect()
+discretised %>% group_by(test,value_discrete) %>% summarise(count = n())
+
+# Non dbplyr for comparison:
+# discretised = testData %>% group_by(test) %>% tidyinfostats::discretise_ByRank(value, value_discrete, bins=3)
+# discretised %>% group_by(test,value_discrete) %>% summarise(count = n())
 ```
-
+* TODO: needs debugging
 
 ```{r}
-lazyResult3 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "Discrete")
+devtools::load_all("..")
+lazyResult3 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "DiscretiseByRank", bins=100)
 lazyResult3 %>% show_query()
 lazyResult3
 ```
