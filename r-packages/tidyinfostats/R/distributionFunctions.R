@@ -67,6 +67,12 @@ Distribution = R6::R6Class("Distribution", public=list(
 					return(df)
 				},
 				
+				theoreticalEntropy = function() {
+				  fn = function(x) ifelse(self$p(x)==0,0,-self$p(x)*log(self$p(x)))
+				  H = integrate(fn,-Inf,Inf,subdivisions=2000, rel.tol=.Machine$double.eps^.125)$value
+				  return(H)
+				},
+				
 				#' @description gets a label for this distribution based on the parameters passed
 				#' @return a string
 				label = function() {
@@ -171,7 +177,7 @@ UniformDistribution = R6::R6Class("UniformDistribution", inherit=Distribution, p
 				#' @description plot this dictributions as pdf and cdf
 				#' @param min the min value of the uniform distribution
 				#' @param max the max value of the uniform distribution
-				initialize = function(min=runif(1,-3,3),max=min+runif(1,0,6)) {
+				initialize = function(min=runif(1,-3,3),max=min+runif(1,0.5,6)) {
 					super$initialize(density=dunif,quantile=qunif,min=min,max=max)
 				}
 		))
@@ -293,11 +299,16 @@ ConditionalDistribution = R6::R6Class("ConditionalDistribution", public=list(
 				#' @return a single value for the mutual information of this function
 				theoreticalMI = function() {
 					py = self$weights/sum(self$weights) # y is classes
-					pxy = function(x) py*sapply(self$dists, function(dist) dist$p(x)) # i.e. p(y) * p(x given y)
-					px = function(x) sapply(x, function(x) sum(pxy(x))) # this gives us over all x
-					Iix = function(x) sapply(x, function(x) sum(ifelse(px(x)==0|pxy(x)==0,0,pxy(x)*log(pxy(x)/(py*px(x))))))
+					py_matrix = function(x) matrix(rep(py,length(x)),nrow = length(x),byrow=TRUE)
+					pxy = function(x) py_matrix(x)*sapply(self$dists, function(dist) dist$p(x)) # i.e. p(y) * p(x given y)
+					px = function(x) rowSums(pxy(x)) # this gives us over all x
+					px_matrix = function(x) matrix(rep(px(x),length(py)),ncol=length(py))
+					
+					Iix = function(x) rowSums(pxy(x)*log( pxy(x) / (px_matrix(x)*py_matrix(x))),na.rm = TRUE)
+					# Iix = function(x) sapply(x, function(x) sum( pxy(x)*log(pxy(x)/(py*px(x)) ), na.rm = TRUE))
+					# browser()
 					#TODO: can throw error here due to non finite function. To investigate.
-					return(integrate(Iix,-Inf,Inf)$value)
+					return(integrate(Iix,-Inf,Inf,subdivisions = 2000, rel.tol=.Machine$double.eps^.125)$value)
 				},
 				
 				#' @description generate the theoretical mean

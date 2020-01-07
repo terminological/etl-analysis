@@ -1,0 +1,51 @@
+---
+title: "Test tidyDiscretise"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+devtools::load_all("..")
+set.seed(101)
+theme_set(standardPrintOutput::defaultFigureLayout())
+```
+
+## Tidy discretise
+
+Purpose of tidy discretise is to generate discrete values in place in a tidy dataframe or database table
+
+we'll use the iris dataset as an example
+
+First generate a datafram representation of the cuts we want. This is just a geometric combination of the cuts and the groups
+
+
+```{r}
+Sepal.length.cuts = c(5,5.5,7)
+cutsDf = iris %>% group_by(Species) %>% cutsDfFromVector(Sepal.length.cuts)
+cutsDf
+```
+
+## Discretise the data:
+
+```{r pressure, echo=FALSE}
+#devtools::load_all("..")
+#debug( discretise_Manual)
+iris %>% group_by(Species) %>% discretise_Manual(Sepal.Length, Sepal.Length.Discrete, cutsDf, factorise=TRUE)
+```
+```{r echo=FALSE}
+#devtools::load_all("..")
+linearBySize(slope=8,minBins=4,maxBins=100)(n=16,min=0,max=128)
+
+```
+
+```{r echo=FALSE}
+devtools::load_all("..")
+#debug(discretise_ByValue)
+iris %>% group_by(Species) %>% discretise_ByValue(Sepal.Length, Sepal.Length.Discrete, binStrategy = logNormalCentiles(bins=4))
+```
+
+```{r echo=FALSE}
+devtools::load_all("..")
+# debug(discretise_ByRank)
+iris %>% group_by(Species) %>% discretise_ByRank(Sepal.Length, Sepal.Length.Discrete)
+```

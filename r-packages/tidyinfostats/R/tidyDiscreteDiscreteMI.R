@@ -14,8 +14,109 @@ calculateMultiClassMI = function(df, adjust=TRUE) {
       pmi_x1y1 = ifelse( p_x1y1==0, ifelse(p_x1==0 | p_y1==0, 0, NA), log(p_x1y1/(p_x1*p_y1)) ),
       I_xy = ifelse(p_x1y1==0|p_x1==0|p_y1==0, 0, p_x1y1*pmi_x1y1)
     ) %>% summarise(
-      I = sum(I_xy)+ifelse(adjust,mm_adjust,0)
+      I = sum(I_xy)+ifelse(adjust,mm_adjust,0),
+      I_sd = NA,
+      method = ifelse(adjust,"Empirical MM","Empirical")
     )
   )
 }
+
+#' calculate mutual information between a discrete value (X) and a discrete value (Y)
+#' 
+#' @param df - may be grouped, in which case the value is interpreted as different types of continuous variable
+#' @param groupXVar - the column of the discrete value (X)
+#' @param groupYVar - the column of the discrete value (Y)
+#' @param method - the method employed - valid options are "Empirical","MontgomerySmith","Compression","Entropy"
+#' @param ... - the other parameters are passed onto the implementations
+#' @return a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry
+calculateDiscreteDiscreteMI =  function(df, groupXVar, groupYVar, method="Empirical", ...) {
+  groupXVar = ensym(groupXVar)
+  groupYVar = ensym(groupYVar)
+  switch (method,
+          Empirical = calculateDiscreteDiscreteMI_Empirical(df, !!groupXVar, !!groupYVar, ...),
+          MontgomerySmith = calculateDiscreteDiscreteMI_Entropy(df, !!groupXVar, !!groupYVar, entropyMethod="MontgomerySmith", ...),
+          Compression = calculateDiscreteDiscreteMI_Entropy(df, !!groupXVar, !!groupYVar, entropyMethod="Compression", ...),
+          Histogram = calculateDiscreteDiscreteMI_Entropy(df, !!groupXVar, !!groupYVar, entropyMethod="Histogram", ...),
+          Entropy = calculateDiscreteDiscreteMI_Entropy(df, !!groupXVar, !!groupYVar, ...)
+  )
+}
+
+#' calculate mutual information between a discrete value (X) and a discrete value (Y)
+#' 
+#' @param df - may be grouped, in which case the grouping is interpreted as different types of discrete variable
+#' @param groupXVar - the column of the discrete value (X)
+#' @param groupYVar - the column of the discrete value (Y)
+#' @param adjust - Apply a miller-madow adjustement to the result (default: TRUE)
+#' @return a dataframe containing the distinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry
+calculateDiscreteDiscreteMI_Empirical = function(df, groupXVar, groupYVar, adjust=TRUE, ...) {
+  df %>% probabilitiesFromGroups({{groupXVar}}, {{groupYVar}}) %>% calculateMultiClassMI(adjust=adjust)
+}
+
+
+
+#' #' calculate mutual information between a discrete value (X) and a discrete value (Y) using estimates of entropy from method 2
+#' #' 
+#' #' S. Montgomery-Smith and T. Schürmann, “Unbiased Estimators for Entropy and Class Number,” arXiv [math.ST], 18-Oct-2014 [Online]. Available: http://arxiv.org/abs/1410.5002
+#' #' 
+#' #' @param df - may be grouped, in which case the grouping is interpreted as different types of discrete variable
+#' #' @param groupXVar - the column of the discrete value (X)
+#' #' @param groupYVar - the column of the discrete value (Y)
+#' #' @param orderingVar - optiopnal - the column of a sequence indicator (e..g timestamp) - if absent the data fram order will be used
+#' #' @return a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry
+#' calculateDiscreteDiscreteMI_MontgomerySmith = function(df, groupXVar, groupYVar, orderingVar = NULL, ...) {
+#'   
+#'   grps = df %>% groups()
+#'   if (length(grps)==0) {
+#'     joinList = c("join")
+#'   } else {
+#'     joinList = c(sapply(grps,as.character), "join")
+#'   }
+#'   # list of join variables for join by value
+#'   
+#'   #Hx = df %>% calculateEntropy_MontgomerySmith(c({{groupXVar}}), {{orderingVar}}) %>% rename(Hx = H, Hx_sd = H_sd) %>% mutate(join = 1)
+#'   #Hy = df %>% calculateEntropy_MontgomerySmith(c({{groupYVar}}), {{orderingVar}}) %>% rename(Hy = H, Hy_sd = H_sd) %>% mutate(join = 1)
+#'   #Hxy = df %>% calculateEntropy_MontgomerySmith(c({{groupXVar}},{{groupYVar}}), {{orderingVar}}) %>% rename(Hxy = H, Hxy_sd = H_sd) %>% mutate(join = 1)
+#'   
+#'   #tmp2 = Hxy %>% left_join(Hx, by=joinList) %>% left_join(Hy, by=joinList) %>% mutate(I = Hx+Hy-Hxy, I_sd = Hx_sd+Hy_sd+Hxy_sd)
+#'   
+#'   return(tmp2)
+#' }
+
+
+#' calculate mutual information between a discrete value (X) and a discrete value (Y) using estimates of entropy
+#' 
+#' @param df - may be grouped, in which case the grouping is interpreted as different types of discrete variable
+#' @param groupXVar - the column of the discrete value (X)
+#' @param valueYVar - the column of the discrete value (Y)
+#' @return a dataframe containing the disctinct values of the groups of df, and for each group a mutual information column (I). If df was not grouped this will be a single entry
+calculateDiscreteDiscreteMI_Entropy = function(df, groupXVar, groupYVar, entropyMethod="Histogram", ...) {
+  groupXVar = ensym(groupXVar)
+  groupYVar = ensym(groupYVar)
+  grps = df %>% groups()
+  if (length(grps)==0) {
+    joinList = c("join")
+  } else {
+    joinList = c(sapply(grps,as.character), "join")
+  }
+  # list of join variables for join by value
+  groupJoinList = c(joinList,as.character(groupXVar))
+  
+  # Hx = df %>% calculateEntropy(c({{groupXVar}}), method = entropyMethod, ...) %>% rename(Hx = H, Hx_sd = H_sd) %>% mutate(join = 1)
+  Hy = df %>% group_by(!!!grps) %>% calculateEntropy(vars(!!groupYVar), method = entropyMethod, ...) %>% rename(Hy = H, Hy_sd = H_sd) %>% mutate(join = 1)
+  Hygivenx_tmp = df %>% group_by(!!!grps,!!groupXVar) %>% calculateEntropy(vars(!!groupYVar), method = entropyMethod, ...) %>% mutate(join = 1)
+  Px = df %>% 
+    group_by(!!!grps) %>% mutate(N=n()) %>%
+    group_by(!!!grps,!!groupXVar,N) %>% summarise(NX=n()) %>% mutate(Px=NX/N, join=1)
+  
+  Hygivenx = Hygivenx_tmp %>% left_join(Px, by=groupJoinList) %>% group_by(!!!grps) %>% summarise(Hygivenx = sum(H*Px), Hygivenx_sd = max(H_sd*Px)) %>% mutate(join = 1)
+  
+  tmp2 = Hy %>% left_join(Hygivenx, by=joinList) %>% mutate(
+    I = Hy-Hygivenx, 
+    I_sd = Hy_sd+Hygivenx_sd,
+    method =  paste0("Entropy - ",entropyMethod)
+    ) %>% select(!!!grps, I, I_sd, method)
+  
+  return(tmp2)
+}
+
 
