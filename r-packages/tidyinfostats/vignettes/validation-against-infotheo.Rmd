@@ -1,5 +1,5 @@
 ---
-title: "mutual-information-estimation"
+title: "Validation against infotheo library"
 output: html_document
 knit: (function(inputFile, encoding,...) {
   rmarkdown::render(inputFile, encoding = encoding, output_dir = "~/Dropbox/featureSelection/tidyinfostats") })
@@ -15,9 +15,9 @@ knitr::opts_chunk$set(
 library(infotheo)
 library(tidyverse)
 library(ggplot2)
-library(devtools)
-#library(tidyinfostats)
-devtools::load_all("..")
+#library(devtools)
+library(tidyinfostats)
+#devtools::load_all("..")
 ```
 
 The infotheo package contains a function to discretise and calculate the mutual information from a data set. Unfortunately it is not somewhat hard to use on tidy data and cannot be used with dbplyr tables without bringing them into memory.

@@ -6,6 +6,8 @@
 #' @param method - the method employed - valid options are "ByRank", "ByValue", "Manual"
 #' @param ... - the other parameters are passed onto the implementations
 #' @return a single value for the entropy of the vector
+#' @import dplyr
+#' @export
 discretise = function(df, continuousVar, discreteOutputVar, method, ...) {
   switch (method,
           ByRank = discretise_ByRank(df, {{continuousVar}}, {{discreteOutputVar}}, ...),
@@ -20,6 +22,10 @@ discretise = function(df, continuousVar, discreteOutputVar, method, ...) {
 
 #TODO: non linear binning strategies
 
+#' A binning strategy generator. Creates a function that can be used to create discretisation cuts based on the statistical paramaters of the data to be discretised
+#' in particular the mean and sd of the observed data (in a group by group fashion)
+#' 
+#' @param bins - the number of bins to create out of the centiles of a log normal distribution
 logNormalCentiles = function(bins) {
   return(
     function(mean,sd,...) {
@@ -35,8 +41,10 @@ logNormalCentiles = function(bins) {
   )
 }
 
-#' binning strategy - fixed number of bins
+#' A binning strategy generator. Creates a function that can be used to create discretisation cuts based on the statistical paramaters of the data to be discretised
+#' in particular the minimum and maximum value of the observed data (in a group by group fashion)
 #' 
+#' @param bins - the number of bins to create for each group
 fixedNumber = function(bins) {
   return(
     function(n,min,max, ...) {
@@ -47,21 +55,27 @@ fixedNumber = function(bins) {
   )
 }
 
-#' binning strategy - number of bins depends on size of 
+#' A binning strategy generator. Creates a function that can be used to create discretisation cuts based on the statistical paramaters of the data to be discretised
+#' in particular the sample size, minimum and maximum value of the observed data (in a group by group fashion)
 #' 
+#' @param slope - the number of observations for each bin if the observation numbers fall between minBins*slope and maxBins*slope
+#' @param minBins - the smallest number of bins to create for each group
+#' @param maxBins - the largest number of bins to create for each group
 #' @param fn - the distribution function that genertes the cut points (e.g. tidyinfostats::fixedNumber (uniform), tidyinfostats::logNormalCentiles  )
 linearBySize = function(slope,minBins,maxBins, fn=fixedNumber) {
   return(
     function(n, ...) {
       # this function will return a tibble of cut points given the n in group, min in group, max in group
-      bins = as.integer(ifelse(n<minBins*slope,minBins,ifelse(n>maxBins*slope,maxBins,n/slope)))
+      bins = as.integer(ifelse(n<minBins*slope,minBins,ifelse(n>maxBins*slope,maxBins,as.double(n)/slope)))
       return(fn(bins)(n, ...))
     }
   )
 }
 
-#' binning strategy - fixed width of bins
+#' A binning strategy generator. Creates a function that can be used to create discretisation cuts based on the statistical paramaters of the data to be discretised
+#' in particular the minimum and maximum value of the observed data (in a group by group fashion)
 #' 
+#' @param width - the width of each bin
 fixedWidth = function(width) {
   return(
     function(min, max, ...) {
@@ -73,16 +87,16 @@ fixedWidth = function(width) {
 }
 
 
-#' calculate entropy of an optionally ordered discrete value (X) using estimates of entropy from method 2 in
-#' 
-#' S. Montgomery-Smith and T. Schürmann, “Unbiased Estimators for Entropy and Class Number,” arXiv, 18-Oct-2014. Available: http://arxiv.org/abs/1410.5002
+#' Discretise data by the value of a continuous variable
 #' 
 #' @param df - may be grouped, in which case the value is interpreted as different types of continuous variable
-#' @param continuousVar - the columns that define the discrete subgroups of the data.
-#' @param discreteOutputVar - the name of the value to create in the dataframe
-#' @param bins - number of bins
-#' @param binFn
-#' @return a dataframe containing the disctinct values of the groups of df, and for each group an entropy value (H). If df was not grouped this will be a single entry
+#' @param continuousVar - the columns that define the continuous data.
+#' @param discreteOutputVar - the name of the value to create in the dataframe for the discrete data
+#' @param bins - (optional) number of bins
+#' @param binStrategy - if the number of bins is not set they will be calculated using this bin strategy
+#' @return a dataframe with an additional column with the discrete categories
+#' @import dbplyr
+#' @export
 discretise_ByValue = function(df, continuousVar, discreteOutputVar, bins=NA, binStrategy=linearBySize(slope=8,minBins=4,maxBins=100), ...) {
   
   discreteOutputVar = ensym(discreteOutputVar)
@@ -106,18 +120,17 @@ discretise_ByValue = function(df, continuousVar, discreteOutputVar, bins=NA, bin
   
 }
 
-#' calculate entropy of an optionally ordered discrete value (X) using estimates of entropy from method 2 in
-#' 
-#' S. Montgomery-Smith and T. Schürmann, “Unbiased Estimators for Entropy and Class Number,” arXiv, 18-Oct-2014. Available: http://arxiv.org/abs/1410.5002
+#' Discretise data by the rank of a continuous variable
 #' 
 #' @param df - may be grouped, in which case the value is interpreted as different types of continuous variable
-#' @param continuousVar - the columns that define the discrete subgroups of the data.
-#' @param discreteOutputVar - the name of the value to create in the dataframe
-#' @param bins - number of bins
-#' @param binStrategy - a function that accepts a n,min,max returns a dataframe of cuts
-#' lowerBounded = FALSE, factorise = FALSE, noUnicode = ("tbl_sql" %in% class(df)), 
-
-#' @return a dataframe containing the disctinct values of the groups of df, and for each group an entropy value (H). If df was not grouped this will be a single entry
+#' @param continuousVar - the columns that define the continuous data.
+#' @param discreteOutputVar - the name of the value to create in the dataframe for the discrete data
+#' @param bins - (optional) number of bins
+#' @param binStrategy - if the number of bins is not set they will be calculated using this bin strategy
+#' @param ... - other options passed onto tidyinfostats::discretise_Manual
+#' @return a dataframe with an additional column with the discrete categories
+#' @import dbplyr
+#' @export
 discretise_ByRank = function(df, continuousVar, discreteOutputVar, bins=NA, binStrategy=linearBySize(slope=8,min=4,max=100), ...) {
   
   # TODO: support factorise=TRUE - generate labels etc.
@@ -152,8 +165,12 @@ discretise_ByRank = function(df, continuousVar, discreteOutputVar, bins=NA, binS
   
 }
 
-#' dont include infinities
+#' generate a data fram of cuts for every group in a dataframe from a vector of cuts, and the dataframe
 #' 
+#' @param df - a grouped dataframe
+#' @param cuts - a vector of cuts - not including the -Inf, Inf ends
+#' @return a datafram of cuts
+#' @export
 cutsDfFromVector = function(df, cuts) {
   grps = df %>% groups()
   return(
@@ -161,6 +178,8 @@ cutsDfFromVector = function(df, cuts) {
   )
 }
 
+#' Discretise data using pre-defined break points
+#' 
 #' @param df - may be grouped, in which case the value is interpreted as different types of continuous variable
 #' @param continuousVar - the columns that define the discrete subgroups of the data.
 #' @param discreteOutputVar - the name of the value to create in the dataframe
@@ -169,6 +188,7 @@ cutsDfFromVector = function(df, cuts) {
 #' @param factorise - convert discrete values into an ordered factor (alternative is a character string). This is only useful if you have a single set of cuts for all groups.
 #' @param noUnicode - by default unicode characters are not used for the label if the target is a dbplyr table
 #' @return a dataframe containing the discreteOutputVar column
+#' @export
 discretise_Manual = function(df, continuousVar, discreteOutputVar, cutsDf, lowerBounded = FALSE, factorise = FALSE, noUnicode = ("tbl_sql" %in% class(df)), ...) {
   discreteOutputVar = ensym(discreteOutputVar)
   continuousVar = ensym(continuousVar)
@@ -184,6 +204,7 @@ discretise_Manual = function(df, continuousVar, discreteOutputVar, cutsDf, lower
   
   # cutsDf is a local R construct. it does not need to be dbplyr friendly
   # generate the ends of the data
+  # TODO: split this out into a function and allow custom labelling
   cutsDf = cutsDf %>% select(!!!grps,cut) %>% group_by(!!!grps) %>% arrange(cut) %>% mutate(tmp_upper = cut, tmp_lower = lag(cut,1,NA)) %>% 
     union(cutsDf %>% group_by(!!!grps) %>% arrange(cut) %>% mutate(tmp_upper = lead(cut,1,NA), tmp_lower = cut)) %>% 
     mutate(tmp_join=1) %>% select(-cut) %>% distinct()
@@ -229,3 +250,4 @@ discretise_Manual = function(df, continuousVar, discreteOutputVar, cutsDf, lower
   
   return(tmp2)
 }
+

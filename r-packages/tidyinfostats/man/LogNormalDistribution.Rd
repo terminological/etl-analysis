@@ -38,6 +38,7 @@ Get a log normal distribution wrapper
 \item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="p">}\href{../../tidyinfostats/html/Distribution.html#method-p}{\code{tidyinfostats::Distribution$p()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="plot">}\href{../../tidyinfostats/html/Distribution.html#method-plot}{\code{tidyinfostats::Distribution$plot()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="sample">}\href{../../tidyinfostats/html/Distribution.html#method-sample}{\code{tidyinfostats::Distribution$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="theoreticalEntropy">}\href{../../tidyinfostats/html/Distribution.html#method-theoreticalEntropy}{\code{tidyinfostats::Distribution$theoreticalEntropy()}}\out{</span>}
 }
 \out{</details>}
 }

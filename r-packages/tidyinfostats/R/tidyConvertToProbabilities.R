@@ -57,7 +57,7 @@ probabilitiesFromGroups = function(df, groupXVar, groupYVar, countVar=NULL) {
     classes_X=n_distinct(!!groupXVar), 
     classes_Y=n_distinct(!!groupXVar)
     ) %>% 
-    mutate(mm_adjust = (classes_X+classes_Y-classes_XY-1)/(2*N)) %>% 
+    mutate(mm_adjust = as.double(classes_X+classes_Y-classes_XY-1)/(2*N)) %>% 
     mutate(join=1)
   # N = N %>% mutate(classes_XY = nrow(N))
   X = df %>% ungroup() %>% group_by(!!!grps,!!groupXVar) %>% summarise(f_x = sum(f_xy)) %>% mutate(join=1) # grouping

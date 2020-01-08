@@ -16,6 +16,7 @@ Get a uniform distribution wrapper
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{UniformDistribution$new()}}
+\item \href{#method-label}{\code{UniformDistribution$label()}}
 \item \href{#method-clone}{\code{UniformDistribution$clone()}}
 }
 }
@@ -25,10 +26,10 @@ Get a uniform distribution wrapper
 \item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="getInverseCdf">}\href{../../tidyinfostats/html/Distribution.html#method-getInverseCdf}{\code{tidyinfostats::Distribution$getInverseCdf()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="getPdf">}\href{../../tidyinfostats/html/Distribution.html#method-getPdf}{\code{tidyinfostats::Distribution$getPdf()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="inverse">}\href{../../tidyinfostats/html/Distribution.html#method-inverse}{\code{tidyinfostats::Distribution$inverse()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="label">}\href{../../tidyinfostats/html/Distribution.html#method-label}{\code{tidyinfostats::Distribution$label()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="p">}\href{../../tidyinfostats/html/Distribution.html#method-p}{\code{tidyinfostats::Distribution$p()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="plot">}\href{../../tidyinfostats/html/Distribution.html#method-plot}{\code{tidyinfostats::Distribution$plot()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="sample">}\href{../../tidyinfostats/html/Distribution.html#method-sample}{\code{tidyinfostats::Distribution$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="tidyinfostats" data-topic="Distribution" data-id="theoreticalEntropy">}\href{../../tidyinfostats/html/Distribution.html#method-theoreticalEntropy}{\code{tidyinfostats::Distribution$theoreticalEntropy()}}\out{</span>}
 }
 \out{</details>}
 }
@@ -37,7 +38,7 @@ Get a uniform distribution wrapper
 \subsection{Method \code{new()}}{
 plot this dictributions as pdf and cdf
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{UniformDistribution$new(min = runif(1, -3, 3), max = min + runif(1, 0, 6))}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{UniformDistribution$new(min = runif(1, -3, 3), max = min + runif(1, 0.5, 6))}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -49,6 +50,15 @@ plot this dictributions as pdf and cdf
 }
 \if{html}{\out{</div>}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-label"></a>}}
+\subsection{Method \code{label()}}{
+get a label for this distribution
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{UniformDistribution$label()}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

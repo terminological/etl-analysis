@@ -4,10 +4,12 @@
 \alias{calculateMultiClassMI}
 \title{Calculate single mutual information score from multiclass groups in dplyr friendly manner.}
 \usage{
-calculateMultiClassMI(df)
+calculateMultiClassMI(df, adjust = TRUE)
 }
 \arguments{
 \item{df}{a dataframe containing one observation per row & minimally p_x1y1, p_x1, p_y1 columns (see probabilitiesFromCounts)}
+
+\item{adjust}{apply a Miller-Madow adjustment to the result}
 }
 \value{
 the datatable with additional columns for MI

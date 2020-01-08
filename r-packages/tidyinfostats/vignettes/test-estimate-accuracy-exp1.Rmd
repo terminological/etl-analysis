@@ -10,13 +10,11 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
 ```{r echo=FALSE}
-library(infotheo)
 library(tidyverse)
 library(ggplot2)
-library(devtools)
 library(standardPrintOutput)
-#library(tidyinfostats)
-devtools::load_all("..")
+library(tidyinfostats)
+#devtools::load_all("..")
 set.seed(101)
 theme_set(standardPrintOutput::defaultFigureLayout())
 ```
@@ -84,7 +82,7 @@ B. C. Ross, “Mutual information between discrete and continuous data sets,” 
 The first experiment replicates Ross's findings around discretising data & KNN method for estimating MI but using 2 new algorithms and only the smaller sample size
 
 ```{r echo=FALSE}
-devtools::load_all("..")
+#devtools::load_all("..")
 experiment1 = function(distribution, sampleSize, reps) {
   
   set.seed(101)

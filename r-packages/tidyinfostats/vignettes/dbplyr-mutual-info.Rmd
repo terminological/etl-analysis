@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
 #devtools::install_github("cwida/duckdb/tools/rpkg", build = FALSE)
-#library(tidyinfostats)
+library(tidyinfostats)
 devtools::load_all("..")
 set.seed(101)
 ```
@@ -20,8 +20,7 @@ set.seed(101)
 Suppose you have a database connection and you have some data loaded into it. Here we will use a single test table created from a test distribution
 
 ```{r}
-# con <- DBI::dbConnect(RSQLite::SQLite(), dbname = ":memory:")
-con <- DBI::dbConnect(duckdb::duckdb(), dbname = ":memory:")
+con <- DBI::dbConnect(RSQLite::SQLite(), dbname = ":memory:")
 
 hb = ConditionalDistribution$new()
 hb$withDistribution(0.75, LogNormalDistribution$new(mode=12,sd=2), "asymptomatic")
@@ -49,7 +48,7 @@ testDataLazy
 
 For reference results as executed in R
 ```{r}
-devtools::load_all("..")
+# devtools::load_all("..")
 
 result = testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow")
 result
@@ -59,7 +58,8 @@ Now executed on the dbplyr database:
 ```{r}
 lazyResult = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KWindow")
 lazyResult %>% show_query()
-lazyResult
+
+lazyResult %>% collect()
 
 # DONT run this. The KNN method is not efficient in SQL
 # lazyResult2 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "KNN", useKWindow=FALSE)
@@ -72,7 +72,7 @@ lazyResult
 By rank discretisation with a fixed number of bins is equivalent to an N_tile in sql
 
 ```{r}
-devtools::load_all("..")
+# devtools::load_all("..")
 discretised = testDataLazy %>% group_by(test) %>% tidyinfostats::discretise_ByRank(value, value_discrete, bins=3) %>% collect()
 discretised %>% group_by(test,value_discrete) %>% summarise(count = n())
 
@@ -83,8 +83,25 @@ discretised %>% group_by(test,value_discrete) %>% summarise(count = n())
 * TODO: needs debugging
 
 ```{r}
-devtools::load_all("..")
+# devtools::load_all("..")
+
+testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "DiscretiseByRank", bins=100)
+
+
 lazyResult3 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "DiscretiseByRank", bins=100)
-lazyResult3 %>% show_query()
+#lazyResult3 %>% show_query()
 lazyResult3
+```
+
+```{r}
+# devtools::load_all("..")
+
+#testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "DiscretiseByValue", discreteMethod = "MontgomerySmith")
+testData %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "DiscretiseByValue", discreteMethod = "Grassberger")
+
+#lazyResult4 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "DiscretiseByValue", discreteMethod = "MontgomerySmith")
+lazyResult4 = testDataLazy %>% group_by(test) %>% tidyinfostats::calculateDiscreteContinuousMI(outcome, value, method = "DiscretiseByValue", discreteMethod = "Grassberger")
+
+
+lazyResult4
 ```

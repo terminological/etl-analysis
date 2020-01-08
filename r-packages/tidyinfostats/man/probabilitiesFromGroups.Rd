@@ -4,7 +4,7 @@
 \alias{probabilitiesFromGroups}
 \title{Helper function to calculate probability from grouped data in a tidy friendly manner}
 \usage{
-probabilitiesFromGroups(df, groupXVar, groupYVar, countVar = NA)
+probabilitiesFromGroups(df, groupXVar, groupYVar, countVar = NULL)
 }
 \arguments{
 \item{df}{a dataframe containing 2 columns defining class of event X and class of event Y and either one row per event, 
@@ -23,4 +23,24 @@ The purpose of this is to calculate the probabilities of all binary outcomes fro
 This function is useful when you have 2 types of events (X and Y) and
 you either have a set of observations of their co-occurrence, containing non-unique X & Y combinations, or you have a confusion matrix of the counts of their combinations where 
 each row has a unique combination of X and Y and a third column contains the counts of XY co-occurrences.
+}
+\details{
+https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-461
+
+$$I = H_x + H_y - H_xy$$
+
+Where I is information
+
+x is a member of X and |X| is number of possible values of x with no non empty bins (classes_X):
+y is a member of Y and |Y| is number of possible values of y with no non empty bins (classes_Y):
+xy is a member of XY and |XY| is number of possible values of combination of x and y with no non empty bins (classes_XY):
+N is the number of samples
+
+$$H_x__mm = H_x__emp + (|Z_x| - 1)/2N$$
+
+$$I__mm = I__emp + (|X| - 1)/2N + (|Y| - 1)/2N - (|XY| - 1)/2N$$
+
+$$I__mm = I__emp + (|X| + |Y| - |XY| - 1)/2N$$
+
+This is a Miller-Maddow adjustment.
 }

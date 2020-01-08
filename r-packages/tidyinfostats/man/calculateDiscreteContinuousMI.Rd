@@ -19,7 +19,7 @@ calculateDiscreteContinuousMI(
 
 \item{valueYVar}{- the column of the continuous value (Y)}
 
-\item{method}{- the method employed - valid options are "KWindow","SGolay","Discrete". At the moment only "kwindow" supported for dbplyr tables}
+\item{method}{- the method employed - valid options are "KWindow","KNN","SGolay","DiscreteByRank","DiscreteByValue","Compression","Entropy".}
 
 \item{...}{- the other parameters are passed onto the implementations}
 }

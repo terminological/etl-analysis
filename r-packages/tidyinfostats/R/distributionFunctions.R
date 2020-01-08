@@ -67,6 +67,8 @@ Distribution = R6::R6Class("Distribution", public=list(
 					return(df)
 				},
 				
+				#' @description calculates the integral of -p(x)*log(p(x)) from -Infinity to infinity
+				#' @return a value
 				theoreticalEntropy = function() {
 				  fn = function(x) ifelse(self$p(x)==0,0,-self$p(x)*log(self$p(x)))
 				  H = integrate(fn,-Inf,Inf,subdivisions=2000, rel.tol=.Machine$double.eps^.125)$value
@@ -98,6 +100,7 @@ Distribution = R6::R6Class("Distribution", public=list(
 				#' @description plot this dictributions as pdf and cdf
 				#' @param xmin the minimum of the support range to plot
 				#' @param xmax the maximum of the support range to plot
+				#' @param resolution the number of points to generate for the plot (default 1001)
 				#' @return a ggassemble plot object
 				plot = function(xmin, xmax, resolution=1001) {
 					df = self$getPdf(xmin, xmax, resolution)
@@ -181,6 +184,7 @@ UniformDistribution = R6::R6Class("UniformDistribution", inherit=Distribution, p
 					super$initialize(density=dunif,quantile=qunif,min=min,max=max)
 				},
 				
+				#' @description get a label for this distribution
 				label = function() {
 				  return(paste0("Unif: ",paste(paste0(names(self$dots),"=",twoDp(self$dots)),collapse="; ")))
 				}

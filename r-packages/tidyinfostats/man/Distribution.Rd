@@ -27,6 +27,7 @@ Get a distribution wrapper
 \item \href{#method-p}{\code{Distribution$p()}}
 \item \href{#method-getPdf}{\code{Distribution$getPdf()}}
 \item \href{#method-getInverseCdf}{\code{Distribution$getInverseCdf()}}
+\item \href{#method-theoreticalEntropy}{\code{Distribution$theoreticalEntropy()}}
 \item \href{#method-label}{\code{Distribution$label()}}
 \item \href{#method-inverse}{\code{Distribution$inverse()}}
 \item \href{#method-sample}{\code{Distribution$sample()}}
@@ -116,6 +117,18 @@ a dataframe
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-theoreticalEntropy"></a>}}
+\subsection{Method \code{theoreticalEntropy()}}{
+calculates the integral of -p(x)*log(p(x)) from -Infinity to infinity
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Distribution$theoreticalEntropy()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+a value
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-label"></a>}}
 \subsection{Method \code{label()}}{
 gets a label for this distribution based on the parameters passed
@@ -179,6 +192,8 @@ plot this dictributions as pdf and cdf
 \item{\code{xmin}}{the minimum of the support range to plot}
 
 \item{\code{xmax}}{the maximum of the support range to plot}
+
+\item{\code{resolution}}{the number of points to generate for the plot (default 1001)}
 }
 \if{html}{\out{</div>}}
 }

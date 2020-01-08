@@ -9,8 +9,9 @@ knit: (function(inputFile, encoding,...) {
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(ggplot2)
+library(tidyinfostats)
 # library(reticulate)
-devtools::load_all("..")
+#devtools::load_all("..")
 ```
 
 ## Distribution Functions

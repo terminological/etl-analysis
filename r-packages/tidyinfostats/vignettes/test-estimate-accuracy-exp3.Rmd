@@ -10,13 +10,11 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
 ```{r echo=FALSE}
-library(infotheo)
 library(tidyverse)
 library(ggplot2)
-library(devtools)
 library(standardPrintOutput)
-#library(tidyinfostats)
-devtools::load_all("..")
+library(tidyinfostats)
+#devtools::load_all("..")
 set.seed(101)
 theme_set(standardPrintOutput::defaultFigureLayout())
 ```
@@ -67,7 +65,7 @@ Objectives:
 ** regression to predict SD of MI from est mean versus theoretical mean  & est versus theoretical SD
 
 ```{r}
-devtools::load_all("..")
+#devtools::load_all("..")
 
 experiment3 = function(distribution, reps, meth = c("KWindow","KNN","SGolay","DiscretiseByRank","DiscretiseByValue","Compression")) {
   
