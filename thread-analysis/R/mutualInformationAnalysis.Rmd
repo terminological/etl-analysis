@@ -1,6 +1,8 @@
 ---
 title: "Analyse the content of the "
 output: html_document
+knit: (function(inputFile, encoding,...) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "~/Dropbox/threadAnalysis/working") })
 ---
 
 ```{r setup, include=FALSE}
@@ -13,20 +15,22 @@ library(ggdendro)
 library(ggraph)
 # devtools::install_github("terminological/standard-print-output")
 library(standardPrintOutput)
+# devtools::install_github("terminological/tidy-info-stats")
+devtools::load_all("~/Git/tidy-info-stats/")
+#library(tidyinfostats)
 
-#omop$finalize()
-rm(list = ls(all.names = TRUE))
 
+#rm(list = ls(all.names = TRUE))
 devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
-devtools::load_all("~/Git/etl-analysis/r-packages/tidyinfostats/")
 ```
 
-Generate a test data set from the first 50 orthopaedic and 50 rheumatology
-documents:
- 
+## Generate a test corpus from the first 50 orthopaedic and 50 rheumatology documents:
 
 ```{r echo=FALSE}
 omop = Omop$new()
+searcher = omop$buildVocabSet()
+searcher$applyUsedInFilter(omop$note,note_class_concept_id)
+searcher$toDataframe() %>% filter(concept_name %in% c("Rheumatology Note","Orthopaedic surgery note"))
 
 groupedDf = omop$note %>% filter(note_class_concept_id == 3032918L) %>% head(50) %>% union(
     omop$note %>% filter(note_class_concept_id == 3031179L) %>% head(50)
@@ -38,29 +42,65 @@ groupedDf = omop$note %>% filter(note_class_concept_id == 3032918L) %>% head(50)
   compute()
 
 groupedDf = groupedDf %>% omop$expandAncestorConcepts(concept_id)
+# glimpse(groupedDf)
 ```
+
+## Calculate occurrence stats for concepts in the corpus binary MI stats both for plain cooccurence and for occurrence relative to okapi BM 25
 
 ```{r}
 
-# devtools::load_all("~/Git/etl-analysis/r-packages/tidyinfostats/")
+# devtools::load_all("~/Git/tidy-info-stats/")
 # groupedDf = groupedDf %>% group_by(note_class_concept_id, note_id)
 idfDf = groupedDf %>% tidyinfostats::calculateIdf(concept_id, count)
-
-tfidfDf = groupedDf %>% tidyinfostats::calculateTfidf(concept_id, idfDf=idfDf ) %>% compute()
-miDf = tfidfDf %>% ungroup() %>% 
-	tidyinfostats::probabilitiesFromGroups(note_class_concept_id, concept_id) %>% 
-	tidyinfostats::calculateBinaryMI()
-
-miContinuousDf = tfidfDf %>% group_by(concept_id,N_t) %>% 
-  tidyinfostats::calculateDiscreteContinuousMI(note_class_concept_id, norm_okapi_bm25)
+#glimpse(idfDf)
 ```
 
 ```{r}
-cooc = tfidfDf %>% arrange(desc(f_t)) %>% head(30)
+tfidfDf = groupedDf %>% tidyinfostats::calculateTfidf(concept_id, idfDf=idfDf ) %>% compute()
+#glimpse(tfidfDf)
+```
 
-a = Analyser$fromDataframe(omop,groupedDf)
-a$calculateTfidf()
-a$calculateOutcomeMI(note_class_concept_id)
+calculate mutual information between concept_id and note_class_concept_id
+
+This is using the binary presence or absence of the concept_id in the document to calculate the MI
+
+N.B. N_t = f_y is probably correct here. N_t is the number of documents with that term in it.
+
+```{r}
+miDf = tfidfDf %>% ungroup() %>% 
+	tidyinfostats::probabilitiesFromGroups(note_class_concept_id, concept_id) %>% 
+  group_by(concept_id) %>%
+	tidyinfostats::calculateMultiClassMI() %>% omop$getConceptNames()
+#%>%
+#  select(note_class_concept_id,concept_id, N_t = f_y, I, method="Binary")
+glimpse(miDf %>% arrange(desc(I)))
+```
+
+and we can also calculate the MI between concept_id and note_class_concept_id using a continuous variable (in this case norm_okapi_bm25)
+
+
+
+```{r}
+miContinuousDf = tfidfDf %>% group_by(concept_id,N_t) %>% 
+  tidyinfostats::calculateDiscreteContinuousMI(note_class_concept_id, norm_okapi_bm25, method="KWindow") %>% omop$getConceptNames()
+glimpse(miContinuousDf %>% arrange(desc(I)))
+```
+
+## Calculate top 30 terms co-occurrence
+
+TODO: filter out those co-occurrences that are inevitable due to child parent relationships.
+
+```{r}
+devtools::load_all("~/Git/tidy-info-stats/")
+#debug(tidyinfostats::calculateCooccurrence)
+options(error=NULL)
+top50 = idfDf %>% arrange(desc(f_t)) %>% head(50)
+cooc = groupedDf %>% tidyinfostats::calculateCooccurrenceMI(concept_id,top50) %>% omop$getConceptNames()
+glimpse(cooc)
+```
+# a = Analyser$fromDataframe(omop,groupedDf)
+# a$calculateTfidf()
+# a$calculateOutcomeMI(note_class_concept_id)
 cooccurMI = a$nodes %>% ungroup() %>% arrange(desc(mi)) %>% head(50) %>% a$calculateCooccurrenceMI()
 cooccurCount = a$nodes %>% ungroup() %>% arrange(desc(f_t)) %>% head(50) %>% a$calculateCooccurrenceMI()
 

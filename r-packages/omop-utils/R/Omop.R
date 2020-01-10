@@ -168,10 +168,11 @@ Omop = R6::R6Class("Omop", public=list(
   #' df %>% omop$getConceptNames()
   getConceptNames = function(df) {
     # "tbl_sql" %>% in class(df)  => remote; use raw left join.
-    for (colname in colnames(df)) {
-      if (endsWith(colname,"concept_id")) {
-        prefix = stringr::str_remove(colname,"concept_id")
-        vocabCol = paste0(prefix,"concept_name")
+    for (colname in stringr::str_subset(colnames(df),"^.*(concept_id).*$")) {
+      #if (endsWith(colname,"concept_id")) {
+      vocabCol = stringr::str_replace(colname, stringr::coll("concept_id"),"concept_name")
+        #prefix = stringr::str_remove(colname,"concept_id")
+        #vocabCol = paste0(prefix,"concept_name")
         # check result column is not already there
         if (!(vocabCol %in% colnames(df))) {
           # relabel the concept table
@@ -189,7 +190,7 @@ Omop = R6::R6Class("Omop", public=list(
             lookup = tmpView %>% filter(UQ(rlang::sym(colname)) %in% local(unique(df[[colname]]))) %>% collect()
             df = df %>% left_join(lookup, by=colname)
           }
-        }
+        #}
       }
     }
     return(df)
@@ -233,44 +234,44 @@ Omop = R6::R6Class("Omop", public=list(
 	)
 	  
   },
-  
-  #' Drops a temporary table created by dbplyr
   #' 
-  #' This function could have major side effects and does not check to
-  #' see if the table is still in use anywhere to use with caution only
-  #' if you know that no other current queries depend on it
-  #' @param tableRef a dbplyr backed dataframe
-  #' @param dryRun defaults to debuggingState(). will only log intention when TRUE. set to FALSE to actually drop the table.
-  #' @param force defaults to FALSE. If an attemp is made to drop a non temporary table it will only be attempted if this flag is TRUE
-  tidyTempTable = function(tableRef, dryRun = debuggingState(), force=FALSE) {
-    return()
-    # TODO: this needs a lot of work
-    # ?enquo, ?eval, ?eval_tidy
-    name = deparse(substitute(tableRef))
-    tableRef = enquo(tableRef)
-    if (is.null(rlang::eval_tidy(tableRef))) return() # evaluates to null of self$nodes but works on groupedDf
-      # possible we shoudl be dealing with enquo sures
-    rn = rlang::eval_tidy(tableRef) %>% dbplyr::remote_name() # doesn;t in general return a table name but a remote_query seems to work
-    if (is.null(rn)) {
-      print(paste0("attempt to drop a table failed - maybe it is a query: ",name))
-      return()
-    }
-    rn = rn %>% as.character()
-    if (substring(rn,1,2) == "##") {
-      if (test) {
-        print(paste0("DEBUG: would have dropped: ",name," = ",rn))
-      } else {
-        odbc::dbRemoveTable(self$con,rn)
-      }
-    } else {
-      if (force) {
-        print(paste0("WARNING: Forced drop of non temporary table: ",name," = ",rn))
-        odbc::dbRemoveTable(self$con,rn)
-      } else {
-        stop(paste0("CRITICAL: tried to drop non temporary table: ",name," = ",rn))
-      }
-    }
-  }
+  #' #' Drops a temporary table created by dbplyr
+  #' #' 
+  #' #' This function could have major side effects and does not check to
+  #' #' see if the table is still in use anywhere to use with caution only
+  #' #' if you know that no other current queries depend on it
+  #' #' @param tableRef a dbplyr backed dataframe
+  #' #' @param dryRun defaults to debuggingState(). will only log intention when TRUE. set to FALSE to actually drop the table.
+  #' #' @param force defaults to FALSE. If an attemp is made to drop a non temporary table it will only be attempted if this flag is TRUE
+  #' tidyTempTable = function(tableRef, dryRun = debuggingState(), force=FALSE) {
+  #'   return()
+  #'   # TODO: this needs a lot of work
+  #'   # ?enquo, ?eval, ?eval_tidy
+  #'   name = deparse(substitute(tableRef))
+  #'   tableRef = enquo(tableRef)
+  #'   if (is.null(rlang::eval_tidy(tableRef))) return() # evaluates to null of self$nodes but works on groupedDf
+  #'     # possible we shoudl be dealing with enquo sures
+  #'   rn = rlang::eval_tidy(tableRef) %>% dbplyr::remote_name() # doesn;t in general return a table name but a remote_query seems to work
+  #'   if (is.null(rn)) {
+  #'     print(paste0("attempt to drop a table failed - maybe it is a query: ",name))
+  #'     return()
+  #'   }
+  #'   rn = rn %>% as.character()
+  #'   if (substring(rn,1,2) == "##") {
+  #'     if (test) {
+  #'       print(paste0("DEBUG: would have dropped: ",name," = ",rn))
+  #'     } else {
+  #'       odbc::dbRemoveTable(self$con,rn)
+  #'     }
+  #'   } else {
+  #'     if (force) {
+  #'       print(paste0("WARNING: Forced drop of non temporary table: ",name," = ",rn))
+  #'       odbc::dbRemoveTable(self$con,rn)
+  #'     } else {
+  #'       stop(paste0("CRITICAL: tried to drop non temporary table: ",name," = ",rn))
+  #'     }
+  #'   }
+  #' }
 ))
 
 

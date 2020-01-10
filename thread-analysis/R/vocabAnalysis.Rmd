@@ -1,36 +1,62 @@
+---
+title: "Test the functions of the omop search"
+output: html_document
+knit: (function(inputFile, encoding,...) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "~/Dropbox/threadAnalysis/working") })
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
 # library(devtools)
 # library(dplyr)
 # library(tidygraph)
 # library(ggraph)
 
-# setwd("~/Git/etl-analysis/r-packages/omop-utils/")
 omop$finalize()
-devtools::document("~/Git/etl-analysis/r-packages/omop-utils/")
 devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
 omop = Omop$new()
 s = Searcher$new(omop)
+```
 
-
+```{r}
 # conduct a simple search and return result in df
 myocInf = Searcher$fromSearch(omop,"%myoc%inf%")
 myocInf$summary()
+```
 
 # find used concepts in df
+
+```{r}
 measurementDf = Searcher$fromDataframe(omop, omop$measurement, measurement_concept_id)
 valuesDf = Searcher$fromDataframe(omop, omop$measurement, value_as_concept_id)
+```
 
 # find concepts based on the code
+
+```{r}
 Searcher$fromConceptCode(omop,"%ICD%","J45%")
+```
 
 # find counts of different classes of concept
+
+```{r}
 measurementDf$getVocabularies()
 measurementDf$getConceptClasses()
 measurementDf$getDomains()
+```
 
 # find different classes of concept
+
+```{r}
 valuesDf$getRelationshipIds()
+```
 
 # investigate the co-occurence of tests and concept values
+
+```{r}
 labTestValues = omop$measurement %>% 
   filter(!is.na(value_as_concept_id)) %>% 
   group_by(measurement_concept_id,value_as_concept_id) %>% 
@@ -47,8 +73,11 @@ generalMicroMeasurement = testConcepts$clone()$applyFilter(
   (concept_name %like% "%suscept%") |
   (concept_name %like% "%organis%") |
   (concept_name %like% "%immunoassay%"))
+```
 
 # understand lexical content of terms in used tests 
+
+```{r}
 generalRadiologyMeasurement = testConcepts$clone()$applyFilter(
   (concept_name %like% "CT%") |
   (concept_name %like% "MR%") |
@@ -57,18 +86,23 @@ generalRadiologyMeasurement = testConcepts$clone()$applyFilter(
   (concept_name %like% "XR%") |
   (concept_name %like% "RF%") |
   (concept_name %like% "SPECT%"))
+```
 
+# load and save vocab sets
+
+```{r}
 generalMicroMeasurement$save("~/Dropbox/threadAnalysis/vocab/generalMicro")
 generalMicroMeasurement = Searcher$load(omop,"~/Dropbox/threadAnalysis/vocab/generalMicro")
 
 tmp = generalMicroMeasurement$clone()$expandAncestorConcepts(max=100)
 tmp$summary()
 tmp$applyConceptClassesFilter("LOINC Group")
+```
 
-
-
-ts = omop$buildVocabSet()
 # import the valueConcepts into a vocab set retaining the count data
+
+```{r}
+ts = omop$buildVocabSet()
 ts$useConcepts(testConcepts %>% group_by(count))
 ts$get() %>% filter(
   (concept_name %like% "%culture%") |
@@ -78,12 +112,12 @@ ts$get() %>% filter(
   (concept_name %like% "%culture%") |
   (concept_name %like% "%bacteria%")
 ) %>% ts$show()
-  
+```
+
+```{r}
 ts$search("Microbiology") %>% ts$applyVocabularyFilter("LOINC") %>% ts$expandDescendantConcepts(max=1) %>% ts$show()
-
-
 ts$search("Antibiotic susceptibilities") %>% ts$expandDescendantConcepts() %>% ts$show()
-
+```
 
 View(labTestValues %>% filter(
   (measurement_concept_name %like% "%culture%") |
