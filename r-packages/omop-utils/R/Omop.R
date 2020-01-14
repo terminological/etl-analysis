@@ -233,7 +233,7 @@ Omop = R6::R6Class("Omop", public=list(
 			  compute() %>% select(!!!grps,!!conceptIdVar:=concept_id,count) %>% group_by(!!!grps)
 	)
 	  
-  },
+  }
   #' 
   #' #' Drops a temporary table created by dbplyr
   #' #' 

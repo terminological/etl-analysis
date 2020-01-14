@@ -17,10 +17,10 @@ library(ggraph)
 library(standardPrintOutput)
 # devtools::install_github("terminological/tidy-info-stats")
 devtools::load_all("~/Git/tidy-info-stats/")
-#library(tidyinfostats)
+# library(tidyinfostats)
 
 
-#rm(list = ls(all.names = TRUE))
+rm(list = ls(all.names = TRUE))
 devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
 ```
 
@@ -67,13 +67,21 @@ This is using the binary presence or absence of the concept_id in the document t
 N.B. N_t = f_y is probably correct here. N_t is the number of documents with that term in it.
 
 ```{r}
+#devtools::load_all("~/Git/tidy-info-stats/")
+
 miDf = tfidfDf %>% ungroup() %>% 
-	tidyinfostats::probabilitiesFromGroups(note_class_concept_id, concept_id) %>% 
-  group_by(concept_id) %>%
+	tidyinfostats::probabilitiesFromCooccurrence(vars(note_class_concept_id), vars(concept_id)) %>% 
+  group_by(concept_id) %>% 
 	tidyinfostats::calculateMultiClassMI() %>% omop$getConceptNames()
+glimpse(miDf %>% arrange(desc(I)))
+```
+
+```{r}
+devtools::load_all("~/Git/tidy-info-stats/")
+miDf2 = groupedDf %>% ungroup() %>% group_by(concept_id, count) %>% calculateDiscreteBinaryMI(vars(note_class_concept_id), count)  %>% omop$getConceptNames()
 #%>%
 #  select(note_class_concept_id,concept_id, N_t = f_y, I, method="Binary")
-glimpse(miDf %>% arrange(desc(I)))
+glimpse(miDf2 %>% arrange(desc(count)))
 ```
 
 and we can also calculate the MI between concept_id and note_class_concept_id using a continuous variable (in this case norm_okapi_bm25)
@@ -81,8 +89,10 @@ and we can also calculate the MI between concept_id and note_class_concept_id us
 
 
 ```{r}
+devtools::load_all("~/Git/tidy-info-stats/")
+# debug( calculateDiscreteContinuousPointwiseMI_KWindow)
 miContinuousDf = tfidfDf %>% group_by(concept_id,N_t) %>% 
-  tidyinfostats::calculateDiscreteContinuousMI(note_class_concept_id, norm_okapi_bm25, method="KWindow") %>% omop$getConceptNames()
+  tidyinfostats::calculateDiscreteContinuousMI(vars(note_class_concept_id), norm_okapi_bm25, method="KWindow") %>% omop$getConceptNames()
 glimpse(miContinuousDf %>% arrange(desc(I)))
 ```
 
