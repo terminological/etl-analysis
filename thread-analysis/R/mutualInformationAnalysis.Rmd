@@ -22,41 +22,92 @@ devtools::load_all("~/Git/tidy-info-stats/")
 
 rm(list = ls(all.names = TRUE))
 devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+omop = Omop$new()
 ```
 
 ## Generate a test corpus from the first 50 orthopaedic and 50 rheumatology documents:
 
-```{r echo=FALSE}
-omop = Omop$new()
-searcher = omop$buildVocabSet()
-searcher$applyUsedInFilter(omop$note,note_class_concept_id)
-searcher$toDataframe() %>% filter(concept_name %in% c("Rheumatology Note","Orthopaedic surgery note"))
+```{r}
 
-groupedDf = omop$note %>% filter(note_class_concept_id == 3032918L) %>% head(50) %>% union(
+searcher = omop$buildVocabSet()
+searcher$applyUsedInFilter(omop$note,note_class_concept_id) %>% invisible()
+searcher$toDataframe() %>% filter(concept_name %in% c("Rheumatology Note","Orthopaedic surgery note")) %>% select(concept_id, concept_name)
+```
+
+Use these concepts to pick the first 50 documents of each type (here we see thetop 10 codes in each group). This contains a lot of noise from single one off concepts
+
+```{r}
+rawDf = omop$note %>% filter(note_class_concept_id == 3032918L) %>% head(50) %>% union(
     omop$note %>% filter(note_class_concept_id == 3031179L) %>% head(50)
   ) %>%
   left_join(omop$note_nlp, by="note_id") %>%
-  select(note_class_concept_id, note_id,lexical_variant, concept_id=note_nlp_concept_id) %>%
-  omop$getConceptNames() %>% group_by(note_class_concept_id, note_id) %>% 
+  select(note_class_concept_id, note_id,lexical_variant, concept_id=note_nlp_concept_id) %>% 
+  group_by(note_class_concept_id, note_id) %>% 
   #show_query()
   compute()
 
-groupedDf = groupedDf %>% omop$expandAncestorConcepts(concept_id)
-# glimpse(groupedDf)
+# summarise by note class
+rawDf %>% 
+  group_by(note_class_concept_id, concept_id) %>% 
+  summarise(freq = n()) %>% ungroup() %>% 
+  omop$getConceptNames() %>% 
+  select(note_class_concept_name, concept_name, freq) %>% 
+  group_by(note_class_concept_name) %>% arrange(desc(freq)) %>% filter(row_number() <= 10) %>% 
+  collect() %>% ungroup() %>% group_by(note_class_concept_name) %>% 
+  standardPrintOutput::saveTable("~/Dropbox/featureSelection/orthRheum/conceptsByCount")
+
+localRawDf = rawDf %>% omop$getConceptNames() %>% collect()
+
 ```
 
+And expand these concepts to include the hierarchy above them
+
+```{r}
+groupedDf = rawDf %>% omop$expandAncestorConcepts(concept_id) %>% compute()
+localGroupedDf = groupedDf %>% omop$getConceptNames() %>%  collect()
+# glimpse(groupedDf)
+
+# localGroupedDf = groupedDf %>% collect()
+groupedDf %>% group_by(note_class_concept_id, concept_id) %>% summarise(freq = sum(count)) %>%
+  ungroup() %>% omop$getConceptNames() %>% select(note_class_concept_name, concept_name, freq) %>%
+  group_by(note_class_concept_name) %>% arrange(desc(freq)) %>% filter(row_number() <= 10) %>% 
+  ungroup() %>% group_by(note_class_concept_name) %>% 
+  standardPrintOutput::saveTable("~/Dropbox/featureSelection/orthRheum/expandedConceptsByCount")
+```
+
+This table now contains a lot of potential noise from high level concepts.
+
 ## Calculate occurrence stats for concepts in the corpus binary MI stats both for plain cooccurence and for occurrence relative to okapi BM 25
+
+TF-IDF scores to the rescue
+
+* Calculate a corpus IDF based on all 100 documents
+* Calculate a TFIDF score for each concept in each document
 
 ```{r}
 
 # devtools::load_all("~/Git/tidy-info-stats/")
 # groupedDf = groupedDf %>% group_by(note_class_concept_id, note_id)
 idfDf = groupedDf %>% tidyinfostats::calculateIdf(concept_id, count)
-#glimpse(idfDf)
-```
+localIdfDf = idfDf %>% omop$getConceptNames() %>% collect()
 
-```{r}
 tfidfDf = groupedDf %>% tidyinfostats::calculateTfidf(concept_id, idfDf=idfDf ) %>% compute()
+
+tfidfDf %>% 
+  group_by(note_class_concept_id, concept_id) %>% 
+  summarise(avg_bm25 = mean(norm_okapi_bm25)) %>% ungroup() %>% 
+  omop$getConceptNames() %>% 
+  select(note_class_concept_name, concept_name, avg_bm25) %>% 
+  group_by(note_class_concept_name) %>% 
+  arrange(desc(avg_bm25)) %>% 
+  filter(row_number()<=10)  %>% collect() %>% ungroup() %>% 
+  group_by(note_class_concept_name) %>% 
+  standardPrintOutput::saveTable("~/Dropbox/featureSelection/orthRheum/expandedConceptsByOkapiBM25")
+
+localTfidfDf = tfidfDf %>% omop$getConceptNames() %>%  collect()
+
+
+
 #glimpse(tfidfDf)
 ```
 
@@ -66,22 +117,24 @@ This is using the binary presence or absence of the concept_id in the document t
 
 N.B. N_t = f_y is probably correct here. N_t is the number of documents with that term in it.
 
-```{r}
-#devtools::load_all("~/Git/tidy-info-stats/")
+<!-- ```{r} -->
+<!-- #devtools::load_all("~/Git/tidy-info-stats/") -->
+<!-- miDf = tfidfDf %>% ungroup() %>%  -->
+<!-- 	tidyinfostats::probabilitiesFromCooccurrence(vars(note_class_concept_id), vars(concept_id)) %>%  -->
+<!--   group_by(concept_id) %>%  -->
+<!-- 	tidyinfostats::calculateMultiClassMI() %>% omop$getConceptNames() -->
+<!-- glimpse(miDf %>% arrange(desc(I))) -->
+<!-- ``` -->
 
-miDf = tfidfDf %>% ungroup() %>% 
-	tidyinfostats::probabilitiesFromCooccurrence(vars(note_class_concept_id), vars(concept_id)) %>% 
-  group_by(concept_id) %>% 
-	tidyinfostats::calculateMultiClassMI() %>% omop$getConceptNames()
-glimpse(miDf %>% arrange(desc(I)))
-```
-
 ```{r}
-devtools::load_all("~/Git/tidy-info-stats/")
-miDf2 = groupedDf %>% ungroup() %>% group_by(concept_id, count) %>% calculateDiscreteBinaryMI(vars(note_class_concept_id), count)  %>% omop$getConceptNames()
-#%>%
-#  select(note_class_concept_id,concept_id, N_t = f_y, I, method="Binary")
-glimpse(miDf2 %>% arrange(desc(count)))
+# devtools::load_all("~/Git/tidy-info-stats/")
+miDf = groupedDf %>% ungroup() %>% group_by(concept_id) %>% calculateDiscreteBinaryMI(vars(note_class_concept_id), count)
+localMiDf = miDf %>% omop$getConceptNames() %>%  collect()
+
+
+miDf %>% omop$getConceptNames() %>% select(concept_name, I) %>% arrange(desc(I)) %>% filter(row_number()<=10) %>% ungroup() %>% 
+  standardPrintOutput::saveTable("~/Dropbox/featureSelection/orthRheum/expandedConceptsByDiscreteMI")
+
 ```
 
 and we can also calculate the MI between concept_id and note_class_concept_id using a continuous variable (in this case norm_okapi_bm25)
@@ -91,9 +144,14 @@ and we can also calculate the MI between concept_id and note_class_concept_id us
 ```{r}
 devtools::load_all("~/Git/tidy-info-stats/")
 # debug( calculateDiscreteContinuousPointwiseMI_KWindow)
-miContinuousDf = tfidfDf %>% group_by(concept_id,N_t) %>% 
-  tidyinfostats::calculateDiscreteContinuousMI(vars(note_class_concept_id), norm_okapi_bm25, method="KWindow") %>% omop$getConceptNames()
-glimpse(miContinuousDf %>% arrange(desc(I)))
+miContinuousDf = tfidfDf %>% group_by(concept_id) %>% 
+  tidyinfostats::calculateDiscreteContinuousMI(vars(note_class_concept_id), norm_okapi_bm25, method="KWindow")
+# glimpse(miContinuousDf %>% arrange(I))
+localMiContinuousDf = miContinuousDf %>% omop$getConceptNames() %>% collect()
+
+miContinuousDf %>% omop$getConceptNames() %>% select(concept_name, I) %>% 
+  arrange(desc(I)) %>% filter(row_number() <= 10) %>% ungroup() %>% 
+  standardPrintOutput::saveTable("~/Dropbox/featureSelection/orthRheum/expandedConceptsByContinuousMI")
 ```
 
 ## Calculate top 30 terms co-occurrence
@@ -101,87 +159,119 @@ glimpse(miContinuousDf %>% arrange(desc(I)))
 TODO: filter out those co-occurrences that are inevitable due to child parent relationships.
 
 ```{r}
-devtools::load_all("~/Git/tidy-info-stats/")
+#devtools::load_all("~/Git/tidy-info-stats/")
 #debug(tidyinfostats::calculateCooccurrence)
 options(error=NULL)
-top50 = idfDf %>% arrange(desc(f_t)) %>% head(50)
-cooc = groupedDf %>% tidyinfostats::calculateCooccurrenceMI(concept_id,top50) %>% omop$getConceptNames()
-glimpse(cooc)
+top50 = idfDf %>% inner_join(miContinuousDf %>% arrange(desc(I)) %>% head(50) %>% select(concept_id),by="concept_id")
+cooc = groupedDf %>% tidyinfostats::calculateCooccurrenceMI(concept_id,top50) 
+
+localCooc = cooc %>% omop$getConceptNames() %>%  collect()
+
+
+tmp = cooc %>% filter(concept_id1 < concept_id2 ) %>% omop$getConceptNames() %>% select(concept_name1,concept_name2,I) 
+tmp %>% arrange(desc(I))  %>% filter(row_number() <= 10) %>% 
+  standardPrintOutput::saveTable("~/Dropbox/featureSelection/orthRheum/top10Coocurrences")
+tmp %>% arrange(I)  %>% filter(row_number() <= 10) %>% 
+  standardPrintOutput::saveTable("~/Dropbox/featureSelection/orthRheum/bottom10Coocurrences")
 ```
-# a = Analyser$fromDataframe(omop,groupedDf)
-# a$calculateTfidf()
-# a$calculateOutcomeMI(note_class_concept_id)
-cooccurMI = a$nodes %>% ungroup() %>% arrange(desc(mi)) %>% head(50) %>% a$calculateCooccurrenceMI()
-cooccurCount = a$nodes %>% ungroup() %>% arrange(desc(f_t)) %>% head(50) %>% a$calculateCooccurrenceMI()
 
-plotClustering = function(df) {
-	#df = cooccurMI
-	tmp = df %>% select(concept_name1, concept_name2, mi) %>% collect()
-	simMat = stats::xtabs(mi ~ concept_name1 + concept_name2,tmp, na.action = na.pass)
-	simMat = ifelse(simMat==0,t(simMat),simMat)
-	distMat = 1-simMat/max(simMat,na.rm=TRUE)
-	clust = hclust(as.dist(t(distMat)))
-	dhc = as.dendrogram(clust)
-	ddata <- dendro_data(dhc, type = "rectangle")
-	p = ggplot(segment(ddata)) + 
-			geom_segment(aes(x = x, y = y, xend = xend, yend = yend)) + 
-			coord_flip() + 
-			scale_y_reverse() +
-			expand_limits(x = c(0, 1), y = c(-1.5, 0))+
-			geom_text(data = label(ddata), 
-					aes(x = x, y = y, label = label), 
-					vjust = 0.5, hjust=0,nudge_y = 0.04,
-					#nudge_x = -0.1,# 
-					size=(6/ggplot2:::.pt/(96/72))) +
-			theme_dendro()
-	return(p)
-	# https://www.r-graph-gallery.com/339-circular-dendrogram-with-ggraph.html
-	# ggdendro::ggdendrogram(clust, rotate=TRUE, size=(6/ggplot2:::.pt/(96/72))))
-	# https://www.data-to-viz.com/graph/edge_bundling.html
-}
+```{r}
 
-plotClustering(cooccurMI)
-standardPrintOutput::saveHalfPageFigure(filename="~/Dropbox/threadAnalysis/vocab/MIDendrogram")
 
-plotClustering(cooccurCount)
-standardPrintOutput::saveHalfPageFigure(filename="~/Dropbox/threadAnalysis/vocab/CountDendrogram")
+graphCooc = groupedDf %>% omop$getSpanningGraphEdges(concept_id)
+localGraphCooc = graphCooc %>% omop$getConceptNames() %>% collect()
+```
 
-#### Table of concepts by max nPMI and MI ----
-nodes = a$nodes %>% omop$getConceptNames() %>% collect()
-tmp = nodes %>% ungroup() %>% arrange(desc(mi)) %>% head(50) %>% select(
-		Class=note_class_concept_name,
-		Concept=concept_name,
-		MI = mi,
-		nPMI = npmi
-		) %>% group_by(Class) 
-tmp %>% standardPrintOutput::saveTable(filename="~/Dropbox/threadAnalysis/vocab/TopTermsByMI")
 
-#### 
-# a$plotConceptNetwork(scoreVar=mi,labelScore=0.8)
-# standardPrintOutput::saveFullPageFigureLandscape(filename="~/Dropbox/threadAnalysis/vocab/OrthRheumVocab")
+G. D. Tourassi, E. D. Frederick, M. K. Markey, and C. E. Floyd Jr, “Application of the mutual information criterion for feature selection in computer-aided diagnosis,” Med. Phys., vol. 28, no. 12, pp. 2394–2402, Dec. 2001 [Online]. Available: http://dx.doi.org/10.1118/1.1418724
 
-scoreVar = as.symbol("mi")
-a$calculateGraph()
-tmpNodes = a$nodes %>% arrange(id) %>% collect() %>% mutate(id = as.integer(id))
-tmpEdges = a$edges %>% collect() %>% mutate(from = as.integer(from), to=as.integer(to))
+Has info about how to combine MIM networks, but it is quite old
 
-if (as.character(scoreVar) %in% colnames(tmpNodes)) {
-	tmpNodes = tmpNodes %>% mutate(score = (as.double(!!scoreVar)/max(!!scoreVar,na.rm=TRUE)))
-} else {
-	tmpNodes = tmpNodes %>% mutate(score = 1)
-}
+TODO:
 
-labelScore = 0.8
-graph = tidygraph::tbl_graph(nodes = tmpNodes, edges = tmpEdges, directed = TRUE)
+* Conditional MI from the co-occurrence network MI / Hx / Hy etc. and Conditional Mutual info between concepts okapiBM25 and outcome
+* Look at the behaviour of this with respect to concept hierarchy position...
+
+
+```{r}
+# TODO this does not produce output for everything (needs at least 10 points per group)
+# secondly method cannot give result for outcome when it does not appear - e.g. only positive associated scores are present - and nothing for negatives.
+# this limits usefulness possibly as finding of absence in negative cases is a strong indication of usefulness, but a the moment this is not accounted for.
+condMiContinuousDf = tfidfDf %>% group_by(concept_id) %>% 
+  tidyinfostats::calculateDiscreteContinuousConditionalMI(vars(note_class_concept_id), norm_okapi_bm25, method="KWindow") %>% compute()
+
+# TODO: this threw a mysterious error
+localCondMiContinuousDf = condMiContinuousDf %>% omop$getConceptNames() %>% collect()
+
+# selct all the edges with the unexpanded and expanded concept networks.
+
+glimpse(condMiContinuousDf)
+```
+
+
+
+## Visualisation 
+
+```{r}
+# lets get this locally as too slow dealing with DB
+# devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+# omop = Omop$new()
+
+localRawEdges = rawDf %>% omop$getSpanningGraphEdges(concept_id) %>% omop$getConceptNames() %>% collect()
+localGroupedEdges = groupedDf %>% omop$getSpanningGraphEdges(concept_id) %>% omop$getConceptNames() %>% collect()
+
+
+
+```
+
+```{r}
+
+length(unique(localRawDf$concept_id))
+length(unique(localRawEdges$ancestor_concept_id))
+length(unique(localRawEdges$descendant_concept_id))
+
+length(unique(localGroupedDf$concept_id))
+length(unique(localGroupedEdges$ancestor_concept_id))
+length(unique(localGroupedEdges$descendant_concept_id))
+
+localIdfDf %>% group_by(f_t) %>% count()
+
+localIdfDf %>% filter(f_t >= 9) %>% count()
+
+```
+```{r}
+# mark nodes that were originally identified in the document as
+# this is now a feature of Omop$expandConcepts so can be taken out
+
+
+graphNodes = localIdfDf %>% ungroup() %>% arrange(concept_id) %>% mutate(id = row_number())
+map = graphNodes %>% select(concept_id,id)
+
+graphEdges = localGroupedEdges %>% 
+  left_join(map %>% rename(descendant_concept_id=concept_id),by=c("descendant_concept_id")) %>% rename(from=id) %>%
+  left_join(map %>% rename(ancestor_concept_id=concept_id),by=c("ancestor_concept_id")) %>% rename(to=id)
+  
+
+cooccurEdges = localCooc %>% filter(concept_id1 != concept_id2) %>% 
+  left_join(
+    graphEdges %>% rename(concept_id1 = ancestor_concept_id, concept_id2 = descendant_concept_id), by=c("concept_id1","concept_id2")
+  ) %>% mutate(hierarchy = !is.na(ancestor_concept_name))
+
+cooccurEdges %>% group_by(hierarchy) %>% count()
+
+```
+
+```{r}
+
+graph = tidygraph::tbl_graph(nodes = graphNodes, edges = graphEdges, directed = TRUE)
 # TODO: implement some kind of more generic filtering here
-graph = graph %>% activate(nodes) %>% mutate(isRoot = node_is_sink())
-graph = graph %>% activate(nodes) %>% mutate(isLabelled = (score>=labelScore))
-graph = graph %>% activate(edges) %>% mutate(fromScore = .N()$score[from], toScore = .N()$score[to])
+graph = graph %>% activate(nodes) %>% mutate(isRoot = node_is_sink(), score = f_t, isLabelled = FALSE)
+graph = graph %>% activate(edges) %>% mutate(fromScore = .N()$f_t[from], toScore = .N()$f_t[to])
 
 set.seed(101)
 p = ggraph::ggraph(graph, layout="nicely")+
 		ggraph::geom_edge_diagonal(aes(
-						# colour=hsv(0,0,0.75*(1-toScore)), 
+						# colour=hsv(0,0,0.75*(1-toScore)),
 						# alpha=stat(index)*(toScore-fromScore)+fromScore,
 						# alpha=0.25+0.75*fromScore,
 						# alpha=stat(index)*0.75*(fromScore-toScore)+0.75*toScore+0.25,
@@ -200,13 +290,72 @@ p = ggraph::ggraph(graph, layout="nicely")+
 						alpha = 1,
 						stroke=0)+
 		ggraph::geom_node_text(aes(
-						label=ifelse(score>labelScore | isRoot,concept_name,NA),
+						label="", #ifelse(score>labelScore | isRoot,concept_name,NA),
 						colour=ifelse(isRoot,"#ff0000","#0000ff")
 				),
 				alpha=0.8,
-				repel=TRUE, 
+				repel=TRUE,
 				size=(6/ggplot2:::.pt/(96/72)) #standardPrintOutput::labelInPoints(6)
 		) + scale_fill_identity() + scale_color_identity() + scale_edge_color_identity() + scale_alpha_identity() +
 		ggraph::theme_graph() + theme(legend.position = "none")
 
-p %>% standardPrintOutput::saveFullPageFigureLandscape(filename="~/Dropbox/threadAnalysis/vocab/OrthRheumVocab")
+p
+```
+
+
+<!-- # a = Analyser$fromDataframe(omop,groupedDf) -->
+<!-- # a$calculateTfidf() -->
+<!-- # a$calculateOutcomeMI(note_class_concept_id) -->
+<!-- cooccurMI = a$nodes %>% ungroup() %>% arrange(desc(mi)) %>% head(50) %>% a$calculateCooccurrenceMI() -->
+<!-- cooccurCount = a$nodes %>% ungroup() %>% arrange(desc(f_t)) %>% head(50) %>% a$calculateCooccurrenceMI() -->
+
+# Cluster and plot similarity matrix
+<!-- plotClustering = function(df) { -->
+<!-- 	#df = cooccurMI -->
+<!-- 	tmp = df %>% select(concept_name1, concept_name2, mi) %>% collect() -->
+<!-- 	simMat = stats::xtabs(mi ~ concept_name1 + concept_name2,tmp, na.action = na.pass) -->
+<!-- 	simMat = ifelse(simMat==0,t(simMat),simMat) -->
+<!-- 	distMat = 1-simMat/max(simMat,na.rm=TRUE) -->
+<!-- 	clust = hclust(as.dist(t(distMat))) -->
+<!-- 	dhc = as.dendrogram(clust) -->
+<!-- 	ddata <- dendro_data(dhc, type = "rectangle") -->
+<!-- 	p = ggplot(segment(ddata)) +  -->
+<!-- 			geom_segment(aes(x = x, y = y, xend = xend, yend = yend)) +  -->
+<!-- 			coord_flip() +  -->
+<!-- 			scale_y_reverse() + -->
+<!-- 			expand_limits(x = c(0, 1), y = c(-1.5, 0))+ -->
+<!-- 			geom_text(data = label(ddata),  -->
+<!-- 					aes(x = x, y = y, label = label),  -->
+<!-- 					vjust = 0.5, hjust=0,nudge_y = 0.04, -->
+<!-- 					#nudge_x = -0.1,#  -->
+<!-- 					size=(6/ggplot2:::.pt/(96/72))) + -->
+<!-- 			theme_dendro() -->
+<!-- 	return(p) -->
+<!-- 	# https://www.r-graph-gallery.com/339-circular-dendrogram-with-ggraph.html -->
+<!-- 	# ggdendro::ggdendrogram(clust, rotate=TRUE, size=(6/ggplot2:::.pt/(96/72)))) -->
+<!-- 	# https://www.data-to-viz.com/graph/edge_bundling.html -->
+<!-- } -->
+
+<!-- plotClustering(cooccurMI) -->
+<!-- standardPrintOutput::saveHalfPageFigure(filename="~/Dropbox/threadAnalysis/vocab/MIDendrogram") -->
+
+<!-- plotClustering(cooccurCount) -->
+<!-- standardPrintOutput::saveHalfPageFigure(filename="~/Dropbox/threadAnalysis/vocab/CountDendrogram") -->
+
+<!-- #### Table of concepts by max nPMI and MI ---- -->
+<!-- nodes = a$nodes %>% omop$getConceptNames() %>% collect() -->
+<!-- tmp = nodes %>% ungroup() %>% arrange(desc(mi)) %>% head(50) %>% select( -->
+<!-- 		Class=note_class_concept_name, -->
+<!-- 		Concept=concept_name, -->
+<!-- 		MI = mi, -->
+<!-- 		nPMI = npmi -->
+<!-- 		) %>% group_by(Class)  -->
+<!-- tmp %>% standardPrintOutput::saveTable(filename="~/Dropbox/threadAnalysis/vocab/TopTermsByMI") -->
+
+<!-- ####  -->
+<!-- # a$plotConceptNetwork(scoreVar=mi,labelScore=0.8) -->
+<!-- # standardPrintOutput::saveFullPageFigureLandscape(filename="~/Dropbox/threadAnalysis/vocab/OrthRheumVocab") -->
+
+
+
+<!-- p %>% standardPrintOutput::saveFullPageFigureLandscape(filename="~/Dropbox/threadAnalysis/vocab/OrthRheumVocab") -->

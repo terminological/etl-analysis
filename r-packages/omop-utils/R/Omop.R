@@ -170,7 +170,7 @@ Omop = R6::R6Class("Omop", public=list(
     # "tbl_sql" %>% in class(df)  => remote; use raw left join.
     for (colname in stringr::str_subset(colnames(df),"^.*(concept_id).*$")) {
       #if (endsWith(colname,"concept_id")) {
-      vocabCol = stringr::str_replace(colname, stringr::coll("concept_id"),"concept_name")
+      vocabCol = stringr::str_replace(colname, stringr::coll("concept_id"), "concept_name")
         #prefix = stringr::str_remove(colname,"concept_id")
         #vocabCol = paste0(prefix,"concept_name")
         # check result column is not already there
@@ -206,33 +206,53 @@ Omop = R6::R6Class("Omop", public=list(
 	  # first get the concepts by group in groupedDf - i.e. concepts in each document and sum counts
 	  # this gives us the freqency of a concept_id in a document
 	
-	if (identical(countVar,NULL)) {
-		tmp = groupedDf %>% group_by(!!!grps, !!conceptIdVar) %>% summarise(count = n())
-	} else {
-		countVar = ensym(countVar)
-		tmp = groupedDf %>% group_by(!!!grps, !!conceptIdVar) %>% summarise(count = sum(!!countVar))
-	}
-	
-	  tmp = tmp %>% rename(descendant_concept_id=!!conceptIdVar) %>% compute()
+  	if (identical(countVar,NULL)) {
+  		tmp = groupedDf %>% group_by(!!!grps, !!conceptIdVar) %>% summarise(count = n())
+  	} else {
+  		countVar = ensym(countVar)
+  		tmp = groupedDf %>% group_by(!!!grps, !!conceptIdVar) %>% summarise(count = sum(!!countVar))
+  	}
+  	
+	  
+	  tmp = tmp %>% rename(descendant_concept_id=!!conceptIdVar)
 	  # expand to the ancestor table.
 	  tmp2 = self$concept_ancestor %>%
 			  inner_join(tmp, by="descendant_concept_id", copy=TRUE) %>%
+	      mutate(original = ifelse(descendant_concept_id == ancestor_concept_id,1L,0L)) %>%
 			  rename(concept_id=ancestor_concept_id) %>%
 			  # reapply the grouping as the columns have changed name
 			  # this will include the original concepts (as they are 1:1 mapped in the ancestor table)
 			  # as well as probably multiple copies of all the ancestors to root
-			  ungroup() %>% group_by(!!!grps,concept_id) 
+			  ungroup() %>% group_by(!!!grps,concept_id,original)
 	  tmp2 = tmp2 %>%
 			  # when more than one concept within a document matches the ancestor we sum the count
 			  summarise(
-					  count = sum(count, na.rm = TRUE)
+			      count = sum(count, na.rm = TRUE)
 			  ) %>% compute()
 	  #the searcher here gives us a standard filtered list of concepts
 	  return(
 			  Searcher$new(self)$toDataframe() %>% select(concept_id,concept_name) %>% inner_join(tmp2, by="concept_id") %>% 
-			  compute() %>% select(!!!grps,!!conceptIdVar:=concept_id,count) %>% group_by(!!!grps)
+			  compute() %>% select(!!!grps,!!conceptIdVar:=concept_id, count, original) %>% group_by(!!!grps)
 	)
 	  
+  },
+  
+  #' @description for a set of concepts get all the hierarchical relationships between all concept pairs
+  #' @param df a data frame containing concept ids
+  #' @param conceptIdVar the concept variable
+  #' @param min the minimum distance to consider
+  #' @param max the maximum distance to consider
+  #' @return a set of edges with 
+  getSpanningGraphEdges = function(df, conceptIdVar, min=0L,max=1000L) {
+    conceptIdVar = ensym(conceptIdVar)
+    children = df %>% ungroup() %>% select(!!conceptIdVar) %>% distinct() %>% rename(descendant_concept_id = !!conceptIdVar)
+    parents = children %>% rename(ancestor_concept_id = descendant_concept_id)
+    edges = self$concept_ancestor %>% 
+      filter(descendant_concept_id != ancestor_concept_id) %>%
+      inner_join(children, by="descendant_concept_id", copy=TRUE) %>% 
+      inner_join(parents, by="ancestor_concept_id", copy=TRUE) %>%
+      filter(min_levels_of_separation >= local(min) & min_levels_of_separation <= local(max))
+    return(edges)
   }
   #' 
   #' #' Drops a temporary table created by dbplyr
