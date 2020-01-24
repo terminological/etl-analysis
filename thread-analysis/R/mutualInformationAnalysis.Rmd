@@ -20,7 +20,7 @@ devtools::load_all("~/Git/tidy-info-stats/")
 # library(tidyinfostats)
 
 
-rm(list = ls(all.names = TRUE))
+# rm(list = ls(all.names = TRUE))
 devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
 omop = Omop$new()
 ```
@@ -88,10 +88,10 @@ TF-IDF scores to the rescue
 
 # devtools::load_all("~/Git/tidy-info-stats/")
 # groupedDf = groupedDf %>% group_by(note_class_concept_id, note_id)
-idfDf = groupedDf %>% tidyinfostats::calculateIdf(concept_id, count)
+idfDf = groupedDf %>% ungroup() %>% group_by(concept_id) %>% tidyinfostats::calculateIdf(vars(note_class_concept_id, note_id), count)
 localIdfDf = idfDf %>% omop$getConceptNames() %>% collect()
 
-tfidfDf = groupedDf %>% tidyinfostats::calculateTfidf(concept_id, idfDf=idfDf ) %>% compute()
+tfidfDf = groupedDf %>% ungroup() %>% group_by(concept_id) %>% tidyinfostats::calculateTfidf(vars(note_class_concept_id, note_id), idfDf=idfDf ) %>% compute()
 
 tfidfDf %>% 
   group_by(note_class_concept_id, concept_id) %>% 
@@ -127,10 +127,12 @@ N.B. N_t = f_y is probably correct here. N_t is the number of documents with tha
 <!-- ``` -->
 
 ```{r}
-# devtools::load_all("~/Git/tidy-info-stats/")
-miDf = groupedDf %>% ungroup() %>% group_by(concept_id) %>% calculateDiscreteBinaryMI(vars(note_class_concept_id), count)
+# 
+miDf = localGroupedDf %>% ungroup() %>% group_by(concept_id) %>% calculateDiscreteBinaryMI(vars(note_class_concept_id), count)
 localMiDf = miDf %>% omop$getConceptNames() %>%  collect()
 
+devtools::load_all("~/Git/tidy-info-stats/")
+localGroupedDf %>% ungroup() %>% group_by(concept_id) %>% probabilitiesFromDiscrete(vars(note_class_concept_id), count)
 
 miDf %>% omop$getConceptNames() %>% select(concept_name, I) %>% arrange(desc(I)) %>% filter(row_number()<=10) %>% ungroup() %>% 
   standardPrintOutput::saveTable("~/Dropbox/featureSelection/orthRheum/expandedConceptsByDiscreteMI")
@@ -144,8 +146,17 @@ and we can also calculate the MI between concept_id and note_class_concept_id us
 ```{r}
 devtools::load_all("~/Git/tidy-info-stats/")
 # debug( calculateDiscreteContinuousPointwiseMI_KWindow)
-miContinuousDf = tfidfDf %>% group_by(concept_id) %>% 
+
+# debug(expectFixedSamples)
+sampleCountDf = localTfidfDf %>% ungroup() %>% group_by(concept_id) %>% expectFixedSamples(vars(note_class_concept_id),50)
+
+miContinuousDfAbs = localTfidfDf %>% group_by(concept_id) %>% 
+  tidyinfostats::calculateDiscreteAbsentValuesMI(vars(note_class_concept_id), sampleCountDf = sampleCountDf) %>% arrange(desc(I))
+
+miContinuousDf = localTfidfDf %>% group_by(concept_id) %>% 
   tidyinfostats::calculateDiscreteContinuousMI(vars(note_class_concept_id), norm_okapi_bm25, method="KWindow")
+
+miContinuousDfAdj = localTfidfDf %>% group_by(concept_id) %>% adjustMIForAbsentValues(vars(note_class_concept_id), calculateDiscreteContinuousMI, sampleCountDf, continuousVar=norm_okapi_bm25, method="KWindow")
 # glimpse(miContinuousDf %>% arrange(I))
 localMiContinuousDf = miContinuousDf %>% omop$getConceptNames() %>% collect()
 
