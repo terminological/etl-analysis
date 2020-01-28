@@ -1,0 +1,207 @@
+---
+title: "Antibiotic resistance"
+output: html_document
+knit: (function(inputFile, encoding,...) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "~/Dropbox/antibioticResistance/output") })
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE}
+library(ggplot2)
+library(tidyverse)
+#devtools::install_github("terminological/standard-print-output")
+#library(standardPrintOutput)
+devtools::load_all("~/Git/standard-print-output/")
+
+theme_set(standardPrintOutput::defaultFigureLayout())
+# devtools::install_github("terminological/tidy-info-stats")
+devtools::load_all("~/Git/tidy-info-stats/")
+# library(tidyinfostats)
+
+
+# rm(list = ls(all.names = TRUE))
+devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+omop = Omop$new()
+```
+
+# Find the lab tests vocab codes for 
+
+lab tests for sensitivities have concept ids as values
+
+```{r}
+labTestValues = omop$measurement %>% 
+  filter(!is.na(value_as_concept_id)) %>% 
+  group_by(measurement_concept_id,value_as_concept_id) %>% 
+  summarise(count=n()) %>% 
+  omop$getConceptNames() %>% 
+  arrange(desc(count)) %>% collect()
+
+testConcepts = Searcher$fromDataframe(omop,labTestValues,measurement_concept_id)
+valueConcepts = Searcher$fromDataframe(omop,labTestValues,value_as_concept_id)
+
+View(labTestValues %>% collect())
+
+```
+
+Find detection of bacteria from culture:
+
+
+```{r}
+bacteriaIdentified = testConcepts$clone()$applyFilter(
+  (concept_name %like% "%Bacteria identifi%")
+)
+
+speciesResults = omop$measurement %>% semi_join(bacteriaIdentified$result, by=c("measurement_concept_id"="concept_id")) %>% omop$getConceptNames() %>% collect() %>%
+  mutate(sample = stringr::str_remove(measurement_source_value,"^.+\\|"))
+
+speciesSummary = speciesResults %>% group_by(value_as_concept_name) %>% summariseTopN(n=8, sortVar=desc(count), count = n()) %>% mutate(order = row_number())
+                                                                                    
+p=ggplot(speciesSummary, aes(x=reorder(value_as_concept_name,order),y=count))+geom_bar(stat="identity") + xlab("Organism")
+p %>% saveSixthPageFigure("~/Dropbox/antibioticResistance/speciesFreq")
+```
+
+Find test results for sensitivity or resistance.
+
+```{r}
+resistanceOutcome = valueConcepts$clone()$applyFilter(
+  ((concept_name %like% "%sensiti%") |
+  (concept_name %like% "%resis%")) & !(concept_name %like% "%ethicill%")
+)
+
+#colnames(omop$measurement)
+sensitivityResults = omop$measurement %>% semi_join(resistanceOutcome$result, by=c("value_as_concept_id"="concept_id")) %>% omop$getConceptNames() %>% collect() %>%
+  mutate(
+    sample = stringr::str_remove(measurement_source_value,"^.+\\|"),
+    antibiotic=ifelse(measurement_concept_name=="No matching concept","Flucloxacillin",stringr::str_remove(measurement_concept_name,coll(" [Susceptibility]")))
+    )
+# glimpse(sensitivityResults)
+
+sensitivityResults$measurement_concept_name[sensitivityResults$measurement_concept_name=="No matching concept"] = "Flucloxacillin"
+
+sensitivitySummary = sensitivityResults %>% 
+  group_by(measurement_concept_name) %>% 
+  summarizeTopN(
+      n=12,
+      sortVar=desc(total),
+      total = n(),
+      sensitive = sum(ifelse(value_as_concept_name=="Sensitive",1,0)),
+      resistant = sum(ifelse(value_as_concept_name=="Sensitive",0,1))
+  ) %>% mutate(
+    #fracResist = resistant/total,
+    mean = binom::binom.confint(resistant,total,methods="wilson")$mean,
+    lower = binom::binom.confint(resistant,total,methods="wilson")$lower,
+    upper = binom::binom.confint(resistant,total,methods="wilson")$upper
+  ) %>% mutate(
+    `Antibiotic` = stringr::str_remove(measurement_concept_name,coll(" [Susceptibility]")),
+    `N` = total,
+    `Resistance` = twoDp(mean*100, "%"),
+    `95% CI (%)` = paste0(twoDp(lower*100),"\u2014",twoDp(upper*100))
+  )
+
+sensitivitySummary$Antibiotic[sensitivitySummary$Antibiotic=="No matching concept"] = "Flucloxacillin"
+
+sensitivitySummary %>% ungroup() %>% select(`Antibiotic`,`N`,`Resistance`,`95% CI (%)`) %>% saveTable("~/Dropbox/antibioticResistance/resistFreq")
+# or as a figure 
+# ggplot(sensitivitySummary, aes(x = measurement_concept_name, y=mean, ymin=lower, ymax=upper)) + geom_point() + geom_errorbar()
+```
+
+# Visualise the monthly trend in susceptabilities
+
+lets limit this to urines
+
+```{r}
+sensByMonth = sensitivityResults %>% #filter(sample=="UCUL") %>% 
+  mutate(ym = lubridate::floor_date(measurement_date,unit = "month")) %>% 
+  group_by(ym,measurement_concept_name) %>% 
+  summarize(
+      total = n(),
+      sensitive = sum(ifelse(value_as_concept_name=="Sensitive",1,0)),
+      resistant = sum(ifelse(value_as_concept_name=="Sensitive",0,1))
+  ) %>% mutate(
+    #fracResist = resistant/total,
+    mean = binom::binom.confint(resistant,total,methods="wilson")$mean,
+    lower = binom::binom.confint(resistant,total,methods="wilson")$lower,
+    upper = binom::binom.confint(resistant,total,methods="wilson")$upper
+  ) %>% mutate(
+    `Antibiotic` = stringr::str_remove(measurement_concept_name,coll(" [Susceptibility]")),
+    `N` = total,
+    `Resistance` = twoDp(mean*100, "%"),
+    `95% CI (%)` = paste0(twoDp(lower*100),"\u2014",twoDp(upper*100))
+  )
+
+p3 = ggplot(sensByMonth %>% ungroup() %>% filter(
+  `Antibiotic` %in% c("Amoxicillin","Amoxicillin+Clavulanate","Cefuroxime","Cephalexin","Ciprofloxacin","Erythromycin","Flucloxacillin","Gentamicin","Meropenem","Metronidazole","Nitrofurantoin","Penicillin","Teicoplanin","Tetracycline","Trimethoprim","Vancomycin")
+), aes(x=ym,y=mean*100,ymin=lower*100,ymax=upper*100)) + geom_ribbon(alpha=0.2) + geom_point(size=0.5) + facet_wrap(vars(`Antibiotic`)) + xlab("time") + ylab("% resistant") 
+p3 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxByTime")
+```
+# Resolve species that sensitivities relate to.
+
+```{r}
+# this pattern works for events occuring in the lead up to something.
+# tmp = sensitivityResults %>% left_join(speciesResults, by=c("person_id","sample"), suffix=c(".sens",".org")) %>% filter(
+#    measurement_datetime.org < measurement_datetime.sens & 
+#    measurement_datetime.org > (measurement_datetime.sens - lubridate::days(10))
+# )
+
+sensByOrg = sensitivityResults %>% left_join(speciesResults, by=c("person_id","sample","measurement_datetime"), suffix=c(".sens",".org")) %>% mutate(
+  antibiotic=ifelse(measurement_source_concept_name.sens=="No matching concept","Flucloxacillin",stringr::str_remove(measurement_concept_name.sens,coll(" [Susceptibility]")))
+) %>% select(
+  person_id,
+  sensitivity=value_as_concept_name.sens,
+  sample,
+  antibiotic,
+  organism=value_as_concept_name.org
+) 
+
+matrix = sensByOrg %>% group_by(antibiotic,organism) %>% summarise(
+  total = n(), 
+  resistant = sum(ifelse(sensitivity=="Sensitive",0,1))
+) %>% mutate(
+  mean = binom::binom.confint(resistant,total,methods="wilson")$mean,
+  lower = binom::binom.confint(resistant,total,methods="wilson")$lower,
+  upper = binom::binom.confint(resistant,total,methods="wilson")$upper
+)
+
+top20orgs = matrix %>% group_by(organism) %>% summarise(total = sum(total)) %>% arrange(desc(total)) %>% head(20)
+top20abx = matrix %>% group_by(antibiotic) %>% summarise(total = sum(total)) %>% arrange(desc(total)) %>% head(20)
+
+matrix = matrix %>% filter(antibiotic %in% top20abx$antibiotic & organism %in% top20orgs$organism)
+
+p4 = ggplot(matrix, aes(x=reorder(antibiotic,-mean), y=reorder(organism,-mean), fill=mean*100))+geom_tile()+scale_fill_gradient2(low="green", mid="grey95",high="red",midpoint=5,na.value="black")+xlab(NULL)+ylab(NULL)+labs(fill="% resistant")+theme(
+  panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.background = element_blank(), axis.text.x=element_text(angle = 60, hjust = 1)
+)
+
+p4 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxByOrg")
+
+# TODO: these pictures would be better if we could have a hierarchy of drug types and organisms on both axes.
+# need to use top20orgs, and lookup in omop concept list.
+# grab a concept hierarchy?
+# find the minimum spanning tree in concept hierarchy??
+
+
+```
+
+
+```{r}
+# predict resistance against given AbX
+# known sample type, known planned antibiotics.
+# Lets focus on known sample - such as Urine & common Abx such as Nitrofurantoin and Trimethoprim
+# time in advance of the resistance status known.
+# we probably want the omop database version of this.
+
+dbSensitivityResults = omop$measurement %>% semi_join(resistanceOutcome$result, by=c("value_as_concept_id"="concept_id")) %>% 
+  filter(measurement_source_value %like% "%UCUL") %>% omop$getConceptNames() %>%
+  mutate(
+    antibiotic = ifelse(measurement_concept_name=="No matching concept","Flucloxacillin", replace(measurement_concept_name, " [Susceptibility]",""))
+  ) %>% filter(antibiotic %in% c("Trimethoprim","Nitrofurantoin")) %>% compute()
+
+dbSensitivityResults  %>% group_by(antibiotic, value_as_concept_name) %>% summarise(
+  count = n(),
+  patients = n_distinct(person_id)
+)
+
+
+```

@@ -79,7 +79,7 @@ Searcher = R6::R6Class("Searcher", public=list(
       filter(min_levels_of_separation >= local(min) & min_levels_of_separation <= local(max))
     self$result = self$omop$concept %>% 
       inner_join(
-        tmp %>% group_by(descendent_concept_id) %>% summarise(count=sum(count)), 
+        tmp %>% group_by(descendant_concept_id) %>% summarise(count=sum(count)), 
         by=c("concept_id"="descendant_concept_id"))
     self$applyStandardFilters()
     return(self)
