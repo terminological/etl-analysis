@@ -90,13 +90,15 @@ Omop = R6::R6Class("Omop", public=list(
 
   #### Methods ----
   #' @description Sets up an omop database connection
+  #' @param con an ODBC connection to the omop database
   #' @param dbname String value of dbname defaults to "omop".
   #' @param config Config object from yaml file. (defaults to config::get(file="~/Dropbox/db.yaml"))
   #' @examples omop = Omop$new(dbname,config)
-  initialize = function(dbname = "omop", config = config::get(file="~/Dropbox/db.yaml")) {
+  initialize = function(con = NULL, dbname = "omop", config = config::get(file="~/Dropbox/db.yaml")) {
     
     #TODO: conside switching to jdbc: https://cran.r-project.org/web/packages/RJDBC/RJDBC.pdf
-    self$con = odbc::dbConnect(odbc::odbc(),
+    if (identical(con, NULL)) {
+      self$con = odbc::dbConnect(odbc::odbc(),
                    Driver = config$odbcName,
                    Server = config$server,
                    Database = dbname,
@@ -104,6 +106,9 @@ Omop = R6::R6Class("Omop", public=list(
                    PWD = config$password,
                    Port = config$port,
                    bigint = "integer64");
+    } else {
+      self$con = con
+    }
     self$care_site = dplyr::tbl(self$con, "care_site")
     self$cdm_source = dplyr::tbl(self$con, "cdm_source")
     self$concept = dplyr::tbl(self$con, "concept")

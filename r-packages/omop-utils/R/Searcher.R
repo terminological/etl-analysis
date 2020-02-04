@@ -21,6 +21,9 @@ Searcher = R6::R6Class("Searcher", public=list(
   #' @description create a vocabulary searcher
   #' @param omop an R6 Omop object
   initialize = function(omop) {
+    if (!("Omop" %in% class(omop))) {
+      omop = Omop$new(omop)
+    }
     self$omop = omop;
     self$result = omop$concept %>% mutate(count=1)
     self$applyStandardFilters()
@@ -347,7 +350,7 @@ Searcher$fromSearch = function(omop, term) {
 #' @param field the name of the field containing concept_ids
 #' @return a data from of concepts
 NULL
-Searcher$fromDataframe = function(omop, df, field = "concept_id") {
+Searcher$fromDataframe = function(df, field = "concept_id" , omop=df$src$con) {
   field = ensym(field)
   s = Searcher$new(omop)
   if(!"count" %in% colnames(df)) {

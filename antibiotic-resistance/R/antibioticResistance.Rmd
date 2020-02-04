@@ -37,12 +37,12 @@ labTestValues = omop$measurement %>%
   group_by(measurement_concept_id,value_as_concept_id) %>% 
   summarise(count=n()) %>% 
   omop$getConceptNames() %>% 
-  arrange(desc(count)) %>% collect()
+  arrange(desc(count))
 
-testConcepts = Searcher$fromDataframe(omop,labTestValues,measurement_concept_id)
-valueConcepts = Searcher$fromDataframe(omop,labTestValues,value_as_concept_id)
+testConcepts = Searcher$fromDataframe(labTestValues,measurement_concept_id)
+valueConcepts = Searcher$fromDataframe(labTestValues,value_as_concept_id)
 
-View(labTestValues %>% collect())
+labTestValues %>% collect()
 
 ```
 
@@ -183,7 +183,25 @@ p4 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxByOrg")
 
 
 ```
+```{r}
+matrix2 = sensByOrg %>% group_by(antibiotic,sample) %>% summarise(
+  total = n(), 
+  resistant = sum(ifelse(sensitivity=="Sensitive",0,1))
+) %>% mutate(
+  mean = binom::binom.confint(resistant,total,methods="wilson")$mean,
+  lower = binom::binom.confint(resistant,total,methods="wilson")$lower,
+  upper = binom::binom.confint(resistant,total,methods="wilson")$upper
+)
 
+matrix2 = matrix2 %>% filter(antibiotic %in% top20abx$antibiotic)
+
+p5 = ggplot(matrix2, aes(x=reorder(antibiotic,-mean), y=reorder(sample,total), fill=mean*100))+geom_tile()+scale_fill_gradient2(low="green", mid="grey95",high="red",midpoint=5,na.value="black")+xlab(NULL)+ylab(NULL)+labs(fill="% resistant")+theme(
+  panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.background = element_blank(), axis.text.x=element_text(angle = 60, hjust = 1)
+)
+
+p5 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxBySample")
+
+```
 
 ```{r}
 # predict resistance against given AbX
@@ -203,5 +221,91 @@ dbSensitivityResults  %>% group_by(antibiotic, value_as_concept_name) %>% summar
   patients = n_distinct(person_id)
 )
 
+# colnames(dbSensitivityResults)
+
+# grab just the outcome data we are interested in - 2 outcome classes with 2 possible outcomes
+outcomeCohort = dbSensitivityResults %>% select(
+  person_id, antibiotic, outcome_type=measurement_concept_id, sensitivity=value_as_concept_name, outcome_value=value_as_concept_id, event_datetime=measurement_datetime 
+)
+outcomeCohort2 = outcomeCohort %>% group_by(antibiotic,person_id,event_datetime) %>% mutate(uniqInd = n()) %>% filter(uniqInd==1) %>% select(-uniqInd)
+
+# TODO: consider getting the first (?last) event for each patient
+
+# colnames(omop$note)
+# colnames(omop$note_nlp)
+
+# get predictors...
+predictorVariables = outcomeCohort %>% 
+  select(person_id, event_datetime) %>% 
+  inner_join(omop$note, by="person_id") %>% 
+  filter(note_datetime < event_datetime) %>% 
+  inner_join(omop$note_nlp, by="note_id") %>%
+  compute()
+
+predictorVariables %>% count()
+
+predictorSummary = predictorVariables %>% group_by(note_nlp_concept_id) %>% summarise(count = n()) %>% omop$getConceptNames() %>% collect()
+predictorSummary %>% group_by(note_nlp_concept_name) %>% summariseTopN(n=20, sortVar=desc(count), count = sum(count))
+
+predictorTfidf = predictorVariables %>% group_by(person_id, event_datetime) %>% tidyinfostats::calculateTfidf(vars(note_nlp_concept_id)) %>% compute()
+
+colnames(predictorTfidf)
+colnames(outcomeCohort)
+
+antibioticSet = outcomeCohort2 %>% inner_join(predictorTfidf, by=c("person_id","event_datetime")) %>% compute() %>% ungroup()
+antibioticSet %>% ungroup() %>% count()
+
+predictorTfidf %>% ungroup() %>% count()
+
+colnames(antibioticSet)
+
+# antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI(vars(sensitivity), norm_okapi_bm25)
+
+#tmp = antibioticSet %>% expectOnePerSample(vars(sensitivity), vars(person_id)) %>% collect()
+#antibioticMIAbs = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteAbsentValuesMI(vars(sensitivity), vars(person_id))
+
+
+
+antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% adjustMIForAbsentValues( 
+  discreteVars = vars(sensitivity), 
+  sampleVars = vars(person_id, event_datetime),
+  mutualInformationFn = calculateDiscreteContinuousMI, 
+  continuousVar = norm_okapi_bm25)
+
+antibioticMIResult = antibioticMI %>% compute() %>% omop$getConceptNames() %>% collect()
+
+antibioticMIResult %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), N=sum(N_obs)) %>% ungroup() %>% saveTable("~/Dropbox/antibioticResistance/mostInformation")
+
+# TODO: adjust MI for absent values needs testing
+# TODO: KWindow MI producing negative values - needs debugging:
+# written to tidyinfostats test cases
+# debugSubset = antibioticSet %>% filter(note_nlp_concept_id %in% c(4054193,4105319) & antibiotic=="Trimethoprim")  %>% collect()
+# write.csv(debugSubset %>% select(note_nlp_concept_id, sensitivity, okapi_bm25),"~/Git/tidy-info-stats/tests/degenerateExample.csv")
+# debugSubset %>% ungroup() %>% calculateDiscreteContinuousMI(vars(sensitivity), okapi_bm25)
+
+# TODO: debug MI for Absent values
+#debugSubset2 = antibioticSet %>% filter(note_nlp_concept_id %in% c(4053015) & antibiotic=="Trimethoprim")  %>% collect()
+
+
+
+# TODO: expand hierarchy
+# TODO: absent codes? expected numbers of patients in each category
+# TODO: cooccuring codes
+
+# antibiotic set is 
+glimpse(antibioticSet)
+```
+
+# generate machine learning matrix
+
+```{r}
+glimpse(antibioticSet)
+antibioticSet = antibioticSet %>% createSequentialIdentifier(vars(person_id,event_datetime), sample_id)
+trimethoprimSparseMatrix = antibioticSet %>% filter(antibiotic=="Trimethoprim") %>% collectAsSparseMatrix(sample_id,note_nlp_concept_id,okapi_bm25)
+#possibly some duplicated outcomes in here.
+trimethoprimOutcome = antibioticSet %>% filter(antibiotic=="Trimethoprim") %>% collectOutcomeVector(sample_id,sensitivity)
+
+length(trimethoprimOutcome)
+nrow(trimethoprimSparseMatrix)
 
 ```

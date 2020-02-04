@@ -14,9 +14,12 @@ Cohort = R6::R6Class("Cohort", public=list(
   
   #### Methods ----
   #' @description create a cohort builder
-  #' @param omop an R6 Omop object
+  #' @param omop an R6 Omop object or a connection object
   #' @param name a very short description of the cohort
-  initialize = function(omop, name) {
+  initialize = function(omop) {
+    if (!("Omop" %in% class(omop))) {
+      omop = Omop$new(omop)
+    }
     self$omop = omop
     self$cohort = omop$person %>% select(person_id)
   },
@@ -24,27 +27,28 @@ Cohort = R6::R6Class("Cohort", public=list(
   #' @description apply filter to cohort that allows requires stated field is one from a range of concepts
   #' @param personDf a dataframe with a person_id field and a ???_concept_id field, optionally grouped by columns that may be needed for further filtering
   #' @param conceptIdField a dataframe with a concept_id field
-  #' @param conceptDf a dataframe with a concept_id field holding concepts
-  #' @return the builder with a cohort filtered and augmented with any additional fields from the person_df groups
+  #' @param conceptDf a dataframe with a concept_id field holding concepts, that are outcomes of interest
+  #' @return the builder with a cohort filtered and augmented with any additional fields from the personDf groups, conceptDf groups, the conceptIdField
   withConceptSetFilter = function(personDf, conceptIdField, conceptDf) {
     conceptIdField = ensym(conceptIdField)
-    grps = c(personDf %>% groups(),as.symbol("person_id"))
+    conceptJoin = as.character(conceptIdField)
+    grps = c(personDf %>% groups(),conceptDf %>% groups(), conceptIdField,as.symbol("person_id"))
     self$cohort = self$cohort %>% inner_join(
-      personDf %>% mutate(concept_id=(!!conceptIdField)) %>% inner_join(conceptDf, by="concept_id") %>% select(!!!grps),
+      personDf %>% inner_join(conceptDf, by=conceptJoin) %>% select(!!!grps),
       by("person_id")
     )
     invisible(self)
   },
 
   #' @description apply filter to cohort that requires stated field is of specific value (which may be a concept id)
-  #' @param personDf a dataframe with a person_id field and a ???_concept_id field, optionally grouped by columns that may be needed for further filtering
-  #' @param valueExpr a standard dplyr filter expression
+  #' @param personDf a dataframe with a person_id field, and optionally grouped by columns that may be needed for further filtering
+  #' @param ... a set of standard dplyr filter expressions for personDf
   #' @return the builder with a cohort filtered and augmented with any additional fields from the person_df groups
-  withValueFilter = function(personDf, valueExpr) {
-    valueExpr = enexpr(valueExpr)
+  withValueFilter = function(personDf, ...) {
+    valueExprs = enexprs(...)
     grps = c(personDf %>% groups(),as.symbol("person_id"))
     self$cohort = self$cohort %>% inner_join(
-      personDf %>% filter(!!valueExpr) %>% select(!!!grps),
+      personDf %>% filter(!!!valueExprs) %>% select(!!!grps),
       by("person_id")
     )
     invisible(self)
@@ -53,15 +57,16 @@ Cohort = R6::R6Class("Cohort", public=list(
   #' @description apply filter to cohort that requires stated field is of specific value (which may be a concept id)
   #' @param personDf a dataframe with a person_id field and a ???_concept_id field, optionally grouped by columns that may be needed for further filtering
   #' @param conceptIdField a dataframe with a concept_id field
-  #' @param conceptDf a dataframe with a concept_id field holding concepts
-  #' @param valueExpr a standard dplyr filter expression
+  #' @param conceptDf a dataframe with a concept_id field holding concepts and potentially filtering criteria (e.g. conceptId - sensisitvity to penicilling, value = sensitive )
+  #' @param valueExpr a standard dplyr filter expression which references columns in personDf or conceptDf
   #' @return the builder with a cohort filtered and augmented with any additional fields from the person_df groups
-  withConceptAndValueFilter = function(personDf, conceptIdField, conceptDf, valueExpr) {
+  withConceptAndValueFilter = function(personDf, conceptIdField, conceptDf, ...) {
     conceptIdField = ensym(conceptIdField)
-    valueExpr = enexpr(valueExpr)
-    grps = c(personDf %>% groups(),as.symbol("person_id"))
+    conceptJoin = as.character(conceptIdField)
+    valueExprs = enexprs(...)
+    grps = c(personDf %>% groups(), conceptDf %>% groups(),as.symbol("person_id"))
     self$cohort = self$cohort %>% inner_join(
-      personDf %>% mutate(concept_id = (!!conceptIdField)) %>% inner_join(conceptDf, by="concept_id") %>% filter(!!valueExpr) %>% select(!!!grps),
+      personDf %>% inner_join(conceptDf, by=conceptJoin) %>% filter(!!valueExpr) %>% select(!!!grps),
       by("person_id")
     )
     invisible(self)
@@ -69,9 +74,9 @@ Cohort = R6::R6Class("Cohort", public=list(
 
   #' @description apply filter to cohort itself
   #' @param filterExpr a filter expression as expected by dplyr::filter
-  withFilter = function(filterExpr) {
-    filterExpr = enexpr(filterExpr)
-    self$cohort = self$cohort %>% filter(!!filterExpr)
+  withFilter = function(...) {
+    filterExprs = enexpr(...)
+    self$cohort = self$cohort %>% filter(!!!filterExprs)
     invisible(self)
   },
 
@@ -131,3 +136,47 @@ Cohort = R6::R6Class("Cohort", public=list(
     invisible(self)
   }
 ))
+
+#' @name Cohort_fromDataframe
+#' @title Create a cohort from a data frame
+#' @usage Cohort$fromDataframe(df)
+#' @param df a dataframe with a person_id field.
+#' @param omop the omop connection as a Omop class object or a connection to a omop database
+#' @return a data from of concepts
+NULL
+Cohort$fromDataframe = function(df, omop = df$src$con) {
+  s = Cohort$new(omop)
+  s$cohort = df
+  return(s)
+}
+
+#' @name Searcher_load
+#' @title Create a searcher from a .RDS file
+#' @usage Searcher$load(path)
+#' @description loads the data from local path
+#' @param name the name of the file - initial part of path - no .vocab.rds extension
+#' @return the modified searcher itself
+NULL
+Cohort$load = function(omop, name) {
+  s = Cohort$new(omop)
+  filename = normalizePath(paste0(name,".cohort.rds"),mustWork = FALSE)
+  s$cohort = readRDS(filename)
+  table = stringr::str_match(filename,"/([^/\\.]+)\\..+$")[1,2]
+  dplyr::copy_to(self$omop$con, self$cohort,name=paste0(table,"_cohort"),overwrite=TRUE)
+  return(s)
+}
+
+# # Cohort object error function
+# Cohort$withCallingHandlers(
+#   error = function(cnd) {
+#     
+#   },
+#   warning = function(cnd) {
+#     # code to run when warning is signalled
+#   },
+#   message = function(cnd) {
+#     # code to run when message is signalled
+#   },
+#   code_to_run_while_handlers_are_active
+# )
+

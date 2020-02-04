@@ -30,8 +30,8 @@ myocInf$summary()
 # find used concepts in df
 
 ```{r}
-measurementDf = Searcher$fromDataframe(omop, omop$measurement, measurement_concept_id)
-valuesDf = Searcher$fromDataframe(omop, omop$measurement, value_as_concept_id)
+measurementDf = Searcher$fromDataframe(omop$measurement, measurement_concept_id)
+valuesDf = Searcher$fromDataframe(omop$measurement, value_as_concept_id)
 ```
 
 # find concepts based on the code
@@ -64,9 +64,9 @@ labTestValues = omop$measurement %>%
   omop$getConceptNames() %>% 
   arrange(desc(count)) %>% collect()
 
-testConcepts = Searcher$fromDataframe(omop,labTestValues,measurement_concept_id)
+testConcepts = Searcher$fromDataframe(labTestValues,measurement_concept_id)
 
-valueConcepts = Searcher$fromDataframe(omop,labTestValues,value_as_concept_id)
+valueConcepts = Searcher$fromDataframe(labTestValues,value_as_concept_id)
 
 generalMicroMeasurement = testConcepts$clone()$applyFilter(
   (concept_name %like% "%culture%") |
