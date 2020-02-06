@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r echo=FALSE}
 library(ggplot2)
 library(tidyverse)
+library(ensurer)
 #devtools::install_github("terminological/standard-print-output")
 #library(standardPrintOutput)
 devtools::load_all("~/Git/standard-print-output/")
@@ -42,12 +43,17 @@ labTestValues = omop$measurement %>%
 testConcepts = Searcher$fromDataframe(labTestValues,measurement_concept_id)
 valueConcepts = Searcher$fromDataframe(labTestValues,value_as_concept_id)
 
-labTestValues %>% collect()
+#labTestValues %>% collect()
 
 ```
 
-Find detection of bacteria from culture:
+Find bacterial species identified on cluture
 
+* codes related to detection of bacteria from culture:
+* codes defining the bacterial species that were identified 
+* identify the sample type (UCUL etc.) - this is part of the measurement source value code
+
+Plot species counts:
 
 ```{r}
 bacteriaIdentified = testConcepts$clone()$applyFilter(
@@ -57,13 +63,24 @@ bacteriaIdentified = testConcepts$clone()$applyFilter(
 speciesResults = omop$measurement %>% semi_join(bacteriaIdentified$result, by=c("measurement_concept_id"="concept_id")) %>% omop$getConceptNames() %>% collect() %>%
   mutate(sample = stringr::str_remove(measurement_source_value,"^.+\\|"))
 
+# plot the summary of the species
 speciesSummary = speciesResults %>% group_by(value_as_concept_name) %>% summariseTopN(n=8, sortVar=desc(count), count = n()) %>% mutate(order = row_number())
-                                                                                    
 p=ggplot(speciesSummary, aes(x=reorder(value_as_concept_name,order),y=count))+geom_bar(stat="identity") + xlab("Organism")
 p %>% saveSixthPageFigure("~/Dropbox/antibioticResistance/speciesFreq")
+
+# TODO: plot species by sample type
+# Need a grouped by summariseTopN function
 ```
 
 Find test results for sensitivity or resistance.
+
+These are tests whose results are concepts that are "Resistant" or "Sensistive" (but not "Methicillin resistant staph aureus")
+
+* No matching results - relates to Flucloxacillin as Fluclox Susceptability missing from OMOP database as not licensed in US
+* Sample from measurement source value
+* Antibiotic name from concept string
+* Summary counts of sensisitivity and resistance on per antibiotic basis and confidence intervals estimated from binomials
+
 
 ```{r}
 resistanceOutcome = valueConcepts$clone()$applyFilter(
@@ -76,11 +93,12 @@ sensitivityResults = omop$measurement %>% semi_join(resistanceOutcome$result, by
   mutate(
     sample = stringr::str_remove(measurement_source_value,"^.+\\|"),
     antibiotic=ifelse(measurement_concept_name=="No matching concept","Flucloxacillin",stringr::str_remove(measurement_concept_name,coll(" [Susceptibility]")))
-    )
+  )
 # glimpse(sensitivityResults)
 
-sensitivityResults$measurement_concept_name[sensitivityResults$measurement_concept_name=="No matching concept"] = "Flucloxacillin"
 
+
+# Generate summary stats and confidence interval
 sensitivitySummary = sensitivityResults %>% 
   group_by(measurement_concept_name) %>% 
   summarizeTopN(
@@ -101,8 +119,6 @@ sensitivitySummary = sensitivityResults %>%
     `95% CI (%)` = paste0(twoDp(lower*100),"\u2014",twoDp(upper*100))
   )
 
-sensitivitySummary$Antibiotic[sensitivitySummary$Antibiotic=="No matching concept"] = "Flucloxacillin"
-
 sensitivitySummary %>% ungroup() %>% select(`Antibiotic`,`N`,`Resistance`,`95% CI (%)`) %>% saveTable("~/Dropbox/antibioticResistance/resistFreq")
 # or as a figure 
 # ggplot(sensitivitySummary, aes(x = measurement_concept_name, y=mean, ymin=lower, ymax=upper)) + geom_point() + geom_errorbar()
@@ -110,7 +126,7 @@ sensitivitySummary %>% ungroup() %>% select(`Antibiotic`,`N`,`Resistance`,`95% C
 
 # Visualise the monthly trend in susceptabilities
 
-lets limit this to urines
+* Look at 
 
 ```{r}
 sensByMonth = sensitivityResults %>% #filter(sample=="UCUL") %>% 
@@ -139,6 +155,11 @@ p3 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxByTime")
 ```
 # Resolve species that sensitivities relate to.
 
+* there is no unifying id to match samples for species and sensitivities
+* The combination of person_id, sample, and measuement_datetime is fairly unique unless there is multiple species grown from a single sample
+* We exclude multiple species at this point as we cannot know which species sensitivities are for.
+
+
 ```{r}
 # this pattern works for events occuring in the lead up to something.
 # tmp = sensitivityResults %>% left_join(speciesResults, by=c("person_id","sample"), suffix=c(".sens",".org")) %>% filter(
@@ -146,16 +167,21 @@ p3 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxByTime")
 #    measurement_datetime.org > (measurement_datetime.sens - lubridate::days(10))
 # )
 
-sensByOrg = sensitivityResults %>% left_join(speciesResults, by=c("person_id","sample","measurement_datetime"), suffix=c(".sens",".org")) %>% mutate(
-  antibiotic=ifelse(measurement_source_concept_name.sens=="No matching concept","Flucloxacillin",stringr::str_remove(measurement_concept_name.sens,coll(" [Susceptibility]")))
-) %>% select(
-  person_id,
-  sensitivity=value_as_concept_name.sens,
-  sample,
-  antibiotic,
-  organism=value_as_concept_name.org
-) 
+# filter out any duplicates - make sure this is less  than 20% of total
+speciesResultsUq = speciesResults %>% group_by(person_id,sample,measurement_datetime) %>% mutate(uniq = n()) %>% filter(uniq == 1) %>%
+  ensure_that(nrow(.) > 0.8*nrow(speciesResults))
 
+# get sensitivities by test result
+sensByOrg = sensitivityResults %>% left_join(speciesResults, by=c("person_id","sample","measurement_datetime"), suffix=c(".sens",".org")) %>% 
+  select(
+    person_id,
+    sensitivity=value_as_concept_name.sens,
+    sample,
+    antibiotic,
+    organism=value_as_concept_name.org
+  ) 
+
+# generate 
 matrix = sensByOrg %>% group_by(antibiotic,organism) %>% summarise(
   total = n(), 
   resistant = sum(ifelse(sensitivity=="Sensitive",0,1))
@@ -169,6 +195,7 @@ top20orgs = matrix %>% group_by(organism) %>% summarise(total = sum(total)) %>% 
 top20abx = matrix %>% group_by(antibiotic) %>% summarise(total = sum(total)) %>% arrange(desc(total)) %>% head(20)
 
 matrix = matrix %>% filter(antibiotic %in% top20abx$antibiotic & organism %in% top20orgs$organism)
+# TODO: N dimensional summaryTopN function woudl be useful here can be done with 2 group wise summaryTopN
 
 p4 = ggplot(matrix, aes(x=reorder(antibiotic,-mean), y=reorder(organism,-mean), fill=mean*100))+geom_tile()+scale_fill_gradient2(low="green", mid="grey95",high="red",midpoint=5,na.value="black")+xlab(NULL)+ylab(NULL)+labs(fill="% resistant")+theme(
   panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.background = element_blank(), axis.text.x=element_text(angle = 60, hjust = 1)
@@ -180,9 +207,12 @@ p4 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxByOrg")
 # need to use top20orgs, and lookup in omop concept list.
 # grab a concept hierarchy?
 # find the minimum spanning tree in concept hierarchy??
-
+# see ?stats::heatmap
 
 ```
+
+Also present this in terms of sensitivity by sample
+
 ```{r}
 matrix2 = sensByOrg %>% group_by(antibiotic,sample) %>% summarise(
   total = n(), 
@@ -203,31 +233,54 @@ p5 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxBySample")
 
 ```
 
-```{r}
-# predict resistance against given AbX
-# known sample type, known planned antibiotics.
-# Lets focus on known sample - such as Urine & common Abx such as Nitrofurantoin and Trimethoprim
-# time in advance of the resistance status known.
-# we probably want the omop database version of this.
+# Correlate urine culture sensitivities with record data
 
-dbSensitivityResults = omop$measurement %>% semi_join(resistanceOutcome$result, by=c("value_as_concept_id"="concept_id")) %>% 
+* predict resistance against given AbX using info available at point of diagnosis
+* known sample type, known planned antibiotics.
+* Lets focus on single sample - such as Urine & common Abx such as Nitrofurantoin and Trimethoprim
+
+Steps:
+
+* identify cohort of sensitivity results (exclude people with multiple samples at same datetime) and event datetime
+* We exclude multiple species at this point as we cannot know which species sensitivities are for.
+* TODO: an alternative strategy for multiple species is to take worst case sensitivities for samples with duplicate entries.
+* generate a sample id for each result
+* identify nlp codes from record earlier than event datetime as predictorVariables
+* calculate tfidf from nlp_codes
+
+
+```{r}
+# Get the sensitivity results in the omop database
+
+dbSensitivityResults = omop$measurement %>% 
+  semi_join(resistanceOutcome$result, by=c("value_as_concept_id"="concept_id")) %>% 
   filter(measurement_source_value %like% "%UCUL") %>% omop$getConceptNames() %>%
   mutate(
     antibiotic = ifelse(measurement_concept_name=="No matching concept","Flucloxacillin", replace(measurement_concept_name, " [Susceptibility]",""))
-  ) %>% filter(antibiotic %in% c("Trimethoprim","Nitrofurantoin")) %>% compute()
+  ) %>% filter(
+    antibiotic %in% c("Trimethoprim","Nitrofurantoin")
+  ) %>% 
+  group_by(person_id,measurement_datetime,antibiotic) %>% mutate(uniq = n()) %>% filter(uniq == 1) %>% select(-uniq) %>%
+  ungroup() %>% compute()
 
+# generate a summary table
 dbSensitivityResults  %>% group_by(antibiotic, value_as_concept_name) %>% summarise(
   count = n(),
   patients = n_distinct(person_id)
-)
+) %>% group_by(antibiotic) %>% saveTable("~/Dropbox/antibioticResistance/utiSampleCounts")
 
 # colnames(dbSensitivityResults)
 
 # grab just the outcome data we are interested in - 2 outcome classes with 2 possible outcomes
 outcomeCohort = dbSensitivityResults %>% select(
-  person_id, antibiotic, outcome_type=measurement_concept_id, sensitivity=value_as_concept_name, outcome_value=value_as_concept_id, event_datetime=measurement_datetime 
-)
-outcomeCohort2 = outcomeCohort %>% group_by(antibiotic,person_id,event_datetime) %>% mutate(uniqInd = n()) %>% filter(uniqInd==1) %>% select(-uniqInd)
+  person_id, 
+  antibiotic, 
+  outcome_type=measurement_concept_id, 
+  sensitivity=value_as_concept_name, 
+  outcome_value=value_as_concept_id, 
+  event_datetime=measurement_datetime 
+)  %>% createSequentialIdentifier(vars(person_id,event_datetime), sample_id) %>% 
+  compute(index=c("person_id","event_datetime","sample_id"))
 
 # TODO: consider getting the first (?last) event for each patient
 
@@ -236,76 +289,163 @@ outcomeCohort2 = outcomeCohort %>% group_by(antibiotic,person_id,event_datetime)
 
 # get predictors...
 predictorVariables = outcomeCohort %>% 
-  select(person_id, event_datetime) %>% 
+  select(person_id, event_datetime, sample_id) %>% 
   inner_join(omop$note, by="person_id") %>% 
   filter(note_datetime < event_datetime) %>% 
   inner_join(omop$note_nlp, by="note_id") %>%
-  compute()
+  compute(index=c("sample_id"))
 
-predictorVariables %>% count()
+# predictorVariables %>% count()
 
-predictorSummary = predictorVariables %>% group_by(note_nlp_concept_id) %>% summarise(count = n()) %>% omop$getConceptNames() %>% collect()
-predictorSummary %>% group_by(note_nlp_concept_name) %>% summariseTopN(n=20, sortVar=desc(count), count = sum(count))
+# This summarises the content of the predictor variables, but needs work on summariseTopN to allow layers of nesting
+# predictorSummary = predictorVariables %>% group_by(note_nlp_concept_id) %>% summarise(count = n()) %>% omop$getConceptNames() %>% collect()
+# predictorSummary %>% group_by(note_nlp_concept_name) %>% summariseTopN(n=20, sortVar=desc(count), count = sum(count))
 
-predictorTfidf = predictorVariables %>% group_by(person_id, event_datetime) %>% tidyinfostats::calculateTfidf(vars(note_nlp_concept_id)) %>% compute()
+predictorTfidf = predictorVariables %>% group_by(sample_id) %>% 
+  tidyinfostats::calculateTfidf(vars(note_nlp_concept_id)) %>% compute(index=c("sample_id"))
 
-colnames(predictorTfidf)
-colnames(outcomeCohort)
+# TODO: expand hierarchy
+# TODO: include other sources of info (e.g. blood tests, procedures, diagnoses)
+```
 
-antibioticSet = outcomeCohort2 %>% inner_join(predictorTfidf, by=c("person_id","event_datetime")) %>% compute() %>% ungroup()
-antibioticSet %>% ungroup() %>% count()
+# Use outcomes and predictors to generate a mutual information score
 
-predictorTfidf %>% ungroup() %>% count()
+```{r}
 
-colnames(antibioticSet)
+antibioticSet = outcomeCohort %>% inner_join(predictorTfidf, by="sample_id") %>% compute() %>% ungroup()
 
 # antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI(vars(sensitivity), norm_okapi_bm25)
-
 #tmp = antibioticSet %>% expectOnePerSample(vars(sensitivity), vars(person_id)) %>% collect()
 #antibioticMIAbs = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteAbsentValuesMI(vars(sensitivity), vars(person_id))
 
-
-
 antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% adjustMIForAbsentValues( 
   discreteVars = vars(sensitivity), 
-  sampleVars = vars(person_id, event_datetime),
+  sampleVars = vars(sample_id),
   mutualInformationFn = calculateDiscreteContinuousMI, 
   continuousVar = norm_okapi_bm25)
 
 antibioticMIResult = antibioticMI %>% compute() %>% omop$getConceptNames() %>% collect()
 
-antibioticMIResult %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), N=sum(N_obs)) %>% ungroup() %>% saveTable("~/Dropbox/antibioticResistance/mostInformation")
+antibioticMIResult %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), N=sum(N_obs)) %>% ungroup() %>%
+  saveTable("~/Dropbox/antibioticResistance/mostInformation")
+# TODO: this would be better as a groupwise summariseTopN
 
 # TODO: adjust MI for absent values needs testing
-# TODO: KWindow MI producing negative values - needs debugging:
-# written to tidyinfostats test cases
-# debugSubset = antibioticSet %>% filter(note_nlp_concept_id %in% c(4054193,4105319) & antibiotic=="Trimethoprim")  %>% collect()
-# write.csv(debugSubset %>% select(note_nlp_concept_id, sensitivity, okapi_bm25),"~/Git/tidy-info-stats/tests/degenerateExample.csv")
-# debugSubset %>% ungroup() %>% calculateDiscreteContinuousMI(vars(sensitivity), okapi_bm25)
+# TODO: KWindow MI producing negative values - needs debugging (see tidyinfostats test cases)
 
 # TODO: debug MI for Absent values
 #debugSubset2 = antibioticSet %>% filter(note_nlp_concept_id %in% c(4053015) & antibiotic=="Trimethoprim")  %>% collect()
 
-
-
-# TODO: expand hierarchy
-# TODO: absent codes? expected numbers of patients in each category
+# TODO: investigate effect of expanded hierarchy
 # TODO: cooccuring codes
 
-# antibiotic set is 
-glimpse(antibioticSet)
+# https://cran.r-project.org/web/packages/ensurer/vignettes/ensurer.html
+
 ```
 
 # generate machine learning matrix
 
 ```{r}
-glimpse(antibioticSet)
-antibioticSet = antibioticSet %>% createSequentialIdentifier(vars(person_id,event_datetime), sample_id)
-trimethoprimSparseMatrix = antibioticSet %>% filter(antibiotic=="Trimethoprim") %>% collectAsSparseMatrix(sample_id,note_nlp_concept_id,okapi_bm25)
-#possibly some duplicated outcomes in here.
-trimethoprimOutcome = antibioticSet %>% filter(antibiotic=="Trimethoprim") %>% collectOutcomeVector(sample_id,sensitivity)
+devtools::load_all("~/Git/tidy-info-stats")
+# https://rpubs.com/kelsimp/10992
 
-length(trimethoprimOutcome)
-nrow(trimethoprimSparseMatrix)
+trimethoprimData = predictorTfidf %>% inner_join(outcomeCohort %>% filter(antibiotic=="Trimethoprim"), by="sample_id")
 
+trimethoprimSparseMatrix = trimethoprimData %>%
+  omop$getConceptNames() %>% compute() %>% collectAsSparseMatrix(
+  sample_id,note_nlp_concept_id,okapi_bm25,colNameVar=note_nlp_concept_name)
+
+trimethoprimOutcome = trimethoprimData %>% collectOutcomeVector(sample_id,sensitivity)
+
+expect_equal(nrow(trimethoprimSparseMatrix),length(trimethoprimOutcome))
+
+# Save an object to a file
+saveRDS(trimethoprimSparseMatrix, file = "~/Dropbox/antibioticResistance/data/trimethoprimMatrix.rds")
+saveRDS(trimethoprimOutcome, file = "~/Dropbox/antibioticResistance/data/trimethoprimOutcome.rds")
+# Restore the object
+# readRDS(file = "~/Dropbox/antibioticResistance/data/trimethoprimMatrix.rds")
+# readRDS(file = "~/Dropbox/antibioticResistance/data/trimethoprimOutcome.rds")
+
+```
+
+```{r}
+samples = nrow(trimethoprimSparseMatrix)
+train = sample(1:samples,floor(samples*0.8))
+
+matrixToSparseMCsr = function(X) {
+  X.csc <- new("matrix.csc", ra = X@x,
+                           ja = X@i + 1L,
+                           ia = X@p + 1L,
+                           dimension = X@Dim)
+  X.csr <- SparseM::as.matrix.csr(X.csc)
+  return (X.csr)
+}
+
+tmpSm = matrixToSparseMCsr(trimethoprimSparseMatrix)
+```
+
+```{r}
+# using example from liblinear vignette
+
+xTrain = tmpSm[train,]
+xTest = tmpSm[-train,]
+yTrain = trimethoprimOutcome[train]
+yTest = trimethoprimOutcome[-train]
+
+# Center and scale data
+s=xTrain # scale(xTrain,center=TRUE,scale=TRUE)
+
+# Find the best model with the best cost parameter via 10-fold cross-validations
+# good in theory but this simply finds that the most accurate result is to classify everything as sensitive.
+
+# tryTypes=c(0:7)
+# tryCosts=c(1000,1,0.001)
+# bestCost=NA
+# bestAcc=0
+# bestType=NA
+# 
+# for(ty in tryTypes){
+# 	for(co in tryCosts){
+# 		acc=LiblineaR::LiblineaR(data=s,target=yTrain,type=ty,cost=co,bias=1,cross=5,verbose=FALSE)
+# 		cat("Results for C=",co," : ",acc," accuracy.\n",sep="")
+# 		if(acc>bestAcc){
+# 			bestCost=co
+# 			bestAcc=acc
+# 			bestType=ty
+# 		}
+# 	}
+# }
+# 
+# cat("Best model type is:",bestType,"\n")
+# cat("Best cost is:",bestCost,"\n")
+# cat("Best accuracy is:",bestAcc,"\n")
+
+# Re-train best model with best cost value.
+m=LiblineaR::LiblineaR(data=s,target=yTrain,type=6,cost=1000,bias=1,verbose=FALSE)
+
+# Scale the test data
+s2=xTest # scale(xTest,attr(s,"scaled:center"),attr(s,"scaled:scale"))
+
+# Make prediction
+pr=FALSE
+if(bestType==0 || bestType==6 || bestType==7) pr=TRUE
+
+p=predict(m,s2,proba=pr,decisionValues=TRUE)
+
+# Display confusion matrix
+res=table(p$predictions,yTest)
+print(res)
+
+
+```
+
+```{r}
+
+xTrain = trimethoprimSparseMatrix[train,]
+xTest = trimethoprimSparseMatrix[-train,]
+yTrain = trimethoprimOutcome[train]
+yTest = trimethoprimOutcome[-train]
+
+rg = ranger::ranger(x=xTrain, y=yTrain)
+rg$variable.importance
 ```
