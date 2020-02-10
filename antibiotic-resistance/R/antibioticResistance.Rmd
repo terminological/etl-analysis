@@ -25,51 +25,7 @@ devtools::load_all("~/Git/tidy-info-stats/")
 
 # rm(list = ls(all.names = TRUE))
 devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
-omop = Omop$new()
-```
-
-# Find the lab tests vocab codes for 
-
-lab tests for sensitivities have concept ids as values
-
-```{r}
-labTestValues = omop$measurement %>% 
-  filter(!is.na(value_as_concept_id)) %>% 
-  group_by(measurement_concept_id,value_as_concept_id) %>% 
-  summarise(count=n()) %>% 
-  omop$getConceptNames() %>% 
-  arrange(desc(count))
-
-testConcepts = Searcher$fromDataframe(labTestValues,measurement_concept_id)
-valueConcepts = Searcher$fromDataframe(labTestValues,value_as_concept_id)
-
-#labTestValues %>% collect()
-
-```
-
-Find bacterial species identified on cluture
-
-* codes related to detection of bacteria from culture:
-* codes defining the bacterial species that were identified 
-* identify the sample type (UCUL etc.) - this is part of the measurement source value code
-
-Plot species counts:
-
-```{r}
-bacteriaIdentified = testConcepts$clone()$applyFilter(
-  (concept_name %like% "%Bacteria identifi%")
-)
-
-speciesResults = omop$measurement %>% semi_join(bacteriaIdentified$result, by=c("measurement_concept_id"="concept_id")) %>% omop$getConceptNames() %>% collect() %>%
-  mutate(sample = stringr::str_remove(measurement_source_value,"^.+\\|"))
-
-# plot the summary of the species
-speciesSummary = speciesResults %>% group_by(value_as_concept_name) %>% summariseTopN(n=8, sortVar=desc(count), count = n()) %>% mutate(order = row_number())
-p=ggplot(speciesSummary, aes(x=reorder(value_as_concept_name,order),y=count))+geom_bar(stat="identity") + xlab("Organism")
-p %>% saveSixthPageFigure("~/Dropbox/antibioticResistance/speciesFreq")
-
-# TODO: plot species by sample type
-# Need a grouped by summariseTopN function
+source("./antibioticResistanceSetup.R")
 ```
 
 Find test results for sensitivity or resistance.
@@ -80,158 +36,6 @@ These are tests whose results are concepts that are "Resistant" or "Sensistive" 
 * Sample from measurement source value
 * Antibiotic name from concept string
 * Summary counts of sensisitivity and resistance on per antibiotic basis and confidence intervals estimated from binomials
-
-
-```{r}
-resistanceOutcome = valueConcepts$clone()$applyFilter(
-  ((concept_name %like% "%sensiti%") |
-  (concept_name %like% "%resis%")) & !(concept_name %like% "%ethicill%")
-)
-
-#colnames(omop$measurement)
-sensitivityResults = omop$measurement %>% semi_join(resistanceOutcome$result, by=c("value_as_concept_id"="concept_id")) %>% omop$getConceptNames() %>% collect() %>%
-  mutate(
-    sample = stringr::str_remove(measurement_source_value,"^.+\\|"),
-    antibiotic=ifelse(measurement_concept_name=="No matching concept","Flucloxacillin",stringr::str_remove(measurement_concept_name,coll(" [Susceptibility]")))
-  )
-# glimpse(sensitivityResults)
-
-
-
-# Generate summary stats and confidence interval
-sensitivitySummary = sensitivityResults %>% 
-  group_by(measurement_concept_name) %>% 
-  summarizeTopN(
-      n=12,
-      sortVar=desc(total),
-      total = n(),
-      sensitive = sum(ifelse(value_as_concept_name=="Sensitive",1,0)),
-      resistant = sum(ifelse(value_as_concept_name=="Sensitive",0,1))
-  ) %>% mutate(
-    #fracResist = resistant/total,
-    mean = binom::binom.confint(resistant,total,methods="wilson")$mean,
-    lower = binom::binom.confint(resistant,total,methods="wilson")$lower,
-    upper = binom::binom.confint(resistant,total,methods="wilson")$upper
-  ) %>% mutate(
-    `Antibiotic` = stringr::str_remove(measurement_concept_name,coll(" [Susceptibility]")),
-    `N` = total,
-    `Resistance` = twoDp(mean*100, "%"),
-    `95% CI (%)` = paste0(twoDp(lower*100),"\u2014",twoDp(upper*100))
-  )
-
-sensitivitySummary %>% ungroup() %>% select(`Antibiotic`,`N`,`Resistance`,`95% CI (%)`) %>% saveTable("~/Dropbox/antibioticResistance/resistFreq")
-# or as a figure 
-# ggplot(sensitivitySummary, aes(x = measurement_concept_name, y=mean, ymin=lower, ymax=upper)) + geom_point() + geom_errorbar()
-```
-
-# Visualise the monthly trend in susceptabilities
-
-* Look at 
-
-```{r}
-sensByMonth = sensitivityResults %>% #filter(sample=="UCUL") %>% 
-  mutate(ym = lubridate::floor_date(measurement_date,unit = "month")) %>% 
-  group_by(ym,measurement_concept_name) %>% 
-  summarize(
-      total = n(),
-      sensitive = sum(ifelse(value_as_concept_name=="Sensitive",1,0)),
-      resistant = sum(ifelse(value_as_concept_name=="Sensitive",0,1))
-  ) %>% mutate(
-    #fracResist = resistant/total,
-    mean = binom::binom.confint(resistant,total,methods="wilson")$mean,
-    lower = binom::binom.confint(resistant,total,methods="wilson")$lower,
-    upper = binom::binom.confint(resistant,total,methods="wilson")$upper
-  ) %>% mutate(
-    `Antibiotic` = stringr::str_remove(measurement_concept_name,coll(" [Susceptibility]")),
-    `N` = total,
-    `Resistance` = twoDp(mean*100, "%"),
-    `95% CI (%)` = paste0(twoDp(lower*100),"\u2014",twoDp(upper*100))
-  )
-
-p3 = ggplot(sensByMonth %>% ungroup() %>% filter(
-  `Antibiotic` %in% c("Amoxicillin","Amoxicillin+Clavulanate","Cefuroxime","Cephalexin","Ciprofloxacin","Erythromycin","Flucloxacillin","Gentamicin","Meropenem","Metronidazole","Nitrofurantoin","Penicillin","Teicoplanin","Tetracycline","Trimethoprim","Vancomycin")
-), aes(x=ym,y=mean*100,ymin=lower*100,ymax=upper*100)) + geom_ribbon(alpha=0.2) + geom_point(size=0.5) + facet_wrap(vars(`Antibiotic`)) + xlab("time") + ylab("% resistant") 
-p3 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxByTime")
-```
-# Resolve species that sensitivities relate to.
-
-* there is no unifying id to match samples for species and sensitivities
-* The combination of person_id, sample, and measuement_datetime is fairly unique unless there is multiple species grown from a single sample
-* We exclude multiple species at this point as we cannot know which species sensitivities are for.
-
-
-```{r}
-# this pattern works for events occuring in the lead up to something.
-# tmp = sensitivityResults %>% left_join(speciesResults, by=c("person_id","sample"), suffix=c(".sens",".org")) %>% filter(
-#    measurement_datetime.org < measurement_datetime.sens & 
-#    measurement_datetime.org > (measurement_datetime.sens - lubridate::days(10))
-# )
-
-# filter out any duplicates - make sure this is less  than 20% of total
-speciesResultsUq = speciesResults %>% group_by(person_id,sample,measurement_datetime) %>% mutate(uniq = n()) %>% filter(uniq == 1) %>%
-  ensure_that(nrow(.) > 0.8*nrow(speciesResults))
-
-# get sensitivities by test result
-sensByOrg = sensitivityResults %>% left_join(speciesResults, by=c("person_id","sample","measurement_datetime"), suffix=c(".sens",".org")) %>% 
-  select(
-    person_id,
-    sensitivity=value_as_concept_name.sens,
-    sample,
-    antibiotic,
-    organism=value_as_concept_name.org
-  ) 
-
-# generate 
-matrix = sensByOrg %>% group_by(antibiotic,organism) %>% summarise(
-  total = n(), 
-  resistant = sum(ifelse(sensitivity=="Sensitive",0,1))
-) %>% mutate(
-  mean = binom::binom.confint(resistant,total,methods="wilson")$mean,
-  lower = binom::binom.confint(resistant,total,methods="wilson")$lower,
-  upper = binom::binom.confint(resistant,total,methods="wilson")$upper
-)
-
-top20orgs = matrix %>% group_by(organism) %>% summarise(total = sum(total)) %>% arrange(desc(total)) %>% head(20)
-top20abx = matrix %>% group_by(antibiotic) %>% summarise(total = sum(total)) %>% arrange(desc(total)) %>% head(20)
-
-matrix = matrix %>% filter(antibiotic %in% top20abx$antibiotic & organism %in% top20orgs$organism)
-# TODO: N dimensional summaryTopN function woudl be useful here can be done with 2 group wise summaryTopN
-
-p4 = ggplot(matrix, aes(x=reorder(antibiotic,-mean), y=reorder(organism,-mean), fill=mean*100))+geom_tile()+scale_fill_gradient2(low="green", mid="grey95",high="red",midpoint=5,na.value="black")+xlab(NULL)+ylab(NULL)+labs(fill="% resistant")+theme(
-  panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.background = element_blank(), axis.text.x=element_text(angle = 60, hjust = 1)
-)
-
-p4 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxByOrg")
-
-# TODO: these pictures would be better if we could have a hierarchy of drug types and organisms on both axes.
-# need to use top20orgs, and lookup in omop concept list.
-# grab a concept hierarchy?
-# find the minimum spanning tree in concept hierarchy??
-# see ?stats::heatmap
-
-```
-
-Also present this in terms of sensitivity by sample
-
-```{r}
-matrix2 = sensByOrg %>% group_by(antibiotic,sample) %>% summarise(
-  total = n(), 
-  resistant = sum(ifelse(sensitivity=="Sensitive",0,1))
-) %>% mutate(
-  mean = binom::binom.confint(resistant,total,methods="wilson")$mean,
-  lower = binom::binom.confint(resistant,total,methods="wilson")$lower,
-  upper = binom::binom.confint(resistant,total,methods="wilson")$upper
-)
-
-matrix2 = matrix2 %>% filter(antibiotic %in% top20abx$antibiotic)
-
-p5 = ggplot(matrix2, aes(x=reorder(antibiotic,-mean), y=reorder(sample,total), fill=mean*100))+geom_tile()+scale_fill_gradient2(low="green", mid="grey95",high="red",midpoint=5,na.value="black")+xlab(NULL)+ylab(NULL)+labs(fill="% resistant")+theme(
-  panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.background = element_blank(), axis.text.x=element_text(angle = 60, hjust = 1)
-)
-
-p5 %>% saveHalfPageFigure("~/Dropbox/antibioticResistance/abxBySample")
-
-```
 
 # Correlate urine culture sensitivities with record data
 
@@ -267,7 +71,7 @@ dbSensitivityResults = omop$measurement %>%
 dbSensitivityResults  %>% group_by(antibiotic, value_as_concept_name) %>% summarise(
   count = n(),
   patients = n_distinct(person_id)
-) %>% group_by(antibiotic) %>% saveTable("~/Dropbox/antibioticResistance/utiSampleCounts")
+) %>% ungroup() %>% arrange(antibiotic,value_as_concept_name)  %>% group_by(antibiotic) %>% saveTable("~/Dropbox/antibioticResistance/utiSampleCounts")
 
 # colnames(dbSensitivityResults)
 
@@ -283,6 +87,9 @@ outcomeCohort = dbSensitivityResults %>% select(
   compute(index=c("person_id","event_datetime","sample_id"))
 
 # TODO: consider getting the first (?last) event for each patient
+```
+
+```{r}
 
 # colnames(omop$note)
 # colnames(omop$note_nlp)
@@ -295,14 +102,24 @@ predictorVariables = outcomeCohort %>%
   inner_join(omop$note_nlp, by="note_id") %>%
   compute(index=c("sample_id"))
 
-# predictorVariables %>% count()
-
 # This summarises the content of the predictor variables, but needs work on summariseTopN to allow layers of nesting
 # predictorSummary = predictorVariables %>% group_by(note_nlp_concept_id) %>% summarise(count = n()) %>% omop$getConceptNames() %>% collect()
 # predictorSummary %>% group_by(note_nlp_concept_name) %>% summariseTopN(n=20, sortVar=desc(count), count = sum(count))
 
 predictorTfidf = predictorVariables %>% group_by(sample_id) %>% 
   tidyinfostats::calculateTfidf(vars(note_nlp_concept_id)) %>% compute(index=c("sample_id"))
+```
+
+```{r}
+# predictorVariables %>% count()
+
+predictorVariablesExpanded = predictorVariables %>% 
+  group_by(sample_id) %>%
+  omop$expandAncestorConcepts(note_nlp_concept_id)
+
+predictorTfidfExpanded = predictorVariablesExpanded %>% group_by(sample_id) %>% 
+  tidyinfostats::calculateTfidf(vars(note_nlp_concept_id)) %>% compute(index=c("sample_id"))
+
 
 # TODO: expand hierarchy
 # TODO: include other sources of info (e.g. blood tests, procedures, diagnoses)
@@ -311,9 +128,13 @@ predictorTfidf = predictorVariables %>% group_by(sample_id) %>%
 # Use outcomes and predictors to generate a mutual information score
 
 ```{r}
+antibioticSet = outcomeCohort %>% inner_join(predictorTfidf, by="sample_id") %>% arrange(sample_id) %>% compute() %>% ungroup()
+antibioticSetExpanded = outcomeCohort %>% inner_join(predictorTfidfExpanded, by="sample_id") %>% arrange(sample_id) %>% compute() %>% ungroup()
 
-antibioticSet = outcomeCohort %>% inner_join(predictorTfidf, by="sample_id") %>% compute() %>% ungroup()
 
+```
+
+```{r}
 # antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI(vars(sensitivity), norm_okapi_bm25)
 #tmp = antibioticSet %>% expectOnePerSample(vars(sensitivity), vars(person_id)) %>% collect()
 #antibioticMIAbs = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteAbsentValuesMI(vars(sensitivity), vars(person_id))
@@ -328,11 +149,9 @@ antibioticMIResult = antibioticMI %>% compute() %>% omop$getConceptNames() %>% c
 
 antibioticMIResult %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), N=sum(N_obs)) %>% ungroup() %>%
   saveTable("~/Dropbox/antibioticResistance/mostInformation")
+
 # TODO: this would be better as a groupwise summariseTopN
-
 # TODO: adjust MI for absent values needs testing
-# TODO: KWindow MI producing negative values - needs debugging (see tidyinfostats test cases)
-
 # TODO: debug MI for Absent values
 #debugSubset2 = antibioticSet %>% filter(note_nlp_concept_id %in% c(4053015) & antibiotic=="Trimethoprim")  %>% collect()
 
@@ -346,106 +165,146 @@ antibioticMIResult %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseT
 # generate machine learning matrix
 
 ```{r}
-devtools::load_all("~/Git/tidy-info-stats")
+# devtools::load_all("~/Git/tidy-info-stats")
 # https://rpubs.com/kelsimp/10992
 
-trimethoprimData = predictorTfidf %>% inner_join(outcomeCohort %>% filter(antibiotic=="Trimethoprim"), by="sample_id")
+trimethoprimData = antibioticSet %>% filter(antibiotic=="Trimethoprim")
 
-trimethoprimSparseMatrix = trimethoprimData %>%
-  omop$getConceptNames() %>% compute() %>% collectAsSparseMatrix(
-  sample_id,note_nlp_concept_id,okapi_bm25,colNameVar=note_nlp_concept_name)
+## TODO: refactor this to a single function call with matrix and features
+## test ensure samples are correctly ordered.
 
-trimethoprimOutcome = trimethoprimData %>% collectOutcomeVector(sample_id,sensitivity)
+trimethoprimTrainingSet = trimethoprimData %>%
+  omop$getConceptNames() %>% compute() %>% collectAsTrainingSet(
+  sample_id, sensitivity, note_nlp_concept_id, norm_okapi_bm25, featureNameVar=note_nlp_concept_name)
 
-expect_equal(nrow(trimethoprimSparseMatrix),length(trimethoprimOutcome))
+
+saveRDS(trimethoprimTrainingSet, file = "~/Dropbox/antibioticResistance/data/trimethoprimTrainingSet.rds")
+
+expect_equal(nrow(trimethoprimTrainingSet$matrix),length(trimethoprimTrainingSet$outcome))
+```
+
+```{r}
+trimethoprimDataExpanded = antibioticSetExpanded %>% filter(antibiotic=="Trimethoprim")
+
+trimethoprimTrainingSetExpanded = trimethoprimDataExpanded %>%
+  omop$getConceptNames() %>% compute() %>% collectAsTrainingSet(
+  sample_id, sensitivity, note_nlp_concept_id, norm_okapi_bm25, featureNameVar=note_nlp_concept_name)
+
+saveRDS(trimethoprimTrainingSetExpanded, file = "~/Dropbox/antibioticResistance/data/trimethoprimTrainingSetExpanded.rds")
 
 # Save an object to a file
-saveRDS(trimethoprimSparseMatrix, file = "~/Dropbox/antibioticResistance/data/trimethoprimMatrix.rds")
-saveRDS(trimethoprimOutcome, file = "~/Dropbox/antibioticResistance/data/trimethoprimOutcome.rds")
+
 # Restore the object
 # readRDS(file = "~/Dropbox/antibioticResistance/data/trimethoprimMatrix.rds")
 # readRDS(file = "~/Dropbox/antibioticResistance/data/trimethoprimOutcome.rds")
 
 ```
+## family of cost weighted models
+
+* TODO: adjust cost wieghts for a range of outcomes
+* TODO: calculate models
+* TODO: compare variable importance from log regression to MI based importance
+* TODO: generate roc curves for models
+* TODO: optimise cut-off for maximum value
+
+## improving input data
+
+* DONE: Data set including hierarchical expansion of TFIDF
+* TODO: MI Cooccurence (within patient (aka sample)? within outcome?)
+* TODO: adjustment of MI between feature and outcome - clustering?
+* TODO: compare variable importance from log regression to MI based importance
+* TODO: cost weighting of feature MI
+* TODO: Dimensionality reduction? 
 
 ```{r}
-samples = nrow(trimethoprimSparseMatrix)
-train = sample(1:samples,floor(samples*0.8))
 
-matrixToSparseMCsr = function(X) {
-  X.csc <- new("matrix.csc", ra = X@x,
-                           ja = X@i + 1L,
-                           ia = X@p + 1L,
-                           dimension = X@Dim)
-  X.csr <- SparseM::as.matrix.csr(X.csc)
-  return (X.csr)
+for (ts in list(trimethoprimTrainingSet,trimethoprimTrainingSetExpanded)) {
+
+  ts = tidyIris() %>% mutate(
+    outcome = ifelse(as.character(outcome)=="setosa","Resistant","Sensitive")
+  ) %>% collectAsTrainingSet(sample,outcome,feature,value)
+  
+  samples = length(ts$outcome)
+  train = sample(1:samples,floor(samples*0.8))
+  
+  tmpSm = tidyinfostats::sparseMatrixToSparseMCsr(ts$matrix)
+
+  xTrain = tmpSm[train,]
+  xTest = tmpSm[-train,]
+  yTrain = ts$outcome[train]
+  yTest = ts$outcome[-train]
+
+  wi = c(Resistant=2.5,Sensitive=1)
+  
+  # Re-train best model with best cost value.
+  m=LiblineaR::LiblineaR(data=xTrain,target=yTrain,type=0,cost=1,verbose=FALSE,wi=wi,bias=0)
+
+  # Scale the test data
+  # s2=xTest # scale(xTest,attr(s,"scaled:center"),attr(s,"scaled:scale"))
+  # varImp = m$W
+  # names(varImp) <- colnames(trimethoprimSparseMatrix)
+
+  varImp = tibble(
+    name = ts$colLabels,
+    weight = m$W[1:length(ts$colLabels)]
+  ) %>% mutate(importance = abs(weight))
+
+  # Make prediction
+  #pr=FALSE
+  #if(bestType==0 || bestType==6 || bestType==7) pr=TRUE
+
+  p=predict(m,xTest,proba=TRUE,decisionValues=TRUE)
+
+  # Display confusion matrix
+  predResult = data.frame(p$probabilities) %>% mutate(actual = yTest, pred = p$predictions)
+
+  ggplot(predResult, aes(x=Sensitive,colour=actual))+geom_density()
+
+  predResult %>% group_by(actual,pred) %>% count()
+
+  res=table(p$predictions,yTest)
+  print(res)
 }
 
-tmpSm = matrixToSparseMCsr(trimethoprimSparseMatrix)
 ```
 
 ```{r}
-# using example from liblinear vignette
+for (ts in c(trimethoprimTrainingSet,trimethoprimTrainingSetExpanded)) {
+  
+  ts = tidyIris() %>% mutate(
+    outcome = ifelse(as.character(outcome)=="setosa","Resistant","Sensitive")
+  ) %>% collectAsTrainingSet(sample,outcome,feature,value)
 
-xTrain = tmpSm[train,]
-xTest = tmpSm[-train,]
-yTrain = trimethoprimOutcome[train]
-yTest = trimethoprimOutcome[-train]
+  samples = length(ts$outcome)
+  train = sample(1:samples,floor(samples*0.8))
+  
+  xTrain = ts$matrix[train,]
+  xTest = ts$matrix[-train,]
+  yTrain = ts$outcome[train]
+  yTest = ts$outcome[-train]
 
-# Center and scale data
-s=xTrain # scale(xTrain,center=TRUE,scale=TRUE)
+  wi = c(Resistant=2,Sensitive=1)
 
-# Find the best model with the best cost parameter via 10-fold cross-validations
-# good in theory but this simply finds that the most accurate result is to classify everything as sensitive.
-
-# tryTypes=c(0:7)
-# tryCosts=c(1000,1,0.001)
-# bestCost=NA
-# bestAcc=0
-# bestType=NA
-# 
-# for(ty in tryTypes){
-# 	for(co in tryCosts){
-# 		acc=LiblineaR::LiblineaR(data=s,target=yTrain,type=ty,cost=co,bias=1,cross=5,verbose=FALSE)
-# 		cat("Results for C=",co," : ",acc," accuracy.\n",sep="")
-# 		if(acc>bestAcc){
-# 			bestCost=co
-# 			bestAcc=acc
-# 			bestType=ty
-# 		}
-# 	}
-# }
-# 
-# cat("Best model type is:",bestType,"\n")
-# cat("Best cost is:",bestCost,"\n")
-# cat("Best accuracy is:",bestAcc,"\n")
-
-# Re-train best model with best cost value.
-m=LiblineaR::LiblineaR(data=s,target=yTrain,type=6,cost=1000,bias=1,verbose=FALSE)
-
-# Scale the test data
-s2=xTest # scale(xTest,attr(s,"scaled:center"),attr(s,"scaled:scale"))
-
-# Make prediction
-pr=FALSE
-if(bestType==0 || bestType==6 || bestType==7) pr=TRUE
-
-p=predict(m,s2,proba=pr,decisionValues=TRUE)
-
-# Display confusion matrix
-res=table(p$predictions,yTest)
-print(res)
-
+  #Malley et al. (2012).
+  rg = ranger::ranger(x=xTrain, y=yTrain, importance="impurity", probability = TRUE, class.weights = wi)
+  rg$variable.importance
+  
+  rg.predict = predict(rg,data=xTest)
+  
+  predResult = data.frame(rg.predict$predictions) %>% mutate(actual = yTest, pred = as.factor(ifelse(Sensitive>0.5,"Sensitive","Resistant")))
+  
+  ggplot(predResult, aes(x=Sensitive,colour=actual))+geom_density()
+}
 
 ```
 
 ```{r}
 
-xTrain = trimethoprimSparseMatrix[train,]
 xTest = trimethoprimSparseMatrix[-train,]
-yTrain = trimethoprimOutcome[train]
 yTest = trimethoprimOutcome[-train]
 
-rg = ranger::ranger(x=xTrain, y=yTrain)
-rg$variable.importance
+
+
 ```
+
+
