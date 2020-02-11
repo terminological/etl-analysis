@@ -139,6 +139,15 @@ antibioticSetExpanded = outcomeCohort %>% inner_join(predictorTfidfExpanded, by=
 #tmp = antibioticSet %>% expectOnePerSample(vars(sensitivity), vars(person_id)) %>% collect()
 #antibioticMIAbs = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteAbsentValuesMI(vars(sensitivity), vars(person_id))
 
+tmp = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteAbsentValuesMI(
+  discreteVars = vars(sensitivity), 
+  sampleVars = vars(sample_id)) %>%
+	  rename(I_given_abs = I) %>% mutate(tmp_join=1) %>% compute() %>% omop$getConceptNames() %>% collect()
+
+antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI( 
+  discreteVars = vars(sensitivity),
+  continuousVar = norm_okapi_bm25)
+
 antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% adjustMIForAbsentValues( 
   discreteVars = vars(sensitivity), 
   sampleVars = vars(sample_id),
@@ -147,9 +156,24 @@ antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% ad
 
 antibioticMIResult = antibioticMI %>% compute() %>% omop$getConceptNames() %>% collect()
 
-antibioticMIResult %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), N=sum(N_obs)) %>% ungroup() %>%
+antibioticMIResult %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), N=sum(N)) %>% ungroup() %>%
   saveTable("~/Dropbox/antibioticResistance/mostInformation")
 
+
+antibioticMIExpanded = antibioticSetExpanded %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI( 
+  discreteVars = vars(sensitivity),
+  continuousVar = norm_okapi_bm25)
+
+antibioticMIExpanded = antibioticSetExpanded %>% group_by(antibiotic,note_nlp_concept_id) %>% adjustMIForAbsentValues( 
+  discreteVars = vars(sensitivity), 
+  sampleVars = vars(sample_id),
+  mutualInformationFn = calculateDiscreteContinuousMI, 
+  continuousVar = norm_okapi_bm25)
+
+antibioticMIResultExpanded = antibioticMIExpanded %>% compute() %>% omop$getConceptNames() %>% collect()
+
+antibioticMIResultExpanded %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), N=sum(N_obs)) %>% ungroup() %>%
+  saveTable("~/Dropbox/antibioticResistance/mostInformationExpanded")
 # TODO: this would be better as a groupwise summariseTopN
 # TODO: adjust MI for absent values needs testing
 # TODO: debug MI for Absent values
@@ -271,9 +295,9 @@ for (ts in list(trimethoprimTrainingSet,trimethoprimTrainingSetExpanded)) {
 ```{r}
 for (ts in c(trimethoprimTrainingSet,trimethoprimTrainingSetExpanded)) {
   
-  ts = tidyIris() %>% mutate(
-    outcome = ifelse(as.character(outcome)=="setosa","Resistant","Sensitive")
-  ) %>% collectAsTrainingSet(sample,outcome,feature,value)
+  #ts = tidyIris() %>% mutate(
+  #  outcome = ifelse(as.character(outcome)=="setosa","Resistant","Sensitive")
+  #) %>% collectAsTrainingSet(sample,outcome,feature,value)
 
   samples = length(ts$outcome)
   train = sample(1:samples,floor(samples*0.8))
