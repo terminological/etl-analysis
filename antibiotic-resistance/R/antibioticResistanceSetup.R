@@ -7,8 +7,8 @@ labTestValues = omop$measurement %>%
     omop$getConceptNames() %>% 
     arrange(desc(count))
   
-testConcepts = Searcher$fromDataframe(labTestValues,measurement_concept_id)
-valueConcepts = Searcher$fromDataframe(labTestValues,value_as_concept_id)
+testConcepts = Searcher$fromDataframe(omop, labTestValues,measurement_concept_id)
+valueConcepts = Searcher$fromDataframe(omop, labTestValues,value_as_concept_id)
   
   #labTestValues %>% collect()
   

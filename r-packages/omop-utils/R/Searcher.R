@@ -21,9 +21,6 @@ Searcher = R6::R6Class("Searcher", public=list(
   #' @description create a vocabulary searcher
   #' @param omop an R6 Omop object
   initialize = function(omop) {
-    if (!("Omop" %in% class(omop))) {
-      omop = Omop$new(omop)
-    }
     self$omop = omop;
     self$result = omop$concept %>% mutate(count=1)
     self$applyStandardFilters()
@@ -45,7 +42,7 @@ Searcher = R6::R6Class("Searcher", public=list(
       inner_join(self$result %>% select(concept_id,count), by=c("concept_id_1"="concept_id"), copy=TRUE) %>%
       filter(relationship_id %in% local(relationships))
     self$result = self$omop$concept %>% 
-      inner_join(tmp %>% group_by(concept_id_2) %>% summarise(count=sum(count)), by=c("concept_id"="concept_id_2")) 
+      inner_join(tmp %>% group_by(concept_id_2) %>% summarise(count=sum(count,na.rm=TRUE)), by=c("concept_id"="concept_id_2")) 
     self$applyStandardFilters()
     return(self)
   },
@@ -64,7 +61,7 @@ Searcher = R6::R6Class("Searcher", public=list(
       filter(min_levels_of_separation >= local(min) & min_levels_of_separation <= local(max))
     self$result = self$omop$concept %>% 
       inner_join(
-        tmp %>% group_by(ancestor_concept_id) %>% summarise(count=sum(count)), 
+        tmp %>% group_by(ancestor_concept_id) %>% summarise(count=sum(count,na.rm=TRUE)), 
         by=c("concept_id"="ancestor_concept_id"))
     self$applyStandardFilters()
     return(self)
@@ -82,7 +79,7 @@ Searcher = R6::R6Class("Searcher", public=list(
       filter(min_levels_of_separation >= local(min) & min_levels_of_separation <= local(max))
     self$result = self$omop$concept %>% 
       inner_join(
-        tmp %>% group_by(descendant_concept_id) %>% summarise(count=sum(count)), 
+        tmp %>% group_by(descendant_concept_id) %>% summarise(count=sum(count,na.rm=TRUE)), 
         by=c("concept_id"="descendant_concept_id"))
     self$applyStandardFilters()
     return(self)
@@ -204,7 +201,7 @@ Searcher = R6::R6Class("Searcher", public=list(
   #' @return the modified searcher itself
   setUnion = function(searcher) {
     tmp = self$result %>% select(concept_id,count) %>% union(searcher$result %>% select(concept_id,count), copy=TRUE) %>%
-      group_by(concept_id) %>% summarise(count = sum(count)) %>% compute()
+      group_by(concept_id) %>% summarise(count = sum(count,na.rm=TRUE)) %>% compute()
     self$result = self$omop$concept %>% inner_join(tmp)
     return(self)
   },
@@ -228,7 +225,7 @@ Searcher = R6::R6Class("Searcher", public=list(
     return(
       self$result %>% 
         group_by(domain_id) %>%
-        summarise(codes=n(), counts=sum(count)) %>% collect()
+        summarise(codes=n(), counts=sum(count,na.rm=TRUE)) %>% collect()
     )
   },
   
@@ -239,7 +236,7 @@ Searcher = R6::R6Class("Searcher", public=list(
     return(
       self$result %>% 
         group_by(vocabulary_id) %>%
-        summarise(codes=n(), counts=sum(count)) %>% collect()
+        summarise(codes=n(), counts=sum(count,na.rm=TRUE)) %>% collect()
     )
   },
   
@@ -250,7 +247,7 @@ Searcher = R6::R6Class("Searcher", public=list(
     return(
       self$result %>% 
         group_by(concept_class_id) %>%
-        summarise(codes=n(), counts=sum(count)) %>% collect()
+        summarise(codes=n(), counts=sum(count,na.rm=TRUE)) %>% collect()
     )
   },
   
@@ -261,11 +258,9 @@ Searcher = R6::R6Class("Searcher", public=list(
     return(self$result %>% 
         inner_join(self$omop$concept_relationship, by=c("concept_id"="concept_id_1")) %>%
         group_by(relationship_id) %>%
-        summarise(codes=n(), counts=sum(count)) %>% collect()
+        summarise(codes=n(), counts=sum(count,na.rm=TRUE)) %>% collect()
     )
   },
-  
- 
   
   #### control modify in place searcher functions ----
   
@@ -298,7 +293,7 @@ Searcher = R6::R6Class("Searcher", public=list(
     print("  Domains:")
     print(self$getDomains())
     print("  Concept names:")
-    print(self$result %>% arrange(desc(count)) %>% head(max) %>% collect() %>% pull(concept_name))
+    print(self$result %>% arrange(desc(count)) %>% head(max) %>% collect() %>% select(concept_id,concept_name))
   },
   
   #' @description saves the data locally
@@ -326,6 +321,8 @@ Searcher = R6::R6Class("Searcher", public=list(
   }
 ))
 
+#### Static constructors ----
+
 #' @name Searcher_fromSearch
 #' @title Create a searcher from a search term
 #' @usage Searcher$fromSearch(omop,term)
@@ -350,14 +347,14 @@ Searcher$fromSearch = function(omop, term) {
 #' @param field the name of the field containing concept_ids
 #' @return a data from of concepts
 NULL
-Searcher$fromDataframe = function(df, field = "concept_id" , omop=df$src$con) {
+Searcher$fromDataframe = function(omop, df, field = "concept_id") {
   field = ensym(field)
   s = Searcher$new(omop)
   if(!"count" %in% colnames(df)) {
     df = df %>% mutate(count=1)
   }
   s$result = s$omop$concept %>% inner_join(
-    df %>% group_by(concept_id = !!field) %>% summarise(count=sum(count)),
+    df %>% group_by(concept_id = !!field) %>% summarise(count=sum(count,na.rm=TRUE)),
     by="concept_id", copy=TRUE)
   return(s)
 }
@@ -399,7 +396,7 @@ Searcher$load = function(omop, name) {
   dplyr::copy_to(s$omop$con, s$result, name=paste0(table,"_vocab"),overwrite=TRUE)
   if (!"concept_name" %in% colnames(s$result)) {
     s$result = s$omop$concept %>% inner_join(
-      s$result %>% group_by(concept_id) %>% summarise(count=sum(count)),
+      s$result %>% group_by(concept_id) %>% summarise(count=sum(count,na.rm=TRUE)),
       by="concept_id")
   }
   return(s)

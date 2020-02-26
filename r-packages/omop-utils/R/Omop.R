@@ -14,6 +14,10 @@ Omop = R6::R6Class("Omop", public=list(
   #### Fields ----
   #' @field con an connection the omop database
   con = NULL,
+  #' @field resultsCon an connection the omop results database
+  resultsCon = NULL,
+  #' @field resultsCon an connection the omop results database
+  persistance = TRUE,
 
   #' @field care_site omop table
   care_site = NULL,
@@ -92,23 +96,30 @@ Omop = R6::R6Class("Omop", public=list(
   #' @description Sets up an omop database connection
   #' @param con an ODBC connection to the omop database
   #' @param dbname String value of dbname defaults to "omop".
+  #' @param resultsdbname String value of dbname defaults to "omopResults".
   #' @param config Config object from yaml file. (defaults to config::get(file="~/Dropbox/db.yaml"))
   #' @examples omop = Omop$new(dbname,config)
-  initialize = function(con = NULL, dbname = "omop", config = config::get(file="~/Dropbox/db.yaml")) {
+  initialize = function(dbname = "omop", resultsdbname = "omopResults", config = config::get(file="~/Dropbox/db.yaml")) {
     
     #TODO: conside switching to jdbc: https://cran.r-project.org/web/packages/RJDBC/RJDBC.pdf
-    if (identical(con, NULL)) {
-      self$con = odbc::dbConnect(odbc::odbc(),
-                   Driver = config$odbcName,
-                   Server = config$server,
-                   Database = dbname,
-                   UID = config$user,
-                   PWD = config$password,
-                   Port = config$port,
-                   bigint = "integer64");
-    } else {
-      self$con = con
-    }
+    self$con = odbc::dbConnect(odbc::odbc(),
+         Driver = config$odbcName,
+         Server = config$server,
+         Database = dbname,
+         UID = config$user,
+         PWD = config$password,
+         Port = config$port,
+         bigint = "integer64");
+    
+    self$resultsCon = odbc::dbConnect(odbc::odbc(),
+          Driver = config$odbcName,
+          Server = config$server,
+          Database = resultsdbname,
+          UID = config$user,
+          PWD = config$password,
+          Port = config$port,
+          bigint = "integer64");
+    
     self$care_site = dplyr::tbl(self$con, "care_site")
     self$cdm_source = dplyr::tbl(self$con, "cdm_source")
     self$concept = dplyr::tbl(self$con, "concept")
@@ -146,11 +157,47 @@ Omop = R6::R6Class("Omop", public=list(
     self$visit_occurrence = dplyr::tbl(self$con,"visit_occurrence")
     self$vocabulary = dplyr::tbl(self$con,"vocabulary")
   },
+  
   #' @description Closes the omop database connection
   finalize = function() {
     odbc::dbDisconnect(self$con)
   },
 
+  #' @description force recaluclation of cached results
+  forceCalculation = function() {
+    self$persistance = FALSE
+  },
+  
+  #' @description persist a dbplyr result in the omopResults database
+  useCached = function() {
+    self$persistance = TRUE
+  },
+  
+  #' @description persist a dbplyr result in the omopResults database.
+  #' Do not combine with compute(). MS SQL specific code.
+  #' @param ... passed to dbplyr::copy_to - of particular interest is unique_indexes = list("x","y"), indexes = list("x","y"), analyze = TRUE
+  persist = function(tableName, remoteDf, ...) {
+    if (!self$persistance || !db_has_table(self$resultsCon, tableName)) {
+      message(paste0("caching result for: ",tableName))
+      # create a temp table with the remoteDf result in omop:
+      try(db_drop_table(self$con, paste0("##",tableName)),TRUE) # drop the temporary table if possible
+      tmpTable = remoteDf %>% compute(name=tableName, overwrite=TRUE, temporary=TRUE)
+      # access it from omopResults
+      cached = dplyr::tbl(self$resultsCon, paste0("##",tableName))
+      # copy to a permanent table in omopResults
+      copy_to(self$resultsCon, cached, name=tableName, overwrite=TRUE, temporary=FALSE, ...)
+      return(tmpTable)
+    } else {
+      message(paste0("using cached: ",tableName))
+      # load as tmp table in omopResults
+      try(db_drop_table(self$resultsCon, paste0("##",tableName)),TRUE) # drop the temporary table if possible
+      dplyr::tbl(self$resultsCon, tableName) %>% compute(name = tableName, overwrite=TRUE)
+      # access from omop databse
+      cached = dplyr::tbl(self$con, paste0("##",tableName))
+      return(cached)
+    }
+  },
+  
   #' @description create a new vocabulary specification
   #' @return a searcher
   buildVocabSet = function() {
@@ -250,7 +297,7 @@ Omop = R6::R6Class("Omop", public=list(
   #' @return a set of edges with 
   getSpanningGraphEdges = function(df, conceptIdVar, min=0L,max=1000L) {
     conceptIdVar = ensym(conceptIdVar)
-    children = df %>% ungroup() %>% select(!!conceptIdVar) %>% distinct() %>% rename(descendant_concept_id = !!conceptIdVar)
+    children = df %>% ungroup() %>% select(!!conceptIdVar) %>% distinct() %>% rename(descendant_concept_id = !!conceptIdVar) %>% compute()
     parents = children %>% rename(ancestor_concept_id = descendant_concept_id)
     edges = self$concept_ancestor %>% 
       filter(descendant_concept_id != ancestor_concept_id) %>%
@@ -259,6 +306,7 @@ Omop = R6::R6Class("Omop", public=list(
       filter(min_levels_of_separation >= local(min) & min_levels_of_separation <= local(max))
     return(edges)
   }
+  
   #' 
   #' #' Drops a temporary table created by dbplyr
   #' #' 

@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(tidyverse)
 library(ensurer)
+library(SparseM)
 #devtools::install_github("terminological/standard-print-output")
 #library(standardPrintOutput)
 devtools::load_all("~/Git/standard-print-output/")
@@ -26,6 +27,7 @@ devtools::load_all("~/Git/tidy-info-stats/")
 # rm(list = ls(all.names = TRUE))
 devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
 source("./antibioticResistanceSetup.R")
+omop$useCached()
 ```
 
 Find test results for sensitivity or resistance.
@@ -56,7 +58,8 @@ Steps:
 ```{r}
 # Get the sensitivity results in the omop database
 
-dbSensitivityResults = omop$measurement %>% 
+dbSensitivityResults = omop$persist("abxSensitivityResults",
+  omop$measurement %>% 
   semi_join(resistanceOutcome$result, by=c("value_as_concept_id"="concept_id")) %>% 
   filter(measurement_source_value %like% "%UCUL") %>% omop$getConceptNames() %>%
   mutate(
@@ -65,26 +68,29 @@ dbSensitivityResults = omop$measurement %>%
     antibiotic %in% c("Trimethoprim","Nitrofurantoin")
   ) %>% 
   group_by(person_id,measurement_datetime,antibiotic) %>% mutate(uniq = n()) %>% filter(uniq == 1) %>% select(-uniq) %>%
-  ungroup() %>% compute()
-
+  ungroup()
+)
+  
 # generate a summary table
-dbSensitivityResults  %>% group_by(antibiotic, value_as_concept_name) %>% summarise(
+dbSensitivityResults %>% group_by(antibiotic, value_as_concept_name) %>% summarise(
   count = n(),
   patients = n_distinct(person_id)
-) %>% ungroup() %>% arrange(antibiotic,value_as_concept_name)  %>% group_by(antibiotic) %>% saveTable("~/Dropbox/antibioticResistance/utiSampleCounts")
+) %>% ungroup() %>% collect() %>% arrange(antibiotic,value_as_concept_name)  %>% group_by(antibiotic) %>% saveTable("~/Dropbox/antibioticResistance/utiSampleCounts")
 
 # colnames(dbSensitivityResults)
 
 # grab just the outcome data we are interested in - 2 outcome classes with 2 possible outcomes
-outcomeCohort = dbSensitivityResults %>% select(
-  person_id, 
-  antibiotic, 
-  outcome_type=measurement_concept_id, 
-  sensitivity=value_as_concept_name, 
-  outcome_value=value_as_concept_id, 
-  event_datetime=measurement_datetime 
-)  %>% createSequentialIdentifier(vars(person_id,event_datetime), sample_id) %>% 
-  compute(index=c("person_id","event_datetime","sample_id"))
+outcomeCohort =  omop$persist("abxOutcomeCohort",
+  dbSensitivityResults %>% select(
+    person_id, 
+    antibiotic, 
+    outcome_type=measurement_concept_id, 
+    sensitivity=value_as_concept_name, 
+    outcome_value=value_as_concept_id, 
+    event_datetime=measurement_datetime 
+  )  %>% createSequentialIdentifier(vars(person_id,event_datetime), sample_id),
+  indexes=list("person_id","event_datetime","sample_id")
+)
 
 # TODO: consider getting the first (?last) event for each patient
 ```
@@ -95,30 +101,42 @@ outcomeCohort = dbSensitivityResults %>% select(
 # colnames(omop$note_nlp)
 
 # get predictors...
-predictorVariables = outcomeCohort %>% 
-  select(person_id, event_datetime, sample_id) %>% 
-  inner_join(omop$note, by="person_id") %>% 
-  filter(note_datetime < event_datetime) %>% 
-  inner_join(omop$note_nlp, by="note_id") %>%
-  compute(index=c("sample_id"))
+predictorVariables = omop$persist("abxPredictorVariables",
+  outcomeCohort %>% 
+    select(person_id, event_datetime, sample_id) %>% 
+    inner_join(omop$note, by="person_id") %>% 
+    filter(note_datetime < event_datetime) %>% 
+    inner_join(omop$note_nlp, by="note_id"),
+  indexes=list("sample_id")
+)
 
 # This summarises the content of the predictor variables, but needs work on summariseTopN to allow layers of nesting
 # predictorSummary = predictorVariables %>% group_by(note_nlp_concept_id) %>% summarise(count = n()) %>% omop$getConceptNames() %>% collect()
 # predictorSummary %>% group_by(note_nlp_concept_name) %>% summariseTopN(n=20, sortVar=desc(count), count = sum(count))
 
-predictorTfidf = predictorVariables %>% group_by(sample_id) %>% 
-  tidyinfostats::calculateTfidf(vars(note_nlp_concept_id)) %>% compute(index=c("sample_id"))
+predictorTfidf = omop$persist("abxPredictorTfidf",
+  predictorVariables %>% group_by(sample_id) %>% 
+    tidyinfostats::calculateTfidf(vars(note_nlp_concept_id)),
+  indexes=list("sample_id")
+)
 ```
 
 ```{r}
 # predictorVariables %>% count()
 
-predictorVariablesExpanded = predictorVariables %>% 
-  group_by(sample_id) %>%
-  omop$expandAncestorConcepts(note_nlp_concept_id)
+predictorVariablesExpanded = omop$persist("abxPredictorVariablesExpanded", 
+  predictorVariables %>% 
+    group_by(sample_id) %>%
+    omop$expandAncestorConcepts(note_nlp_concept_id),
+  indexes=list("sample_id")
+)
 
-predictorTfidfExpanded = predictorVariablesExpanded %>% group_by(sample_id) %>% 
-  tidyinfostats::calculateTfidf(vars(note_nlp_concept_id)) %>% compute(index=c("sample_id"))
+predictorTfidfExpanded = omop$persist("abxPredictorTfidfExpanded",
+  predictorVariablesExpanded %>% 
+    group_by(sample_id) %>% 
+    tidyinfostats::calculateTfidf(vars(note_nlp_concept_id)),
+  indexes=list("sample_id")
+)
 
 
 # TODO: expand hierarchy
@@ -128,65 +146,297 @@ predictorTfidfExpanded = predictorVariablesExpanded %>% group_by(sample_id) %>%
 # Use outcomes and predictors to generate a mutual information score
 
 ```{r}
-antibioticSet = outcomeCohort %>% inner_join(predictorTfidf, by="sample_id") %>% arrange(sample_id) %>% compute() %>% ungroup()
-antibioticSetExpanded = outcomeCohort %>% inner_join(predictorTfidfExpanded, by="sample_id") %>% arrange(sample_id) %>% compute() %>% ungroup()
-
+antibioticSet = omop$persist("abxAntibioticSet",
+    outcomeCohort %>% inner_join(predictorTfidf, by="sample_id") %>% arrange(sample_id) %>% ungroup()
+)
+antibioticSetExpanded = omop$persist("abxAntibioticSetExpanded",
+    outcomeCohort %>% inner_join(predictorTfidfExpanded, by="sample_id") %>% arrange(sample_id) %>% ungroup()
+)
 
 ```
 
 ```{r}
+# TODO: https://bookdown.org/yihui/rmarkdown/language-engines.html#sql
 # antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI(vars(sensitivity), norm_okapi_bm25)
-#tmp = antibioticSet %>% expectOnePerSample(vars(sensitivity), vars(person_id)) %>% collect()
-#antibioticMIAbs = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteAbsentValuesMI(vars(sensitivity), vars(person_id))
+# tmp = antibioticSet %>% expectOnePerSample(vars(sensitivity), vars(person_id)) %>% collect()
+# antibioticMIAbs = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteAbsentValuesMI(vars(sensitivity), vars(person_id))
 
-tmp = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteAbsentValuesMI(
-  discreteVars = vars(sensitivity), 
-  sampleVars = vars(sample_id)) %>%
-	  rename(I_given_abs = I) %>% mutate(tmp_join=1) %>% compute() %>% omop$getConceptNames() %>% collect()
+# tmp = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteAbsentValuesMI(
+#   discreteVars = vars(sensitivity), 
+#   sampleVars = vars(sample_id)) %>%
+# 	  rename(I_given_abs = I) %>% mutate(tmp_join=1) %>% compute() %>% omop$getConceptNames() %>% collect()
+# 
+# antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI( 
+#   discreteVars = vars(sensitivity),
+#   continuousVar = norm_okapi_bm25)
 
-antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI( 
-  discreteVars = vars(sensitivity),
-  continuousVar = norm_okapi_bm25)
+antibioticMI = omop$persist("abxAntibioticMI",
+  antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% adjustMIForAbsentValues( 
+    discreteVars = vars(sensitivity), 
+    sampleVars = vars(sample_id),
+    mutualInformationFn = calculateDiscreteContinuousMI, 
+    continuousVar = norm_okapi_bm25)
+)
 
-antibioticMI = antibioticSet %>% group_by(antibiotic,note_nlp_concept_id) %>% adjustMIForAbsentValues( 
-  discreteVars = vars(sensitivity), 
-  sampleVars = vars(sample_id),
-  mutualInformationFn = calculateDiscreteContinuousMI, 
-  continuousVar = norm_okapi_bm25)
+antibioticMIResult = omop$persist("abxAntibioticMIResult",
+    antibioticMI %>% omop$getConceptNames()
+)
 
-antibioticMIResult = antibioticMI %>% compute() %>% omop$getConceptNames() %>% collect()
-
-antibioticMIResult %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), N=sum(N)) %>% ungroup() %>%
-  saveTable("~/Dropbox/antibioticResistance/mostInformation")
+antibioticMIResult %>% collect() %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), Observed=sum(N_pres), Missing=sum(N_abs)) %>% ungroup() %>%  saveTable("~/Dropbox/antibioticResistance/mostInformation")
 
 
-antibioticMIExpanded = antibioticSetExpanded %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI( 
-  discreteVars = vars(sensitivity),
-  continuousVar = norm_okapi_bm25)
+# antibioticMIExpanded = antibioticSetExpanded %>% group_by(antibiotic,note_nlp_concept_id) %>% calculateDiscreteContinuousMI( 
+#   discreteVars = vars(sensitivity),
+#   continuousVar = norm_okapi_bm25)
 
-antibioticMIExpanded = antibioticSetExpanded %>% group_by(antibiotic,note_nlp_concept_id) %>% adjustMIForAbsentValues( 
-  discreteVars = vars(sensitivity), 
-  sampleVars = vars(sample_id),
-  mutualInformationFn = calculateDiscreteContinuousMI, 
-  continuousVar = norm_okapi_bm25)
+antibioticMIExpanded = omop$persist("abxAntibioticMIExpanded",
+  antibioticSetExpanded %>% group_by(antibiotic,note_nlp_concept_id) %>% adjustMIForAbsentValues( 
+    discreteVars = vars(sensitivity), 
+    sampleVars = vars(sample_id),
+    mutualInformationFn = calculateDiscreteContinuousMI, 
+    continuousVar = norm_okapi_bm25)
+)
 
-antibioticMIResultExpanded = antibioticMIExpanded %>% compute() %>% omop$getConceptNames() %>% collect()
+antibioticMIResultExpanded = omop$persist("abxAntibioticMIResultExpanded",
+  antibioticMIExpanded %>% omop$getConceptNames()
+)
 
-antibioticMIResultExpanded %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), N=sum(N_obs)) %>% ungroup() %>%
+antibioticMIResultExpanded %>% collect() %>% group_by(antibiotic,note_nlp_concept_name) %>% summariseTopN(n=10, sortVar=desc(I), I = max(I), Observed=sum(N_pres), Missing=sum(N_abs)) %>% ungroup() %>%
   saveTable("~/Dropbox/antibioticResistance/mostInformationExpanded")
 # TODO: this would be better as a groupwise summariseTopN
-# TODO: adjust MI for absent values needs testing
-# TODO: debug MI for Absent values
-#debugSubset2 = antibioticSet %>% filter(note_nlp_concept_id %in% c(4053015) & antibiotic=="Trimethoprim")  %>% collect()
+# DONE: adjust MI for absent values needs testing
+# DONE: debug MI for Absent values
 
 # TODO: investigate effect of expanded hierarchy
 # TODO: cooccuring codes
 
-# https://cran.r-project.org/web/packages/ensurer/vignettes/ensurer.html
+```
+We are going to take some examples for visualisation
+Lets use "Pressure ulcer of sacral region"
+
+```{r}
+sacralUlcers = Searcher$fromSearch(omop, "Pressure ulcer of sacral region")
+sacralUlcers$expandAncestorConcepts(max=100)
+# find a subset of our expanded MI result to visualise:
+miSacralUlcers = antibioticMIExpanded %>% semi_join(sacralUlcers$toDataframe(), by=c("note_nlp_concept_id"="concept_id")) 
+miSacralUlcers = miSacralUlcers %>% filter(antibiotic=="Trimethoprim") %>% compute()
+devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+analyser = Analyser$new(omop, miSacralUlcers, note_nlp_concept_id)
+analyser$longestPaths()
+
+analyser$mutateNodes(
+  p_x = as.double(N_pres)/N_exp,
+  probWeightedI = I*p_x,
+  entWeightedI = -I*p_x*log(p_x)
+)
+
+cuts = seq(analyser$nodes %>% pull(I) %>% min(),analyser$nodes %>% pull(I) %>% max(),length.out=10)
+analyser$toDiagrammeR() %>% 
+  DiagrammeR::colorize_node_attrs(
+    node_attr_from = I,
+    node_attr_to = fillcolor,
+    palette = "Greens",
+    cut_points = cuts, alpha=80) %>%
+  standardPrintOutput::saveFullPageGraphLandscape("~/Dropbox/antibioticResistance/miHierarchyExpansion")
+
+
+
+cuts2 = seq(analyser$nodes %>% pull(probWeightedI) %>% min(),analyser$nodes %>% pull(probWeightedI) %>% max(),length.out=10)
+analyser$toDiagrammeR() %>% 
+  DiagrammeR::colorize_node_attrs(
+    node_attr_from = probWeightedI,
+    node_attr_to = fillcolor,
+    palette = "Oranges",
+    cut_points = cuts2, alpha=80) %>%
+  standardPrintOutput::saveFullPageGraphLandscape("~/Dropbox/antibioticResistance/miHierarchyExpansionProbWeighted")
+
+
+cuts3 = seq(analyser$nodes %>% pull(entWeightedI) %>% min(),analyser$nodes %>% pull(entWeightedI) %>% max(),length.out=10)
+analyser$toDiagrammeR() %>% 
+  DiagrammeR::colorize_node_attrs(
+    node_attr_from = entWeightedI,
+    node_attr_to = fillcolor,
+    palette = "Blues",
+    cut_points = cuts3, alpha=80) %>%
+  standardPrintOutput::saveFullPageGraphLandscape("~/Dropbox/antibioticResistance/miHierarchyExpansionEntWeighted")
 
 ```
 
-# generate machine learning matrix
+# Finding maximum values for information statistic in hierarchy.
+
+A couple of strategies:
+* Use longest paths in ancestor graph only. Finds local maxima within tree neighbours (analyser)
+* Use all paths in ancestor graph. Finds global maxima within tree branch (analyser2)
+* Use all paths in ancestor graph where hierarchy shorter than a specified length - NOT DONE
+
+All these can be applied to either unweighted I, prob weighted I or ent weighted I
+
+## First we investigate what the maximum looks like for our sacral pressure sore example:
+
+a) within the longest path ancestor graph
+
+```{r}
+# with single level hierarchy we get 
+analyser$nodesWithMaxScores(entWeightedI) %>% arrange(desc(entWeightedI))
+analyser$nodesWithMaxScores(probWeightedI) %>% arrange(desc(probWeightedI))
+analyser$nodesWithMaxScores(I) %>% arrange(desc(I))
+```
+
+b) then we look at the whole ancestor graph
+
+```{r}
+# maximum within all neighbours
+devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+analyser2 = Analyser$new(omop, miSacralUlcers, note_nlp_concept_id)
+
+analyser2$mutateNodes(
+  p_x = as.double(N_pres)/N_exp,
+  probWeightedI = I*p_x,
+  entWeightedI = -I*p_x*log(p_x)
+)
+
+analyser2$nodesWithMaxScores(entWeightedI)
+analyser2$nodesWithMaxScores(probWeightedI)
+analyser2$nodesWithMaxScores(I)
+
+```
+
+c) then we look at an intermediate maximum
+
+```{r}
+# maximum within all grandparents / granchildren
+# devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+analyser2b = analyser2$clone()$longestPaths(2)
+analyser2b$nodesWithMaxScores(entWeightedI)
+analyser2b$nodesWithMaxScores(probWeightedI)
+analyser2b$nodesWithMaxScores(I)
+
+```
+# Generate machine learning matrix
+
+Experimental setup. Create ML training sets based on different data:
+
+* Raw - unexpanded, unfiltered concept codes, with okapiBM25 scores
+* Expanded - hierarchically expanded, unfiltered concept codes, with okapiBM25 scores
+* MI filtered - hierarchically expanded, MI filtered concept codes, with okapiBM25 scores
+* Ent weighted MI filtered - hierarchically expanded, Entropy weighted MI filtered concept codes, with okapiBM25 scores
+* Prob weighted MI filtered - hierarchically expanded, Prob weighted MI filtered concept codes, with okapiBM25 scores
+
+
+
+TODO: 
+
+* Co-occurrence redundancy of features
+
+## collect feature sets
+
+```{r}
+devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+
+rawFeats =  antibioticMI %>% filter(antibiotic=="Trimethoprim") %>% rename(concept_id = note_nlp_concept_id)
+expandedFeats =  antibioticMIExpanded %>% filter(antibiotic=="Trimethoprim") %>% rename(concept_id = note_nlp_concept_id)
+
+analyser3 = Analyser$new(omop,  expandedFeats, concept_id)
+analyser3$mutateNodes(
+  p_x = as.double(N_pres)/N_exp,
+  probWeightedI = I*p_x,
+  entWeightedI = -I*p_x*log(p_x)
+)
+
+entWtFeats = analyser3$nodesWithMaxScores(entWeightedI)
+probWtFeats = analyser3$nodesWithMaxScores(probWeightedI)
+pureMIFeats = analyser3$nodesWithMaxScores(I)
+
+# also do this with more local maxima - maximum of 1 hop up or down...
+
+analyser4 = analyser3$clone()$longestPaths()
+
+entWtFeats2 = analyser4$nodesWithMaxScores(entWeightedI)
+probWtFeats2 = analyser4$nodesWithMaxScores(probWeightedI)
+pureMIFeats2 = analyser4$nodesWithMaxScores(I)
+
+# also do this with intermediate (i.e. up to 2 hops in each direction) maxima...
+
+analyser5 = analyser3$clone()$longestPaths(2)
+
+entWtFeats3 = analyser5$nodesWithMaxScores(entWeightedI)
+probWtFeats3 = analyser5$nodesWithMaxScores(probWeightedI)
+pureMIFeats3 = analyser5$nodesWithMaxScores(I)
+
+featureSets = list(
+  list(
+    expansion="no expansion",
+    filtering="no filtering",
+    maxima="na",
+    features=rawFeats
+  ),
+  list(
+    expansion="expansion",
+    filtering="no filtering",
+    maxima="na",
+    features=expandedFeats
+  ),
+  list(
+    expansion="expansion",
+    filtering="entropy weighted MI",
+    maxima="unlimited hierarchy",
+    features=entWtFeats
+  ),
+  list(
+    expansion="expansion",
+    filtering="entropy weighted MI",
+    maxima="1 level hierarchy",
+    features=entWtFeats2
+  ),
+  list(
+    expansion="expansion",
+    filtering="entropy weighted MI",
+    maxima="2 level hierarchy",
+    features=entWtFeats3
+  ),
+  list(
+    expansion="expansion",
+    filtering="probability weighted MI",
+    maxima="unlimited hierarchy",
+    features=probWtFeats
+  ),
+  list(
+    expansion="expansion",
+    filtering="probability weighted MI",
+    maxima="1 level hierarchy",
+    features=probWtFeats2
+  ),
+  list(
+    expansion="expansion",
+    filtering="probability weighted MI",
+    maxima="2 level hierarchy",
+    features=probWtFeats3
+  ),
+  list(
+    expansion="expansion",
+    filtering="unweighted MI",
+    maxima="unlimited hierarchy",
+    features=pureMIFeats
+  ),
+  list(
+    expansion="expansion",
+    filtering="unweighted MI",
+    maxima="1 level hierarchy",
+    features=pureMIFeats2
+  ),
+  list(
+    expansion="expansion",
+    filtering="unweighted MI",
+    maxima="2 level hierarchy",
+    features=pureMIFeats3
+  )
+)
+
+```
+
+
+
+
 
 ```{r}
 # devtools::load_all("~/Git/tidy-info-stats")
@@ -207,20 +457,64 @@ saveRDS(trimethoprimTrainingSet, file = "~/Dropbox/antibioticResistance/data/tri
 expect_equal(nrow(trimethoprimTrainingSet$matrix),length(trimethoprimTrainingSet$outcome))
 ```
 
+## LiblineaR models
+
 ```{r}
-trimethoprimDataExpanded = antibioticSetExpanded %>% filter(antibiotic=="Trimethoprim")
 
-trimethoprimTrainingSetExpanded = trimethoprimDataExpanded %>%
-  omop$getConceptNames() %>% compute() %>% collectAsTrainingSet(
-  sample_id, sensitivity, note_nlp_concept_id, norm_okapi_bm25, featureNameVar=note_nlp_concept_name)
+for(featureSet in featureSets) {
+  
+  message(paste0("Sample: ",featureSet$expansion," - ",featureSet$filtering," - ",featureSet$maxima))
+  
+  trimethoprimData = antibioticSetExpanded %>% filter(antibiotic=="Trimethoprim") %>% rename(concept_id = note_nlp_concept_id) %>% semi_join(featureSet$features, by="concept_id")
+  
+  ts = trimethoprimData %>%
+    omop$getConceptNames() %>% compute() %>% collectAsTrainingSet(
+      sample_id, sensitivity, concept_id, norm_okapi_bm25, featureNameVar=concept_name)
 
-saveRDS(trimethoprimTrainingSetExpanded, file = "~/Dropbox/antibioticResistance/data/trimethoprimTrainingSetExpanded.rds")
+  # saveRDS(trimethoprimTrainingSetExpanded, file = paste0("~/Dropbox/antibioticResistance/data/trimethoprimTrainingSetExpanded.rds")
+  samples = length(ts$outcome)
+  train = sample(1:samples,floor(samples*0.8))
+  
+  tmpSm = tidyinfostats::sparseMatrixToSparseMCsr(ts$matrix)
 
-# Save an object to a file
+  xTrain = tmpSm[train,]
+  xTest = tmpSm[-train,]
+  yTrain = ts$outcome[train]
+  yTest = ts$outcome[-train]
 
-# Restore the object
-# readRDS(file = "~/Dropbox/antibioticResistance/data/trimethoprimMatrix.rds")
-# readRDS(file = "~/Dropbox/antibioticResistance/data/trimethoprimOutcome.rds")
+  wi = c(Resistant=2.5,Sensitive=1)
+  m=LiblineaR::LiblineaR(data=xTrain,target=yTrain,type=0,cost=1,verbose=FALSE,wi=wi,bias=0)
+
+  # Scale the test data
+  # s2=xTest # scale(xTest,attr(s,"scaled:center"),attr(s,"scaled:scale"))
+  # varImp = m$W
+  # names(varImp) <- colnames(trimethoprimSparseMatrix)
+
+  varImp = tibble(
+    name = ts$colLabels,
+    weight = m$W[1:length(ts$colLabels)]
+  ) %>% mutate(importance = abs(weight))
+
+  # Make prediction
+  #pr=FALSE
+  #if(bestType==0 || bestType==6 || bestType==7) pr=TRUE
+
+  p=predict(m,xTest,proba=TRUE,decisionValues=TRUE)
+
+  # Display confusion matrix
+  # predResult = data.frame(p$probabilities) %>% mutate(actual = yTest, pred = p$predictions)
+  # ggplot(predResult, aes(x=Sensitive,colour=actual))+geom_density()
+  # predResult %>% group_by(actual,pred) %>% count()
+  
+  # TODO: test this:
+  cr = ClassifierResult$fromPredictions(p$probabilities,yTest)
+  cr$plotRoc()
+  
+  res=table(p$predictions,yTest)
+  print(res)
+  
+}
+
 
 ```
 ## family of cost weighted models
@@ -244,9 +538,9 @@ saveRDS(trimethoprimTrainingSetExpanded, file = "~/Dropbox/antibioticResistance/
 
 for (ts in list(trimethoprimTrainingSet,trimethoprimTrainingSetExpanded)) {
 
-  ts = tidyIris() %>% mutate(
-    outcome = ifelse(as.character(outcome)=="setosa","Resistant","Sensitive")
-  ) %>% collectAsTrainingSet(sample,outcome,feature,value)
+  # ts = tidyIris() %>% mutate(
+  #   outcome = ifelse(as.character(outcome)=="setosa","Resistant","Sensitive")
+  # ) %>% collectAsTrainingSet(sample,outcome,feature,value)
   
   samples = length(ts$outcome)
   train = sample(1:samples,floor(samples*0.8))
@@ -280,12 +574,16 @@ for (ts in list(trimethoprimTrainingSet,trimethoprimTrainingSetExpanded)) {
   p=predict(m,xTest,proba=TRUE,decisionValues=TRUE)
 
   # Display confusion matrix
-  predResult = data.frame(p$probabilities) %>% mutate(actual = yTest, pred = p$predictions)
+  # predResult = data.frame(p$probabilities) %>% mutate(actual = yTest, pred = p$predictions)
 
-  ggplot(predResult, aes(x=Sensitive,colour=actual))+geom_density()
+  # ggplot(predResult, aes(x=Sensitive,colour=actual))+geom_density()
 
-  predResult %>% group_by(actual,pred) %>% count()
-
+  # predResult %>% group_by(actual,pred) %>% count()
+  
+  # TODO: test this:
+  cr = ClassifierResult$fromPredictions(p$probabilities,yTest)
+  cr$plotRoc()
+  
   res=table(p$predictions,yTest)
   print(res)
 }

@@ -15,7 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 # library(tidygraph)
 # library(ggraph)
 
-omop$finalize()
+# omop$finalize()
+devtools::load_all("~/Git/tidy-info-stats")
 devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
 omop = Omop$new()
 s = Searcher$new(omop)
@@ -23,15 +24,39 @@ s = Searcher$new(omop)
 
 ```{r}
 # conduct a simple search and return result in df
-myocInf = Searcher$fromSearch(omop,"%myoc%inf%")
-myocInf$summary()
+# myocInf = Searcher$fromSearch(omop,"%myoc%inf%")
+# myocInf$summary()
+```
+
+```{r}
+
+devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+
+acuteSTEMI = Searcher$fromSearch(omop, "Acute nontransmural myocardial infarction")
+acuteSTEMI$expandAncestorConcepts(max=100)
+analyser = Analyser$fromSearcher(acuteSTEMI)
+analyser$longestPaths()
+# tgraph = analyser$toTidygraph()
+# analyser$plotConceptNetwork()
+# tgraph %>% plotConcepts()
+```
+
+```{r}
+# glimpse(analyser$nodes)
+# glimpse(analyser$edges)
+devtools::load_all("~/Git/standard-print-output/")
+graph = analyser$toDiagrammeR()
+#graph %>% standardPrintOutput::saveGraph("~/Dropbox/threadAnalysis/vocab/acuteMINetwork",maxWidth=10,maxHeight = 10)
+graph %>% standardPrintOutput::saveFullPageGraphLandscape("~/Dropbox/threadAnalysis/vocab/acuteMINetwork") #,maxWidth=100,maxHeight = 100)
+
+
 ```
 
 # find used concepts in df
 
 ```{r}
-measurementDf = Searcher$fromDataframe(omop$measurement, measurement_concept_id)
-valuesDf = Searcher$fromDataframe(omop$measurement, value_as_concept_id)
+measurementDf = Searcher$fromDataframe(omop, omop$measurement, measurement_concept_id)
+valuesDf = Searcher$fromDataframe(omop, omop$measurement, value_as_concept_id)
 ```
 
 # find concepts based on the code
@@ -64,9 +89,9 @@ labTestValues = omop$measurement %>%
   omop$getConceptNames() %>% 
   arrange(desc(count)) %>% collect()
 
-testConcepts = Searcher$fromDataframe(labTestValues,measurement_concept_id)
+testConcepts = Searcher$fromDataframe(omop, labTestValues,measurement_concept_id)
 
-valueConcepts = Searcher$fromDataframe(labTestValues,value_as_concept_id)
+valueConcepts = Searcher$fromDataframe(omop, labTestValues,value_as_concept_id)
 
 generalMicroMeasurement = testConcepts$clone()$applyFilter(
   (concept_name %like% "%culture%") |
