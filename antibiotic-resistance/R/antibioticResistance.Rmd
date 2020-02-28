@@ -21,6 +21,7 @@ devtools::load_all("~/Git/standard-print-output/")
 theme_set(standardPrintOutput::defaultFigureLayout())
 # devtools::install_github("terminological/tidy-info-stats")
 devtools::load_all("~/Git/tidy-info-stats/")
+devtools::load_all("~/Git/classifier-result/")
 # library(tidyinfostats)
 
 
@@ -439,31 +440,34 @@ featureSets = list(
 
 
 ```{r}
-# devtools::load_all("~/Git/tidy-info-stats")
-# https://rpubs.com/kelsimp/10992
-
-trimethoprimData = antibioticSet %>% filter(antibiotic=="Trimethoprim")
-
-## TODO: refactor this to a single function call with matrix and features
-## test ensure samples are correctly ordered.
-
-trimethoprimTrainingSet = trimethoprimData %>%
-  omop$getConceptNames() %>% compute() %>% collectAsTrainingSet(
-  sample_id, sensitivity, note_nlp_concept_id, norm_okapi_bm25, featureNameVar=note_nlp_concept_name)
-
-
-saveRDS(trimethoprimTrainingSet, file = "~/Dropbox/antibioticResistance/data/trimethoprimTrainingSet.rds")
-
-expect_equal(nrow(trimethoprimTrainingSet$matrix),length(trimethoprimTrainingSet$outcome))
+# # devtools::load_all("~/Git/tidy-info-stats")
+# # https://rpubs.com/kelsimp/10992
+# 
+# trimethoprimData = antibioticSet %>% filter(antibiotic=="Trimethoprim")
+# 
+# ## TODO: refactor this to a single function call with matrix and features
+# ## test ensure samples are correctly ordered.
+# 
+# trimethoprimTrainingSet = trimethoprimData %>%
+#   omop$getConceptNames() %>% compute() %>% collectAsTrainingSet(
+#   sample_id, sensitivity, note_nlp_concept_id, norm_okapi_bm25, featureNameVar=note_nlp_concept_name)
+# 
+# 
+# saveRDS(trimethoprimTrainingSet, file = "~/Dropbox/antibioticResistance/data/trimethoprimTrainingSet.rds")
+# 
+# expect_equal(nrow(trimethoprimTrainingSet$matrix),length(trimethoprimTrainingSet$outcome))
 ```
 
 ## LiblineaR models
 
 ```{r}
+comparison = ClassifierComparison$new()
+varImp = NULL
 
 for(featureSet in featureSets) {
   
-  message(paste0("Sample: ",featureSet$expansion," - ",featureSet$filtering," - ",featureSet$maxima))
+  title = paste0(featureSet$expansion," - ",featureSet$filtering," - ",featureSet$maxima)
+  message(title)
   
   trimethoprimData = antibioticSetExpanded %>% filter(antibiotic=="Trimethoprim") %>% rename(concept_id = note_nlp_concept_id) %>% semi_join(featureSet$features, by="concept_id")
   
@@ -490,10 +494,12 @@ for(featureSet in featureSets) {
   # varImp = m$W
   # names(varImp) <- colnames(trimethoprimSparseMatrix)
 
-  varImp = tibble(
-    name = ts$colLabels,
-    weight = m$W[1:length(ts$colLabels)]
-  ) %>% mutate(importance = abs(weight))
+  varImp = varImp %>% bind_rows(
+    tibble(
+      name = ts$colLabels,
+      weight = m$W[1:length(ts$colLabels)]
+    ) %>% mutate(importance = abs(weight)) %>% mutate(title=title)
+  )
 
   # Make prediction
   #pr=FALSE
@@ -508,125 +514,64 @@ for(featureSet in featureSets) {
   
   # TODO: test this:
   cr = ClassifierResult$fromPredictions(p$probabilities,yTest)
-  cr$plotRoc()
-  
-  res=table(p$predictions,yTest)
-  print(res)
+  comparison$withResult(list(title=title),cr)
   
 }
 
+#varImp
+comparison$compareDistributionStats()
 
 ```
 ## family of cost weighted models
 
 * TODO: adjust cost wieghts for a range of outcomes
-* TODO: calculate models
+* calculate models
 * TODO: compare variable importance from log regression to MI based importance
-* TODO: generate roc curves for models
+* generate roc curves for models
 * TODO: optimise cut-off for maximum value
 
 ## improving input data
 
-* DONE: Data set including hierarchical expansion of TFIDF
+* Data set including hierarchical expansion of TFIDF
 * TODO: MI Cooccurence (within patient (aka sample)? within outcome?)
 * TODO: adjustment of MI between feature and outcome - clustering?
 * TODO: compare variable importance from log regression to MI based importance
 * TODO: cost weighting of feature MI
 * TODO: Dimensionality reduction? 
 
+
+
 ```{r}
+# using a ml algorithm
 
-for (ts in list(trimethoprimTrainingSet,trimethoprimTrainingSetExpanded)) {
-
-  # ts = tidyIris() %>% mutate(
-  #   outcome = ifelse(as.character(outcome)=="setosa","Resistant","Sensitive")
-  # ) %>% collectAsTrainingSet(sample,outcome,feature,value)
-  
-  samples = length(ts$outcome)
-  train = sample(1:samples,floor(samples*0.8))
-  
-  tmpSm = tidyinfostats::sparseMatrixToSparseMCsr(ts$matrix)
-
-  xTrain = tmpSm[train,]
-  xTest = tmpSm[-train,]
-  yTrain = ts$outcome[train]
-  yTest = ts$outcome[-train]
-
-  wi = c(Resistant=2.5,Sensitive=1)
-  
-  # Re-train best model with best cost value.
-  m=LiblineaR::LiblineaR(data=xTrain,target=yTrain,type=0,cost=1,verbose=FALSE,wi=wi,bias=0)
-
-  # Scale the test data
-  # s2=xTest # scale(xTest,attr(s,"scaled:center"),attr(s,"scaled:scale"))
-  # varImp = m$W
-  # names(varImp) <- colnames(trimethoprimSparseMatrix)
-
-  varImp = tibble(
-    name = ts$colLabels,
-    weight = m$W[1:length(ts$colLabels)]
-  ) %>% mutate(importance = abs(weight))
-
-  # Make prediction
-  #pr=FALSE
-  #if(bestType==0 || bestType==6 || bestType==7) pr=TRUE
-
-  p=predict(m,xTest,proba=TRUE,decisionValues=TRUE)
-
-  # Display confusion matrix
-  # predResult = data.frame(p$probabilities) %>% mutate(actual = yTest, pred = p$predictions)
-
-  # ggplot(predResult, aes(x=Sensitive,colour=actual))+geom_density()
-
-  # predResult %>% group_by(actual,pred) %>% count()
-  
-  # TODO: test this:
-  cr = ClassifierResult$fromPredictions(p$probabilities,yTest)
-  cr$plotRoc()
-  
-  res=table(p$predictions,yTest)
-  print(res)
-}
+# for (ts in c(trimethoprimTrainingSet,trimethoprimTrainingSetExpanded)) {
+#   
+#   #ts = tidyIris() %>% mutate(
+#   #  outcome = ifelse(as.character(outcome)=="setosa","Resistant","Sensitive")
+#   #) %>% collectAsTrainingSet(sample,outcome,feature,value)
+# 
+#   samples = length(ts$outcome)
+#   train = sample(1:samples,floor(samples*0.8))
+#   
+#   xTrain = ts$matrix[train,]
+#   xTest = ts$matrix[-train,]
+#   yTrain = ts$outcome[train]
+#   yTest = ts$outcome[-train]
+# 
+#   wi = c(Resistant=2,Sensitive=1)
+# 
+#   #Malley et al. (2012).
+#   rg = ranger::ranger(x=xTrain, y=yTrain, importance="impurity", probability = TRUE, class.weights = wi)
+#   rg$variable.importance
+#   
+#   rg.predict = predict(rg,data=xTest)
+#   
+#   predResult = data.frame(rg.predict$predictions) %>% mutate(actual = yTest, pred = as.factor(ifelse(Sensitive>0.5,"Sensitive","Resistant")))
+#   
+#   ggplot(predResult, aes(x=Sensitive,colour=actual))+geom_density()
+# }
 
 ```
 
-```{r}
-for (ts in c(trimethoprimTrainingSet,trimethoprimTrainingSetExpanded)) {
-  
-  #ts = tidyIris() %>% mutate(
-  #  outcome = ifelse(as.character(outcome)=="setosa","Resistant","Sensitive")
-  #) %>% collectAsTrainingSet(sample,outcome,feature,value)
-
-  samples = length(ts$outcome)
-  train = sample(1:samples,floor(samples*0.8))
-  
-  xTrain = ts$matrix[train,]
-  xTest = ts$matrix[-train,]
-  yTrain = ts$outcome[train]
-  yTest = ts$outcome[-train]
-
-  wi = c(Resistant=2,Sensitive=1)
-
-  #Malley et al. (2012).
-  rg = ranger::ranger(x=xTrain, y=yTrain, importance="impurity", probability = TRUE, class.weights = wi)
-  rg$variable.importance
-  
-  rg.predict = predict(rg,data=xTest)
-  
-  predResult = data.frame(rg.predict$predictions) %>% mutate(actual = yTest, pred = as.factor(ifelse(Sensitive>0.5,"Sensitive","Resistant")))
-  
-  ggplot(predResult, aes(x=Sensitive,colour=actual))+geom_density()
-}
-
-```
-
-```{r}
-
-xTest = trimethoprimSparseMatrix[-train,]
-yTest = trimethoprimOutcome[-train]
-
-
-
-```
 
 

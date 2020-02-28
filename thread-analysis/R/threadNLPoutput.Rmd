@@ -1,0 +1,31 @@
+---
+title: "Analyse the content of the "
+output: html_document
+knit: (function(inputFile, encoding,...) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "~/Dropbox/threadAnalysis/working") })
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(ggplot2)
+devtools::load_all("~/Git/tidy-info-stats")
+devtools::load_all("~/Git/standard-print-output")
+# detach("package:standardPrintOutput", unload=TRUE)
+library(standardPrintOutput)
+theme_set(defaultFigureLayout())
+
+# ---- database setup ----
+setwd('~/Dropbox/threadAnalysis/summary')
+config <- config::get(file="~/Dropbox/db.yaml")
+omop <- Omop$new("omop",config)
+```
+
+```{r}
+View(omop$note_nlp %>% select(lexical_variant,note_nlp_concept_id) %>% omop$getConceptNames() %>% head(1000) %>% collect())
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
