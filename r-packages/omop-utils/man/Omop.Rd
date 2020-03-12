@@ -34,6 +34,10 @@ df \%>\% omop$getConceptNames()
 \describe{
 \item{\code{con}}{an connection the omop database}
 
+\item{\code{resultsCon}}{an connection the omop results database}
+
+\item{\code{resultsCon}}{an connection the omop results database}
+
 \item{\code{care_site}}{omop table}
 
 \item{\code{cdm_source}}{omop table}
@@ -113,11 +117,34 @@ df \%>\% omop$getConceptNames()
 \itemize{
 \item \href{#method-new}{\code{Omop$new()}}
 \item \href{#method-finalize}{\code{Omop$finalize()}}
+\item \href{#method-forceCalculation}{\code{Omop$forceCalculation()}}
+\item \href{#method-useCached}{\code{Omop$useCached()}}
+\item \href{#method-persist}{\code{Omop$persist()}}
 \item \href{#method-buildVocabSet}{\code{Omop$buildVocabSet()}}
 \item \href{#method-buildCohort}{\code{Omop$buildCohort()}}
 \item \href{#method-getConceptNames}{\code{Omop$getConceptNames()}}
 \item \href{#method-expandAncestorConcepts}{\code{Omop$expandAncestorConcepts()}}
-\item \href{#method-tidyTempTable}{\code{Omop$tidyTempTable()}}
+\item \href{#method-getSpanningGraphEdges}{\code{Omop$getSpanningGraphEdges()}}
+\item \href{#method-getVisits}{\code{Omop$getVisits()}}
+\item \href{#method-getDemographics}{\code{Omop$getDemographics()}}
+\item \href{#method-getObserations}{\code{Omop$getObserations()}}
+\item \href{#method-getProcedures}{\code{Omop$getProcedures()}}
+\item \href{#method-getMeasurements}{\code{Omop$getMeasurements()}}
+\item \href{#method-getConditions}{\code{Omop$getConditions()}}
+\item \href{#method-getNotes}{\code{Omop$getNotes()}}
+\item \href{#method-getNoteNlp}{\code{Omop$getNoteNlp()}}
+\item \href{#method-getDrugs}{\code{Omop$getDrugs()}}
+\item \href{#method-getDevices}{\code{Omop$getDevices()}}
+\item \href{#method-getDeviceConcepts}{\code{Omop$getDeviceConcepts()}}
+\item \href{#method-getDrugConcepts}{\code{Omop$getDrugConcepts()}}
+\item \href{#method-getNoteNlpConcepts}{\code{Omop$getNoteNlpConcepts()}}
+\item \href{#method-getConditionConcepts}{\code{Omop$getConditionConcepts()}}
+\item \href{#method-getMeasurementConcepts}{\code{Omop$getMeasurementConcepts()}}
+\item \href{#method-getMeasurementValueConcepts}{\code{Omop$getMeasurementValueConcepts()}}
+\item \href{#method-getProcedureConcepts}{\code{Omop$getProcedureConcepts()}}
+\item \href{#method-getProcedureModifierConcepts}{\code{Omop$getProcedureModifierConcepts()}}
+\item \href{#method-getObservationConcepts}{\code{Omop$getObservationConcepts()}}
+\item \href{#method-inferType}{\code{Omop$inferType()}}
 \item \href{#method-clone}{\code{Omop$clone()}}
 }
 }
@@ -126,7 +153,11 @@ df \%>\% omop$getConceptNames()
 \subsection{Method \code{new()}}{
 Sets up an omop database connection
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Omop$new(dbname = "omop", config = config::get(file = "~/Dropbox/db.yaml"))}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Omop$new(
+  dbname = "omop",
+  resultsdbname = "omopResults",
+  config = config::get(file = "~/Dropbox/db.yaml")
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -134,7 +165,11 @@ Sets up an omop database connection
 \describe{
 \item{\code{dbname}}{String value of dbname defaults to "omop".}
 
+\item{\code{resultsdbname}}{String value of dbname defaults to "omopResults".}
+
 \item{\code{config}}{Config object from yaml file. (defaults to config::get(file="~/Dropbox/db.yaml"))}
+
+\item{\code{con}}{an ODBC connection to the omop database}
 }
 \if{html}{\out{</div>}}
 }
@@ -155,6 +190,41 @@ Closes the omop database connection
 \if{html}{\out{<div class="r">}}\preformatted{Omop$finalize()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-forceCalculation"></a>}}
+\subsection{Method \code{forceCalculation()}}{
+force recaluclation of cached results
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$forceCalculation()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-useCached"></a>}}
+\subsection{Method \code{useCached()}}{
+persist a dbplyr result in the omopResults database
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$useCached()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-persist"></a>}}
+\subsection{Method \code{persist()}}{
+persist a dbplyr result in the omopResults database.
+Do not combine with compute(). MS SQL specific code.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$persist(tableName, remoteDf, ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{passed to dbplyr::copy_to - of particular interest is unique_indexes = list("x","y"), indexes = list("x","y"), analyze = TRUE}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-buildVocabSet"></a>}}
@@ -217,7 +287,7 @@ df \%>\% omop$getConceptNames()
 \subsection{Method \code{expandAncestorConcepts()}}{
 get ancestors for a grouped set of concepts preserving grouping and count information
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Omop$expandAncestorConcepts(groupedDf, conceptIdVar)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Omop$expandAncestorConcepts(groupedDf, conceptIdVar, countVar = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -231,31 +301,198 @@ get ancestors for a grouped set of concepts preserving grouping and count inform
 }
 \subsection{Returns}{
 the analyser with expanded groupedDf including extra concepts
-Drops a temporary table created by dbplyr
-
-This function could have major side effects and does not check to
-see if the table is still in use anywhere to use with caution only
-if you know that no other current queries depend on it
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tidyTempTable"></a>}}
-\subsection{Method \code{tidyTempTable()}}{
+\if{html}{\out{<a id="method-getSpanningGraphEdges"></a>}}
+\subsection{Method \code{getSpanningGraphEdges()}}{
+for a set of concepts get all the hierarchical relationships between all concept pairs
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Omop$tidyTempTable(tableRef, dryRun = debuggingState(), force = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getSpanningGraphEdges(df, conceptIdVar, min = 0L, max = 1000L)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{tableRef}}{a dbplyr backed dataframe}
+\item{\code{df}}{a data frame containing concept ids}
 
-\item{\code{dryRun}}{defaults to debuggingState(). will only log intention when TRUE. set to FALSE to actually drop the table.}
+\item{\code{conceptIdVar}}{the concept variable}
 
-\item{\code{force}}{defaults to FALSE. If an attemp is made to drop a non temporary table it will only be attempted if this flag is TRUE}
+\item{\code{min}}{the minimum distance to consider}
+
+\item{\code{max}}{the maximum distance to consider}
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Returns}{
+a set of edges with
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getVisits"></a>}}
+\subsection{Method \code{getVisits()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getVisits(visit_type = omopCodes$visit_type \%>\% anyOf(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDemographics"></a>}}
+\subsection{Method \code{getDemographics()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getDemographics(gender = omopCodes$gender \%>\% anyOf(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getObserations"></a>}}
+\subsection{Method \code{getObserations()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getObserations(conceptSet = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getProcedures"></a>}}
+\subsection{Method \code{getProcedures()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getProcedures(conceptSet = NULL, modfierConceptSet = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getMeasurements"></a>}}
+\subsection{Method \code{getMeasurements()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getMeasurements(conceptSet = NULL, valueConceptSet = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getConditions"></a>}}
+\subsection{Method \code{getConditions()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getConditions(conceptSet = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getNotes"></a>}}
+\subsection{Method \code{getNotes()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getNotes(note_type = NULL, note_class = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getNoteNlp"></a>}}
+\subsection{Method \code{getNoteNlp()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getNoteNlp(
+  conceptSet = NULL,
+  note_type = NULL,
+  note_class = NULL,
+  note_nlp_temporal = NULL,
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDrugs"></a>}}
+\subsection{Method \code{getDrugs()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getDrugs(conceptSet = NULL, drug_route = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDevices"></a>}}
+\subsection{Method \code{getDevices()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getDevices(conceptSet = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDeviceConcepts"></a>}}
+\subsection{Method \code{getDeviceConcepts()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getDeviceConcepts()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDrugConcepts"></a>}}
+\subsection{Method \code{getDrugConcepts()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getDrugConcepts()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getNoteNlpConcepts"></a>}}
+\subsection{Method \code{getNoteNlpConcepts()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getNoteNlpConcepts()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getConditionConcepts"></a>}}
+\subsection{Method \code{getConditionConcepts()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getConditionConcepts()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getMeasurementConcepts"></a>}}
+\subsection{Method \code{getMeasurementConcepts()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getMeasurementConcepts()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getMeasurementValueConcepts"></a>}}
+\subsection{Method \code{getMeasurementValueConcepts()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getMeasurementValueConcepts()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getProcedureConcepts"></a>}}
+\subsection{Method \code{getProcedureConcepts()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getProcedureConcepts()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getProcedureModifierConcepts"></a>}}
+\subsection{Method \code{getProcedureModifierConcepts()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getProcedureModifierConcepts()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getObservationConcepts"></a>}}
+\subsection{Method \code{getObservationConcepts()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$getObservationConcepts()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-inferType"></a>}}
+\subsection{Method \code{inferType()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Omop$inferType(df)}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

@@ -16,8 +16,16 @@ theme_set(defaultFigureLayout())
 
 # ---- database setup ----
 setwd('~/Dropbox/threadAnalysis/summary')
-config <- config::get(file="~/Dropbox/db.yaml")
-omop <- Omop$new("omop",config)
+```
+
+```{r}
+omop$finalize()
+devtools::load_all("~/Git/etl-analysis/r-packages/omop-utils/")
+# config <- config::get(file="~/Dropbox/db.yaml")
+omop <- Omop$new("omop")#,config)
+
+testPersonDf = tibble(person_id = c(347,379,351))
+tmpVisits = omop$getVisits() %>% omop$getConceptNames() %>% collect()
 ```
 
 ```{r}

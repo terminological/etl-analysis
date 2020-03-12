@@ -92,7 +92,7 @@ Omop = R6::R6Class("Omop", public=list(
   #' @field vocabulary omop table
   vocabulary = NULL,
 
-  #### Methods ----
+  #### Constructors ----
   #' @description Sets up an omop database connection
   #' @param con an ODBC connection to the omop database
   #' @param dbname String value of dbname defaults to "omop".
@@ -120,48 +120,49 @@ Omop = R6::R6Class("Omop", public=list(
           Port = config$port,
           bigint = "integer64");
     
-    self$care_site = dplyr::tbl(self$con, "care_site")
-    self$cdm_source = dplyr::tbl(self$con, "cdm_source")
-    self$concept = dplyr::tbl(self$con, "concept")
-    self$concept_ancestor = dplyr::tbl(self$con, "concept_ancestor")
-    self$concept_class = dplyr::tbl(self$con, "concept_class")
-    self$concept_synonym = dplyr::tbl(self$con, "concept_synonym")
-    self$concept_relationship = dplyr::tbl(self$con, "concept_relationship")
-    self$condition_era = dplyr::tbl(self$con, "condition_era")
-    self$condition_occurrence = dplyr::tbl(self$con, "condition_occurrence")
-    self$cost = dplyr::tbl(self$con, "cost")
-    self$device_exposure = dplyr::tbl(self$con, "device_exposure")
-    self$domain = dplyr::tbl(self$con, "domain")
-    self$dose_era = dplyr::tbl(self$con, "dose_era")
-    self$drug_era = dplyr::tbl(self$con, "drug_era")
-    self$drug_exposure = dplyr::tbl(self$con, "drug_exposure")
-    self$drug_strength = dplyr::tbl(self$con, "drug_strength")
-    self$fact_relationship = dplyr::tbl(self$con, "fact_relationship")
-    self$location = dplyr::tbl(self$con, "location")
-    self$location_history = dplyr::tbl(self$con, "location_history")
-    self$measurement = dplyr::tbl(self$con, "measurement")
-    self$metadata = dplyr::tbl(self$con, "metadata")
-    self$note = (dplyr::tbl(self$con,"note") %>% select(-note_text)) # varchar(max) fields have to be at end of query. in our case they are null anyway.
-    self$note_nlp = dplyr::tbl(self$con,"note_nlp")
-    self$observation = dplyr::tbl(self$con,"observation")
-    self$observation_period = dplyr::tbl(self$con,"observation_period")
-    self$payer_plan_period = dplyr::tbl(self$con,"payer_plan_period")
-    self$person = dplyr::tbl(self$con, "person")
-    self$procedure_occurrence = dplyr::tbl(self$con,"procedure_occurrence")
-    self$provider = dplyr::tbl(self$con,"provider")
-    self$relationship = dplyr::tbl(self$con,"relationship")
-    self$source_to_concept_map = dplyr::tbl(self$con,"source_to_concept_map")
-    self$specimen = dplyr::tbl(self$con,"specimen")
-    self$survey_conduct = dplyr::tbl(self$con,"survey_conduct")
-    self$visit_detail = dplyr::tbl(self$con,"visit_detail")
-    self$visit_occurrence = dplyr::tbl(self$con,"visit_occurrence")
-    self$vocabulary = dplyr::tbl(self$con,"vocabulary")
+    self$care_site = typedTbl(self$con, "care_site")
+    self$cdm_source = (typedTbl(self$con, "cdm_source") %>% select(-source_description, everything())) # varchar(max) fields have to be at end of query. 
+    self$concept = typedTbl(self$con, "concept")
+    self$concept_ancestor = typedTbl(self$con, "concept_ancestor")
+    self$concept_class = typedTbl(self$con, "concept_class")
+    self$concept_synonym = typedTbl(self$con, "concept_synonym")
+    self$concept_relationship = typedTbl(self$con, "concept_relationship")
+    self$condition_era = typedTbl(self$con, "condition_era")
+    self$condition_occurrence = typedTbl(self$con, "condition_occurrence")
+    self$cost = typedTbl(self$con, "cost")
+    self$device_exposure = typedTbl(self$con, "device_exposure")
+    self$domain = typedTbl(self$con, "domain")
+    self$dose_era = typedTbl(self$con, "dose_era")
+    self$drug_era = typedTbl(self$con, "drug_era")
+    self$drug_exposure = (typedTbl(self$con, "drug_exposure") %>% select(-sig)) # varchar(max) fields have to be at end of query. in our case they are null anyway.
+    self$drug_strength = typedTbl(self$con, "drug_strength")
+    self$fact_relationship = typedTbl(self$con, "fact_relationship")
+    self$location = typedTbl(self$con, "location")
+    self$location_history = typedTbl(self$con, "location_history")
+    self$measurement = typedTbl(self$con, "measurement")
+    self$metadata = (typedTbl(self$con, "metadata") %>% select(-value_as_string, everything())) # varchar(max) fields have to be at end of query. 
+    self$note = (typedTbl(self$con,"note") %>% select(-note_text)) # varchar(max) fields have to be at end of query. in our case they are null anyway.
+    self$note_nlp = typedTbl(self$con,"note_nlp")
+    self$observation = typedTbl(self$con,"observation")
+    self$observation_period = typedTbl(self$con,"observation_period")
+    self$payer_plan_period = typedTbl(self$con,"payer_plan_period")
+    self$person = typedTbl(self$con, "person")
+    self$procedure_occurrence = typedTbl(self$con,"procedure_occurrence")
+    self$provider = typedTbl(self$con,"provider")
+    self$relationship = typedTbl(self$con,"relationship")
+    self$source_to_concept_map = typedTbl(self$con,"source_to_concept_map")
+    self$specimen = typedTbl(self$con,"specimen")
+    self$survey_conduct = typedTbl(self$con,"survey_conduct")
+    self$visit_detail = typedTbl(self$con,"visit_detail")
+    self$visit_occurrence = typedTbl(self$con,"visit_occurrence")
+    self$vocabulary = typedTbl(self$con,"vocabulary")
   },
   
   #' @description Closes the omop database connection
   finalize = function() {
     odbc::dbDisconnect(self$con)
   },
+
 
   #' @description force recaluclation of cached results
   forceCalculation = function() {
@@ -193,10 +194,12 @@ Omop = R6::R6Class("Omop", public=list(
       try(db_drop_table(self$resultsCon, paste0("##",tableName)),TRUE) # drop the temporary table if possible
       dplyr::tbl(self$resultsCon, tableName) %>% compute(name = tableName, overwrite=TRUE)
       # access from omop databse
-      cached = dplyr::tbl(self$con, paste0("##",tableName))
+      cached = dplyr::tbl(self$con, paste0("##",tableName)) %>% self$inferType()
       return(cached)
     }
   },
+  
+  #### Factory methods ----
   
   #' @description create a new vocabulary specification
   #' @return a searcher
@@ -210,6 +213,8 @@ Omop = R6::R6Class("Omop", public=list(
   buildCohort = function(name) {
     return(Cohort$new(self,name))
   },
+  
+  #### Vocabulary specific functions ----
   
   #' @description resolve all ???_concept_id fields in result set and look them up in the concept table
   #' @details N.B. if the df is a table to lookup is done in the database, otherwise the vocab is copied accross
@@ -305,46 +310,273 @@ Omop = R6::R6Class("Omop", public=list(
       inner_join(parents, by="ancestor_concept_id", copy=TRUE) %>%
       filter(min_levels_of_separation >= local(min) & min_levels_of_separation <= local(max))
     return(edges)
+  },
+  
+  #### Specific data accessors ----
+  
+  getVisits = function(visit_type = omopCodes$visit_type %>% anyOf(), ...) {
+    tmp = self$visit_occurrence %>% 
+      filter(visit_concept_id %in% local(c(visit_type))) %>% 
+      mutate(los_days = datediff(sql("day"),visit_start_date,visit_end_date)) %>%
+      filter(...)
+    class(tmp) = c(class(tmp),"omop_visit_occurrence")
+    return(tmp)
+  },
+  
+  getDemographics = function(gender = omopCodes$gender %>% anyOf(), ...) {
+    tmp = self$person %>% filter(gender_concept_id %in% local(c(gender))) %>% filter(...)
+    class(tmp) = c(class(tmp),"omop_person")
+    return(tmp)
+  },
+  
+  #### code set accessors
+  getObserations = function(conceptSet = NULL, ...) {
+    if (any(class(conceptSet)=="Searcher")) conceptSet = conceptSet$toDataframe()
+    tmp = self$observation %>% filter(...) 
+    if (!identical(conceptSet,NULL)) tmp = tmp %>% inner_join(conceptSet %>% rename(observation_concept_id=concept_id) , by="observation_concept_id" )
+    class(tmp) = c(class(tmp),"omop_observation")
+    return(tmp)
+  },
+  
+  getProcedures = function(conceptSet = NULL, modifierConceptSet = NULL, ...) {
+    if (any(class(conceptSet)=="Searcher")) conceptSet = conceptSet$toDataframe()
+    if (any(class(modifierConceptSet)=="Searcher")) modifierConceptSet = modifierConceptSet$toDataframe()
+    tmp = self$procedure_occurrence %>% filter(...) 
+    if (!identical(conceptSet,NULL)) tmp = tmp %>% inner_join(conceptSet %>% rename(procedure_concept_id=concept_id) , by="procedure_concept_id" )
+    if (!identical(modifierConceptSet,NULL)) tmp = tmp %>% inner_join(modifierConceptSet %>% rename(modifier_concept_id=concept_id) , by="modifier_concept_id" )
+    class(tmp) = c(class(tmp),"omop_procedure_occurrence")
+    return(tmp)
+  },
+  
+  getMeasurements = function(conceptSet = NULL, valueConceptSet = NULL, ...) {
+    if (any(class(conceptSet)=="Searcher")) conceptSet = conceptSet$toDataframe()
+    if (any(class(valueConceptSet)=="Searcher")) valueConceptSet = valueConceptSet$toDataframe()
+    tmp = self$measurement %>% filter(...)
+    if (!identical(conceptSet,NULL)) tmp = tmp %>% inner_join(conceptSet %>% rename(measurement_concept_id=concept_id) , by="measurement_concept_id" )
+    if (!identical(valueConceptSet,NULL)) tmp = tmp %>% inner_join(conceptSet %>% rename(value_as_concept_id=concept_id) , by="value_as_concept_id" )
+    class(tmp) = c(class(tmp),"omop_measurement")
+    return(tmp)
+  },
+  
+  getConditions = function(conceptSet = NULL, ...) {
+    if (any(class(conceptSet)=="Searcher")) conceptSet = conceptSet$toDataframe()
+    tmp = self$condition_occurrence %>% filter(...)
+    if (!identical(conceptSet,NULL)) tmp = tmp %>% inner_join(conceptSet %>% rename(condition_concept_id=concept_id) , by="condition_concept_id" )
+    class(tmp) = c(class(tmp),"omop_condition_occurrence")
+    return(tmp)
+  },
+  
+  getNotes = function(note_type = NULL, note_class = NULL, ...) {
+    tmp = self$note %>% filter(...)
+    if (!identical(note_type, NULL)) tmp = tmp %>% filter(note_type_concept_id %in% local(c(note_type)))
+    if (!identical(note_class, NULL)) tmp = tmp %>% filter(note_class_concept_id %in% local(c(note_class)))
+    class(tmp) = c(class(tmp),"omop_note")
+    return(tmp)
+  },
+  
+  getNoteNlp = function(conceptSet = NULL, note_type = NULL, note_class = NULL, note_nlp_temporal = NULL, ...) {
+    if (any(class(conceptSet)=="Searcher")) conceptSet = conceptSet$toDataframe()
+    tmp = self$note_nlp
+    if (!identical(conceptSet,NULL)) tmp = tmp %>% inner_join(conceptSet %>% rename(note_nlp_concept_id=concept_id) , by="note_nlp_concept_id" )
+    if (!identical(note_nlp_temporal, NULL)) tmp = tmp %>% filter(note_nlp_temporal %in% local(c(note_nlp_temporal)))
+    # if (!identical(note_class, NULL)) tmp = tmp %>% filter(note_nlp_section %in% local(c(note_class))) # note_nlp_section and note_class are the same - this is specific to our omop.
+    return(self$getNotes(note_type, note_class) %>% select(note_datetime, note_id, person_id) %>% inner_join(tmp, by="note_id") %>% filter(...))
+    class(tmp) = c(class(tmp),"omop_note_nlp")
+  },
+  
+  getDrugs = function(conceptSet = NULL, drug_route = NULL, ...) {
+    if (any(class(conceptSet)=="Searcher")) conceptSet = conceptSet$toDataframe()
+    tmp = self$drug_exposure %>% filter(...)
+    if (!identical(conceptSet,NULL)) tmp = tmp %>% inner_join(conceptSet %>% rename(drug_concept_id=concept_id) , by="drug_concept_id" )
+    if (!identical(drug_route, NULL)) tmp = tmp %>% filter(route_concept_id %in% local(c(drug_route)))
+    class(tmp) = c(class(tmp),"omop_drug_exposure")
+    return(tmp)
+  },
+  
+  getDevices = function(conceptSet = NULL, ...) {
+    if (any(class(conceptSet)=="Searcher")) conceptSet = conceptSet$toDataframe()
+    tmp = self$device_exposure %>% filter(...)
+    if (!identical(conceptSet,NULL)) tmp = tmp %>% inner_join(conceptSet %>% rename(device_concept_id=concept_id) , by="device_concept_id" )
+    class(tmp) = c(class(tmp),"omop_device_exposure")
+    return(tmp)
+  },
+  
+  #### vocab set factory ----
+  getDeviceConcepts = function() {Searcher$fromDataframe(self, self$device_exposure, device_concept_id)$persist("vocabDeviceConcepts")},
+  getDrugConcepts = function() {Searcher$fromDataframe(self, self$drug_exposure, drug_concept_id)$persist("vocabDrugConcepts")},
+  getNoteNlpConcepts = function() {Searcher$fromDataframe(self, self$note_nlp, note_nlp_concept_id)$persist("vocabNoteNlpConcepts")},
+  getConditionConcepts = function() {Searcher$fromDataframe(self, self$condition_occurrence, condition_concept_id)$persist("vocabConditionConcepts")},
+  getMeasurementConcepts = function() {Searcher$fromDataframe(self, self$measurement, measurement_concept_id)$persist("vocabMeasurementConcepts")},
+  getMeasurementValueConcepts = function() {Searcher$fromDataframe(self, self$measurement, value_as_concept_id)$persist("vocabMeasurementValueConcepts")},
+  getProcedureConcepts = function() {Searcher$fromDataframe(self, self$procedure_occurrence, procedure_concept_id)$persist("vocabProcedureConcepts")},
+  getProcedureModifierConcepts = function() {Searcher$fromDataframe(self, self$procedure_occurrence, modifier_concept_id)$persist("vocabProcedureModifierConcepts")},
+  getObservationConcepts = function() {Searcher$fromDataframe(self, self$observation, observation_concept_id)$persist("vocabObservationConcepts")},
+  
+  ### Class provenance ----
+  
+  inferType = function(df) {
+    for(xName in ls(self)) {
+      x = get(xName,envir=self)
+      if (any(class(x)=="tbl")) {
+        if(all(colnames(x) %in% colnames(df))) 
+          class(df) = unique(c(class(df),paste0("omop_",xName)))
+      }
+    }
+    return(df)
+  },
+  
+  #### Standardise output ----
+  
+  #' Normalise an omop dataframe to a consistent format to construct a single feature set accross
+  #'
+  #' with the following columns:
+  #'
+  #' * cohort_person_id,
+  #' * cohort_entry_datetime,
+  #' * feature_source, e.g. measurement, observation, etc...
+  #' * feature_name,
+  #' * feature_concept_id,
+  #' * feature_value_as_number,
+  #' * feature_value_as_date,
+  #' * feature_value_as_name,
+  #' * feature_value_as_concept_id,
+  #' * feature_days_offset,
+  #' * feature_display
+  #'
+  #' or the equivalent with observation_ prefix
+  #'
+  #' @param omopDf - a df which may be a dbplyr table
+  #' @param outcome - is the
+  #' @return a dbplyr dataframe
+  normaliseColumns = function(omopDf, prefix = "feature") {
+    
+    selection = c("person_id","cohort_person_id","cohort_entry_datetime", "prefix_source", "prefix_datetime", "prefix_concept_id", "prefix_value_as_number", 
+                  "prefix_value_as_number_min", "prefix_value_as_number_max", "prefix_value_as_number_unit", "prefix_value_as_date", "prefix_value_as_text",
+                  "prefix_value_as_concept_id", "prefix_days_offset", "prefix_display", "prefix_facet_1", "prefix_facet_2", "prefix_facet_3")
+    omopDf = omopDf %>% defaultNormalisedColumns()
+    omopDf = omopDf %>% self$inferType()
+    out = NULL
+    if ("omop_condition_occurrence" %in% class(omopDf)) {
+      tmp = omopDf %>% mutate(
+        prefix_source = "omop_condition_occurrence",
+        prefix_datetime = condition_start_datetime,
+        prefix_concept_id = condition_concept_id,
+        prefix_facet_1 = condition_status_source_value
+      ) %>% select(selection) %>% standardiseOutputColumns()
+      if (identical(out,NULL)) {out = tmp} else {out = out %>% union_all(tmp)}
+    }
+    if ("omop_device_exposure" %in% class(omopDf)) {
+      tmp = omopDf %>% mutate(
+        prefix_source = "omop_device_exposure",
+        prefix_datetime = device_exposure_start_datetime,
+        prefix_concept_id = device_concept_id,
+        prefix_display = device_source_value
+      ) %>% select(selection) %>% standardiseOutputColumns()
+      if (identical(out,NULL)) {out = tmp} else {out = out %>% union_all(tmp)}
+    }
+    if ("omop_drug_exposure" %in% class(omopDf)) {
+      tmp = omopDf %>% mutate(
+        prefix_source = "omop_drug_exposure",
+        prefix_datetime = drug_exposure_start_datetime,
+        prefix_concept_id = drug_concept_id,
+        #TODO: dose in here?
+        prefix_value_as_concept_id = route_concept_id,
+        prefix_display = drug_source_value
+      ) %>% select(selection) %>% standardiseOutputColumns()
+      if (identical(out,NULL)) {out = tmp} else {out = out %>% union_all(tmp)}
+    }
+    if ("omop_measurement" %in% class(omopDf)) {
+      tmp = omopDf %>% mutate(
+        prefix_source = "omop_measurement",
+        prefix_datetime = measurement_datetime,
+        prefix_concept_id = measurement_concept_id,
+        prefix_value_as_number = value_as_number,
+        prefix_value_as_number_min = range_low,
+        prefix_value_as_number_max = range_high,
+        prefix_value_as_number_unit = unit_source_value,
+        prefix_value_as_concept_id = value_as_concept_id,
+        prefix_days_offset = days_offset,
+        prefix_display = paste0(measurement_source_value,": ",value_source_value," ",unit_source_value)
+      ) %>% select(selection) %>% standardiseOutputColumns()
+      if (identical(out,NULL)) {out = tmp} else {out = out %>% union_all(tmp)}
+    }
+    if ("omop_note" %in% class(omopDf)) {
+      tmp = omopDf %>% mutate(
+        prefix_source = "omop_note",
+        prefix_datetime = note_datetime,
+        prefix_concept_id = note_class_concept_id,
+        prefix_value_as_concept_id = note_type_concept_id,
+        prefix_display = note_title
+      ) %>% select(selection) %>% standardiseOutputColumns()
+      if (identical(out,NULL)) {out = tmp} else {out = out %>% union_all(tmp)}
+    }
+    if ("omop_note_nlp" %in% class(omopDf)) {
+      tmp = omopDf %>% mutate(
+        prefix_source = "omop_note_nlp",
+        prefix_datetime = note_datetime, # this is always here because you can;t get a note_nlp without a note
+        prefix_concept_id = note_nlp_concept_id,
+        prefix_value_as_text = term_exists, # this is an indicator of negation
+        prefix_value_as_omop_id = note_id,
+        prefix_facet_1 = as.character(lexical_variant),
+        prefix_facet_2 = as.character(term_temporal),
+        prefix_facet_3 = term_modifiers #creates a varchar(max) whcih may breaks odbc library
+      ) %>% select(selection) %>% standardiseOutputColumns()
+      if (identical(out,NULL)) {out = tmp} else {out = out %>% union_all(tmp)}
+    }
+    if ("omop_observation" %in% class(omopDf)) {
+      tmp = omopDf %>% mutate(
+        prefix_source = "omop_observation",
+        prefix_datetime = observation_datetime,
+        prefix_concept_id = observation_concept_id,
+        prefix_value_as_number = value_as_number,
+        prefix_value_as_number_unit = unit_source_value,
+        prefix_value_as_date = value_as_datetime,
+        prefix_value_as_text = value_as_string,
+        prefix_value_as_concept_id = value_as_concept_id,
+        prefix_facet_1 = as.character(qualifier_concept_id)
+      ) %>% select(selection) %>% standardiseOutputColumns()
+      if (identical(out,NULL)) {out = tmp} else {out = out %>% union_all(tmp)}
+    }
+    if ("omop_procedure_occurrence" %in% class(omopDf)) {
+      tmp = omopDf %>% mutate(
+        prefix_source = "omop_procedure_occurrence",
+        prefix_datetime = procedure_datetime,
+        prefix_concept_id = procedure_concept_id,
+        prefix_value_as_concept_id = modifier_concept_id
+      ) %>% select(selection) %>% standardiseOutputColumns()
+      if (identical(out,NULL)) {out = tmp} else {out = out %>% union_all(tmp)}
+    }
+    if("omop_visit_occurrence" %in% class(omopDf)) {
+      tmp = omopDf %>% mutate(
+        prefix_source = "omop_visit_occurrence",
+        prefix_datetime = visit_start_datetime,
+        prefix_concept_id = visit_concept_id,
+        prefix_value_as_number = los_days,
+        prefix_value_as_number_unit = "days",
+        prefix_value_as_date = visit_end_datetime
+      ) %>% select(selection) %>% standardiseOutputColumns()
+      if (identical(out,NULL)) {out = tmp} else {out = out %>% union_all(tmp)}
+    }
+    #Label concepts
+    
+    out = out %>% left_join(self$concept %>% select(prefix_value_as_concept_id=concept_id,concept_name), by="prefix_value_as_concept_id") %>%
+      mutate(prefix_value_as_text = ifelse(is.na(prefix_value_as_text),concept_name,prefix_value_as_text)) %>% select(-concept_name)
+    
+    out = out %>% left_join(self$concept %>% select(prefix_concept_id=concept_id,concept_name), by="prefix_concept_id") %>%
+      mutate(prefix_display = ifelse(is.na(prefix_display),
+                                     ifelse(is.na(prefix_value_as_text),concept_name,paste0(concept_name,": ",prefix_value_as_text)),
+                                     prefix_display)) %>% select(-concept_name)
+    
+    #Rename for feature set or outcome set
+    ren = selection %>% stringr::str_replace("prefix",prefix)
+    names(selection) = ren
+    selection = selection[ren!=selection]
+    if(!is.null(selection)) out = out %>% rename(selection)
+    return(out)
+    #x = tibble(y=c(1,2,3),w=c(3,2,1))
+    #x %>% select(y,z=any_of(c("a","c")))#,"w","d","y")))
   }
   
-  #' 
-  #' #' Drops a temporary table created by dbplyr
-  #' #' 
-  #' #' This function could have major side effects and does not check to
-  #' #' see if the table is still in use anywhere to use with caution only
-  #' #' if you know that no other current queries depend on it
-  #' #' @param tableRef a dbplyr backed dataframe
-  #' #' @param dryRun defaults to debuggingState(). will only log intention when TRUE. set to FALSE to actually drop the table.
-  #' #' @param force defaults to FALSE. If an attemp is made to drop a non temporary table it will only be attempted if this flag is TRUE
-  #' tidyTempTable = function(tableRef, dryRun = debuggingState(), force=FALSE) {
-  #'   return()
-  #'   # TODO: this needs a lot of work
-  #'   # ?enquo, ?eval, ?eval_tidy
-  #'   name = deparse(substitute(tableRef))
-  #'   tableRef = enquo(tableRef)
-  #'   if (is.null(rlang::eval_tidy(tableRef))) return() # evaluates to null of self$nodes but works on groupedDf
-  #'     # possible we shoudl be dealing with enquo sures
-  #'   rn = rlang::eval_tidy(tableRef) %>% dbplyr::remote_name() # doesn;t in general return a table name but a remote_query seems to work
-  #'   if (is.null(rn)) {
-  #'     print(paste0("attempt to drop a table failed - maybe it is a query: ",name))
-  #'     return()
-  #'   }
-  #'   rn = rn %>% as.character()
-  #'   if (substring(rn,1,2) == "##") {
-  #'     if (test) {
-  #'       print(paste0("DEBUG: would have dropped: ",name," = ",rn))
-  #'     } else {
-  #'       odbc::dbRemoveTable(self$con,rn)
-  #'     }
-  #'   } else {
-  #'     if (force) {
-  #'       print(paste0("WARNING: Forced drop of non temporary table: ",name," = ",rn))
-  #'       odbc::dbRemoveTable(self$con,rn)
-  #'     } else {
-  #'       stop(paste0("CRITICAL: tried to drop non temporary table: ",name," = ",rn))
-  #'     }
-  #'   }
-  #' }
+  
 ))
-
 

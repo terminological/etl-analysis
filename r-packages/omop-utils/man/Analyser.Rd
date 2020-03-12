@@ -28,13 +28,16 @@ a$plotConceptNetwork()
 
 \item{\code{groupedDf}}{a grouped dataframe including a grouping representing the documents, distinct concepts in the groups and counts of concepts in document}
 
-\item{\code{grps}}{the original grouping of the data - corresponds to a document}
-
-\item{\code{nodes}}{a dataframe including unique concept_ids, overall counts and count of documents containing}
-
 \item{\code{edges}}{a dataframe of shortest ancestor edges between nodes}
 
-\item{\code{totalDocuments}}{a count of all the docuemnt level groupings in the analyser}
+\item{\code{idMap}}{mapping concept_ids to sequential ids}
+}
+\if{html}{\out{</div>}}
+}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{groupedDf}}{a grouped dataframe including a grouping representing the documents, distinct concepts in the groups and counts of concepts in document}
 }
 \if{html}{\out{</div>}}
 }
@@ -42,15 +45,15 @@ a$plotConceptNetwork()
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Analyser$new()}}
-\item \href{#method-calculateIdfNodes}{\code{Analyser$calculateIdfNodes()}}
-\item \href{#method-calculateGraph}{\code{Analyser$calculateGraph()}}
-\item \href{#method-redefineGroups}{\code{Analyser$redefineGroups()}}
-\item \href{#method-calculateAncestorConcepts}{\code{Analyser$calculateAncestorConcepts()}}
-\item \href{#method-calculateOutcomeMI}{\code{Analyser$calculateOutcomeMI()}}
-\item \href{#method-calculateTfidf}{\code{Analyser$calculateTfidf()}}
+\item \href{#method-toTidygraph}{\code{Analyser$toTidygraph()}}
+\item \href{#method-toIgraph}{\code{Analyser$toIgraph()}}
+\item \href{#method-toDiagrammeR}{\code{Analyser$toDiagrammeR()}}
+\item \href{#method-longestPaths}{\code{Analyser$longestPaths()}}
+\item \href{#method-nodesWithMaxScores}{\code{Analyser$nodesWithMaxScores()}}
+\item \href{#method-mutateNodes}{\code{Analyser$mutateNodes()}}
+\item \href{#method-mutateEdges}{\code{Analyser$mutateEdges()}}
 \item \href{#method-plotConceptNetwork}{\code{Analyser$plotConceptNetwork()}}
 \item \href{#method-plotSankeyD3}{\code{Analyser$plotSankeyD3()}}
-\item \href{#method-calculateCooccurrenceMI}{\code{Analyser$calculateCooccurrenceMI()}}
 \item \href{#method-print}{\code{Analyser$print()}}
 \item \href{#method-clone}{\code{Analyser$clone()}}
 }
@@ -60,7 +63,7 @@ a$plotConceptNetwork()
 \subsection{Method \code{new()}}{
 create a concept analyser - typically not designed to be called directly. See Analyser$fromSearcher and Analyser$fromDataframe
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$new(omop, groupedDf, field)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$new(omop, nodesDf, conceptIdVar = "concept_id", countVar = "count")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -68,107 +71,110 @@ create a concept analyser - typically not designed to be called directly. See An
 \describe{
 \item{\code{omop}}{an R6 Omop object}
 
-\item{\code{groupedDf}}{a data frame including at least a concept_id plus the groupings defining documents, and ideally counts}
+\item{\code{nodesDf}}{a dataframe containing a dataframe with minimally a list of node concept_ids}
 
 \item{\code{field}}{the field name of the concept_id}
-
-\item{\code{expanded}}{has the data already been expanded to include ancestors}
 }
 \if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-calculateIdfNodes"></a>}}
-\subsection{Method \code{calculateIdfNodes()}}{
-creates the nodes field containing IDF information
-
-TODO: save and restore IDFs based on different corpuses
-TODO: calculate IDFs of ancestor frequencies based on child frequencies (if possible)
+\if{html}{\out{<a id="method-toTidygraph"></a>}}
+\subsection{Method \code{toTidygraph()}}{
+as tidygraph.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateIdfNodes()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-calculateGraph"></a>}}
-\subsection{Method \code{calculateGraph()}}{
-build the nodes and links using the ancestor table and shortest paths
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateGraph()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-redefineGroups"></a>}}
-\subsection{Method \code{redefineGroups()}}{
-define document aggregation grouping post hoc. usually better to group data before importing
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$redefineGroups(...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$toTidygraph()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-the analyser
+a tidygraph::tbl_graph
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-calculateAncestorConcepts"></a>}}
-\subsection{Method \code{calculateAncestorConcepts()}}{
-get ancestors for a grouped set of concepts preserving grouping and count information
+\if{html}{\out{<a id="method-toIgraph"></a>}}
+\subsection{Method \code{toIgraph()}}{
+as igraph.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateAncestorConcepts()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$toIgraph()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-the analyser with expanded groupedDf including extra concepts
+an igraph::graph
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-calculateOutcomeMI"></a>}}
-\subsection{Method \code{calculateOutcomeMI()}}{
-caluculates a mutual information table for the outcomes given in outcomeVar
+\if{html}{\out{<a id="method-toDiagrammeR"></a>}}
+\subsection{Method \code{toDiagrammeR()}}{
+conver the network to a DiagrammeR::graph
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateOutcomeMI(outcomeVar)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$toDiagrammeR()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the DiagrammeR::graph
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-longestPaths"></a>}}
+\subsection{Method \code{longestPaths()}}{
+removes indirect paths between nodes leaving only the longest paths between nodes
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$longestPaths(distance = 1)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{outcomeVar}}{the outcome}
+\item{\code{distance}}{(defaults to one - the minimum level of path distances that are removed) larger values leaves more of the graph intact}
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Details}{
-The grouped dataframe here acts as a "Document" from the perpective of the TFIDF calculation but might be a person
-}
-
 \subsection{Returns}{
-an analysis object with the nodes expanded to include a MI score for each concept assuming a binary outcome
-and an expanded groupedDf which includes the normalised pointwise mutual information stats for each concept in each outcome
+the analyser with edges filtered to include only those with most direct ancestral connections
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-calculateTfidf"></a>}}
-\subsection{Method \code{calculateTfidf()}}{
-get an inverse document frequency for concepts associated with a grouping
+\if{html}{\out{<a id="method-nodesWithMaxScores"></a>}}
+\subsection{Method \code{nodesWithMaxScores()}}{
+select nodes which have a neighbourhood local maximum score value
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateTfidf(k1 = 1.2, b = 0.95)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$nodesWithMaxScores(scoreVar)}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+a list of nodes with maximum scoreVar in the neighbourhood
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-mutateNodes"></a>}}
+\subsection{Method \code{mutateNodes()}}{
+mutate nodes
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$mutateNodes(...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{k1}}{default 1.2 - okapi BM25}
-
-\item{\code{b}}{default 0.95 - okapi BM25}
+\item{\code{...}}{mutate operation}
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Details}{
-The grouped datafram here acts as a "Document" from the perpective of the TFIDF calculation but might be a person
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-mutateEdges"></a>}}
+\subsection{Method \code{mutateEdges()}}{
+mutate edges
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$mutateEdges(...)}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-an analysis object with the groupedDf expanded to include tfidf stats for each concept in each group
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{mutate operation}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -181,7 +187,7 @@ TODO: split this into own class?
 TODO: aggregatre tfidf measures
 TODO: mutual information measures
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$plotConceptNetwork(scoreVar = "f_t", labelScore = 1)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Analyser$plotConceptNetwork()}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -225,29 +231,6 @@ This would be good for visualising a classifier network
 \item{\code{linkWeightVar}}{the score on the link that will define the width of the network}
 }
 \if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-calculateCooccurrenceMI"></a>}}
-\subsection{Method \code{calculateCooccurrenceMI()}}{
-calculate a co-occurence matrix for the most
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Analyser$calculateCooccurrenceMI(filteredNodes)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{filteredNodes}}{- a list of}
-
-\item{\code{limit}}{the max number of terms co-occurrences that will be used for cooccurrence or NA for no limit}
-
-\item{\code{ascending}}{order the factor as ascending}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-the co-occurrence matrix as a dataframe
 }
 }
 \if{html}{\out{<hr>}}

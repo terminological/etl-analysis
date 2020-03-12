@@ -519,8 +519,19 @@ for(featureSet in featureSets) {
 }
 
 #varImp
-comparison$compareDistributionStats()
+tmpResult = comparison$compareDistributionStats()
+tmpResult %>% standardPrintOutput::saveTableLandscape("~/Dropbox/antibioticResistance/modelComparison")
 
+comparison$plotRocs(function(params) params$title) %>% standardPrintOutput::saveFullPageFigure("~/Dropbox/antibioticResistance/modelComparisonRocs")
+# N.B. no predictive value.
+# TODO:
+# Check data is OK
+# Check synthetic example.
+# try a simple structured data model - age - previous positive UTIs - previous resistance (RF / )
+# varimp versus MI - can we detect nonlinear relationships
+# look at the outcome of a single random forest - if any better can try for all combinations
+
+write_delim(varImp,"~/Dropbox/antibioticResistance/modelComparisonVarImp",delim = "\t")
 ```
 ## family of cost weighted models
 

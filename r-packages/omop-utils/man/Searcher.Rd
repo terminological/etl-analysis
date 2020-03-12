@@ -43,6 +43,7 @@ search = Searcher$new(omop)
 \item \href{#method-getVocabularies}{\code{Searcher$getVocabularies()}}
 \item \href{#method-getConceptClasses}{\code{Searcher$getConceptClasses()}}
 \item \href{#method-getRelationshipIds}{\code{Searcher$getRelationshipIds()}}
+\item \href{#method-persist}{\code{Searcher$persist()}}
 \item \href{#method-compute}{\code{Searcher$compute()}}
 \item \href{#method-toDataframe}{\code{Searcher$toDataframe()}}
 \item \href{#method-summary}{\code{Searcher$summary()}}
@@ -413,6 +414,18 @@ explore available concept_relationships for current set of concepts
 }
 \subsection{Returns}{
 a data.frame of relationship_id and count
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-persist"></a>}}
+\subsection{Method \code{persist()}}{
+execute a dplyr::compute
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Searcher$persist(tablename)}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the searcher with a cached result
 }
 }
 \if{html}{\out{<hr>}}

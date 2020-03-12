@@ -22,11 +22,11 @@ Searcher = R6::R6Class("Searcher", public=list(
   #' @param omop an R6 Omop object
   initialize = function(omop) {
     self$omop = omop;
-    self$result = omop$concept %>% mutate(count=1)
+    self$result = omop$concept %>% mutate(count=1L)
     self$applyStandardFilters()
   },
   
-  #### mapping accross relationships for either input datafram or searcher$result ----
+  #### Traverse relationships ----
   
   #' @description get standard concept equivalents for a set of concepts
   #' @return a searcher of related standard concepts
@@ -38,11 +38,11 @@ Searcher = R6::R6Class("Searcher", public=list(
   #' @param relationships a list of relationship ids as a string (see getRelationshipIds())
   #' @return a searcher of related standard concepts
   mapToRelatedConcepts = function(relationships) {
-    tmp = self$omop$concept_relationship %>%
-      inner_join(self$result %>% select(concept_id,count), by=c("concept_id_1"="concept_id"), copy=TRUE) %>%
+    tmp = self$omop$concept_relationship %>% rename(source_concept_id = concept_id_1, concept_id = concept_id_2) %>%
+      inner_join(self$result %>% select(source_concept_id=concept_id,count), by="source_concept_id", copy=TRUE) %>%
       filter(relationship_id %in% local(relationships))
     self$result = self$omop$concept %>% 
-      inner_join(tmp %>% group_by(concept_id_2) %>% summarise(count=sum(count,na.rm=TRUE)), by=c("concept_id"="concept_id_2")) 
+      inner_join(tmp %>% group_by(concept_id) %>% summarise(count=sum(count,na.rm=TRUE)), by="concept_id") 
     self$applyStandardFilters()
     return(self)
   },
@@ -53,16 +53,16 @@ Searcher = R6::R6Class("Searcher", public=list(
   #' @param df optional dataframe - if none will use the searcher$result
   #' @return a searcher of ancestor concepts
   expandAncestorConcepts = function(min=0, max=1) {
-    tmp = self$omop$concept_ancestor %>% 
+    tmp = self$omop$concept_ancestor %>% rename(source_concept_id = descendant_concept_id, concept_id = ancestor_concept_id) %>%
       inner_join(
-        self$result %>% select(concept_id,count), 
-        by=c("descendant_concept_id"="concept_id"), 
+        self$result %>% select(source_concept_id = concept_id,count), 
+        by="source_concept_id", 
         copy=TRUE) %>%
       filter(min_levels_of_separation >= local(min) & min_levels_of_separation <= local(max))
     self$result = self$omop$concept %>% 
       inner_join(
-        tmp %>% group_by(ancestor_concept_id) %>% summarise(count=sum(count,na.rm=TRUE)), 
-        by=c("concept_id"="ancestor_concept_id"))
+        tmp %>% group_by(concept_id) %>% summarise(count=sum(count,na.rm=TRUE)), 
+        by="concept_id")
     self$applyStandardFilters()
     return(self)
   },
@@ -72,15 +72,16 @@ Searcher = R6::R6Class("Searcher", public=list(
   #' @param max the maximum number of levels to find
   #' @return a searcher of descendant concepts
   expandDescendantConcepts = function(min=0, max=1000) {
-    tmp = self$omop$concept_ancestor %>% 
+    tmp = self$omop$concept_ancestor %>% rename(source_concept_id = ancestor_concept_id, concept_id = descendant_concept_id) %>%
       inner_join(
-        self$result %>% select(concept_id,count), 
-        by=c("ancestor_concept_id"="concept_id"), copy=TRUE) %>%
+        self$result %>% select(source_concept_id = concept_id,count), 
+        by="source_concept_id", 
+        copy=TRUE) %>%
       filter(min_levels_of_separation >= local(min) & min_levels_of_separation <= local(max))
     self$result = self$omop$concept %>% 
       inner_join(
-        tmp %>% group_by(descendant_concept_id) %>% summarise(count=sum(count,na.rm=TRUE)), 
-        by=c("concept_id"="descendant_concept_id"))
+        tmp %>% group_by(concept_id) %>% summarise(count=sum(count,na.rm=TRUE)), 
+        by="concept_id")
     self$applyStandardFilters()
     return(self)
   },
@@ -266,6 +267,13 @@ Searcher = R6::R6Class("Searcher", public=list(
   
   #' @description execute a dplyr::compute
   #' @return the searcher with a cached result
+  persist = function(tablename) {
+    self$result = self$omop$persist(tablename, self$result, indexes=list("concept_id"))
+    return(self)
+  },
+  
+  #' @description execute a dplyr::compute
+  #' @return the searcher with a cached result
   compute = function() {
     self$result = self$result %>% compute() #name=paste0("cohort_",name),overwrite=TRUE)
     return(self)
@@ -275,6 +283,7 @@ Searcher = R6::R6Class("Searcher", public=list(
   #' @return the subset as a data frame
   toDataframe = function() {
     # self$result = self$result %>% compute() #name=paste0("cohort_",name),overwrite=TRUE)
+    class(self$result) = unique(c(class(self$result),"concept"))
     return(self$result)
   },
   
@@ -309,7 +318,7 @@ Searcher = R6::R6Class("Searcher", public=list(
   #' @return the searcher itself (not modified)
   print = function() {
     print("R6 vocabulary searcher class")
-    print(self$result %>% select(concept_id,count,concept_name))
+    print(self$result %>% select(concept_id,count,concept_name) %>% arrange(desc(count)))
     invisible(self)
   },
   
@@ -351,7 +360,7 @@ Searcher$fromDataframe = function(omop, df, field = "concept_id") {
   field = ensym(field)
   s = Searcher$new(omop)
   if(!"count" %in% colnames(df)) {
-    df = df %>% mutate(count=1)
+    df = df %>% mutate(count=1L)
   }
   s$result = s$omop$concept %>% inner_join(
     df %>% group_by(concept_id = !!field) %>% summarise(count=sum(count,na.rm=TRUE)),
@@ -370,7 +379,7 @@ Searcher$fromDataframe = function(omop, df, field = "concept_id") {
 NULL
 Searcher$fromConceptCode = function(omop, vocabulary_id, concept_code) {
   s = Searcher$new(omop)  
-  s$result = s$omop$concept %>% mutate(count=1) %>% filter(
+  s$result = s$omop$concept %>% mutate(count=1L) %>% filter(
         vocabulary_id %like% local(vocabulary_id) &
         concept_code %like% local(concept_code)
   )
@@ -391,7 +400,7 @@ Searcher$load = function(omop, name) {
   s$result = readRDS(filename)
   table = stringr::str_match(filename,"/([^/\\.]+)\\..+$")[1,2]
   if (!"count" %in% colnames(s$result)) {
-    s$result = s$result %>% mutate(count=1)
+    s$result = s$result %>% mutate(count=1L)
   }
   dplyr::copy_to(s$omop$con, s$result, name=paste0(table,"_vocab"),overwrite=TRUE)
   if (!"concept_name" %in% colnames(s$result)) {

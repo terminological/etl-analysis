@@ -2,26 +2,25 @@ Package: omopUtils
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9001
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = structure("YOUR-ORCID-ID", .Names = "ORCID"))
+  person(given = "Robert",
+    family = "Challen",
+    role = c("aut", "cre"),
+    email = "rc538@exeter.ac.uk",
+    comment = structure("YOUR-ORCID-ID", .Names = "ORCID"))
 Description: What the package does (one paragraph).
-License: What license it uses
+License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2
 Imports:
-    R6,
-    config,
-    DBI,
-    odbc,
-    dbplyr,
-    dplyr,
-    tidygraph,
-    ggraph,
-    networkD3,
-    tidyinfostats
+  R6,
+  config,
+  DBI,
+  odbc,
+  dplyr,
+  tidygraph,
+  ggraph,
+  networkD3,
+  tidyinfostats
 Remotes: 
 	terminological/tidyinfostats

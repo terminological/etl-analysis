@@ -2,11 +2,18 @@
 % Please edit documentation in R/Cohort.R
 \name{Cohort}
 \alias{Cohort}
-\title{Get a searcher of the omop databse}
+\title{Get a cohort of patients in the omop database that satisfy a set of criteria, define a cohort_person_id and a cohort_entry_datetime for the members of the cohort}
 \description{
-Get a searcher of the omop databse
+Get a cohort of patients in the omop database that satisfy a set of criteria, define a cohort_person_id and a cohort_entry_datetime for the members of the cohort
 
-Get a searcher of the omop databse
+Get a cohort of patients in the omop database that satisfy a set of criteria, define a cohort_person_id and a cohort_entry_datetime for the members of the cohort
+}
+\details{
+A cohort may be patients for example
+
+* Admitted into the hospital at a specific time
+* Patients with a specific type of test result
+*
 }
 \examples{
 search = Searcher$new(omop)
@@ -25,17 +32,25 @@ search = Searcher$new(omop)
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Cohort$new()}}
-\item \href{#method-withConceptSetFilter}{\code{Cohort$withConceptSetFilter()}}
-\item \href{#method-withValueFilter}{\code{Cohort$withValueFilter()}}
-\item \href{#method-withConceptAndValueFilter}{\code{Cohort$withConceptAndValueFilter()}}
-\item \href{#method-withFilter}{\code{Cohort$withFilter()}}
+\item \href{#method-applyFilter}{\code{Cohort$applyFilter()}}
+\item \href{#method-applyMutate}{\code{Cohort$applyMutate()}}
+\item \href{#method-applySelect}{\code{Cohort$applySelect()}}
 \item \href{#method-getCohortVariables}{\code{Cohort$getCohortVariables()}}
-\item \href{#method-withGender}{\code{Cohort$withGender()}}
+\item \href{#method-applyGenderFilter}{\code{Cohort$applyGenderFilter()}}
+\item \href{#method-applyAgeFilter}{\code{Cohort$applyAgeFilter()}}
+\item \href{#method-requireObservation}{\code{Cohort$requireObservation()}}
+\item \href{#method-requireOutcome}{\code{Cohort$requireOutcome()}}
+\item \href{#method-excludeObservation}{\code{Cohort$excludeObservation()}}
+\item \href{#method-excludeOutcome}{\code{Cohort$excludeOutcome()}}
+\item \href{#method-requireFeature}{\code{Cohort$requireFeature()}}
+\item \href{#method-generateFeatures}{\code{Cohort$generateFeatures()}}
+\item \href{#method-observationsPrior}{\code{Cohort$observationsPrior()}}
+\item \href{#method-outcomesPost}{\code{Cohort$outcomesPost()}}
 \item \href{#method-compute}{\code{Cohort$compute()}}
-\item \href{#method-get}{\code{Cohort$get()}}
+\item \href{#method-persist}{\code{Cohort$persist()}}
 \item \href{#method-save}{\code{Cohort$save()}}
-\item \href{#method-load}{\code{Cohort$load()}}
 \item \href{#method-print}{\code{Cohort$print()}}
+\item \href{#method-plot}{\code{Cohort$plot()}}
 \item \href{#method-clone}{\code{Cohort$clone()}}
 }
 }
@@ -44,7 +59,13 @@ search = Searcher$new(omop)
 \subsection{Method \code{new()}}{
 create a cohort builder
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Cohort$new(omop, name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$new(
+  omop,
+  eventDf,
+  cohortEntryDateVar = NULL,
+  cohortIdVar = NULL,
+  retainFilteringCriteria = FALSE
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -52,91 +73,55 @@ create a cohort builder
 \describe{
 \item{\code{omop}}{an R6 Omop object}
 
-\item{\code{name}}{a very short description of the cohort}
+\item{\code{eventDf}}{a dataframe that defines the principal zero day event that admits person to cohort. It must define a person_id column.}
+
+\item{\code{cohortEntryDateVar}}{the column in eventDf that has the zero day date. if not present the first column named ??_start_datetime or ??_datetime will be used, or if none found today's date}
+
+\item{\code{cohortIdVar}}{a column in eventDf that contians a unique id for this event. If not present then one is generated}
+
+\item{\code{retainFilteringCriteria}}{keep the columns from eventDf in the cohort? (can use applySelect to modify them later)}
 }
 \if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-withConceptSetFilter"></a>}}
-\subsection{Method \code{withConceptSetFilter()}}{
-apply filter to cohort that allows requires stated field is one from a range of concepts
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Cohort$withConceptSetFilter(personDf, conceptIdField, conceptDf)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{personDf}}{a dataframe with a person_id field and a ???_concept_id field, optionally grouped by columns that may be needed for further filtering}
-
-\item{\code{conceptIdField}}{a dataframe with a concept_id field}
-
-\item{\code{conceptDf}}{a dataframe with a concept_id field holding concepts}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-the builder with a cohort filtered and augmented with any additional fields from the person_df groups
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-withValueFilter"></a>}}
-\subsection{Method \code{withValueFilter()}}{
-apply filter to cohort that requires stated field is of specific value (which may be a concept id)
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Cohort$withValueFilter(personDf, valueExpr)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{personDf}}{a dataframe with a person_id field and a ???_concept_id field, optionally grouped by columns that may be needed for further filtering}
-
-\item{\code{valueExpr}}{a standard dplyr filter expression}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-the builder with a cohort filtered and augmented with any additional fields from the person_df groups
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-withConceptAndValueFilter"></a>}}
-\subsection{Method \code{withConceptAndValueFilter()}}{
-apply filter to cohort that requires stated field is of specific value (which may be a concept id)
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Cohort$withConceptAndValueFilter(
-  personDf,
-  conceptIdField,
-  conceptDf,
-  valueExpr
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{personDf}}{a dataframe with a person_id field and a ???_concept_id field, optionally grouped by columns that may be needed for further filtering}
-
-\item{\code{conceptIdField}}{a dataframe with a concept_id field}
-
-\item{\code{conceptDf}}{a dataframe with a concept_id field holding concepts}
-
-\item{\code{valueExpr}}{a standard dplyr filter expression}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-the builder with a cohort filtered and augmented with any additional fields from the person_df groups
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-withFilter"></a>}}
-\subsection{Method \code{withFilter()}}{
+\if{html}{\out{<a id="method-applyFilter"></a>}}
+\subsection{Method \code{applyFilter()}}{
 apply filter to cohort itself
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Cohort$withFilter(filterExpr)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$applyFilter(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{filterExpr}}{a filter expression as expected by dplyr::filter}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-applyMutate"></a>}}
+\subsection{Method \code{applyMutate()}}{
+apply mutate to cohort itself
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$applyMutate(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{filterExpr}}{a filter expression as expected by dplyr::filter}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-applySelect"></a>}}
+\subsection{Method \code{applySelect()}}{
+apply mutate to cohort itself
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$applySelect(...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -160,23 +145,124 @@ the columns of the cohort (as a list of symbols)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-withGender"></a>}}
-\subsection{Method \code{withGender()}}{
-filter the
+\if{html}{\out{<a id="method-applyGenderFilter"></a>}}
+\subsection{Method \code{applyGenderFilter()}}{
+apply gender filter to cohort itself
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Cohort$withGender(gender)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$applyGenderFilter(
+  gender = c(omopCodes$gender$FEMALE, omopCodes$gender$MALE)
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{gender}}{a M or F value}
+\item{\code{gender}}{a vector of codes from omopCodes$gender}
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Returns}{
-the columns of the cohort (as a list of symbols)
 }
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-applyAgeFilter"></a>}}
+\subsection{Method \code{applyAgeFilter()}}{
+apply age filter to cohort itself
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$applyAgeFilter(minYears = 0, maxYears = 200)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{minYears}}{minimum age as float (calculation based on age in days)}
+
+\item{\code{maxYears}}{maximum age as float}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-requireObservation"></a>}}
+\subsection{Method \code{requireObservation()}}{
+match only patients that have a specific observation (see observationsPrior)
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$requireObservation(observationDf)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{observationDf}}{a dataframe of desired observations with a}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-requireOutcome"></a>}}
+\subsection{Method \code{requireOutcome()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$requireOutcome(outcomeDf)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-excludeObservation"></a>}}
+\subsection{Method \code{excludeObservation()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$excludeObservation(observationDf)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-excludeOutcome"></a>}}
+\subsection{Method \code{excludeOutcome()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$excludeOutcome(outcomeDf)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-requireFeature"></a>}}
+\subsection{Method \code{requireFeature()}}{
+match only patients that have a specific feature (see observationsPrior() or outcomesPost())
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$requireFeature(featureDf, negate, retainFilteringCriteria = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{negate}}{- if TRUE the patients in featureDf will be excluded if FALSE all other patients are excluded}
+
+\item{\code{retainFilteringCriteria}}{- keep the feature in the cohort table. This can lead to duplicate cohort_person_id records and needs to be treated with care}
+
+\item{\code{observationDf}}{a dataframe of desired observations with a}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-generateFeatures"></a>}}
+\subsection{Method \code{generateFeatures()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$generateFeatures(omopDf, timeVar, before = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-observationsPrior"></a>}}
+\subsection{Method \code{observationsPrior()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$observationsPrior(observationDataDf, observationDataTimeVar = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-outcomesPost"></a>}}
+\subsection{Method \code{outcomesPost()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$outcomesPost(outcomeDataDf, outcomeDataTimeVar = NULL)}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
@@ -188,39 +274,23 @@ execute a dplyr::compute
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get"></a>}}
-\subsection{Method \code{get()}}{
-execute a dplyr::compute and
+\if{html}{\out{<a id="method-persist"></a>}}
+\subsection{Method \code{persist()}}{
+save or restore the cohort from a cache database table
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Cohort$get()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$persist(tablename)}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-the cohort as a data frame
+the searcher with a cached result
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save"></a>}}
 \subsection{Method \code{save()}}{
-saves the data locally
+saves the data locally in rds file
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Cohort$save(name)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{name}}{the name of the file - initial part of path}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-load"></a>}}
-\subsection{Method \code{load()}}{
-loads the data
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Cohort$load(name)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -237,6 +307,15 @@ loads the data
 print the cohort name as size
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Cohort$print()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-plot"></a>}}
+\subsection{Method \code{plot()}}{
+plot a summary of the cohort
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Cohort$plot(...)}\if{html}{\out{</div>}}
 }
 
 }
